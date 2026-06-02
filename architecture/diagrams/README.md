@@ -1,12 +1,14 @@
 # Architecture diagrams
 
-Add PNG exports here (same names as outline):
+Reviewer-facing exports (add PNGs as you export from draw.io or the vault):
 
-- `c4-context.png`
-- `c4-container.png`
-- `c4-component.png`
-- `request-flow.png`
-- `dependency-map.png`
-- `blast-radius-map.png`
+| File | Source markdown |
+|------|-----------------|
+| `c4-context.png` | [../c4-context.md](../c4-context.md) |
+| `c4-container.png` | [../c4-container.md](../c4-container.md) |
+| `c4-component.png` | [../../archive/architecture-supplemental/c4-component.md](../../archive/architecture-supplemental/c4-component.md) |
+| `request-flow.png` | [../request-flow.md](../request-flow.md) |
+| `dependency-map.png` | [../../archive/architecture-supplemental/dependency-map.md](../../archive/architecture-supplemental/dependency-map.md) |
+| `blast-radius-map.png` | [../../archive/architecture-supplemental/blast-radius-analysis.md](../../archive/architecture-supplemental/blast-radius-analysis.md) |
 
-Markdown sources live in [../](../) until exported from vault or draw.io.
+Until PNGs exist, read the markdown sources linked above.

@@ -29,7 +29,7 @@ def main() -> None:
     # Architecture — component + derived docs from vault narrative
     vault = VAULT_C4.read_text(encoding="utf-8") if VAULT_C4.exists() else ""
     w(
-        "architecture/c4-component.md",
+        "archive/architecture-supplemental/c4-component.md",
         """# C4 — Component view (Web application)
 
 Inside **Next.js `cxr-ui`**: App Router pages, `app/api/*` routes, and `lib/*` shared libraries.
@@ -53,7 +53,7 @@ See [request-flow.md](./request-flow.md) · [c4-container.md](./c4-container.md)
 Source: CXR architecture vault C4 Level 3 (adapted for public portfolio).""",
     )
     w(
-        "architecture/dependency-map.md",
+        "archive/architecture-supplemental/dependency-map.md",
         """# Dependency map (local dev stack)
 
 | Dependency | Port | Required for analyze? | Notes |
@@ -72,7 +72,7 @@ Source: CXR architecture vault C4 Level 3 (adapted for public portfolio).""",
 Companion repos: `cxr-ui-rehearsal`, `cxr-ops-lab`, `claim_analysis_tools`.""",
     )
     w(
-        "architecture/blast-radius-analysis.md",
+        "archive/architecture-supplemental/blast-radius-analysis.md",
         """# Blast radius analysis
 
 ## Failure domains
@@ -87,7 +87,7 @@ Companion repos: `cxr-ui-rehearsal`, `cxr-ops-lab`, `claim_analysis_tools`.""",
 
 ## What we do not claim
 
-This is a **local engineering stack**, not multi-tenant SaaS isolation. Blast radius for production K8 is tracked in [future-state-architecture.md](./future-state-architecture.md) and [ADR-005](../adrs/ADR-005-kubernetes-roadmap.md).""",
+This is a **local engineering stack**, not multi-tenant SaaS isolation. Blast radius for production K8 is tracked in [future-state-architecture.md](../../architecture/future-state-architecture.md) and [ADR-005](../../architecture/adrs/ADR-005-kubernetes-roadmap.md).""",
     )
     w(
         "architecture/future-state-architecture.md",

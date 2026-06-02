@@ -10,7 +10,7 @@ The portfolio focuses on architecture, observability, reliability, performance i
 
 ### Architecture
 
-System design, request flows, C4 diagrams, architecture evolution, and engineering decisions.
+System design, request flows, C4 diagrams, [architecture evolution](./architecture/architecture-evolution.md), and ADRs in `adrs/`.
 
 ### Investigations
 
