@@ -1,0 +1,23 @@
+{
+  "CLM_ID": "cms-claim-complex-0001",
+  "DESYNPUF_ID": "medicare-xyz-000",
+  "CLM_FROM_DT": "20250928",
+  "CLM_THRU_DT": "20250928",
+  "PRVDR_NUM": "provider-orthopedics-999",
+  "diagnosis_codes": {
+    "ICD9_DGNS_CD_1": "M16.11",
+    "ICD9_DGNS_CD_2": "Z98.890",
+    "ICD9_DGNS_CD_3": "Z99.89"
+  },
+  "procedure_codes": {
+    "HCPCS_CD_1": "27130",
+    "HCPCS_CD_2": "27447",
+    "HCPCS_CD_3": "G0299",
+    "HCPCS_CD_4": "80053",
+    "HCPCS_CD_5": "93000"
+  },
+  "total_charges": 62445.0,
+  "charges": {
+    "total": 62445.0
+  }
+}
