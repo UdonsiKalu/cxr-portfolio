@@ -1,55 +1,80 @@
 # CXR — Claims Reasoning Platform (Engineering Portfolio)
 
-This repository documents how **CXR (Claim eXamination & Reasoning)** was designed, investigated, and operated: architecture, performance work, incidents, and a runnable local demo.
+This repository documents the engineering work behind CXR (Claim eXamination & Reasoning), a healthcare-focused claims analysis platform.
 
-CXR is a healthcare-focused claims analysis platform used as a case study for platform engineering, observability, load testing, and reliability work on a real stack (not toy demos).
-
----
-
-## Start here (reviewers)
-
-| Step | Document |
-|------|----------|
-| 1 | [my-impact.md](./my-impact.md) — outcomes in plain language |
-| 2 | [architecture/request-flow.md](./architecture/request-flow.md) — how a claim moves through the system |
-| 3 | [investigations/latency-investigation.md](./investigations/latency-investigation.md) — Locust + Jaeger proof |
-| 4 | [investigations/incidents/INC-003-python-import-bottleneck/postmortem.md](./investigations/incidents/INC-003-python-import-bottleneck/postmortem.md) — warm analyzer decision |
-| 5 | [demo/RUN.md](./demo/RUN.md) — run it locally (optional) |
-
-**Flagship story:** ~11s analyze requests → traced to Python import cost → long-running analyzer → **~2s** warm path. See [architecture/adrs/ADR-004-long-running-analyzer.md](./architecture/adrs/ADR-004-long-running-analyzer.md).
+The portfolio focuses on architecture, observability, reliability, performance investigations, and platform operations using a real system rather than isolated demonstrations.
 
 ---
 
-## Repository layout (five folders)
+## Repository Structure
 
-```
-cxr-portfolio/
-├── README.md
-├── my-impact.md
-├── DISCLAIMER.md
-├── architecture/      # Design, C4, ADRs, evolution
-├── investigations/    # Traces, latency, incidents, runbooks, chaos
-├── operations/        # Docker, CI/CD, Kubernetes, Terraform
-├── demo/              # Run instructions, compose, walkthroughs
-└── archive/           # Templates, notes, maintainer docs (optional)
-```
+### Architecture
 
-| Folder | What’s inside |
-|--------|----------------|
-| **architecture/** | C4 diagrams, request flow, engineering philosophy, tradeoffs, **adrs/** |
-| **investigations/** | OpenTelemetry, Jaeger, latency work, **incidents/**, runbooks, screenshots |
-| **operations/** | `cxr up`, Docker, GitHub Actions, K8 and Terraform reference |
-| **demo/** | Reproduce the observe + Claim Studio path |
-| **archive/** | Bootcamp notes, templates, security drafts — not required for review |
+System design, request flows, C4 diagrams, architecture evolution, and engineering decisions.
+
+### Investigations
+
+Performance investigations, incident analysis, load testing, tracing, runbooks, and reliability experiments.
+
+### Operations
+
+Docker, CI/CD, GitHub Actions, Kubernetes, Terraform, deployment practices, and capacity planning.
+
+### Demo
+
+Local demonstration environment and walkthroughs.
+
+### Archive
+
+Supporting notes, templates, and reference material.
+
+---
+
+## Recommended Review Path
+
+1. `my-impact.md`
+2. `architecture/request-flow.md`
+3. `investigations/latency-investigation.md`
+4. `investigations/incidents/`
+5. `architecture/adrs/`
+6. `demo/RUN.md`
+
+---
+
+## Example Investigation
+
+A major investigation documented in this repository involved claim analysis requests averaging approximately 11–12 seconds.
+
+Using OpenTelemetry, Jaeger, and Locust, the investigation identified repeated Python import costs as the primary source of latency.
+
+The analysis resulted in a migration from a subprocess-per-request architecture to a long-running analyzer service.
+
+Supporting documentation is available in:
+
+* `investigations/latency-investigation.md`
+* `investigations/incidents/INC-003-python-import-bottleneck/`
+* `architecture/adrs/ADR-004-long-running-analyzer.md`
+
+---
+
+## Running the Demo
+
+See `demo/RUN.md`.
 
 ---
 
 ## Disclaimer
 
-Synthetic claims and local dev configuration only. No production patient data. See [DISCLAIMER.md](./DISCLAIMER.md).
+This repository uses synthetic claims, sample policies, and development environments for demonstration purposes.
+
+No production patient information or customer data is included.
+
+See [DISCLAIMER.md](./DISCLAIMER.md) for additional information.
 
 ---
 
 ## Author
 
-**Udonsi Kalu** — engineering portfolio for CXR as a platform and AI-systems case study.
+**Udonsi Kalu**
+
+Platform engineering, observability, reliability engineering, and AI systems work documented through the development and operation of CXR.
