@@ -21,12 +21,12 @@ cxr-portfolio/
 │   ├── c4-context.md … c4-component.md, request-flow.md, …
 │   └── diagrams/         ← PNGs planned (README lists names)
 │
-├── platform-thinking/
+├── architecture/
 │   ├── engineering-philosophy.md …
 │   ├── architecture-journey/   (v1 … future-state)
 │   └── platform-model/
 │
-├── observability/
+├── investigations/
 │   ├── … (overview, OTel, Jaeger, latency, load testing)
 │   ├── dashboards/
 │   └── screenshots/      ← SW.11 Jaeger PNGs
@@ -42,13 +42,13 @@ cxr-portfolio/
 │   ├── kubernetes/       ← reference YAML from cxr-ops-lab
 │   └── terraform/
 │
-├── security-compliance/
+├── archive/security-compliance/
 ├── adrs/                 ← ADR-001–006
 ├── demo/
 ├── archive/
 └── templates/
 ```
 
-**Incidents:** [INC-002-jaeger-trace-ux](../reliability/incidents/INC-002-jaeger-trace-ux/postmortem.md) (trace profile / span visibility).
+**Incidents:** [INC-002-jaeger-trace-ux](../investigations/incidents/INC-002-jaeger-trace-ux/postmortem.md) (trace profile / span visibility).
 
 Bootcamp lab index: [archive/learning-notes/bootcamp-labs.md](../archive/learning-notes/bootcamp-labs.md).

@@ -37,5 +37,5 @@ Script: `cxr-ops-lab/scripts/cxr-dev-stack.sh` (wrapper at `staging/cxr-dev.sh`)
 
 ## Related runbooks
 
-- [slow-api](../reliability/runbooks/slow-api.md)
-- [no-traces](../reliability/runbooks/no-traces.md)
+- [slow-api](./slow-api.md)
+- [no-traces](./no-traces.md)

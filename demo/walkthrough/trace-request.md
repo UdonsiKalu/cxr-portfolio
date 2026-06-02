@@ -10,4 +10,4 @@
    - `claim_analysis` → `context_builder`
 7. Restart analyzer (`cxr down` + `cxr up`) and find **`analyzer_service.startup`** (~7s) on `cxr-analyzer-service`.
 
-Compare to screenshots in [observability/screenshots/](../observability/screenshots/).
+Compare to screenshots in [investigations/screenshots/](../investigations/screenshots/).

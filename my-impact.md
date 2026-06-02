@@ -12,7 +12,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 - Wired **OTLP** (port **4318**) through an OpenTelemetry Collector into **Jaeger** (port **16686**).
 - Produced **~21 nested spans** per warm analyze, including `context_builder`, `claim_analysis`, `retrieval`, and import spans on analyzer startup.
 
-**Evidence:** [observability/screenshots/](./observability/screenshots/) · [latency investigation](./observability/latency-investigation.md)
+**Evidence:** [investigations/screenshots/](./investigations/screenshots/) · [latency investigation](./investigations/latency-investigation.md)
 
 ### 2. Found the real bottleneck (investigation, not guessing)
 
@@ -22,7 +22,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 | Kernel-only view | **~1.5s** `context_builder` | Analyze logic was fast once the runtime was warm |
 | After fix | **~1.6–3s** warm POST | Long-lived **FastAPI analyzer** + `ANALYZER_URL` from Next.js |
 
-**Evidence:** [INC-003 postmortem](./reliability/incidents/INC-003-python-import-bottleneck/postmortem.md) · [ADR-004](./adrs/ADR-004-long-running-analyzer.md)
+**Evidence:** [INC-003 postmortem](./investigations/incidents/INC-003-python-import-bottleneck/postmortem.md) · [ADR-004](./architecture/adrs/ADR-004-long-running-analyzer.md)
 
 ### 3. Load-tested with intent (Locust)
 
@@ -30,7 +30,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 - Correlated Locust p95 with Jaeger traces (not just CPU graphs).
 - Integrated Locust into the **one-command dev stack** (`cxr up`).
 
-**Evidence:** [load testing results](./observability/load-testing-results.md)
+**Evidence:** [load testing results](./investigations/load-testing-results.md)
 
 ### 4. Operability for humans (including future me)
 
@@ -61,5 +61,5 @@ That is implementation credibility.
 ## What’s next (honest backlog)
 
 - Formal SLOs and error budgets (documented when measured, not invented).
-- Chaos experiments on Qdrant/Ollama (planned; see reliability section).
+- Chaos experiments on Qdrant/Ollama (planned; see investigations section).
 - Public companion repos linked from this portfolio for a single-clone demo.

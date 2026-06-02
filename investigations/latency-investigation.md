@@ -40,9 +40,9 @@ Load-test slowness was dominated by **process architecture**, not by a single sl
 ## Artifacts
 
 - Screenshots: [screenshots/SW11-jaeger-waterfall-post-analyze-2026-05-30.png](./screenshots/SW11-jaeger-waterfall-post-analyze-2026-05-30.png)
-- Decision record: [ADR-004](../adrs/ADR-004-long-running-analyzer.md)
-- Incident write-up: [INC-003](../reliability/incidents/INC-003-python-import-bottleneck/postmortem.md)
+- Decision record: [ADR-004](../architecture/adrs/ADR-004-long-running-analyzer.md)
+- Incident write-up: [INC-003](../investigations/incidents/INC-003-python-import-bottleneck/postmortem.md)
 
 ## Trace profile note
 
-A **`minimal`** trace profile was tried to reduce Jaeger “Operations” clutter; it **reduced** useful span detail (~7 spans vs ~21). Default restored to **`detailed`**. See [INC-002](../reliability/incidents/INC-002-jaeger-trace-ux/postmortem.md).
+A **`minimal`** trace profile was tried to reduce Jaeger “Operations” clutter; it **reduced** useful span detail (~7 spans vs ~21). Default restored to **`detailed`**. See [INC-002](../investigations/incidents/INC-002-jaeger-trace-ux/postmortem.md).

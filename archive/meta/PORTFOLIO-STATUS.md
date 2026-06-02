@@ -7,9 +7,9 @@
 | Item | Status |
 |------|--------|
 | [my-impact.md](../my-impact.md) | Complete |
-| [observability/latency-investigation.md](../observability/latency-investigation.md) | Complete |
-| [INC-003 postmortem](../reliability/incidents/INC-003-python-import-bottleneck/postmortem.md) | Complete |
-| [observability/screenshots/](../observability/screenshots/) | Complete |
+| [investigations/latency-investigation.md](../investigations/latency-investigation.md) | Complete |
+| [INC-003 postmortem](../investigations/incidents/INC-003-python-import-bottleneck/postmortem.md) | Complete |
+| [investigations/screenshots/](../investigations/screenshots/) | Complete |
 | [demo/RUN.md](../demo/RUN.md) | Complete |
 
 ## Full outline

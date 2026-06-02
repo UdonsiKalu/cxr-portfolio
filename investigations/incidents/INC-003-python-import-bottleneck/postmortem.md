@@ -22,7 +22,7 @@ Per-request **Python subprocess** re-imported heavy deps (torch, sentence_transf
 
 - Warm POST **~1.6–3s**, `analyzer_mode: http`.
 - Jaeger **~21 spans** on steady-state POST.
-- [ADR-004](../../adrs/ADR-004-long-running-analyzer.md)
+- [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md)
 
 ## Prevention
 

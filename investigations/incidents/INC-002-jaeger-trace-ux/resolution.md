@@ -2,6 +2,6 @@
 
 Default `detailed`; `flush_tracing()` after analyzer lifespan.
 
-See [jaeger.md](../../observability/jaeger.md).
+See [jaeger.md](../jaeger.md).
 
 Full record: [postmortem.md](./postmortem.md)
