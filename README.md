@@ -1,88 +1,166 @@
 # CXR — Claims Reasoning Platform (Engineering Portfolio)
 
-> **Private work in progress** — full outline is populated; refine evidence, then set the repo public and pin on your profile. Status: [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md)
+This repository documents the architecture, observability, reliability, performance investigations, and operational practices developed while building and operating CXR (Claim eXamination & Reasoning).
 
-**Not a skills list. An implementation story.**
+CXR is a healthcare-focused claims analysis platform used as a case study for platform engineering, observability, load testing, reliability engineering, and AI systems operations.
 
-This repository documents how **CXR (Claim eXamination & Reasoning)** was designed, instrumented, load-tested, and operated in a real local platform stack: Next.js Claim Studio, a warm Python analyzer service, OpenTelemetry, Jaeger, Locust, Docker labs, and CI.
-
-If you are hiring, partnering, or reviewing my work: start here, then follow the **10-minute path** below.
+The purpose of this repository is to document engineering work, decisions, investigations, and outcomes using a real system rather than isolated demonstrations.
 
 ---
 
-## What this repo is
+## Repository Objectives
 
-| It is | It is not |
-|-------|-----------|
-| Evidence of **engineering decisions** (ADRs, incidents, traces) | A generic “I know Kubernetes” resume bullet list |
-| **Screenshots and timelines** from real investigations | Production customer data (synthetic claims only) |
-| A map of **how the system runs** and how we proved latency | The full proprietary CXR product monorepo |
+This repository focuses on:
 
-Companion implementation repos (when published): `cxr-ui-rehearsal`, `cxr-ops-lab`, `claim_analysis_tools`.
-
----
-
-## 10-minute reviewer path
-
-1. **[my-impact.md](./my-impact.md)** — outcomes in plain language (~11s → ~2s analyze, traceability)
-2. **[observability/latency-investigation.md](./observability/latency-investigation.md)** — Locust + Jaeger proof
-3. **[reliability/incidents/INC-003-python-import-bottleneck/postmortem.md](./reliability/incidents/INC-003-python-import-bottleneck/postmortem.md)** — warm analyzer decision
-4. **[observability/screenshots/](./observability/screenshots/)** — Jaeger waterfalls
-5. **[demo/RUN.md](./demo/RUN.md)** — run the stack locally (for technical reviewers)
+* System architecture
+* Platform operations
+* OpenTelemetry instrumentation
+* Jaeger tracing
+* Load testing with Locust
+* Reliability engineering
+* Incident investigations
+* Architecture Decision Records (ADRs)
+* Kubernetes and infrastructure planning
+* AI systems operations
 
 ---
 
-## Full index
+## What This Repository Contains
 
-See **[INDEX.md](./INDEX.md)** for maturity (complete vs scaffold) and **[STRUCTURE.md](./STRUCTURE.md)** for the full portfolio tree.
-
-The repo includes the **full outline** with content in every section. Chaos game-days and diagram PNGs are **planned runs** until you add evidence.
+| Area          | Description                                                   |
+| ------------- | ------------------------------------------------------------- |
+| Architecture  | System design, request flows, C4 diagrams, dependency mapping |
+| Observability | OpenTelemetry, Jaeger, Prometheus, Grafana, trace analysis    |
+| Reliability   | Incidents, postmortems, runbooks, SLOs, chaos experiments     |
+| Operations    | Docker, CI/CD, Kubernetes, Terraform, deployment practices    |
+| Security      | Security architecture, secrets management, risk assessment    |
+| ADRs          | Engineering decisions and tradeoff analysis                   |
+| Demo          | Reproducible local environment and walkthroughs               |
 
 ---
 
-## Highlights by theme
+## Reviewer Guide
+
+Recommended review order:
+
+1. `my-impact.md`
+2. `architecture/request-flow.md`
+3. `observability/latency-investigation.md`
+4. `reliability/incidents/`
+5. `adrs/`
+6. `demo/RUN.md`
+
+---
+
+## Example Investigation
+
+One of the investigations documented in this repository involved claim analysis requests averaging approximately 11–12 seconds.
+
+Using:
+
+* OpenTelemetry
+* Jaeger
+* Locust
+
+the investigation identified repeated Python import costs as the primary source of latency.
+
+The analysis resulted in a migration from a subprocess-per-request architecture to a long-running analyzer service.
+
+Supporting documentation is available in:
+
+* `observability/latency-investigation.md`
+* `reliability/incidents/INC-003-python-import-bottleneck/`
+* `adrs/ADR-004-long-running-analyzer.md`
+
+---
+
+## Repository Structure
 
 ### Architecture
-- [Request flow](./architecture/request-flow.md) — browser → Next.js → analyzer → kernel
-- [C4 context](./architecture/c4-context.md) · [C4 containers](./architecture/c4-container.md)
 
-### Observability (recent focus)
-- [Overview](./observability/observability-overview.md)
-- [OpenTelemetry](./observability/opentelemetry.md) · [Jaeger](./observability/jaeger.md)
-- [Load testing results](./observability/load-testing-results.md)
+* C4 Context Diagram
+* C4 Container Diagram
+* C4 Component Diagram
+* Request Flow
+* Dependency Mapping
+* Blast Radius Analysis
+* Future State Architecture
+
+### Platform Thinking
+
+* Engineering Philosophy
+* Design Principles
+* Tradeoffs
+* Architecture Evolution
+* Platform Roadmap
+
+### Observability
+
+* OpenTelemetry
+* Jaeger
+* Prometheus
+* Grafana
+* Load Testing Results
+* Latency Investigations
 
 ### Reliability
-- [INC-001 High API latency](./reliability/incidents/INC-001-high-latency/)
-- [INC-002 Jaeger trace UX](./reliability/incidents/INC-002-jaeger-trace-ux/)
-- [INC-003 Python import bottleneck](./reliability/incidents/INC-003-python-import-bottleneck/)
+
+* Incidents
+* Postmortems
+* Runbooks
+* SLOs and SLIs
+* Chaos Experiments
 
 ### Operations
-- [Restart stack](./operations/restart-stack.md) — one-command dev (`cxr up`)
-- [Docker & compose](./operations/docker.md) · [CI/CD](./operations/ci-cd.md)
 
-### Architecture decisions
-- [ADRs](./adrs/) — subprocess vs warm worker, OTel, Qdrant, K8 roadmap
+* Docker
+* GitHub Actions
+* CI/CD
+* Kubernetes
+* Terraform
+* Capacity Planning
+* Disaster Recovery
 
-### Platform thinking
-- [Engineering philosophy](./platform-thinking/engineering-philosophy.md)
-- [Architecture journey](./platform-thinking/architecture-journey/) — v1 → observability → load → reliability
+### Security
+
+* Security Architecture
+* Secrets Management
+* Data Lifecycle
+* Risk Assessment
+
+### ADRs
+
+Architecture Decision Records documenting key engineering decisions and tradeoffs.
 
 ---
 
-## Run it yourself
+## Running the Demo
 
-Technical reviewers can reproduce the **observe + Claim Studio + load** path:
+See:
 
-**[demo/RUN.md](./demo/RUN.md)**
+`demo/RUN.md`
+
+for instructions on running the local demonstration environment.
 
 ---
 
 ## Disclaimer
 
-Read **[DISCLAIMER.md](./DISCLAIMER.md)** — synthetic data, local dev tokens, bootcamp lab scaffolds.
+This repository contains:
+
+* Synthetic claims
+* Sample policies
+* Demonstration environments
+* Development configurations
+
+No production patient information or customer data is included.
+
+See `DISCLAIMER.md` for additional information.
 
 ---
 
 ## Author
 
-**Udonsi Kalu** — platform-minded full-stack / claims-adjacent systems work documented here for public review.
+**Udonsi Kalu**
+
+Engineering portfolio documenting the development and operation of CXR as a platform engineering and AI systems case study.
