@@ -1,12 +1,5 @@
 # Capacity planning
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+Local Locust runs established that **process spawn + import** dominated before warm analyzer.
 
-## What will go here
-
-Locust-driven capacity notes.
-
-## Implemented nearby
-
-- [docker.md](./docker.md) · [ci-cd.md](./ci-cd.md)
+Document CPU/memory per analyzer instance here after K8 load tests.

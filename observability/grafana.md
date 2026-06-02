@@ -1,12 +1,11 @@
 # Grafana
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+| URL | Role |
+|-----|------|
+| http://localhost:3001 | Grafana (bootcamp dashboards) |
 
-## What will go here
+Provisioning: `cxr-ops-lab/observe/grafana/provisioning/` (datasources + dashboards).
 
-Dashboards for CXR dev stack.
+Use during Locust runs alongside Jaeger (:16686).
 
-## Implemented nearby
-
-- [observability-overview.md](./observability-overview.md) · [load-testing-results.md](./load-testing-results.md)
+See [load-testing-results.md](./load-testing-results.md).

@@ -1,12 +1,11 @@
 # Demo
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+Technical reviewers: start with **[RUN.md](./RUN.md)**.
 
-## What will go here
+Walkthroughs:
 
-How reviewers run CXR locally.
+- [submit-claim.md](./walkthrough/submit-claim.md)
+- [trace-request.md](./walkthrough/trace-request.md)
+- [investigate-latency.md](./walkthrough/investigate-latency.md)
 
-## Implemented nearby
-
-- [RUN.md](./RUN.md)
+Single-clone `docker-compose.yml` — planned; today use `cxr up` in ops-lab.

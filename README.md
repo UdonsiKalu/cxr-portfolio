@@ -1,5 +1,7 @@
 # CXR — Claims Reasoning Platform (Engineering Portfolio)
 
+> **Private work in progress** — full outline is populated; refine evidence, then set the repo public and pin on your profile. Status: [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md)
+
 **Not a skills list. An implementation story.**
 
 This repository documents how **CXR (Claim eXamination & Reasoning)** was designed, instrumented, load-tested, and operated in a real local platform stack: Next.js Claim Studio, a warm Python analyzer service, OpenTelemetry, Jaeger, Locust, Docker labs, and CI.
@@ -34,7 +36,7 @@ Companion implementation repos (when published): `cxr-ui-rehearsal`, `cxr-ops-la
 
 See **[INDEX.md](./INDEX.md)** for maturity (complete vs scaffold) and **[STRUCTURE.md](./STRUCTURE.md)** for the full portfolio tree.
 
-**What shipped first:** Phase 1 was a **curated slice** (~34 files of real evidence). The repo now includes the **full outline** with honest scaffolds for sections not yet evidenced (chaos, SLOs, diagram PNGs, etc.).
+The repo includes the **full outline** with content in every section. Chaos game-days and diagram PNGs are **planned runs** until you add evidence.
 
 ---
 

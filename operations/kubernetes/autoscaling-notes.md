@@ -1,12 +1,5 @@
-# K8 autoscaling notes
+# Kubernetes autoscaling notes
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+Helm chart: `cxr-ops-lab/helm/cxr-ui` — tune `replicaCount` and resources in `values.yaml`.
 
-## What will go here
-
-HPA / replica notes from deploy plan.
-
-## Implemented nearby
-
-- Helm charts in companion `cxr-ops-lab` repo.
+HPA requires metrics server and realistic requests/limits — add evidence after SW.3+ load tests.

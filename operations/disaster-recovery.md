@@ -1,12 +1,5 @@
 # Disaster recovery
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+For local lab: `cxr down --observe-down` then `cxr up`; rebuild kind with `cxr-ops-lab/scripts/01-kind-cluster.sh` if cluster corrupt.
 
-## What will go here
-
-DR for dev/demo stack.
-
-## Implemented nearby
-
-- [docker.md](./docker.md) · [ci-cd.md](./ci-cd.md)
+Production DR is not documented in this private portfolio.

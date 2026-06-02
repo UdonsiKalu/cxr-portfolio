@@ -1,7 +1,8 @@
-# INC-002 — Jaeger trace UX (detailed vs minimal)
+# INC-002 — Jaeger trace UX — Timeline
 
-**Status:** Index into postmortem
+| When | What |
+|------|------|
+| Investigation | Minimal trace profile attempted after OTel enable. |
+| Resolution | Default `detailed`; `flush_tracing()` after analyzer lifespan. |
 
-## Timeline
-
-See [postmortem.md](./postmortem.md).
+Full record: [postmortem.md](./postmortem.md)

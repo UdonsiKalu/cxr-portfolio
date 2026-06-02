@@ -1,12 +1,5 @@
 # weekly-journal
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+Weekly engineering journal entries.
 
-## What will go here
-
-Personal archive — optional, not required for reviewers.
-
-## Implemented nearby
-
-
+Optional personal archive; not required for portfolio reviewers.

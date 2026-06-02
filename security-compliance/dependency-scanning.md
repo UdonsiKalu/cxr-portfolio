@@ -1,12 +1,3 @@
-# dependency scanning
+# Dependency Scanning
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
-
-## What will go here
-
-Security & compliance narrative for portfolio.
-
-## Implemented nearby
-
-- [../DISCLAIMER.md](../DISCLAIMER.md)
+SW.7 Trivy in UI CI; evidence in `cxr-ops-lab/evidence/SW7-trivy-verify.md`.

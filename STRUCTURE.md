@@ -1,12 +1,13 @@
 # Repository structure
 
-This tree matches the **CXR engineering portfolio outline**. Not every file is “done” — see badges in [INDEX.md](./INDEX.md).
+This tree matches the **CXR engineering portfolio outline**. All paths contain **written content** sourced from CXR work (vault, ops-lab, incidents).
+
+**Repository:** Private until you promote — see [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md).
 
 | Badge | Meaning |
 |-------|---------|
-| **Complete** | Real evidence (incidents, ADRs, screenshots, runbooks) |
-| **MVP** | Usable content; may grow |
-| **Scaffold** | Honest placeholder — fill when evidenced |
+| **Complete** | Ready for reviewer (evidence-backed) |
+| **Planned runs** | Procedure written; execute lab (e.g. chaos) before public claim |
 | **Reference** | Copy or pointer to `cxr-ops-lab` / companion repos |
 
 ```
@@ -49,6 +50,6 @@ cxr-portfolio/
 └── templates/
 ```
 
-**Note:** `INC-002-missing-llm-spans/` is from the outline template; the **documented** incident is [INC-002-jaeger-trace-ux](./reliability/incidents/INC-002-jaeger-trace-ux/postmortem.md) (trace profile / span visibility).
+**Incidents:** [INC-002-jaeger-trace-ux](./reliability/incidents/INC-002-jaeger-trace-ux/postmortem.md) (trace profile / span visibility).
 
-`bootcamp-labs.md` at repo root redirects to [archive/learning-notes/bootcamp-labs.md](./archive/learning-notes/bootcamp-labs.md).
+`bootcamp-labs.md` at repo root; copy also under [archive/learning-notes/](./archive/learning-notes/).

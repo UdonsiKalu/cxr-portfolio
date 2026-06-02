@@ -1,12 +1,19 @@
-# ADR-005-kubernetes-roadmap.md
+# ADR-005 — Kubernetes roadmap (bootcamp)
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+## Status
 
-## What will go here
+Accepted for **lab** path; not production CXR infra.
 
-ADR — document when K8/microservice split is committed.
+## Context
 
-## Implemented nearby
+Syllabus SW.3–SW.8: kind cluster, Helm chart, Terraform for reproducibility, Argo CD GitOps.
 
-- [ADR-004-long-running-analyzer.md](./ADR-004-long-running-analyzer.md)
+## Decision
+
+- Deploy SW.1 image to `cxr-lab` via `cxr-ops-lab/k8s` + Helm.
+- SQL/Qdrant may stay **out of cluster** for bootcamp.
+- Daily dev remains :8251 rehearsal unless user pivots.
+
+## Consequences
+
+- Portfolio references `operations/kubernetes/` copies; canonical YAML in `cxr-ops-lab`.

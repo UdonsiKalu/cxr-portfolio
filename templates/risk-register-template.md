@@ -5,8 +5,4 @@
 
 ## What will go here
 
-Copy from `templates/` when opening a new incident or runbook.
-
-## Implemented nearby
-
-- [postmortem-template.md](./postmortem-template.md) · [adr-template.md](./adr-template.md)
+See `postmortem-template.md` / `adr-template.md` for starting content.

@@ -1,12 +1,10 @@
 # Service health
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+| Service | Check |
+|---------|--------|
+| Claim Studio | http://127.0.0.1:8251/claim-studio |
+| Analyzer | `curl http://127.0.0.1:8766/health` |
+| Jaeger | http://127.0.0.1:16686 |
+| OTLP | http://127.0.0.1:4318 (collector) |
 
-## What will go here
-
-Health checks for :8251, :8766, Jaeger.
-
-## Implemented nearby
-
-- [incidents/INC-003-python-import-bottleneck/postmortem.md](./incidents/INC-003-python-import-bottleneck/postmortem.md)
+`~/staging/cxr-dev.sh status` aggregates process state.

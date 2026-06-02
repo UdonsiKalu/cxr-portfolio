@@ -1,7 +1,7 @@
-# INC-003 — Python import bottleneck
+# INC-003 — Python import bottleneck — Resolution
 
-**Status:** Index into postmortem
+FastAPI analyzer :8766; W3C propagation; ~21 spans warm path.
 
-## Resolution
+See [ADR-004](../../adrs/ADR-004-long-running-analyzer.md).
 
-See [postmortem.md](./postmortem.md).
+Full record: [postmortem.md](./postmortem.md)

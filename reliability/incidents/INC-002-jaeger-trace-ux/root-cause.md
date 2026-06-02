@@ -1,7 +1,5 @@
-# INC-002 — Jaeger trace UX (detailed vs minimal)
+# INC-002 — Jaeger trace UX — Root cause
 
-**Status:** Index into postmortem
+`CXR_TRACE_PROFILE=minimal` collapsed spans; ~7 ops; lost startup visibility.
 
-## Root cause
-
-See [postmortem.md](./postmortem.md).
+Full record: [postmortem.md](./postmortem.md)

@@ -1,12 +1,8 @@
-# Investigate latency
+# Walkthrough — investigate latency
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+1. Run Locust at http://127.0.0.1:8089 (swarm :8251)
+2. Open Jaeger http://127.0.0.1:16686
+3. Service `cxr-ui-rehearsal` → `POST /api/claim-studio/analyze`
+4. Compare `analyzer_service.startup` (once) vs `context_builder` (steady)
 
-## What will go here
-
-Jaeger + Locust investigation path.
-
-## Implemented nearby
-
-- [../../observability/latency-investigation.md](../../observability/latency-investigation.md)
+Full write-up: [latency-investigation.md](../../observability/latency-investigation.md).

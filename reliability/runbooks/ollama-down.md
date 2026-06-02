@@ -1,12 +1,9 @@
-# ollama down
+# Runbook — Ollama / LLM down
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+## Symptom
 
-## What will go here
+Policy recommendation or LLM step fails.
 
-Runbook — link to ops-lab evidence when exercised.
+## Action
 
-## Implemented nearby
-
-- [slow-api.md](./slow-api.md)
+Start local Ollama or configure API keys per env; Compliant-only paths may not need LLM.

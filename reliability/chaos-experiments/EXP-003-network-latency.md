@@ -1,12 +1,11 @@
 # EXP 003 network latency
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+**Status:** Planned — run before marking Complete.
 
-## What will go here
+## Procedure (draft)
 
-Chaos experiment write-up — add only with real game-day evidence.
+Inject latency (tc/compose) between UI and analyzer.
 
-## Implemented nearby
+## Record results in
 
-- [../risk-register.md](../risk-register.md)
+`cxr-ops-lab/evidence/` and link here.

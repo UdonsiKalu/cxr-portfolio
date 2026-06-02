@@ -1,12 +1,5 @@
 # Backup and recovery
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
-
-## What will go here
-
-Data backup posture.
-
-## Implemented nearby
-
-- [docker.md](./docker.md) · [ci-cd.md](./ci-cd.md)
+- **SQL / archetypes:** production backup policies are out of portfolio scope.
+- **Dev artifacts:** claim-studio paths and `public/commons/cases` per env — copy before destructive tests.
+- **Observe data:** Jaeger/Prometheus volumes in ops-lab compose; ephemeral for labs.

@@ -1,7 +1,7 @@
-# INC-001 — High API latency
+# INC-001 — High API latency — Resolution
 
-**Status:** Index into postmortem
+Warm analyzer on :8766; `ANALYZER_URL`; re-run Locust.
 
-## Resolution
 
-See [postmortem.md](./postmortem.md).
+
+Full record: [postmortem.md](./postmortem.md)

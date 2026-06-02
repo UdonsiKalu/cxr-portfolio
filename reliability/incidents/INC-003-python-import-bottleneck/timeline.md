@@ -1,7 +1,8 @@
-# INC-003 — Python import bottleneck
+# INC-003 — Python import bottleneck — Timeline
 
-**Status:** Index into postmortem
+| When | What |
+|------|------|
+| Investigation | Wall clock >> kernel spans in Jaeger. |
+| Resolution | FastAPI analyzer :8766; W3C propagation; ~21 spans warm path. |
 
-## Timeline
-
-See [postmortem.md](./postmortem.md).
+Full record: [postmortem.md](./postmortem.md)

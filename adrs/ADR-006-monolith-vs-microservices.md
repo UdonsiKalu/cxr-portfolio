@@ -1,12 +1,14 @@
-# ADR-006-monolith-vs-microservices.md
+# ADR-006 — Monolith vs microservices (CXR dev)
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+## Status
 
-## What will go here
+Accepted for current portfolio scope.
 
-ADR — document when K8/microservice split is committed.
+## Decision
 
-## Implemented nearby
+- **Monolith UI + warm analyzer service** for dev and evidence (not full platform gateway spine in daily path).
+- Optional platform containers (gateway, analysis, kernel) documented in C4 Level 2 as **when deployed**, not required for Jaeger/latency story.
 
-- [ADR-004-long-running-analyzer.md](./ADR-004-long-running-analyzer.md)
+## Consequences
+
+- Simpler reviewer path; microservice split deferred to K8/GitOps milestones.

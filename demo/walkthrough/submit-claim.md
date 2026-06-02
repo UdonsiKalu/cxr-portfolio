@@ -1,12 +1,8 @@
-# Submit claim walkthrough
+# Walkthrough — submit claim
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+1. `cxr up`
+2. Open http://127.0.0.1:8251/claim-studio
+3. Paste or load synthetic claim JSON from [sample-data/claims.json](../sample-data/claims.json)
+4. Submit for analysis
 
-## What will go here
-
-Claim Studio submit path.
-
-## Implemented nearby
-
-- [trace-request.md](./trace-request.md)
+Next: [trace-request.md](./trace-request.md).

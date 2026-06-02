@@ -1,7 +1,8 @@
-# INC-001 — High API latency
+# INC-001 — High API latency — Timeline
 
-**Status:** Index into postmortem
+| When | What |
+|------|------|
+| Investigation | Locust showed p95 ~10–12s on analyze API. |
+| Resolution | Warm analyzer on :8766; `ANALYZER_URL`; re-run Locust. |
 
-## Timeline
-
-See [postmortem.md](./postmortem.md).
+Full record: [postmortem.md](./postmortem.md)

@@ -1,7 +1,5 @@
-# INC-003 — Python import bottleneck
+# INC-003 — Python import bottleneck — Root cause
 
-**Status:** Index into postmortem
+Subprocess per request paid ~7–8s import + `corrector.initialize`.
 
-## Root cause
-
-See [postmortem.md](./postmortem.md).
+Full record: [postmortem.md](./postmortem.md)

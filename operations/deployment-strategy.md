@@ -1,12 +1,10 @@
 # Deployment strategy
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+| Layer | Path | Purpose |
+|-------|------|---------|
+| Daily dev | `:8251` + `:8766` | Claim Studio + warm analyzer |
+| Compose | `:3000` SW.2 | Full stack with mounts |
+| K8 lab | `:8081` port-forward | SW.3 image in kind |
+| GitOps | Argo + Helm | SW.8 (planned evidence) |
 
-## What will go here
-
-Local → compose → K8 path.
-
-## Implemented nearby
-
-- [docker.md](./docker.md) · [ci-cd.md](./ci-cd.md)
+See [docker.md](./docker.md) · [kubernetes/](./kubernetes/).

@@ -1,12 +1,7 @@
 # Future vision
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+- **Platform anchor:** CXR Claim Studio + analyzer + observe stack as the portfolio story.
+- **Capstone patterns** (study plan L304): SLO/alert, idempotency, GitOps, eval hooks — applied as lenses on CXR, not separate toy apps.
+- **Publication:** private portfolio repo → populate all outline sections → pin + resume when reviewer fast-path is Complete.
 
-## What will go here
-
-Platform roadmap narrative.
-
-## Implemented nearby
-
-- [engineering-philosophy.md](./engineering-philosophy.md)
+See [platform-model/platform-roadmap.md](./platform-model/platform-roadmap.md).

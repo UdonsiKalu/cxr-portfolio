@@ -1,7 +1,7 @@
-# INC-002 — Jaeger trace UX (detailed vs minimal)
+# INC-002 — Jaeger trace UX — Resolution
 
-**Status:** Index into postmortem
+Default `detailed`; `flush_tracing()` after analyzer lifespan.
 
-## Resolution
+See [jaeger.md](../../observability/jaeger.md).
 
-See [postmortem.md](./postmortem.md).
+Full record: [postmortem.md](./postmortem.md)

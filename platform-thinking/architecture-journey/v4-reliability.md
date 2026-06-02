@@ -1,12 +1,5 @@
 # v4 — Reliability
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+Warm analyzer, runbooks, `cxr` CLI, incidents INC-001–003.
 
-## What will go here
-
-Incidents, runbooks, warm analyzer.
-
-## Implemented nearby
-
-- [../../observability/latency-investigation.md](../../observability/latency-investigation.md)
+Evidence: [observability/latency-investigation.md](../../observability/latency-investigation.md) · [reliability/incidents/](../../reliability/incidents/)

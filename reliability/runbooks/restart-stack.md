@@ -1,12 +1,41 @@
-# Restart stack
+# Restart stack — `cxr` dev CLI
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+## One command (recommended)
 
-## What will go here
+From a machine with the CXR staging tree:
 
-One-command dev stack (`cxr up` / `cxr down`).
+```bash
+~/staging/cxr-dev.sh up      # Jaeger + analyzer :8766 + UI :8251 + Locust :8089
+~/staging/cxr-dev.sh status
+~/staging/cxr-dev.sh down
+~/staging/cxr-dev.sh down --observe-down   # also stop Docker observe
+```
 
-## Implemented nearby
+Optional alias:
 
-- Full doc: [../../operations/restart-stack.md](../../operations/restart-stack.md)
+```bash
+alias cxr='~/staging/cxr-dev.sh'
+```
+
+## URLs after `up`
+
+| URL | Purpose |
+|-----|---------|
+| http://127.0.0.1:8251/claim-studio | Claim Studio |
+| http://127.0.0.1:16686 | Jaeger |
+| http://127.0.0.1:8089 | Locust |
+
+## Logs
+
+- `/tmp/cxr-analyzer-service.log`
+- `/tmp/cxr-rehearsal-8251.log`
+- `/tmp/cxr-locust-8089.log`
+
+## Implementation
+
+Script: `cxr-ops-lab/scripts/cxr-dev-stack.sh` (wrapper at `staging/cxr-dev.sh`).
+
+## Related runbooks
+
+- [slow-api](../reliability/runbooks/slow-api.md)
+- [no-traces](../reliability/runbooks/no-traces.md)

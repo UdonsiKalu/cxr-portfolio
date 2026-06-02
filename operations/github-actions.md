@@ -1,12 +1,11 @@
 # GitHub Actions
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+Canonical bootcamp CI on **`cxr-ui-rehearsal`**:
 
-## What will go here
+- SW.6 — build
+- SW.6a — Playwright smoke
+- SW.7 — Trivy policy scan
 
-Bootcamp CI on cxr-ui-rehearsal.
+Workflow: `.github/workflows/ci.yml` in the UI repo.
 
-## Implemented nearby
-
-- [docker.md](./docker.md) · [ci-cd.md](./ci-cd.md)
+This portfolio repo is **documentation**; CI YAML stays with application code.

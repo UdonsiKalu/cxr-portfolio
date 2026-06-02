@@ -1,12 +1,9 @@
-# SLOs and SLIs
+# SLOs and SLIs (local dev)
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+| SLI | Target (dev) | How measured |
+|-----|--------------|--------------|
+| Warm analyze latency | p95 < 5s | Locust + Jaeger |
+| Trace completeness | ~21 spans on steady POST | Jaeger waterfall |
+| Analyzer availability | `/health` warmed | curl :8766 |
 
-## What will go here
-
-Local dev SLO targets — only when measured.
-
-## Implemented nearby
-
-- [incidents/INC-003-python-import-bottleneck/postmortem.md](./incidents/INC-003-python-import-bottleneck/postmortem.md)
+Formal production SLOs are **not** claimed in this portfolio; document here when bootcamp SLO lab is evidenced.

@@ -1,12 +1,13 @@
-# qdrant down
+# Runbook — Qdrant down
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+## Symptom
 
-## What will go here
+Logs: Qdrant connection refused :6333.
 
-Runbook — link to ops-lab evidence when exercised.
+## Impact
 
-## Implemented nearby
+Retrieval/policy anchor features degraded; warm analyze may still return 200.
 
-- [slow-api.md](./slow-api.md)
+## Action
+
+Start Qdrant if needed for RAG demos; otherwise ignore for latency-only work.

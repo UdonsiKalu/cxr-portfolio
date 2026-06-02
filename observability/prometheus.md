@@ -1,12 +1,13 @@
 # Prometheus
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+Part of **`cxr-ops-lab` observe compose** (with Jaeger, Grafana).
 
-## What will go here
+| URL | Role |
+|-----|------|
+| http://localhost:9090 | Prometheus UI |
 
-Metrics from observe stack / bootcamp.
+Wiring: `observe/prometheus.yml` scrapes configured targets (including compose :3000 when enabled).
 
-## Implemented nearby
+Start: `cxr up` or `./scripts/07-observe-up.sh` in ops-lab.
 
-- [observability-overview.md](./observability-overview.md) · [load-testing-results.md](./load-testing-results.md)
+See [observability-overview.md](./observability-overview.md) · companion `cxr-ops-lab/docs/OBSERVE-WIRING.md`.

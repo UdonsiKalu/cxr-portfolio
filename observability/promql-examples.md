@@ -1,12 +1,10 @@
-# PromQL examples
+# PromQL examples (bootcamp)
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+```promql
+# Example: scrape-up (adjust job name to your prometheus.yml)
+up{job="cxr-ui"}
+```
 
-## What will go here
+Add project-specific queries here when you export dashboard JSON into [dashboards/](./dashboards/).
 
-Queries used in investigations.
-
-## Implemented nearby
-
-- [observability-overview.md](./observability-overview.md) · [load-testing-results.md](./load-testing-results.md)
+Evidence path: `cxr-ops-lab/evidence/SW11-otel-verify-*.md`.

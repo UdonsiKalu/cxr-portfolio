@@ -1,7 +1,5 @@
-# INC-001 — High API latency
+# INC-001 — High API latency — Root cause
 
-**Status:** Index into postmortem
+Per-request Python subprocess re-imported heavy deps; not Next.js alone.
 
-## Root cause
-
-See [postmortem.md](./postmortem.md).
+Full record: [postmortem.md](./postmortem.md)

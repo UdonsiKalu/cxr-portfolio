@@ -1,12 +1,3 @@
 # Cost analysis
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
-
-## What will go here
-
-Local/cloud cost sketch.
-
-## Implemented nearby
-
-- [docker.md](./docker.md) · [ci-cd.md](./ci-cd.md)
+Bootcamp stack is **local-first** (Docker, kind). Cloud cost notes apply when Terraform targets a cloud cluster — see [terraform/infrastructure-overview.md](./terraform/infrastructure-overview.md).

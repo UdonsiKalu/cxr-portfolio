@@ -1,12 +1,5 @@
-# v1 — Monolith path
+# v1 — Subprocess / monolith path
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+Analyze via spawned Python per HTTP request. Simple mental model; terrible p95 under load.
 
-## What will go here
-
-Single-process / subprocess analyze path.
-
-## Implemented nearby
-
-- [../../observability/latency-investigation.md](../../observability/latency-investigation.md)
+Evidence: [observability/latency-investigation.md](../../observability/latency-investigation.md) · [reliability/incidents/](../../reliability/incidents/)

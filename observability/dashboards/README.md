@@ -1,12 +1,5 @@
 # Dashboards
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+Export Grafana dashboard JSON from bootcamp runs into this folder.
 
-## What will go here
-
-Grafana JSON / screenshots when exported from ops-lab.
-
-## Implemented nearby
-
-- [../observability-overview.md](../observability-overview.md)
+Until exported, use live Grafana at http://localhost:3001 after `cxr up`.

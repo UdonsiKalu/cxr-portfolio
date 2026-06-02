@@ -1,12 +1,5 @@
 # v2 — Observability
 
-**Status:** Scaffold (portfolio outline)  
-**Maturity:** Planned — fill from evidenced CXR work (`cxr-ops-lab`, handoff, vault). Do not invent production metrics.
+OTel on Next.js + Python; Jaeger at :16686; discovered import/init dominance.
 
-## What will go here
-
-OTel + Jaeger + detailed trace profile.
-
-## Implemented nearby
-
-- [../../observability/latency-investigation.md](../../observability/latency-investigation.md)
+Evidence: [observability/latency-investigation.md](../../observability/latency-investigation.md) · [reliability/incidents/](../../reliability/incidents/)
