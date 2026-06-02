@@ -32,7 +32,9 @@ Companion implementation repos (when published): `cxr-ui-rehearsal`, `cxr-ops-la
 
 ## Full index
 
-See **[INDEX.md](./INDEX.md)** for every section and maturity (complete vs planned).
+See **[INDEX.md](./INDEX.md)** for maturity (complete vs scaffold) and **[STRUCTURE.md](./STRUCTURE.md)** for the full portfolio tree.
+
+**What shipped first:** Phase 1 was a **curated slice** (~34 files of real evidence). The repo now includes the **full outline** with honest scaffolds for sections not yet evidenced (chaos, SLOs, diagram PNGs, etc.).
 
 ---
 

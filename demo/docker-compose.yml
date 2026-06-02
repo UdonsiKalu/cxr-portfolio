@@ -1,0 +1,3 @@
+# Portfolio scaffold — single-clone reviewer stack not wired yet.
+# Today use demo/RUN.md and cxr-ops-lab `cxr up` instead.
+services: {}
