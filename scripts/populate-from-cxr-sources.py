@@ -519,12 +519,6 @@ Full write-up: [latency-investigation.md](../../observability/latency-investigat
             base = p.read_text(encoding="utf-8").split("## What will go here")[0]
             p.write_text(base + "## What will go here\n\nSee `postmortem-template.md` / `adr-template.md` for starting content.\n", encoding="utf-8")
 
-    # Root bootcamp index (full content at root)
-    w(
-        "bootcamp-labs.md",
-        (ROOT / "archive/learning-notes/bootcamp-labs.md").read_text(encoding="utf-8"),
-    )
-
     # Archive readmes
     for d, note in [
         ("linux-notes", "Linux setup notes for CXR dev host."),

@@ -1,14 +1,16 @@
-# Portfolio index
+# Portfolio index (maintainers)
 
-**Visibility:** Private repository — full outline populated; refine evidence before public promotion. See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md).
+**Not part of the reviewer path.** Start at [../README.md](../README.md).
+
+See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for visibility and go-public checklist.
 
 | Path | Status | Notes |
 |------|--------|-------|
-| [README.md](./README.md) | Complete | Entry + 10-minute path |
+| [README.md](../README.md) | Complete | Entry + reviewer guide |
 | [STRUCTURE.md](./STRUCTURE.md) | Complete | Full tree map |
-| [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) | Complete | Private WIP checklist |
-| [my-impact.md](./my-impact.md) | Complete | Outcomes summary |
-| [DISCLAIMER.md](./DISCLAIMER.md) | Complete | Synthetic data / labs |
+| [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) | Complete | WIP checklist |
+| [my-impact.md](../my-impact.md) | Complete | Outcomes summary |
+| [DISCLAIMER.md](../DISCLAIMER.md) | Complete | Synthetic data / labs |
 | **architecture/** | Complete (md) | C4 + dependency + blast radius; PNGs in diagrams/ planned |
 | **platform-thinking/** | Complete | Philosophy, journey, platform model |
 | **observability/** | Complete | OTel, Jaeger, latency, load, Prom/Grafana |
@@ -24,8 +26,8 @@
 
 ## Reviewer fast path
 
-1. [my-impact.md](./my-impact.md)
-2. [observability/latency-investigation.md](./observability/latency-investigation.md)
-3. [reliability/incidents/INC-003-python-import-bottleneck/postmortem.md](./reliability/incidents/INC-003-python-import-bottleneck/postmortem.md)
-4. [observability/screenshots/](./observability/screenshots/)
-5. [demo/RUN.md](./demo/RUN.md)
+1. [my-impact.md](../my-impact.md)
+2. [observability/latency-investigation.md](../observability/latency-investigation.md)
+3. [reliability/incidents/INC-003-python-import-bottleneck/postmortem.md](../reliability/incidents/INC-003-python-import-bottleneck/postmortem.md)
+4. [observability/screenshots/](../observability/screenshots/)
+5. [demo/RUN.md](../demo/RUN.md)

@@ -1,8 +1,8 @@
-# Repository structure
+# Repository structure (maintainers)
 
 This tree matches the **CXR engineering portfolio outline**. All paths contain **written content** sourced from CXR work (vault, ops-lab, incidents).
 
-**Repository:** Private until you promote — see [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md).
+See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for promotion checklist.
 
 | Badge | Meaning |
 |-------|---------|
@@ -15,8 +15,7 @@ cxr-portfolio/
 ├── README.md
 ├── DISCLAIMER.md
 ├── my-impact.md
-├── INDEX.md
-├── STRUCTURE.md          ← this file
+├── meta/                 ← INDEX, STRUCTURE, PORTFOLIO-STATUS (maintainers)
 │
 ├── architecture/
 │   ├── c4-context.md … c4-component.md, request-flow.md, …
@@ -43,13 +42,13 @@ cxr-portfolio/
 │   ├── kubernetes/       ← reference YAML from cxr-ops-lab
 │   └── terraform/
 │
-├── security-compliance/  (scaffold)
-├── adrs/                 ← ADR-001–004 complete; 005–006 scaffold
+├── security-compliance/
+├── adrs/                 ← ADR-001–006
 ├── demo/
 ├── archive/
 └── templates/
 ```
 
-**Incidents:** [INC-002-jaeger-trace-ux](./reliability/incidents/INC-002-jaeger-trace-ux/postmortem.md) (trace profile / span visibility).
+**Incidents:** [INC-002-jaeger-trace-ux](../reliability/incidents/INC-002-jaeger-trace-ux/postmortem.md) (trace profile / span visibility).
 
-`bootcamp-labs.md` at repo root; copy also under [archive/learning-notes/](./archive/learning-notes/).
+Bootcamp lab index: [archive/learning-notes/bootcamp-labs.md](../archive/learning-notes/bootcamp-labs.md).

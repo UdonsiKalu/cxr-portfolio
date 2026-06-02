@@ -37,4 +37,4 @@ flowchart TB
 
 ## Optional bootcamp labs (Docker only)
 
-Kafka, ELK, Redis, GraphQL, gRPC, Vault, Langfuse — started via `cxr lab up <name>`. See [bootcamp-labs.md](../bootcamp-labs.md).
+Kafka, ELK, Redis, GraphQL, gRPC, Vault, Langfuse — started via `cxr lab up <name>`. See [bootcamp-labs.md](../archive/learning-notes/bootcamp-labs.md).

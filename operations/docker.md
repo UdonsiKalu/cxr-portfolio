@@ -17,7 +17,7 @@ Separate path: `04-compose-up.sh` mounts analyzers for containerized Claim Studi
 
 ## Optional labs
 
-See [bootcamp-labs.md](../bootcamp-labs.md).
+See [bootcamp-labs.md](../archive/learning-notes/bootcamp-labs.md).
 
 ## Lessons
 

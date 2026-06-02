@@ -1,16 +1,16 @@
-# Portfolio status (private WIP)
+# Portfolio status (maintainers)
 
-**Repository visibility:** Private — populate here before pin/resume/public promotion.
+**Not part of the reviewer path.** Start at [../README.md](../README.md).
 
 ## Reviewer fast path
 
 | Item | Status |
 |------|--------|
-| [my-impact.md](./my-impact.md) | Complete |
-| [observability/latency-investigation.md](./observability/latency-investigation.md) | Complete |
-| [INC-003 postmortem](./reliability/incidents/INC-003-python-import-bottleneck/postmortem.md) | Complete |
-| [observability/screenshots/](./observability/screenshots/) | Complete |
-| [demo/RUN.md](./demo/RUN.md) | Complete |
+| [my-impact.md](../my-impact.md) | Complete |
+| [observability/latency-investigation.md](../observability/latency-investigation.md) | Complete |
+| [INC-003 postmortem](../reliability/incidents/INC-003-python-import-bottleneck/postmortem.md) | Complete |
+| [observability/screenshots/](../observability/screenshots/) | Complete |
+| [demo/RUN.md](../demo/RUN.md) | Complete |
 
 ## Full outline
 
