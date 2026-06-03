@@ -12,7 +12,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 - Wired **OTLP** (port **4318**) through an OpenTelemetry Collector into **Jaeger** (port **16686**).
 - Produced **~21 nested spans** per warm analyze, including `context_builder`, `claim_analysis`, `retrieval`, and import spans on analyzer startup.
 
-**Evidence:** [investigations/screenshots/](./investigations/screenshots/) · [latency investigation](./investigations/latency-investigation.md)
+**Evidence:** [latency investigation screenshots](./investigations/latency-investigation/screenshots/) · [latency investigation](./investigations/latency-investigation/latency-investigation.md)
 
 ### 2. Found the real bottleneck (investigation, not guessing)
 
@@ -20,7 +20,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 |-------|----------------|---------|
 | Subprocess-per-request | **~7–8s** `python.module_import` + **corrector.initialize** | New Python process per HTTP request re-loaded torch, embeddings, SQL, Qdrant |
 | Kernel-only view | **~1.5s** `context_builder` | Analyze logic was fast once the runtime was warm |
-| After fix | **~1.6–3s** warm POST | Long-lived **FastAPI analyzer** + `ANALYZER_URL` from Next.js |
+| After fix | **~1.5s** Locust p95 · **~154–708ms** Jaeger traces | Long-lived **FastAPI analyzer** + `ANALYZER_URL` from Next.js |
 
 **Evidence:** [INC-003 postmortem](./investigations/incidents/INC-003-python-import-bottleneck/postmortem.md) · [ADR-004](./architecture/adrs/ADR-004-long-running-analyzer.md)
 
@@ -30,7 +30,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 - Correlated Locust p95 with Jaeger traces (not just CPU graphs).
 - Integrated Locust into the **one-command dev stack** (`cxr up`).
 
-**Evidence:** [load testing results](./investigations/load-testing-results.md)
+**Evidence:** [load testing results](./investigations/load-testing/load-testing-results.md)
 
 ### 4. Operability for humans (including future me)
 
@@ -44,9 +44,10 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 
 | Metric | Before | After |
 |--------|--------|-------|
-| Warm **POST /analyze** (HTTP to analyzer) | ~10–12s (subprocess path) | **~1.6–3s** |
+| Locust p95 — POST /analyze | ~10–12s | **~1.5s** |
+| Jaeger linked trace (warm) | ~10–11s (subprocess) / blind spot | **~154–708ms** |
 | Jaeger spans per warm POST | unclear / subprocess blind spot | **~21** linked spans |
-| Analyzer startup (imports) | paid on **every** request | **~7s once** per analyzer boot (`analyzer_service.startup`) |
+| Analyzer startup (imports) | paid on **every** request | **~7–8s once** per analyzer boot (`analyzer_service.startup`) |
 
 ## Why this is different from “skills on a CV”
 

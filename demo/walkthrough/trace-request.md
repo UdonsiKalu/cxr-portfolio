@@ -5,9 +5,9 @@
 3. Open http://127.0.0.1:16686
 4. **Search** → Service `cxr-ui-rehearsal` (or `cxr-analyzer-service`)
 5. Operation `POST /api/claim-studio/analyze` · Lookback **Last 15 minutes**
-6. Open a **~2s** trace (warm) — expand:
+6. Open a **~154–708ms** warm trace — expand:
    - `fetch POST http://127.0.0.1:8766/analyze`
    - `claim_analysis` → `context_builder`
 7. Restart analyzer (`cxr down` + `cxr up`) and find **`analyzer_service.startup`** (~7s) on `cxr-analyzer-service`.
 
-Compare to screenshots in [investigations/screenshots/](../investigations/screenshots/).
+Compare to screenshots in [investigations/latency-investigation/screenshots/](../investigations/latency-investigation/screenshots/).

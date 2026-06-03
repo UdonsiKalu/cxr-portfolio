@@ -18,11 +18,11 @@ Start load UI: `cxr up` (includes Locust) or `cxr-ops-lab/scripts/22-load-locust
 
 ## Results summary
 
-| Configuration | Approx. POST p95 | Notes |
-|---------------|------------------|-------|
-| Subprocess analyzer per request | **10–12s** | Dominated by import + init |
-| Warm analyzer (`ANALYZER_URL` → :8766) | **1.6–3s** | Steady-state after boot |
-| Analyzer cold start (once) | **~7s** | `analyzer_service.startup` trace only |
+| Configuration | Locust (client) | Jaeger (single trace) | Notes |
+|---------------|-----------------|----------------------|-------|
+| Subprocess analyzer per request | **10–12s** p95/median | ~10–11s linked trace | Dominated by import + init per request |
+| Warm analyzer (`ANALYZER_URL` → :8766) | **~1.5s** p95 | **~154–708ms** observed | Steady-state after boot |
+| Analyzer cold start (once) | N/A (not per request) | **~7–8s** | `analyzer_service.startup` trace only |
 
 ## How to read Locust with Jaeger
 
@@ -32,8 +32,13 @@ Start load UI: `cxr up` (includes Locust) or `cxr-ops-lab/scripts/22-load-locust
 
 ## Evidence
 
-- Jaeger search scatter: [screenshots/SW11-jaeger-search-2026-05-30.png](./screenshots/SW11-jaeger-search-2026-05-30.png)
-- POST waterfall (subprocess era, ~11s): [screenshots/SW11-jaeger-waterfall-post-analyze-2026-05-30.png](./screenshots/SW11-jaeger-waterfall-post-analyze-2026-05-30.png)
+| When | File |
+|------|------|
+| Before — Locust 11s median | [screenshots/before-locust-post-analyze-11s-p95-2026-06-01.png](./screenshots/before-locust-post-analyze-11s-p95-2026-06-01.png) |
+
+Jaeger traces and combined Jaeger+Locust views live in [../latency-investigation/screenshots/](../latency-investigation/screenshots/) — see [latency investigation](../latency-investigation/latency-investigation.md).
+
+See [screenshots/README.md](./screenshots/README.md) for captions.
 
 ## Honest limits
 

@@ -16,7 +16,7 @@ Run a **long-lived FastAPI** analyzer (`analyzer_service_app.py`) on **8766**. N
 
 **Positive**
 
-- Warm POST **~1.6–3s** vs ~11s subprocess path.
+- Locust p95 **~1.5s**; Jaeger linked traces **~154–708ms** vs ~11s subprocess path.
 - Clear `analyzer_service.startup` trace for import budget.
 - Single place to attach Python OTel spans.
 

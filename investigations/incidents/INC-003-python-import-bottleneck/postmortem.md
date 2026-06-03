@@ -16,11 +16,11 @@ Per-request **Python subprocess** re-imported heavy deps (torch, sentence_transf
 
 - Deployed **FastAPI analyzer** on port **8766** with startup warm-up.
 - Next.js `ANALYZER_URL` + W3C trace propagation.
-- Documented `analyzer_service.startup` (~7s once) vs warm POST (~2s).
+- Documented `analyzer_service.startup` (~7–8s once) vs warm requests (Locust p95 ~1.5s; Jaeger traces ~154–708ms).
 
 ## Verification
 
-- Warm POST **~1.6–3s**, `analyzer_mode: http`.
+- Locust p95 **~1.5s**; Jaeger linked traces **~154–708ms** on steady-state POST; `analyzer_mode: http`.
 - Jaeger **~21 spans** on steady-state POST.
 - [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md)
 

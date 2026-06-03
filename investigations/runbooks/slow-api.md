@@ -2,7 +2,7 @@
 
 ## Symptom
 
-`POST /api/claim-studio/analyze` > 5s when you expect ~2s.
+`POST /api/claim-studio/analyze` > 5s when you expect **~1.5s** Locust p95 or **~154–708ms** on a warm Jaeger trace.
 
 ## Checks
 

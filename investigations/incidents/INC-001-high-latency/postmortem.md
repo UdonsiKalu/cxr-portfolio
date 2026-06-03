@@ -18,5 +18,5 @@ Warm analyzer service; re-run Locust; confirm p95 drop to **~2–3s** range loca
 
 ## Evidence
 
-- [latency-investigation.md](../latency-investigation.md)
-- Jaeger screenshots in [investigations/screenshots/](../screenshots/)
+- [latency-investigation.md](../latency-investigation/latency-investigation.md)
+- Jaeger screenshots in [latency-investigation/screenshots/](../latency-investigation/screenshots/)

@@ -13,6 +13,8 @@ http://127.0.0.1:16686
 
 ## Operations (steady-state warm POST)
 
+Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 was **~1.5s** under load. Do not conflate a single Jaeger trace with aggregate load-test latency — see [latency investigation](./latency-investigation/latency-investigation.md).
+
 | Operation | Meaning |
 |-----------|---------|
 | `POST /api/claim-studio/analyze` | Outer HTTP handler |
@@ -25,15 +27,16 @@ http://127.0.0.1:16686
 
 | Operation | Meaning |
 |-----------|---------|
-| `analyzer_service.startup` | ~7s import + warm corrector |
+| `analyzer_service.startup` | ~7–8s import + warm corrector |
 | `python.import.torch`, etc. | Per heavy dependency |
 
 **Tip:** Restart analyzer (`cxr down` / `cxr up`) then search `analyzer_service.startup` with lookback **Last 1 hour**.
 
 ## Screenshots in this repo
 
-- [SW11-jaeger-search-2026-05-30.png](./screenshots/SW11-jaeger-search-2026-05-30.png)
-- [SW11-jaeger-waterfall-post-analyze-2026-05-30.png](./screenshots/SW11-jaeger-waterfall-post-analyze-2026-05-30.png)
+- [before-jaeger-search-2026-05-30.png](./latency-investigation/screenshots/before-jaeger-search-2026-05-30.png)
+- [before-jaeger-waterfall-11s-5spans-2026-05-30.png](./latency-investigation/screenshots/before-jaeger-waterfall-11s-5spans-2026-05-30.png)
+- [after-jaeger-locust-154ms-22spans-2026-06-02.png](./latency-investigation/screenshots/after-jaeger-locust-154ms-22spans-2026-06-02.png)
 
 ## Common mistakes
 
