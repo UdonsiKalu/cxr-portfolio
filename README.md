@@ -48,27 +48,6 @@ Using **OpenTelemetry**, **Jaeger**, and **Locust**, the work identified repeate
 
 ---
 
-## Recommended Reading Order
-
-1. [Outcomes summary](./archive/meta/my-impact.md) — what was delivered and measured
-2. [Request flow](./architecture/request-flow.md) — how analyze requests move through the stack
-3. [Latency investigation](./investigations/latency-investigation/) — featured performance case study
-4. [Incidents](./investigations/incidents/) — postmortems (INC-001–003)
-5. [Architecture Decision Records](./architecture/adrs/) — why key choices were made
-6. [Demo](./demo/) — run the stack locally (`demo/RUN.md`)
-
----
-
-## Disclaimer
-
-This repository uses **synthetic claims**, sample policies, and **development environments** for demonstration purposes only.
-
-No production patient information or customer data is included.
-
-See [archive/DISCLAIMER.md](./archive/DISCLAIMER.md) for the full disclaimer.
-
----
-
 ## Author
 
 **Udonsi Kalu**
