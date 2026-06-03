@@ -52,7 +52,7 @@ This portfolio documents an implementation that lives across a **staging monorep
 | **No Jaeger traces** | Observe up (`cxr up`); set `OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4318`; filter **POST** analyze, not GET pages |
 | **Stack stuck** | `cxr down` then `cxr up`; logs in `/tmp/cxr-analyzer-service.log`, `/tmp/cxr-rehearsal-8251.log` |
 
-See [latency investigation](../investigations/latency-investigation/latency-investigation.md) and [Jaeger guide](../investigations/jaeger.md).
+See [latency investigation](../investigations/latency-investigation/) and [Jaeger guide](../investigations/jaeger.md).
 
 ## Future: single-repo demo
 

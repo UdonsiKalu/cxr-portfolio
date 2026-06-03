@@ -13,7 +13,7 @@ http://127.0.0.1:16686
 
 ## Operations (steady-state warm POST)
 
-Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 was **~1.5s** under load. Do not conflate a single Jaeger trace with aggregate load-test latency — see [latency investigation](./latency-investigation/latency-investigation.md).
+Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 was **~1.5s** under load. Do not conflate a single Jaeger trace with aggregate load-test latency — see [latency investigation](./latency-investigation/).
 
 | Operation | Meaning |
 |-----------|---------|

@@ -21,7 +21,7 @@ Start: `cxr up` or `cxr-ops-lab/scripts/22-load-locust.sh`.
 
 1. Swarm 3–5 users on :8089.
 2. Jaeger → `cxr-ui-rehearsal` → `POST /api/claim-studio/analyze`.
-3. Compare Locust p95 (client) vs single-trace duration in Jaeger — see [latency investigation](./latency-investigation/latency-investigation.md).
+3. Compare Locust p95 (client) vs single-trace duration in Jaeger — see [latency investigation](./latency-investigation/).
 
 ## Related
 

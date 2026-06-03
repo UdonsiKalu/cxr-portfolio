@@ -20,7 +20,7 @@ PNG exports (when added): [diagrams/](./diagrams/)
 
 Architecture Decision Records: [adrs/](./adrs/)
 
-Featured: [ADR-004 — long-running analyzer](./adrs/ADR-004-long-running-analyzer.md) (outcome of [latency investigation](../investigations/latency-investigation/latency-investigation.md)).
+Featured: [ADR-004 — long-running analyzer](./adrs/ADR-004-long-running-analyzer.md) (outcome of [latency investigation](../investigations/latency-investigation/)).
 
 ## Supplemental (archive)
 

@@ -44,25 +44,25 @@ When trace profiles trade away debuggability for aesthetics, **reject the trade*
 
 Analyze via spawned Python per HTTP request. Simple mental model; terrible p95 under load.
 
-**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/latency-investigation.md) · [investigations/jaeger.md](../investigations/jaeger.md)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations/jaeger.md](../investigations/jaeger.md)
 
 ### v2 — Observability
 
 OTel on Next.js + Python; Jaeger at **:16686**; discovered import/init dominance.
 
-**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/latency-investigation.md) · [investigations/jaeger.md](../investigations/jaeger.md)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations/jaeger.md](../investigations/jaeger.md)
 
 ### v3 — Load testing
 
 Locust on **:8251**; correlated p95 with trace waterfalls.
 
-**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/latency-investigation.md) · [investigations/load-testing/](../investigations/load-testing/)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations/load-testing/](../investigations/load-testing/)
 
 ### v4 — Reliability
 
 Warm analyzer on **:8766**, `cxr` CLI, demo troubleshooting.
 
-**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/latency-investigation.md) · [adrs/ADR-004-long-running-analyzer.md](./adrs/ADR-004-long-running-analyzer.md)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [adrs/ADR-004-long-running-analyzer.md](./adrs/ADR-004-long-running-analyzer.md)
 
 ---
 

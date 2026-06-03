@@ -35,7 +35,7 @@ sequenceDiagram
 
 ## Legacy path (subprocess — documented for comparison)
 
-Previously, Next.js **`spawn`ed** `python3 analyze_sample.py` per request. That paid **import + kernel init** on every POST (~10–12s Locust p95). See [latency investigation](../investigations/latency-investigation/latency-investigation.md).
+Previously, Next.js **`spawn`ed** `python3 analyze_sample.py` per request. That paid **import + kernel init** on every POST (~10–12s Locust p95). See [latency investigation](../investigations/latency-investigation/).
 
 ## Ports (local dev)
 

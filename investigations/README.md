@@ -22,7 +22,7 @@ Engineering investigations for CXR — performance, load, reliability, chaos, ob
 
 | ID | Report | Notes |
 |----|--------|-------|
-| **PERF-001** | [latency-investigation/latency-investigation.md](./latency-investigation/latency-investigation.md) | 11–12s → warm analyzer; [screenshots](./latency-investigation/screenshots/) |
+| **PERF-001** | [latency-investigation/](./latency-investigation/) | 11–12s → warm analyzer; [screenshots](./latency-investigation/screenshots/) |
 | **LOAD baseline** | [load-testing/load-testing-results.md](./load-testing/load-testing-results.md) | Locust p95 table; [screenshots](./load-testing/screenshots/) |
 | **OBS-001** | [observability/OBS-001-missing-spans/completed.md](./observability/OBS-001-missing-spans/completed.md) | Trace profile `minimal` → `detailed` |
 | **INC-003** | [incidents/INC-003-python-import-bottleneck/postmortem.md](./incidents/INC-003-python-import-bottleneck/postmortem.md) | Import bottleneck incident |

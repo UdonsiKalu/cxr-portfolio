@@ -23,7 +23,7 @@ Per-request **Python subprocess** re-imported heavy deps (torch, sentence_transf
 - Locust p95 **~1.5s**; Jaeger linked traces **~154–708ms** on steady-state POST; `analyzer_mode: http`.
 - Jaeger **~21 spans** on steady-state POST.
 - [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md)
-- [Latency investigation](../../latency-investigation/latency-investigation.md)
+- [Latency investigation](../../latency-investigation/)
 
 ## Prevention
 

@@ -2,7 +2,7 @@
 
 **Status:** Completed
 
-Full report: [latency-investigation.md](../../latency-investigation/latency-investigation.md)
+Full report: [latency investigation](../../latency-investigation/)
 
 Also see:
 - [load-testing results](../../load-testing/load-testing-results.md)
