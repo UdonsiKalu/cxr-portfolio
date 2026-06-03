@@ -193,12 +193,12 @@ A **`minimal`** trace profile was tried to reduce Jaeger “Operations” clutte
 
 | Document | Role |
 |----------|------|
-| [Load testing results](../load-testing/load-testing-results.md) | Locust setup, p95 table, how to read with Jaeger |
-| [INC-003 postmortem](../incidents/INC-003-python-import-bottleneck/postmortem.md) | Incident record |
-| [PERF-001](../performance/PERF-001-claim-analysis-latency/completed.md) | Investigation index entry |
+| [Load testing results](../load-testing/) | Locust setup, p95 table, how to read with Jaeger |
+| [INC-003 postmortem](../incidents/INC-003-python-import-bottleneck/) | Incident record |
+| [PERF-001](../performance/PERF-001-claim-analysis-latency/) | Investigation index entry |
 | [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md) | Decision record — long-running analyzer |
 | [Jaeger guide](../jaeger.md) | How to read CXR traces and trace profiles |
-| [OBS-001](../observability/OBS-001-missing-spans/completed.md) | Trace profile / span visibility |
+| [OBS-001](../observability/OBS-001-missing-spans/) | Trace profile / span visibility |
 | [Demo — trace a request](../../demo/walkthrough/trace-request.md) | Reproduce in local stack |
 
 ---

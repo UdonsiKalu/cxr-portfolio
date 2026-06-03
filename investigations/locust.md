@@ -1,6 +1,6 @@
 # Locust — load testing CXR
 
-Quick reference for load testing Claim Studio. Full results: [load-testing/load-testing-results.md](./load-testing/load-testing-results.md).
+Quick reference for load testing Claim Studio. Full results: [load-testing/](./load-testing/).
 
 ## Setup
 

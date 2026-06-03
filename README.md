@@ -14,7 +14,7 @@ System design, request flows, C4 diagrams, [architecture evolution](./architectu
 
 ### Investigations
 
-Performance investigations with ID taxonomy (PERF, LOAD, REL, CHAOS, OBS, …). Completed reports: [latency-investigation](./investigations/latency-investigation/), [load-testing](./investigations/load-testing/load-testing-results.md). Index: [investigations/README.md](./investigations/README.md).
+Performance investigations with ID taxonomy (PERF, LOAD, REL, CHAOS, OBS, …). Completed reports: [latency-investigation](./investigations/latency-investigation/), [load-testing](./investigations/load-testing/). Index: [investigations/README.md](./investigations/README.md).
 
 ### Operations
 
@@ -35,7 +35,7 @@ Supporting notes, templates, and reference material.
 1. `my-impact.md`
 2. `architecture/request-flow.md`
 3. [investigations/latency-investigation/](./investigations/latency-investigation/)
-4. [investigations/incidents/INC-003-python-import-bottleneck/postmortem.md](./investigations/incidents/INC-003-python-import-bottleneck/postmortem.md)
+4. [investigations/incidents/INC-003-python-import-bottleneck/](./investigations/incidents/INC-003-python-import-bottleneck/)
 5. [architecture/adrs/ADR-004-long-running-analyzer.md](./architecture/adrs/ADR-004-long-running-analyzer.md)
 6. `demo/RUN.md`
 
@@ -52,7 +52,7 @@ The analysis resulted in a migration from a subprocess-per-request architecture 
 Supporting documentation is available in:
 
 * [investigations/latency-investigation/](./investigations/latency-investigation/)
-* [investigations/incidents/INC-003-python-import-bottleneck/postmortem.md](./investigations/incidents/INC-003-python-import-bottleneck/postmortem.md)
+* [investigations/incidents/INC-003-python-import-bottleneck/](./investigations/incidents/INC-003-python-import-bottleneck/)
 * [architecture/adrs/ADR-004-long-running-analyzer.md](./architecture/adrs/ADR-004-long-running-analyzer.md)
 
 ---

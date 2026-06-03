@@ -38,4 +38,4 @@ Filter **POST** operations for analyze work—not GET `/claim-studio` page loads
 - [OpenTelemetry](../../investigations/opentelemetry.md)
 - [Jaeger](../../investigations/jaeger.md)
 - [Latency investigation](../../investigations/latency-investigation/)
-- [Load testing results](../../investigations/load-testing/load-testing-results.md)
+- [Load testing results](../../investigations/load-testing/)

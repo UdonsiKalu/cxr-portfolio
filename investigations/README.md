@@ -1,6 +1,8 @@
 # Investigations
 
-Engineering investigations for CXR — performance, load, reliability, chaos, observability, platform, and cost. Each ID gets a folder when there is a question worth answering; **completed** work has evidence (report + screenshots).
+Engineering investigations for CXR — performance, load, reliability, chaos, observability, platform, and cost.
+
+**GitHub:** open any investigation **folder** to read its report — content lives in each folder’s **`README.md`** (rendered below the file list). Legacy filenames (`postmortem.md`, `load-testing-results.md`, etc.) point to `README.md`.
 
 ## Investigation pattern
 
@@ -23,11 +25,11 @@ Engineering investigations for CXR — performance, load, reliability, chaos, ob
 | ID | Report | Notes |
 |----|--------|-------|
 | **PERF-001** | [latency-investigation/](./latency-investigation/) | 11–12s → warm analyzer; [screenshots](./latency-investigation/screenshots/) |
-| **LOAD baseline** | [load-testing/load-testing-results.md](./load-testing/load-testing-results.md) | Locust p95 table; [screenshots](./load-testing/screenshots/) |
-| **OBS-001** | [observability/OBS-001-missing-spans/completed.md](./observability/OBS-001-missing-spans/completed.md) | Trace profile `minimal` → `detailed` |
-| **INC-003** | [incidents/INC-003-python-import-bottleneck/postmortem.md](./incidents/INC-003-python-import-bottleneck/postmortem.md) | Import bottleneck incident |
+| **LOAD baseline** | [load-testing/](./load-testing/) | Locust p95 table; [screenshots](./load-testing/screenshots/) |
+| **OBS-001** | [observability/OBS-001-missing-spans/](./observability/OBS-001-missing-spans/) | Trace profile `minimal` → `detailed` |
+| **INC-003** | [incidents/INC-003-python-import-bottleneck/](./incidents/INC-003-python-import-bottleneck/) | Import bottleneck incident |
 
-Index entries: [performance/PERF-001/](./performance/PERF-001-claim-analysis-latency/completed.md)
+Index entries: [performance/PERF-001/](./performance/PERF-001-claim-analysis-latency/)
 
 ---
 

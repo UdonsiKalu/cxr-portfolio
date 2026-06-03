@@ -1,7 +1,5 @@
-# OBS-001 — Missing spans / trace profile UX
+# Obs 001 Missing Spans
 
-**Status:** Completed
+The full document is in **[README.md](./README.md)**.
 
-`CXR_TRACE_PROFILE=minimal` reduced useful spans (~7 vs ~21). Default restored to **detailed**; `flush_tracing()` added after analyzer lifespan.
-
-See [jaeger.md — trace profiles](../../jaeger.md#trace-profiles) and [INC-002 postmortem](../../incidents/INC-002-jaeger-trace-ux/postmortem.md).
+On GitHub, open this folder to read the report rendered below the file list.

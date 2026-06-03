@@ -26,5 +26,5 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for visibility and go-public ch
 
 1. [my-impact.md](../my-impact.md)
 2. [investigations/latency-investigation/](../investigations/latency-investigation/)
-3. [investigations/incidents/INC-003-python-import-bottleneck/postmortem.md](../investigations/incidents/INC-003-python-import-bottleneck/postmortem.md)
+3. [investigations/incidents/INC-003-python-import-bottleneck/](../investigations/incidents/INC-003-python-import-bottleneck/)
 4. [demo/RUN.md](../demo/RUN.md)

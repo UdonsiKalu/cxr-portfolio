@@ -30,7 +30,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 - Correlated Locust p95 with Jaeger traces (not just CPU graphs).
 - Integrated Locust into the **one-command dev stack** (`cxr up`).
 
-**Evidence:** [load testing results](./investigations/load-testing/load-testing-results.md)
+**Evidence:** [load testing results](./investigations/load-testing/)
 
 ### 4. Operability for humans (including future me)
 
