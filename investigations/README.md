@@ -1,5 +1,7 @@
 # Investigations
 
+<!-- portfolio -->
+
 Engineering investigations for CXR — performance, load, reliability, chaos, observability, platform, and cost.
 
 **GitHub:** open any investigation **folder** to read its report — content lives in each folder’s **`README.md`** (rendered below the file list). Legacy filenames (`postmortem.md`, `load-testing-results.md`, etc.) point to `README.md`.

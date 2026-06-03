@@ -2,6 +2,8 @@
 
 System design for CXR (Claim eXamination & Reasoning) — how components connect, how requests flow, and why key decisions were made.
 
+<!-- portfolio -->
+
 ## Core documents
 
 | Document | Purpose |

@@ -1,5 +1,22 @@
-# Inc 001 High Latency
+# INC-001 — High API latency under load
 
-The full document is in **[README.md](./README.md)**.
+**Severity:** High  
+**Status:** Resolved (via INC-003 / ADR-004)  
+**Component:** `POST /api/claim-studio/analyze`
 
-On GitHub, open this folder to read the report rendered below the file list.
+## Summary
+
+Under Locust, analyze API p95 **~10–12s**. Users reported Claim Studio felt unusable during load tests.
+
+## Root cause
+
+Same as [INC-003](../INC-003-python-import-bottleneck/postmortem.md): subprocess-per-request + kernel initialization dominated; not network or Next.js alone.
+
+## Resolution
+
+Warm analyzer service; re-run Locust; confirm p95 **~1.5s** and Jaeger traces **~154–708ms** locally.
+
+## Evidence
+
+- [latency investigation](../latency-investigation/)
+- Jaeger evidence in [../latency-investigation/screenshots/](../latency-investigation/screenshots/)
