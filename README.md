@@ -1,5 +1,7 @@
 # CXR — Claims Reasoning Platform
 
+<!-- portfolio -->
+
 CXR (Claim eXamination & Reasoning) is a healthcare-focused claims analysis platform designed to identify issues that may contribute to claim denials before submission.
 
 This repository documents the engineering work performed while developing and operating CXR. The focus is on architecture, observability, reliability, performance analysis, and platform operations using a real system rather than isolated demonstrations.
