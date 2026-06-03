@@ -1,4 +1,4 @@
-# CXR — DevOps & Platform Engineering Portfolio
+# CXR — DevOps Portfolio
 
 <!-- portfolio -->
 
