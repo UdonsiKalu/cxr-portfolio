@@ -14,9 +14,9 @@ Same as [INC-003](../INC-003-python-import-bottleneck/postmortem.md): subprocess
 
 ## Resolution
 
-Warm analyzer service; re-run Locust; confirm p95 drop to **~2–3s** range locally.
+Warm analyzer service; re-run Locust; confirm p95 **~1.5s** and Jaeger traces **~154–708ms** locally.
 
 ## Evidence
 
-- [Latency investigation report](../latency-investigation/)
-- Jaeger evidence in [../latency-investigation/assets/](../latency-investigation/assets/)
+- [latency-investigation.md](../latency-investigation/latency-investigation.md)
+- Jaeger evidence in [../latency-investigation/screenshots/](../latency-investigation/screenshots/)

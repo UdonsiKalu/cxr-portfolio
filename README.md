@@ -10,11 +10,11 @@ The portfolio focuses on architecture, observability, reliability, performance i
 
 ### Architecture
 
-System design, request flows, C4 diagrams, [architecture evolution](./architecture/architecture-evolution.md), and ADRs in `adrs/`.
+System design, request flows, C4 diagrams, [architecture evolution](./architecture/architecture-evolution.md), and ADRs — see [architecture/README.md](./architecture/README.md).
 
 ### Investigations
 
-Performance investigations, incident analysis, load testing, tracing, runbooks, and reliability experiments. Each major investigation has its own folder with a **report** (`README.md`) and embedded evidence — see [investigations/README.md](./investigations/README.md).
+Performance investigations with ID taxonomy (PERF, LOAD, REL, CHAOS, OBS, …). Completed reports: [latency-investigation](./investigations/latency-investigation/latency-investigation.md), [load-testing](./investigations/load-testing/load-testing-results.md). Index: [investigations/README.md](./investigations/README.md).
 
 ### Operations
 
@@ -34,9 +34,9 @@ Supporting notes, templates, and reference material.
 
 1. `my-impact.md`
 2. `architecture/request-flow.md`
-3. [investigations/latency-investigation/](./investigations/latency-investigation/)
-4. `investigations/incidents/`
-5. `architecture/adrs/`
+3. [investigations/latency-investigation/latency-investigation.md](./investigations/latency-investigation/latency-investigation.md)
+4. [investigations/incidents/INC-003-python-import-bottleneck/postmortem.md](./investigations/incidents/INC-003-python-import-bottleneck/postmortem.md)
+5. [architecture/adrs/ADR-004-long-running-analyzer.md](./architecture/adrs/ADR-004-long-running-analyzer.md)
 6. `demo/RUN.md`
 
 ---
@@ -51,9 +51,9 @@ The analysis resulted in a migration from a subprocess-per-request architecture 
 
 Supporting documentation is available in:
 
-* [investigations/latency-investigation/](./investigations/latency-investigation/)
-* `investigations/incidents/INC-003-python-import-bottleneck/`
-* `architecture/adrs/ADR-004-long-running-analyzer.md`
+* [investigations/latency-investigation/latency-investigation.md](./investigations/latency-investigation/latency-investigation.md)
+* [investigations/incidents/INC-003-python-import-bottleneck/postmortem.md](./investigations/incidents/INC-003-python-import-bottleneck/postmortem.md)
+* [architecture/adrs/ADR-004-long-running-analyzer.md](./architecture/adrs/ADR-004-long-running-analyzer.md)
 
 ---
 

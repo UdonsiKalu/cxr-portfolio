@@ -5,4 +5,4 @@
 3. Service `cxr-ui-rehearsal` → `POST /api/claim-studio/analyze`
 4. Compare `analyzer_service.startup` (once) vs `context_builder` (steady)
 
-Full write-up: [latency investigation report](../../investigations/latency-investigation/).
+Full write-up: [latency-investigation.md](../../investigations/latency-investigation/latency-investigation.md).

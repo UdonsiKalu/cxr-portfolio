@@ -14,9 +14,7 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for visibility and go-public ch
 | **architecture/** | Complete (md) | C4 + dependency + blast radius; PNGs in diagrams/ planned |
 | **architecture/** | Complete | Philosophy, journey, platform model |
 | **investigations/** | Complete | OTel, Jaeger, latency, load, Prom/Grafana |
-| **investigations/incidents/** | Complete | INC-001, INC-002-jaeger-trace-ux, INC-003 + splits |
 | **investigations/chaos-experiments/** | Planned runs | Procedures drafted; execute before claiming game-day |
-| **investigations/runbooks/** | Complete | slow-api, no-traces, restart, qdrant, ollama |
 | **operations/** | Complete | docker, ci-cd, K8/tf reference copies |
 | **archive/security-compliance/** | Complete | Bootcamp-appropriate policies |
 | **adrs/** | Complete | ADR-001–006 |
@@ -27,7 +25,6 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for visibility and go-public ch
 ## Reviewer fast path
 
 1. [my-impact.md](../my-impact.md)
-2. [investigations/latency-investigation/](../investigations/latency-investigation/)
+2. [investigations/latency-investigation/latency-investigation.md](../investigations/latency-investigation/latency-investigation.md)
 3. [investigations/incidents/INC-003-python-import-bottleneck/postmortem.md](../investigations/incidents/INC-003-python-import-bottleneck/postmortem.md)
-4. [investigations/latency-investigation/](../investigations/latency-investigation/)
-5. [demo/RUN.md](../demo/RUN.md)
+4. [demo/RUN.md](../demo/RUN.md)

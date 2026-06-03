@@ -12,7 +12,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 - Wired **OTLP** (port **4318**) through an OpenTelemetry Collector into **Jaeger** (port **16686**).
 - Produced **~21 nested spans** per warm analyze, including `context_builder`, `claim_analysis`, `retrieval`, and import spans on analyzer startup.
 
-**Evidence:** [latency investigation report](./investigations/latency-investigation/)
+**Evidence:** [latency investigation](./investigations/latency-investigation/latency-investigation.md)
 
 ### 2. Found the real bottleneck (investigation, not guessing)
 
@@ -22,7 +22,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 | Kernel-only view | **~1.5s** `context_builder` | Analyze logic was fast once the runtime was warm |
 | After fix | **~1.5s** Locust p95 · **~154–708ms** Jaeger traces | Long-lived **FastAPI analyzer** + `ANALYZER_URL` from Next.js |
 
-**Evidence:** [INC-003 postmortem](./investigations/incidents/INC-003-python-import-bottleneck/postmortem.md) · [ADR-004](./architecture/adrs/ADR-004-long-running-analyzer.md)
+**Evidence:** [latency investigation](./investigations/latency-investigation/latency-investigation.md) · [ADR-004](./architecture/adrs/ADR-004-long-running-analyzer.md)
 
 ### 3. Load-tested with intent (Locust)
 
@@ -35,10 +35,10 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 ### 4. Operability for humans (including future me)
 
 - **`cxr up` / `cxr down`** — Jaeger + warm analyzer + rehearsal UI + Locust without memorizing fifteen commands.
-- Runbooks for **slow API**, **no traces**, **restart stack**.
+- Demo runbook and troubleshooting in [demo/RUN.md](./demo/RUN.md).
 - Bootcamp lab index (Kafka, ELK, Redis, …) kept **optional** so daily dev stays light.
 
-**Evidence:** [operations/restart-stack.md](./operations/restart-stack.md)
+**Evidence:** [demo/RUN.md](./demo/RUN.md) · [operations/restart-stack.md](./operations/restart-stack.md)
 
 ## Metrics that matter (local dev, reproducible)
 

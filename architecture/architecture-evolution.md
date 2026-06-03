@@ -8,7 +8,7 @@ How CXR moved from a subprocess-per-request analyze path to a warm analyzer, obs
 
 ### Show the implementation
 
-Skills on a profile are claims. **Traces, ADRs, load tests, and runbooks** are proof. This portfolio exists because CXR work produced measurable outcomes—not because a checklist of tools was memorized.
+Skills on a profile are claims. **Traces, ADRs, and load tests** are proof. This portfolio exists because CXR work produced measurable outcomes—not because a checklist of tools was memorized.
 
 ### Measure before optimizing
 
@@ -44,25 +44,25 @@ When trace profiles trade away debuggability for aesthetics, **reject the trade*
 
 Analyze via spawned Python per HTTP request. Simple mental model; terrible p95 under load.
 
-**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations/incidents/](../investigations/incidents/)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/latency-investigation.md) · [investigations/jaeger.md](../investigations/jaeger.md)
 
 ### v2 — Observability
 
 OTel on Next.js + Python; Jaeger at **:16686**; discovered import/init dominance.
 
-**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations/incidents/](../investigations/incidents/)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/latency-investigation.md) · [investigations/jaeger.md](../investigations/jaeger.md)
 
 ### v3 — Load testing
 
 Locust on **:8251**; correlated p95 with trace waterfalls.
 
-**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations/load-testing/](../investigations/load-testing/)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/latency-investigation.md) · [investigations/load-testing/](../investigations/load-testing/)
 
 ### v4 — Reliability
 
-Warm analyzer on **:8766**, runbooks, `cxr` CLI, incidents INC-001–003.
+Warm analyzer on **:8766**, `cxr` CLI, demo troubleshooting.
 
-**Evidence:** [investigations/incidents/INC-003-python-import-bottleneck/postmortem.md](../investigations/incidents/INC-003-python-import-bottleneck/postmortem.md) · [adrs/ADR-004-long-running-analyzer.md](./adrs/ADR-004-long-running-analyzer.md)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/latency-investigation.md) · [adrs/ADR-004-long-running-analyzer.md](./adrs/ADR-004-long-running-analyzer.md)
 
 ---
 

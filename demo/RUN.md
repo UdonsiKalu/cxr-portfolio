@@ -44,6 +44,16 @@ This portfolio documents an implementation that lives across a **staging monorep
 ~/staging/cxr-dev.sh down
 ```
 
+## Troubleshooting
+
+| Problem | Check |
+|---------|--------|
+| **Slow analyze** (>5s) | `curl http://127.0.0.1:8766/health` → `"warmed":"true"`; response JSON has `"analyzer_mode":"http"` |
+| **No Jaeger traces** | Observe up (`cxr up`); set `OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4318`; filter **POST** analyze, not GET pages |
+| **Stack stuck** | `cxr down` then `cxr up`; logs in `/tmp/cxr-analyzer-service.log`, `/tmp/cxr-rehearsal-8251.log` |
+
+See [latency investigation](../investigations/latency-investigation/latency-investigation.md) and [Jaeger guide](../investigations/jaeger.md).
+
 ## Future: single-repo demo
 
 Goal: publish companion repos so `git clone` + `docker compose up` runs a minimal public demo without the full staging tree. This portfolio will link them when available.

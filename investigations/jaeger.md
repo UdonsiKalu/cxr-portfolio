@@ -13,7 +13,7 @@ http://127.0.0.1:16686
 
 ## Operations (steady-state warm POST)
 
-Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 was **~1.5s** under load. Do not conflate a single Jaeger trace with aggregate load-test latency — see [latency investigation report](./latency-investigation/).
+Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 was **~1.5s** under load. Do not conflate a single Jaeger trace with aggregate load-test latency — see [latency investigation](./latency-investigation/latency-investigation.md).
 
 | Operation | Meaning |
 |-----------|---------|
@@ -34,9 +34,9 @@ Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 wa
 
 ## Screenshots in this repo
 
-- [before-jaeger-search-2026-05-30.png](./latency-investigation/assets/before-jaeger-search-2026-05-30.png)
-- [before-jaeger-waterfall-11s-5spans-2026-05-30.png](./latency-investigation/assets/before-jaeger-waterfall-11s-5spans-2026-05-30.png)
-- [after-jaeger-locust-154ms-22spans-2026-06-02.png](./latency-investigation/assets/after-jaeger-locust-154ms-22spans-2026-06-02.png)
+- [before-jaeger-search-2026-05-30.png](./latency-investigation/screenshots/before-jaeger-search-2026-05-30.png)
+- [before-jaeger-waterfall-11s-5spans-2026-05-30.png](./latency-investigation/screenshots/before-jaeger-waterfall-11s-5spans-2026-05-30.png)
+- [after-jaeger-locust-154ms-22spans-2026-06-02.png](./latency-investigation/screenshots/after-jaeger-locust-154ms-22spans-2026-06-02.png)
 
 ## Common mistakes
 
@@ -45,3 +45,11 @@ Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 wa
 | Only viewing GET `/claim-studio` | Filter **POST** analyze |
 | Expecting ~8s on every POST when warm | Look at **startup** trace on `cxr-analyzer-service` |
 | `llm_inference` ~µs | Compliant path skips LLM — check `llm.model_request.send` when LLM runs |
+
+## Trace profiles
+
+An attempt to simplify Jaeger via **`CXR_TRACE_PROFILE=minimal`** made investigation **harder**: **47** Operations on some services, only **~7 spans** per trace, and lost visibility into `context_builder` and imports.
+
+**Resolution:** default restored to **`detailed`**. Added `flush_tracing()` after analyzer lifespan so **`analyzer_service.startup`** appears after restart.
+
+**Lesson:** fewer span names ≠ clearer observability.

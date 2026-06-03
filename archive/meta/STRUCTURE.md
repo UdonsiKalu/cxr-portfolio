@@ -28,14 +28,12 @@ cxr-portfolio/
 │
 ├── investigations/
 │   ├── … (overview, OTel, Jaeger, latency, load testing)
-│   ├── dashboards/
-│   └── screenshots/      ← SW.11 Jaeger PNGs
-│
-├── reliability/
-│   ├── slos-and-slis.md …
-│   ├── incidents/        ← INC-001/003 complete; INC-002 Jaeger evidenced
-│   ├── chaos-experiments/  (scaffold until game days)
-│   └── runbooks/
+│   ├── latency-investigation/   ← report + screenshots
+│   ├── load-testing/
+│   ├── performance/ … load-capacity/ … reliability/
+│   ├── chaos-experiments/ … observability/ … platform/ … cost/
+│   ├── incidents/
+│   ├── jaeger.md, opentelemetry.md, locust.md
 │
 ├── operations/
 │   ├── docker.md, ci-cd.md, …
@@ -49,6 +47,6 @@ cxr-portfolio/
 └── templates/
 ```
 
-**Incidents:** [INC-002-jaeger-trace-ux](../investigations/incidents/INC-002-jaeger-trace-ux/postmortem.md) (trace profile / span visibility).
+Trace profile notes: [jaeger.md](../investigations/jaeger.md#trace-profiles).
 
 Bootcamp lab index: [archive/learning-notes/bootcamp-labs.md](../archive/learning-notes/bootcamp-labs.md).
