@@ -1,74 +1,69 @@
-# CXR — Claims Reasoning Platform (Engineering Portfolio)
+# CXR — Claims Reasoning Platform
 
-This repository documents the engineering work behind CXR (Claim eXamination & Reasoning), a healthcare-focused claims analysis platform.
+CXR (Claim eXamination & Reasoning) is a healthcare-focused claims analysis platform designed to identify issues that may contribute to claim denials before submission.
 
-The portfolio focuses on architecture, observability, reliability, performance investigations, and platform operations using a real system rather than isolated demonstrations.
+This repository documents the engineering work performed while developing and operating CXR. The focus is on architecture, observability, reliability, performance analysis, and platform operations using a real system rather than isolated demonstrations.
+
+---
+
+## Purpose
+
+The goal of this repository is to document:
+
+- System architecture and design decisions
+- Performance investigations and optimization work
+- Observability and tracing implementations
+- Reliability and operational practices
+- Platform evolution and future architecture plans
+
+This repository is an **engineering portfolio and documentation repository**. It is not the full CXR product codebase.
 
 ---
 
 ## Repository Structure
 
-### Architecture
-
-System design, request flows, C4 diagrams, [architecture evolution](./architecture/architecture-evolution.md), and ADRs — see [architecture/README.md](./architecture/README.md).
-
-### Investigations
-
-Performance investigations with ID taxonomy (PERF, LOAD, REL, CHAOS, OBS, …). Completed reports: [latency-investigation](./investigations/latency-investigation/), [load-testing](./investigations/load-testing/). Index: [investigations/README.md](./investigations/README.md).
-
-### Operations
-
-Docker, CI/CD, GitHub Actions, Kubernetes, Terraform, deployment practices, and capacity planning.
-
-### Demo
-
-Local demonstration environment and walkthroughs.
-
-### Archive
-
-Supporting notes, templates, and reference material.
+| Section | Contents |
+|---------|----------|
+| [architecture/](./architecture/) | System design, request flows, diagrams, [architecture evolution](./architecture/architecture-evolution.md), and [ADRs](./architecture/adrs/) |
+| [investigations/](./investigations/) | Performance work, load testing, tracing, incidents, reliability experiments — see [investigations index](./investigations/README.md) |
+| [operations/](./operations/) | Docker, CI/CD, deployment, Kubernetes planning, Terraform, and operational procedures |
+| [demo/](./demo/) | Local demonstration environment and walkthroughs |
+| [archive/](./archive/) | Reference material and supporting notes |
 
 ---
 
-## Recommended Review Path
+## Featured Investigation
 
-1. [investigations/latency-investigation/](./investigations/latency-investigation/)
-2. [architecture/request-flow.md](./architecture/request-flow.md)
-3. [investigations/incidents/INC-003-python-import-bottleneck/](./investigations/incidents/INC-003-python-import-bottleneck/)
-4. [architecture/adrs/ADR-004-long-running-analyzer.md](./architecture/adrs/ADR-004-long-running-analyzer.md)
-5. [demo/RUN.md](./demo/RUN.md)
+One of the investigations documented here involved claim analysis requests averaging approximately **10–12 seconds** under load.
 
-Outcomes summary (maintainers): [archive/meta/my-impact.md](./archive/meta/my-impact.md)
+Using **OpenTelemetry**, **Jaeger**, and **Locust**, the work identified repeated Python startup and import costs as a major contributor to latency. The response was a migration from a subprocess-per-request architecture to a **long-running analyzer service** on port **8766**. After the change, Locust p95 dropped to **~1.5s** and warm Jaeger traces showed **~154–708ms** per request.
 
----
-
-## Example Investigation
-
-A major investigation documented in this repository involved claim analysis requests averaging approximately 11–12 seconds.
-
-Using OpenTelemetry, Jaeger, and Locust, the investigation identified repeated Python import costs as the primary source of latency.
-
-The analysis resulted in a migration from a subprocess-per-request architecture to a long-running analyzer service. After the change, Locust p95 dropped to **~1.5s** and warm Jaeger traces showed **~154–708ms** per request.
-
-Supporting documentation is available in:
-
-* [investigations/latency-investigation/](./investigations/latency-investigation/)
-* [investigations/incidents/INC-003-python-import-bottleneck/](./investigations/incidents/INC-003-python-import-bottleneck/)
-* [architecture/adrs/ADR-004-long-running-analyzer.md](./architecture/adrs/ADR-004-long-running-analyzer.md)
+| Document | Description |
+|----------|-------------|
+| [Latency investigation](./investigations/latency-investigation/) | Full report with evidence and diagrams |
+| [INC-003 — import bottleneck](./investigations/incidents/INC-003-python-import-bottleneck/) | Incident record |
+| [ADR-004 — long-running analyzer](./architecture/adrs/ADR-004-long-running-analyzer.md) | Architecture decision |
 
 ---
 
-## Running the Demo
+## Recommended Reading Order
 
-See `demo/RUN.md`.
+1. [Outcomes summary](./archive/meta/my-impact.md) — what was delivered and measured
+2. [Request flow](./architecture/request-flow.md) — how analyze requests move through the stack
+3. [Latency investigation](./investigations/latency-investigation/) — featured performance case study
+4. [Incidents](./investigations/incidents/) — postmortems (INC-001–003)
+5. [Architecture Decision Records](./architecture/adrs/) — why key choices were made
+6. [Demo](./demo/) — run the stack locally (`demo/RUN.md`)
 
 ---
 
 ## Disclaimer
 
-This repository uses synthetic claims, sample policies, and development environments for demonstration purposes.
+This repository uses **synthetic claims**, sample policies, and **development environments** for demonstration purposes only.
 
-No production patient information or customer data is included. Full text: [archive/DISCLAIMER.md](./archive/DISCLAIMER.md).
+No production patient information or customer data is included.
+
+See [archive/DISCLAIMER.md](./archive/DISCLAIMER.md) for the full disclaimer.
 
 ---
 
