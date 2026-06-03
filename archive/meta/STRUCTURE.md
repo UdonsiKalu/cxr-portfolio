@@ -13,8 +13,11 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for promotion checklist.
 ```
 cxr-portfolio/
 ├── README.md
-├── DISCLAIMER.md
-├── my-impact.md
+├── README.md
+├── archive/
+│   ├── DISCLAIMER.md
+│   └── meta/
+│       └── my-impact.md
 ├── meta/                 ← INDEX, STRUCTURE, PORTFOLIO-STATUS (maintainers)
 │
 ├── architecture/

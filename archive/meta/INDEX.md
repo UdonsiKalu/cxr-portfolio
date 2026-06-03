@@ -9,7 +9,7 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for visibility and go-public ch
 | [README.md](../README.md) | Complete | Entry + reviewer guide |
 | [STRUCTURE.md](./STRUCTURE.md) | Complete | Full tree map |
 | [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) | Complete | WIP checklist |
-| [my-impact.md](../my-impact.md) | Complete | Outcomes summary |
+| [my-impact.md](./my-impact.md) | Complete | Outcomes summary |
 | [DISCLAIMER.md](../DISCLAIMER.md) | Complete | Synthetic data / labs |
 | **architecture/** | Complete (md) | C4 + dependency + blast radius; PNGs in diagrams/ planned |
 | **architecture/** | Complete | Philosophy, journey, platform model |
@@ -24,7 +24,6 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for visibility and go-public ch
 
 ## Reviewer fast path
 
-1. [my-impact.md](../my-impact.md)
-2. [investigations/latency-investigation/](../investigations/latency-investigation/)
-3. [investigations/incidents/INC-003-python-import-bottleneck/](../investigations/incidents/INC-003-python-import-bottleneck/)
-4. [demo/RUN.md](../demo/RUN.md)
+1. [../README.md](../README.md) — then [latency investigation](../investigations/latency-investigation/)
+2. [investigations/incidents/INC-003-python-import-bottleneck/](../investigations/incidents/INC-003-python-import-bottleneck/)
+3. [demo/RUN.md](../demo/RUN.md)

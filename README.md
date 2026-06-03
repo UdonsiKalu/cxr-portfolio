@@ -32,12 +32,13 @@ Supporting notes, templates, and reference material.
 
 ## Recommended Review Path
 
-1. `my-impact.md`
-2. `architecture/request-flow.md`
-3. [investigations/latency-investigation/](./investigations/latency-investigation/)
-4. [investigations/incidents/INC-003-python-import-bottleneck/](./investigations/incidents/INC-003-python-import-bottleneck/)
-5. [architecture/adrs/ADR-004-long-running-analyzer.md](./architecture/adrs/ADR-004-long-running-analyzer.md)
-6. `demo/RUN.md`
+1. [investigations/latency-investigation/](./investigations/latency-investigation/)
+2. [architecture/request-flow.md](./architecture/request-flow.md)
+3. [investigations/incidents/INC-003-python-import-bottleneck/](./investigations/incidents/INC-003-python-import-bottleneck/)
+4. [architecture/adrs/ADR-004-long-running-analyzer.md](./architecture/adrs/ADR-004-long-running-analyzer.md)
+5. [demo/RUN.md](./demo/RUN.md)
+
+Outcomes summary (maintainers): [archive/meta/my-impact.md](./archive/meta/my-impact.md)
 
 ---
 
@@ -67,9 +68,7 @@ See `demo/RUN.md`.
 
 This repository uses synthetic claims, sample policies, and development environments for demonstration purposes.
 
-No production patient information or customer data is included.
-
-See [DISCLAIMER.md](./DISCLAIMER.md) for additional information.
+No production patient information or customer data is included. Full text: [archive/DISCLAIMER.md](./archive/DISCLAIMER.md).
 
 ---
 
