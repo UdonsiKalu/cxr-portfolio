@@ -186,34 +186,3 @@ Optimizing `context_builder` alone would not have fixed Locust p95 while subproc
 ### Trace profile note
 
 A **`minimal`** trace profile was tried to reduce Jaeger “Operations” clutter; it **reduced** useful span detail (~7 spans vs ~21). Default restored to **`detailed`**. See [Jaeger guide — trace profiles](../jaeger.md#trace-profiles).
-
----
-
-## 8. Related work
-
-| Document | Role |
-|----------|------|
-| [Load testing results](../load-testing/) | Locust setup, p95 table, how to read with Jaeger |
-| [INC-003 postmortem](../incidents/INC-003-python-import-bottleneck/) | Incident record |
-| [PERF-001](../performance/PERF-001-claim-analysis-latency/) | Investigation index entry |
-| [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md) | Decision record — long-running analyzer |
-| [Jaeger guide](../jaeger.md) | How to read CXR traces and trace profiles |
-| [OBS-001](../observability/OBS-001-missing-spans/) | Trace profile / span visibility |
-| [Demo — trace a request](../../demo/walkthrough/trace-request.md) | Reproduce in local stack |
-
----
-
-## Appendix — evidence index
-
-| Phase | File |
-|-------|------|
-| Before — Jaeger search | [before-jaeger-search-2026-05-30.png](./screenshots/before-jaeger-search-2026-05-30.png) |
-| Before — 11s waterfall | [before-jaeger-waterfall-11s-5spans-2026-05-30.png](./screenshots/before-jaeger-waterfall-11s-5spans-2026-05-30.png) |
-| Before — module import | [before-jaeger-python-module-import-7s-2026-06-01.png](./screenshots/before-jaeger-python-module-import-7s-2026-06-01.png) |
-| Before — Jaeger + Locust | [before-jaeger-locust-combined-10s-2026-06-01.png](./screenshots/before-jaeger-locust-combined-10s-2026-06-01.png) |
-| Before — Locust 11s median | [../load-testing/screenshots/before-locust-post-analyze-11s-p95-2026-06-01.png](../load-testing/screenshots/before-locust-post-analyze-11s-p95-2026-06-01.png) |
-| After — 154ms / 22 spans | [after-jaeger-locust-154ms-22spans-2026-06-02.png](./screenshots/after-jaeger-locust-154ms-22spans-2026-06-02.png) |
-| After — warm ~708ms | [after-jaeger-locust-warm-708ms-2026-06-02.png](./screenshots/after-jaeger-locust-warm-708ms-2026-06-02.png) |
-| After — startup ~8s | [after-analyzer-startup-imports-8s-2026-06-02.png](./screenshots/after-analyzer-startup-imports-8s-2026-06-02.png) |
-
-Legacy filenames: `SW11-jaeger-*.png` in `./screenshots/` (aliases for first two before images).
