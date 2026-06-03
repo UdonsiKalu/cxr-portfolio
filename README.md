@@ -45,11 +45,3 @@ Using **OpenTelemetry**, **Jaeger**, and **Locust**, the work identified repeate
 | [Latency investigation](./investigations/latency-investigation/) | Full report with evidence and diagrams |
 | [INC-003 — import bottleneck](./investigations/incidents/INC-003-python-import-bottleneck/) | Incident record |
 | [ADR-004 — long-running analyzer](./architecture/adrs/ADR-004-long-running-analyzer.md) | Architecture decision |
-
----
-
-## Author
-
-**Udonsi Kalu**
-
-Platform engineering, observability, reliability engineering, and AI systems work documented through the development and operation of CXR.
