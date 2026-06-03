@@ -36,7 +36,7 @@ Start load UI: `cxr up` (includes Locust) or `cxr-ops-lab/scripts/22-load-locust
 |------|------|
 | Before — Locust 11s median | [screenshots/before-locust-post-analyze-11s-p95-2026-06-01.png](./screenshots/before-locust-post-analyze-11s-p95-2026-06-01.png) |
 
-Jaeger traces and combined Jaeger+Locust views live in [../latency-investigation/screenshots/](../latency-investigation/screenshots/) — see [latency investigation](../latency-investigation/latency-investigation.md).
+Jaeger traces and combined Jaeger+Locust views: [latency investigation report](../latency-investigation/).
 
 See [screenshots/README.md](./screenshots/README.md) for captions.
 

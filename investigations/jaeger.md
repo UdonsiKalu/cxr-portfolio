@@ -13,7 +13,7 @@ http://127.0.0.1:16686
 
 ## Operations (steady-state warm POST)
 
-Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 was **~1.5s** under load. Do not conflate a single Jaeger trace with aggregate load-test latency — see [latency investigation](./latency-investigation/latency-investigation.md).
+Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 was **~1.5s** under load. Do not conflate a single Jaeger trace with aggregate load-test latency — see [latency investigation report](./latency-investigation/).
 
 | Operation | Meaning |
 |-----------|---------|
@@ -34,9 +34,9 @@ Linked traces on the warm path were **~154–708ms** in local dev; Locust p95 wa
 
 ## Screenshots in this repo
 
-- [before-jaeger-search-2026-05-30.png](./latency-investigation/screenshots/before-jaeger-search-2026-05-30.png)
-- [before-jaeger-waterfall-11s-5spans-2026-05-30.png](./latency-investigation/screenshots/before-jaeger-waterfall-11s-5spans-2026-05-30.png)
-- [after-jaeger-locust-154ms-22spans-2026-06-02.png](./latency-investigation/screenshots/after-jaeger-locust-154ms-22spans-2026-06-02.png)
+- [before-jaeger-search-2026-05-30.png](./latency-investigation/assets/before-jaeger-search-2026-05-30.png)
+- [before-jaeger-waterfall-11s-5spans-2026-05-30.png](./latency-investigation/assets/before-jaeger-waterfall-11s-5spans-2026-05-30.png)
+- [after-jaeger-locust-154ms-22spans-2026-06-02.png](./latency-investigation/assets/after-jaeger-locust-154ms-22spans-2026-06-02.png)
 
 ## Common mistakes
 

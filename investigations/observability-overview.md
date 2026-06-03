@@ -37,5 +37,5 @@ Filter **POST** operations for analyze work—not GET `/claim-studio` page loads
 
 - [OpenTelemetry](./opentelemetry.md)
 - [Jaeger](./jaeger.md)
-- [Latency investigation](./latency-investigation/latency-investigation.md)
+- [Latency investigation report](./latency-investigation/)
 - [Load testing results](./load-testing/load-testing-results.md)

@@ -14,7 +14,7 @@ System design, request flows, C4 diagrams, [architecture evolution](./architectu
 
 ### Investigations
 
-Performance investigations, incident analysis, load testing, tracing, runbooks, and reliability experiments. Each major investigation has its own folder with a write-up and `screenshots/` — see [investigations/README.md](./investigations/README.md).
+Performance investigations, incident analysis, load testing, tracing, runbooks, and reliability experiments. Each major investigation has its own folder with a **report** (`README.md`) and embedded evidence — see [investigations/README.md](./investigations/README.md).
 
 ### Operations
 
@@ -34,7 +34,7 @@ Supporting notes, templates, and reference material.
 
 1. `my-impact.md`
 2. `architecture/request-flow.md`
-3. `investigations/latency-investigation/latency-investigation.md`
+3. [investigations/latency-investigation/](./investigations/latency-investigation/)
 4. `investigations/incidents/`
 5. `architecture/adrs/`
 6. `demo/RUN.md`
@@ -51,7 +51,7 @@ The analysis resulted in a migration from a subprocess-per-request architecture 
 
 Supporting documentation is available in:
 
-* `investigations/latency-investigation/latency-investigation.md`
+* [investigations/latency-investigation/](./investigations/latency-investigation/)
 * `investigations/incidents/INC-003-python-import-bottleneck/`
 * `architecture/adrs/ADR-004-long-running-analyzer.md`
 

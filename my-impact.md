@@ -12,7 +12,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 - Wired **OTLP** (port **4318**) through an OpenTelemetry Collector into **Jaeger** (port **16686**).
 - Produced **~21 nested spans** per warm analyze, including `context_builder`, `claim_analysis`, `retrieval`, and import spans on analyzer startup.
 
-**Evidence:** [latency investigation screenshots](./investigations/latency-investigation/screenshots/) · [latency investigation](./investigations/latency-investigation/latency-investigation.md)
+**Evidence:** [latency investigation report](./investigations/latency-investigation/)
 
 ### 2. Found the real bottleneck (investigation, not guessing)
 
