@@ -25,5 +25,5 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for visibility and go-public ch
 ## Reviewer fast path
 
 1. [../README.md](../README.md) — then [latency investigation](../investigations/latency-investigation/)
-2. [investigations/incidents/INC-003-python-import-bottleneck/](../investigations/incidents/INC-003-python-import-bottleneck/)
+2. [investigations/postmortems/python-import-bottleneck.md](../investigations/postmortems/python-import-bottleneck.md)
 3. [demo/RUN.md](../demo/RUN.md)

@@ -1,46 +1,39 @@
-# Investigations restructure — revert guide
+# Investigations layout — revert guide
 
-**Branch:** `investigations-restructure`  
-**Safety tag:** `investigations-pre-restructure` (annotated tag at the commit *before* this change)  
-**Safety branch:** `investigations-pre-restructure` (same snapshot; optional checkout)
+**Tag:** `investigations-pre-flat` — snapshot before flat task-based folders (Jun 2026)  
+**Earlier tag:** `investigations-pre-restructure` — taxonomy folder layout
 
-Push tag remotely: `git push origin refs/tags/investigations-pre-restructure`
-
-## Undo completely (restore old layout)
-
-From repo root:
+## Undo flat layout
 
 ```bash
-git checkout investigations-pre-restructure -- investigations/
-git commit -m "Revert investigations folder to pre-restructure layout"
+git checkout investigations-pre-flat -- investigations/
+git commit -m "Revert investigations to pre-flat layout"
 ```
 
-Or reset the whole branch to the tag (destructive on this branch):
+## Current layout (flat, task-named)
 
-```bash
-git reset --hard investigations-pre-restructure
+```
+investigations/
+├── README.md              # concepts + index
+├── roadmap.md
+├── latency-investigation/   ✅
+├── load-testing/            ✅
+├── missing-spans/           ✅
+├── postmortems/             ✅ (3 markdown files)
+├── cold-vs-warm-analyzer/
+├── single-analyzer-capacity/
+├── analyzer-saturation/
+├── kill-analyzer-under-traffic/
+├── qdrant-outage/
+├── trace-propagation/
+├── planned/                 # flat *.md backlog only
+└── jaeger.md, locust.md, opentelemetry.md
 ```
 
-## Compare old vs new
+No `performance/`, `load-capacity/`, `reliability/`, `chaos-experiments/`, `observability/`, `platform/`, or `cost/` category folders.
+
+## Compare
 
 ```bash
-git diff investigations-pre-restructure..HEAD -- investigations/
-```
-
-## What changed
-
-- **Phase 1** folders kept for active/completed evidence: `latency-investigation/`, `load-testing/`, `performance/PERF-004`, `load-capacity/LOAD-001|002`, `reliability/REL-001|003`, `chaos-experiments/CHAOS-001`, `observability/OBS-001|002`, `incidents/`
-- **Phase 2** stubs moved to `planned/` as markdown files
-- **`roadmap.md`** added for execution order
-- **`platform/`** and **`cost/`** top-level categories removed (content in `planned/`)
-
-## Merge to master
-
-If the restructure looks good:
-
-```bash
-git checkout master
-git merge investigations-restructure
-git push origin master
-git push origin investigations-pre-restructure  # optional: push tag for remote revert
+git diff investigations-pre-flat..HEAD -- investigations/
 ```

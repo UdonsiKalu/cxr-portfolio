@@ -1,19 +1,27 @@
-# Planned investigations (Phase 2)
+# Planned investigations
 
 <!-- portfolio -->
 
-These items are **backlog** — not yet evidenced. They stay here so active folders only contain completed or in-progress work.
+Short stubs for work **not yet run**. When evidenced, promote to a task folder at `investigations/<task-name>/` with full `README.md` and `screenshots/`.
 
-When an investigation is run, promote it: create a folder under the appropriate category (e.g. `platform/PLATFORM-001-…/`) with a full `README.md` report and remove or update the stub here.
+| Topic | File |
+|-------|------|
+| Context builder optimization | [context-builder-optimization.md](./context-builder-optimization.md) |
+| Qdrant retrieval scaling | [qdrant-retrieval-scaling.md](./qdrant-retrieval-scaling.md) |
+| Horizontal scaling | [horizontal-scaling.md](./horizontal-scaling.md) |
+| Ollama outage | [ollama-outage.md](./ollama-outage.md) |
+| Database unavailable | [database-unavailable.md](./database-unavailable.md) |
+| Network latency injection | [network-latency-injection.md](./network-latency-injection.md) |
+| Packet loss injection | [packet-loss-injection.md](./packet-loss-injection.md) |
+| CPU starvation | [cpu-starvation.md](./cpu-starvation.md) |
+| Game day | [game-day.md](./game-day.md) |
+| Alerting strategy | [alerting-strategy.md](./alerting-strategy.md) |
+| Platform bootstrap | [platform-bootstrap.md](./platform-bootstrap.md) |
+| Kubernetes migration | [kubernetes-migration.md](./kubernetes-migration.md) |
+| Load balancing | [load-balancing.md](./load-balancing.md) |
+| Autoscaling | [autoscaling.md](./autoscaling.md) |
+| Cost per claim | [cost-per-claim.md](./cost-per-claim.md) |
+| GPU utilization | [gpu-utilization.md](./gpu-utilization.md) |
+| Analyzer efficiency | [analyzer-efficiency.md](./analyzer-efficiency.md) |
 
-| Area | Items |
-|------|-------|
-| [performance/](./performance/) | PERF-002, PERF-003 |
-| [load-capacity/](./load-capacity/) | LOAD-003 |
-| [reliability/](./reliability/) | REL-002, REL-004 |
-| [chaos-experiments/](./chaos-experiments/) | CHAOS-002–004, [game-day](./chaos-experiments/game-day.md) |
-| [observability/](./observability/) | OBS-003 |
-| [platform/](./platform/) | PLATFORM-001–004 |
-| [cost/](./cost/) | COST-001–003 |
-
-Return to [roadmap](../roadmap.md) for Phase 1 execution order.
+[roadmap.md](../roadmap.md) · [README.md](../README.md)

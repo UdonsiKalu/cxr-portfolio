@@ -8,7 +8,7 @@
 |------|--------|
 | [archive/meta/my-impact.md](../archive/meta/my-impact.md) | Complete |
 | [investigations/latency-investigation/](../investigations/latency-investigation/) | Complete |
-| [INC-003 postmortem](../investigations/incidents/INC-003-python-import-bottleneck/) | Complete |
+| [Python import bottleneck postmortem](../investigations/postmortems/python-import-bottleneck.md) | Complete |
 | [architecture/adrs/ADR-004-long-running-analyzer.md](../architecture/adrs/ADR-004-long-running-analyzer.md) | Complete |
 | [demo/RUN.md](../demo/RUN.md) | Complete |
 

@@ -43,5 +43,5 @@ Using **OpenTelemetry**, **Jaeger**, and **Locust**, the work identified repeate
 | Document | Description |
 |----------|-------------|
 | [Latency investigation](./investigations/latency-investigation/) | Full report with evidence and diagrams |
-| [INC-003 — import bottleneck](./investigations/incidents/INC-003-python-import-bottleneck/) | Incident record |
+| [Python import bottleneck](./investigations/postmortems/python-import-bottleneck.md) | Incident record |
 | [ADR-004 — long-running analyzer](./architecture/adrs/ADR-004-long-running-analyzer.md) | Architecture decision |

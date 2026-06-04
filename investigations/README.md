@@ -2,40 +2,62 @@
 
 <!-- portfolio -->
 
-Engineering investigations for CXR — performance, load, reliability, chaos, and observability on a real local stack.
+Engineering investigations on the CXR dev stack — each **folder is one question we ran (or will run)**. Concepts (performance, load, reliability, chaos, observability) are described here; folders hold evidence.
 
-**Start here:** [roadmap.md](./roadmap.md) — Phase 1 execution order and completed work.
-
-**GitHub:** open an investigation **folder** to read its report (`README.md` renders below the file list). Future work lives in [planned/](./planned/) only.
+**Execution order:** [roadmap.md](./roadmap.md)
 
 ---
 
-## Completed (evidence-backed)
+## Concepts (how to read this portfolio)
 
-| ID | Report |
-|----|--------|
-| **PERF-001** | [latency-investigation/](./latency-investigation/) |
-| **LOAD baseline** | [load-testing/](./load-testing/) |
-| **OBS-001** | [observability/OBS-001-missing-spans/](./observability/OBS-001-missing-spans/) |
-| **INC-001–003** | [incidents/](./incidents/) |
+| Concept | What it means here | Example in CXR |
+|---------|-------------------|----------------|
+| **Performance** | Where time goes in the analyze path | Subprocess imports → warm analyzer on :8766 |
+| **Load testing** | Client-side latency under concurrent users | Locust p95 on `POST /analyze` |
+| **Tracing** | Single-request span breakdown | Jaeger: outer HTTP vs `context_builder` |
+| **Reliability** | Behavior when a dependency or process fails | Qdrant down, analyzer killed |
+| **Chaos** | Deliberate fault injection under traffic | Kill :8766 during Locust swarm |
+| **Observability** | Can telemetry be trusted for incidents? | Trace profiles, propagation UI → analyzer |
+| **Incidents** | Postmortem record after impact | [postmortems/](./postmortems/) |
+
+> **Two metrics, two lenses:** Locust p50/p95 (aggregate under load) ≠ Jaeger duration on one trace. Never conflate them.
 
 ---
 
-## Active (Phase 1 — run next)
+## Completed
 
-| Area | Folders |
-|------|---------|
-| [performance/](./performance/) | PERF-004 cold vs warm |
-| [load-capacity/](./load-capacity/) | LOAD-001, LOAD-002 |
-| [reliability/](./reliability/) | REL-001, REL-003 |
-| [chaos-experiments/](./chaos-experiments/) | CHAOS-001 |
-| [observability/](./observability/) | OBS-002 (+ OBS-001 done) |
+| Investigation | Folder |
+|---------------|--------|
+| Claim analysis latency (subprocess → warm analyzer) | [latency-investigation/](./latency-investigation/) |
+| Locust load baseline (before/after) | [load-testing/](./load-testing/) |
+| Missing spans / trace profile UX | [missing-spans/](./missing-spans/) |
+| Postmortems (INC-001–003) | [postmortems/](./postmortems/) |
+
+---
+
+## Phase 1 — run next
+
+| # | Investigation | Folder |
+|---|---------------|--------|
+| 1 | Cold vs warm analyzer | [cold-vs-warm-analyzer/](./cold-vs-warm-analyzer/) |
+| 2 | Single analyzer capacity | [single-analyzer-capacity/](./single-analyzer-capacity/) |
+| 3 | Analyzer saturation point | [analyzer-saturation/](./analyzer-saturation/) |
+| 4 | Kill analyzer under traffic (+ recovery) | [kill-analyzer-under-traffic/](./kill-analyzer-under-traffic/) |
+| 5 | Qdrant outage | [qdrant-outage/](./qdrant-outage/) |
+| 6 | End-to-end trace propagation | [trace-propagation/](./trace-propagation/) |
+| 7 | Platform bootstrap (one-command stack) | [planned/platform-bootstrap.md](./planned/platform-bootstrap.md) → promote to folder when done |
 
 ---
 
 ## Backlog
 
-[planned/](./planned/) — PERF-002+, LOAD-003, platform, cost, advanced chaos (not yet run).
+[planned/](./planned/) — future investigations as short markdown stubs (not empty folder trees).
+
+---
+
+## Report template
+
+Question → Hypothesis → Method → Tools → Metrics → Results → Findings → Decision → Follow-up
 
 ---
 
@@ -45,4 +67,6 @@ Engineering investigations for CXR — performance, load, reliability, chaos, an
 - [locust.md](./locust.md)
 - [opentelemetry.md](./opentelemetry.md)
 
-Revert notes: [RESTRUCTURE.md](./RESTRUCTURE.md)
+Supplemental: [../archive/investigations-supplemental/](../archive/investigations-supplemental/)
+
+Revert layout: [RESTRUCTURE.md](./RESTRUCTURE.md)
