@@ -50,7 +50,7 @@ Jaeger traces and combined Jaeger+Locust views: [latency investigation](../laten
 ## Related
 
 - [Latency investigation](../latency-investigation/)
-- [locust.md](../locust.md) — quick reference
+- [Investigations index](../README.md#locust)
 - [Single analyzer capacity](../single-analyzer-capacity/) — planned
 
 ## Honest limits

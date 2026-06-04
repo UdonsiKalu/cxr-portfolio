@@ -185,4 +185,4 @@ Optimizing `context_builder` alone would not have fixed Locust p95 while subproc
 
 ### Trace profile note
 
-A **`minimal`** trace profile was tried to reduce Jaeger “Operations” clutter; it **reduced** useful span detail (~7 spans vs ~21). Default restored to **`detailed`**. See [Jaeger guide — trace profiles](../jaeger.md#trace-profiles).
+A **`minimal`** trace profile was tried to reduce Jaeger “Operations” clutter; it **reduced** useful span detail (~7 spans vs ~21). Default restored to **`detailed`**. See [trace profiles](../README.md#trace-profiles).

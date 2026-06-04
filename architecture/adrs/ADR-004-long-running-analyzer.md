@@ -29,4 +29,4 @@ Run a **long-lived FastAPI** analyzer (`analyzer_service_app.py`) on **8766**. N
 ## Alternatives considered
 
 - Optimize kernel only — insufficient while subprocess remained.
-- Minimal Jaeger profile — rejected; see [Jaeger guide — trace profiles](../investigations/jaeger.md#trace-profiles).
+- Minimal Jaeger profile — rejected; see [trace profiles](../investigations/README.md#trace-profiles).

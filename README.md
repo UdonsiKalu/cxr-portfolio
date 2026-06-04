@@ -27,7 +27,7 @@ This repository is an **engineering portfolio and documentation repository**. It
 | Section | Contents |
 |---------|----------|
 | [architecture/](./architecture/) | System design, request flows, diagrams, [architecture evolution](./architecture/architecture-evolution.md), and [ADRs](./architecture/adrs/) |
-| [investigations/](./investigations/) | Phase 1 investigations (latency, load, reliability, chaos, observability) — see [roadmap](./investigations/roadmap.md) |
+| [investigations/](./investigations/) | Performance, load, reliability, and observability investigations |
 | [operations/](./operations/) | Docker, CI/CD, deployment, Kubernetes planning, Terraform, and operational procedures |
 | [demo/](./demo/) | Local demonstration environment and walkthroughs |
 | [archive/](./archive/) | Reference material and supporting notes |

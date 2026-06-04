@@ -44,13 +44,13 @@ When trace profiles trade away debuggability for aesthetics, **reject the trade*
 
 Analyze via spawned Python per HTTP request. Simple mental model; terrible p95 under load.
 
-**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations/jaeger.md](../investigations/jaeger.md)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations README#jaeger](../investigations/README.md#jaeger)
 
 ### v2 — Observability
 
 OTel on Next.js + Python; Jaeger at **:16686**; discovered import/init dominance.
 
-**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations/jaeger.md](../investigations/jaeger.md)
+**Evidence:** [investigations/latency-investigation/](../investigations/latency-investigation/) · [investigations README#jaeger](../investigations/README.md#jaeger)
 
 ### v3 — Load testing
 

@@ -1,8 +1,8 @@
-# Planned investigations
+# Planned
 
 <!-- portfolio -->
 
-Short stubs for work **not yet run**. When evidenced, promote to a task folder at `investigations/<task-name>/` with full `README.md` and `screenshots/`.
+Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evidenced.
 
 | Topic | File |
 |-------|------|
@@ -24,4 +24,4 @@ Short stubs for work **not yet run**. When evidenced, promote to a task folder a
 | GPU utilization | [gpu-utilization.md](./gpu-utilization.md) |
 | Analyzer efficiency | [analyzer-efficiency.md](./analyzer-efficiency.md) |
 
-[roadmap.md](../roadmap.md) · [README.md](../README.md)
+[← Investigations index](../README.md)

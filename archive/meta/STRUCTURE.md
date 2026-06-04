@@ -30,13 +30,10 @@ cxr-portfolio/
 │   └── platform-model/
 │
 ├── investigations/
-│   ├── … (overview, OTel, Jaeger, latency, load testing)
-│   ├── latency-investigation/   ← report + screenshots
-│   ├── load-testing/
-│   ├── performance/ … load-capacity/ … reliability/
-│   ├── chaos-experiments/ … observability/ … platform/ … cost/
-│   ├── incidents/
-│   ├── jaeger.md, opentelemetry.md, locust.md
+│   ├── README.md              ← index, roadmap, tool notes
+│   ├── latency-investigation/ … task folders …
+│   ├── postmortems/
+│   └── planned/
 │
 ├── operations/
 │   ├── docker.md, ci-cd.md, …
@@ -50,6 +47,6 @@ cxr-portfolio/
 └── templates/
 ```
 
-Trace profile notes: [jaeger.md](../investigations/jaeger.md#trace-profiles).
+Trace profile notes: [investigations/README.md#trace-profiles](../investigations/README.md#trace-profiles).
 
 Bootcamp lab index: [archive/learning-notes/bootcamp-labs.md](../archive/learning-notes/bootcamp-labs.md).
