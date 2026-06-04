@@ -1,7 +1,10 @@
 # Investigations restructure — revert guide
 
 **Branch:** `investigations-restructure`  
-**Safety tag:** `investigations-pre-restructure` (snapshot of tree before this change)
+**Safety tag:** `investigations-pre-restructure` (annotated tag at the commit *before* this change)  
+**Safety branch:** `investigations-pre-restructure` (same snapshot; optional checkout)
+
+Push tag remotely: `git push origin refs/tags/investigations-pre-restructure`
 
 ## Undo completely (restore old layout)
 
