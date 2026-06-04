@@ -1,14 +1,13 @@
 # Chaos experiments
 
-Controlled failure and degradation tests. **Planned** until executed and evidenced in `cxr-ops-lab/evidence/`.
+<!-- portfolio -->
 
-| ID | Folder | Topic |
-|----|--------|-------|
-| CHAOS-001 | [CHAOS-001-kill-analyzer/](./CHAOS-001-kill-analyzer/) | Kill analyzer during traffic |
-| CHAOS-002 | [CHAOS-002-network-latency/](./CHAOS-002-network-latency/) | Latency UI → analyzer |
-| CHAOS-003 | [CHAOS-003-packet-loss/](./CHAOS-003-packet-loss/) | Packet loss |
-| CHAOS-004 | [CHAOS-004-cpu-starvation/](./CHAOS-004-cpu-starvation/) | CPU starvation |
+| ID | Report | Status |
+|----|--------|--------|
+| CHAOS-001 | [CHAOS-001-kill-analyzer/](./CHAOS-001-kill-analyzer/) | Phase 1 |
 
-Related reliability investigations: [../reliability/](../reliability/) (Qdrant, Ollama, DB outages).
+Pair with [REL-003](../reliability/REL-003-analyzer-crash/) (recovery) — one experiment, two reports.
 
-Game-day checklist: [game-day.md](./game-day.md)
+Backlog: [planned/chaos-experiments/](../planned/chaos-experiments/) (CHAOS-002–004, game day)
+
+See [roadmap](../roadmap.md).

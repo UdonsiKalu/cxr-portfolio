@@ -1,6 +1,6 @@
 # CHAOS-004 — CPU starvation
 
-**Status:** Planned
+**Status:** Planned (Phase 2)
 
 ## Question
 

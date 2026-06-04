@@ -1,6 +1,6 @@
 # CHAOS-003 — Packet loss
 
-**Status:** Planned
+**Status:** Planned (Phase 2)
 
 ## Question
 

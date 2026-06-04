@@ -1,8 +1,12 @@
-# Reliability investigations
+# Reliability
 
-| ID | Folder | Status |
+<!-- portfolio -->
+
+| ID | Report | Status |
 |----|--------|--------|
-| REL-001 | [REL-001-qdrant-outage/](./REL-001-qdrant-outage/) | Planned |
-| REL-002 | [REL-002-ollama-outage/](./REL-002-ollama-outage/) | Planned |
-| REL-003 | [REL-003-analyzer-crash/](./REL-003-analyzer-crash/) | Planned |
-| REL-004 | [REL-004-database-unavailable/](./REL-004-database-unavailable/) | Planned |
+| REL-001 | [REL-001-qdrant-outage/](./REL-001-qdrant-outage/) | Phase 1 |
+| REL-003 | [REL-003-analyzer-crash/](./REL-003-analyzer-crash/) | Phase 1 (recovery after [CHAOS-001](../chaos-experiments/CHAOS-001-kill-analyzer/)) |
+
+Backlog: [planned/reliability/](../planned/reliability/) (REL-002, REL-004)
+
+See [roadmap](../roadmap.md).

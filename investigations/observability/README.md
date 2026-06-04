@@ -1,9 +1,12 @@
-# Observability investigations
+# Observability
 
-| ID | Folder | Status |
+<!-- portfolio -->
+
+| ID | Report | Status |
 |----|--------|--------|
-| OBS-001 | [OBS-001-missing-spans/](./OBS-001-missing-spans/) | **Completed** |
-| OBS-002 | [OBS-002-trace-propagation/](./OBS-002-trace-propagation/) | Planned |
-| OBS-003 | [OBS-003-alerting-strategy/](./OBS-003-alerting-strategy/) | Planned |
+| OBS-001 | [OBS-001-missing-spans/](./OBS-001-missing-spans/) | ✅ Complete |
+| OBS-002 | [OBS-002-trace-propagation/](./OBS-002-trace-propagation/) | Phase 1 |
 
-Tool guides: [jaeger.md](../jaeger.md) · [opentelemetry.md](../opentelemetry.md)
+Backlog: [planned/observability/](../planned/observability/) (OBS-003)
+
+See [roadmap](../roadmap.md).

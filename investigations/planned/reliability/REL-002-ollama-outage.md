@@ -1,6 +1,6 @@
 # REL-002 — Ollama outage
 
-**Status:** Planned
+**Status:** Planned (Phase 2)
 
 ## Question
 
@@ -12,4 +12,4 @@ Stop LLM; verify recommendation path errors gracefully; note Compliant-only path
 
 ## Record results in
 
-`cxr-ops-lab/evidence/` and update this file when run.
+`cxr-ops-lab/evidence/` and promote to `reliability/REL-002-ollama-outage/` when run.
