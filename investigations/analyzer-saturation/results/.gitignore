@@ -1,0 +1,7 @@
+u*_stats.csv
+u*_stats_history.csv
+u*_failures.csv
+u*_exceptions.csv
+u*.log
+*.csv
+!.gitignore

@@ -18,6 +18,7 @@ Each **folder** is one question we ran (or will run) on the local CXR stack. Syn
 | Postmortems | [postmortems/](./postmortems/) |
 | Cold vs warm analyzer | [cold-vs-warm-analyzer/](./cold-vs-warm-analyzer/) |
 | Single analyzer capacity | [single-analyzer-capacity/](./single-analyzer-capacity/) |
+| Analyzer saturation | [analyzer-saturation/](./analyzer-saturation/) |
 
 ---
 
@@ -25,11 +26,10 @@ Each **folder** is one question we ran (or will run) on the local CXR stack. Syn
 
 | # | Investigation | Folder |
 |---|---------------|--------|
-| 1 | Analyzer saturation | [analyzer-saturation/](./analyzer-saturation/) |
-| 2 | Kill analyzer under traffic | [kill-analyzer-under-traffic/](./kill-analyzer-under-traffic/) |
-| 3 | Qdrant outage | [qdrant-outage/](./qdrant-outage/) |
-| 4 | Trace propagation | [trace-propagation/](./trace-propagation/) |
-| 5 | Platform bootstrap | [planned/platform-bootstrap.md](./planned/platform-bootstrap.md) |
+| 1 | Kill analyzer under traffic | [kill-analyzer-under-traffic/](./kill-analyzer-under-traffic/) |
+| 2 | Qdrant outage | [qdrant-outage/](./qdrant-outage/) |
+| 3 | Trace propagation | [trace-propagation/](./trace-propagation/) |
+| 4 | Platform bootstrap | [planned/platform-bootstrap.md](./planned/platform-bootstrap.md) |
 
 Backlog: [planned/](./planned/)
 
