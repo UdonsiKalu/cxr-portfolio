@@ -21,6 +21,7 @@ Each **folder** is one question we ran (or will run) on the local CXR stack. Syn
 | Analyzer saturation | [analyzer-saturation/](./analyzer-saturation/) |
 | Kill analyzer under traffic | [kill-analyzer-under-traffic/](./kill-analyzer-under-traffic/) |
 | Qdrant outage | [qdrant-outage/](./qdrant-outage/) |
+| End-to-end trace propagation | [trace-propagation/](./trace-propagation/) |
 
 ---
 
@@ -28,8 +29,7 @@ Each **folder** is one question we ran (or will run) on the local CXR stack. Syn
 
 | # | Investigation | Folder |
 |---|---------------|--------|
-| 1 | Trace propagation | [trace-propagation/](./trace-propagation/) |
-| 2 | Platform bootstrap | [planned/platform-bootstrap.md](./planned/platform-bootstrap.md) |
+| 1 | Platform bootstrap | [planned/platform-bootstrap.md](./planned/platform-bootstrap.md) |
 
 Backlog: [planned/](./planned/)
 
