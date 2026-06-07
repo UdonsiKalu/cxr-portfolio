@@ -1,0 +1,7 @@
+baseline_qdrant_up: http=200 ms=1947 qdrant=up
+test_a_mid_outage_no_analyzer_restart: http=200 ms=1574 qdrant=down
+recovery_qdrant_up_analyzer_not_restarted: http=200 ms=1619 qdrant=up
+test_b_boot_without_qdrant: http=200 ms=1596 qdrant=down
+final_both_up: http=200 ms=1846 qdrant=up
+
+total_probes=5 non_200=0

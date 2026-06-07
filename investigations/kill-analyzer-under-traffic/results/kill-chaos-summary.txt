@@ -1,0 +1,8 @@
+requests=501
+failures=64
+failure_pct=12.78
+median_ms=1100
+p95_ms=1500
+recovery_health_s=10
+recovery_to_warm_s=1
+kill_to_warmed_s=22

@@ -1,0 +1,7 @@
+chaos-*_stats.csv
+chaos-*_stats_history.csv
+chaos-*_failures.csv
+chaos-*_exceptions.csv
+chaos-*.log
+*.csv
+!.gitignore
