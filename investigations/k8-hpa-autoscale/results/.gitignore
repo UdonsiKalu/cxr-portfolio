@@ -1,0 +1,6 @@
+# Gitignore raw CSV from load runs (keep charts in repo)
+*
+!.gitignore
+!README.md
+!charts/
+!charts/**

@@ -1,0 +1,64 @@
+=== LOAD-003 evidence capture 2026-06-07T20:09:09-05:00 ===
+--- Locust processes (post-stop) ---
+413994 /bin/bash -O extglob -c snap=$(command cat <&3) && builtin shopt -s extglob && builtin eval -- "$snap" && { builtin set +u 2>/dev/null || true; builtin eval "${__CURSOR_SANDBOX_ENV_RESTORE:-}" 2>/dev/null; builtin export PWD="$(builtin pwd)"; builtin shopt -s expand_aliases 2>/dev/null; builtin eval "$1"; }; COMMAND_EXIT_CODE=$?; dump_bash_state >&4; builtin exit $COMMAND_EXIT_CODE -- mkdir -p /home/udonsi-kalu/staging/cxr-portfolio/investigations/k8-hpa-autoscale/evidence/load-003 cd /home/udonsi-kalu/staging/cxr-ops-lab && export PATH="$PWD/bin:$PATH" {   echo "=== LOAD-003 evidence capture $(date -Iseconds) ==="   echo "--- Locust processes (post-stop) ---"   pgrep -af locust || echo "(none)"   echo "--- kubectl nodes ---"   kubectl get nodes -o wide 2>&1   echo "--- kubectl pods/hpa cxr-ui ---"   kubectl get pods,hpa -n cxr-ui -o wide 2>&1   echo "--- kubectl top (if metrics-server up) ---"   kubectl top pods -n cxr-ui 2>&1 || true   kubectl top nodes 2>&1 || true   echo "--- analyzer pod events (restarts/pending history) ---"   kubectl describe pod -n cxr-ui -l app=cxr-analyzer 2>&1 | tail -40 } | tee /home/udonsi-kalu/staging/cxr-portfolio/investigations/k8-hpa-autoscale/evidence/load-003/post-run-cluster-snapshot.txt
+414009 /bin/bash -O extglob -c snap=$(command cat <&3) && builtin shopt -s extglob && builtin eval -- "$snap" && { builtin set +u 2>/dev/null || true; builtin eval "${__CURSOR_SANDBOX_ENV_RESTORE:-}" 2>/dev/null; builtin export PWD="$(builtin pwd)"; builtin shopt -s expand_aliases 2>/dev/null; builtin eval "$1"; }; COMMAND_EXIT_CODE=$?; dump_bash_state >&4; builtin exit $COMMAND_EXIT_CODE -- mkdir -p /home/udonsi-kalu/staging/cxr-portfolio/investigations/k8-hpa-autoscale/evidence/load-003 cd /home/udonsi-kalu/staging/cxr-ops-lab && export PATH="$PWD/bin:$PATH" {   echo "=== LOAD-003 evidence capture $(date -Iseconds) ==="   echo "--- Locust processes (post-stop) ---"   pgrep -af locust || echo "(none)"   echo "--- kubectl nodes ---"   kubectl get nodes -o wide 2>&1   echo "--- kubectl pods/hpa cxr-ui ---"   kubectl get pods,hpa -n cxr-ui -o wide 2>&1   echo "--- kubectl top (if metrics-server up) ---"   kubectl top pods -n cxr-ui 2>&1 || true   kubectl top nodes 2>&1 || true   echo "--- analyzer pod events (restarts/pending history) ---"   kubectl describe pod -n cxr-ui -l app=cxr-analyzer 2>&1 | tail -40 } | tee /home/udonsi-kalu/staging/cxr-portfolio/investigations/k8-hpa-autoscale/evidence/load-003/post-run-cluster-snapshot.txt
+2478172 /home/udonsi-kalu/staging/cxr-ops-lab/load/locust/.venv/bin/python3 /home/udonsi-kalu/staging/cxr-ops-lab/load/locust/.venv/bin/locust -f /home/udonsi-kalu/staging/cxr-portfolio/investigations/analyzer-saturation/locustfile-ramp-continuous.py --host http://127.0.0.1:8251 --web-host 127.0.0.1 --web-port 8090
+2480263 /home/udonsi-kalu/staging/cxr-ops-lab/load/locust/.venv/bin/python3 /home/udonsi-kalu/staging/cxr-ops-lab/load/locust/.venv/bin/locust -f /home/udonsi-kalu/staging/cxr-portfolio/investigations/analyzer-saturation/locustfile-ramp-continuous.py --host http://127.0.0.1:8251 --web-host 127.0.0.1 --web-port 8091
+--- kubectl nodes ---
+NAME                    STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION     CONTAINER-RUNTIME
+cxr-lab-control-plane   Ready    control-plane   7h55m   v1.32.2   172.19.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.12.76-linuxkit   containerd://2.0.2
+--- kubectl pods/hpa cxr-ui ---
+NAME                                READY   STATUS    RESTARTS      AGE     IP            NODE                    NOMINATED NODE   READINESS GATES
+pod/cxr-analyzer-659b4986c5-j867w   1/1     Running   5 (43m ago)   5h29m   10.244.0.14   cxr-lab-control-plane   <none>           <none>
+pod/cxr-ui-5679c457d6-ppclq         1/1     Running   0             7h53m   10.244.0.5    cxr-lab-control-plane   <none>           <none>
+
+NAME                                               REFERENCE                 TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/cxr-analyzer   Deployment/cxr-analyzer   cpu: 0%/70%   1         4         1          6h6m
+horizontalpodautoscaler.autoscaling/cxr-ui         Deployment/cxr-ui         cpu: 6%/80%   1         3         1          7h53m
+--- kubectl top (if metrics-server up) ---
+NAME                            CPU(cores)   MEMORY(bytes)   
+cxr-analyzer-659b4986c5-j867w   4m           549Mi           
+cxr-ui-5679c457d6-ppclq         4m           113Mi           
+NAME                    CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
+cxr-lab-control-plane   304m         0%       1927Mi          24%         
+--- analyzer pod events (restarts/pending history) ---
+      memory:   2Gi
+    Liveness:   http-get http://:http/health delay=120s timeout=1s period=30s #success=1 #failure=3
+    Readiness:  http-get http://:http/health/ready delay=30s timeout=1s period=10s #success=1 #failure=30
+    Startup:    http-get http://:http/health/ready delay=0s timeout=1s period=10s #success=1 #failure=60
+    Environment:
+      CXR_ANALYZER_HOST:            0.0.0.0
+      CXR_ANALYZER_PORT:            8766
+      CXR_QDRANT_URL:               http://host.docker.internal:6333
+      CXR_SQL_SERVER:               host.docker.internal,1433
+      CXR_TRACE_PROFILE:            detailed
+      OTEL_EXPORTER_OTLP_ENDPOINT:  http://host.docker.internal:4318
+      OTEL_SERVICE_NAME:            cxr-analyzer-service
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-chpxv (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-chpxv:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                  From     Message
+  ----     ------     ----                 ----     -------
+  Normal   Killing    43m (x5 over 60m)    kubelet  spec.containers{cxr-analyzer}: Container cxr-analyzer failed liveness probe, will be restarted
+  Normal   Pulled     43m (x6 over 5h29m)  kubelet  spec.containers{cxr-analyzer}: Container image "cxr-analyzer:local" already present on machine
+  Normal   Created    43m (x6 over 5h29m)  kubelet  spec.containers{cxr-analyzer}: Created container: cxr-analyzer
+  Normal   Started    43m (x6 over 5h29m)  kubelet  spec.containers{cxr-analyzer}: Started container cxr-analyzer
+  Warning  Unhealthy  41m (x61 over 67m)   kubelet  spec.containers{cxr-analyzer}: Readiness probe failed: Get "http://10.244.0.14:8766/health/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# LOAD-003 — start metrics collector before Locust; stop with Ctrl+C when load test ends.
+set -euo pipefail
+HERE="$(cd "$(dirname "$0")" && pwd)"
+OPS="${CXR_OPS_LAB:-/home/udonsi-kalu/staging/cxr-ops-lab}"
+STAMP="$(date +%Y%m%d-%H%M%S)"
+OUT="${CXR_LOAD_METRICS_CSV:-$HERE/results/load-${STAMP}.csv}"
+LOCUST_URL="${CXR_LOCUST_URL:-http://127.0.0.1:8090}"
+INTERVAL="${CXR_LOAD_METRICS_INTERVAL:-5}"
+
+export PATH="$OPS/bin:${PATH:-}"
+mkdir -p "$HERE/results"
+
+echo "== K8 load metrics collector =="
+echo "  CSV:      $OUT"
+echo "  Locust:   $LOCUST_URL  (set CXR_LOCUST_URL if using :8092 etc.)"
+echo "  Interval: ${INTERVAL}s"
+echo ""
+echo "Terminal B — start Locust, e.g.:"
+echo "  cd $OPS && CXR_LOAD_URL=http://127.0.0.1:8081 \\"
+echo "    CXR_RAMP_MAX_USERS=200 CXR_RAMP_START_USERS=15 CXR_RAMP_STEP_USERS=5 \\"
+echo "    CXR_RAMP_STAGE_SECONDS=60 \\"
+echo "    ../cxr-portfolio/investigations/analyzer-saturation/run-saturation-ramp-until-break-gui.sh"
+echo ""
+echo "Terminal C — optional: ./scripts/k8-hpa-watch.sh"
+echo ""
+echo "Ctrl+C here when Locust stops → then plot:"
+echo "  pip install -r $HERE/requirements.txt"
+echo "  python3 $HERE/plot_load_test.py $OUT -o $HERE/results/charts"
+echo ""
+
+export CXR_LOCUST_URL="$LOCUST_URL"
+export CXR_LOAD_METRICS_CSV="$OUT"
+export CXR_LOAD_METRICS_INTERVAL="$INTERVAL"
+export CXR_RAMP_START_USERS="${CXR_RAMP_START_USERS:-15}"
+export CXR_RAMP_STEP_USERS="${CXR_RAMP_STEP_USERS:-5}"
+export CXR_RAMP_STAGE_SECONDS="${CXR_RAMP_STAGE_SECONDS:-60}"
+export CXR_RAMP_MAX_USERS="${CXR_RAMP_MAX_USERS:-200}"
+
+exec "$OPS/scripts/k8-load-metrics-collect.sh" "$OUT"
