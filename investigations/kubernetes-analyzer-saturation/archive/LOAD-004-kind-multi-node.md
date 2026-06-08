@@ -1,8 +1,8 @@
-# LOAD-004 — capacity-expanded autoscaling
+# LOAD-004 — capacity-expanded autoscaling (archived)
 
 | | |
 |---|---|
-| **Status** | Ready to run (infra prep 2026-06-08) |
+| **Status** | **Archived** — kind multi-node experiment parked; use **Docker Desktop K8** + [LOAD-003 README](../README.md) |
 | **ID** | LOAD-004 |
 | **Builds on** | [LOAD-003](./README.md) · [LOAD-003 evidence](./evidence/load-003/) |
 | **Cluster** | **kind `cxr-lab` expanded** — 1 control-plane + **2 workers** |

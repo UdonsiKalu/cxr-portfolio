@@ -47,7 +47,6 @@ cd ~/staging/cxr-portfolio
 | Bootcamp CI pipeline (CI-001) | `ci-pipeline/notebook.ipynb` |
 | Kubernetes deploy (K8-001) | `kubernetes-deploy/notebook.ipynb` |
 | Kubernetes analyzer saturation (LOAD-003) | `kubernetes-analyzer-saturation/README.md` |
-| K8 capacity-expanded autoscale (LOAD-004) | `kubernetes-analyzer-saturation/LOAD-004-capacity-expanded.md` |
 
 ---
 

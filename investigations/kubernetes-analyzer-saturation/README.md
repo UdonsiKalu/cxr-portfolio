@@ -169,8 +169,8 @@ Future decision: [ADR-future-gpu-analyzer-scaling.md](./ADR-future-gpu-analyzer-
 
 ## Follow-up
 
-- **LOAD-004** — capacity-expanded autoscaling: [LOAD-004-capacity-expanded.md](./LOAD-004-capacity-expanded.md)
 - LOAD-003 evidence: [evidence/load-003/](./evidence/load-003/)
-- Screenshots embedded above in [screenshots/](./screenshots/)
+- **Archived** kind LOAD-004/005 notes: [archive/](./archive/) (not needed for Docker Desktop daily path)
 - `git push` **cxr-ops-lab** (infra scripts still local)
+- Optional: raise **`maxReplicas`** via **`helm upgrade`**; optional HPA cap bump + rerun
 - Optional: Prometheus custom metric HPA (RPS-based)
