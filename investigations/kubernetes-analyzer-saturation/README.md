@@ -1,4 +1,4 @@
-# K8 HPA autoscale under load (LOAD-003)
+# Kubernetes analyzer saturation (LOAD-003)
 
 | | |
 |---|---|
@@ -91,9 +91,9 @@ Repo: **cxr-ops-lab** (`16-k8-stack-verify.sh`, `k8-hpa-watch.sh`, `k8-load-metr
 
 **Terminal A — metrics CSV (start first):**
 ```bash
-chmod +x investigations/k8-hpa-autoscale/run-k8-load-with-metrics.sh
+chmod +x investigations/kubernetes-analyzer-saturation/run-k8-load-with-metrics.sh
 export CXR_LOCUST_URL=http://127.0.0.1:8092   # match your Locust web port
-./investigations/k8-hpa-autoscale/run-k8-load-with-metrics.sh
+./investigations/kubernetes-analyzer-saturation/run-k8-load-with-metrics.sh
 ```
 
 **Terminal B — Locust → K8 UI:**
@@ -113,10 +113,10 @@ CXR_RAMP_MAX_USERS=200 CXR_RAMP_START_USERS=15 CXR_RAMP_STEP_USERS=5 CXR_RAMP_ST
 
 **When Locust stops** — Ctrl+C Terminal A, then plot:
 ```bash
-pip install -r investigations/k8-hpa-autoscale/requirements.txt
-python3 investigations/k8-hpa-autoscale/plot_load_test.py \
-  investigations/k8-hpa-autoscale/results/load-YYYYMMDD-HHMMSS.csv \
-  -o investigations/k8-hpa-autoscale/results/charts
+pip install -r investigations/kubernetes-analyzer-saturation/requirements.txt
+python3 investigations/kubernetes-analyzer-saturation/plot_load_test.py \
+  investigations/kubernetes-analyzer-saturation/results/load-YYYYMMDD-HHMMSS.csv \
+  -o investigations/kubernetes-analyzer-saturation/results/charts
 ```
 
 ---

@@ -1,4 +1,4 @@
-# Screenshots — LOAD-003 K8 HPA autoscale
+# Screenshots — LOAD-003 Kubernetes analyzer saturation
 
 Embedded in [../README.md](../README.md) for GitHub folder view.
 

@@ -46,8 +46,8 @@ cd ~/staging/cxr-portfolio
 | End-to-end trace propagation (OTEL-001) | `trace-propagation/notebook.ipynb` |
 | Bootcamp CI pipeline (CI-001) | `ci-pipeline/notebook.ipynb` |
 | Kubernetes deploy (K8-001) | `kubernetes-deploy/notebook.ipynb` |
-| K8 HPA autoscale (LOAD-003) | `k8-hpa-autoscale/README.md` |
-| K8 capacity-expanded autoscale (LOAD-004) | `k8-hpa-autoscale/LOAD-004-capacity-expanded.md` |
+| Kubernetes analyzer saturation (LOAD-003) | `kubernetes-analyzer-saturation/README.md` |
+| K8 capacity-expanded autoscale (LOAD-004) | `kubernetes-analyzer-saturation/LOAD-004-capacity-expanded.md` |
 
 ---
 

@@ -4,7 +4,7 @@
 |---|---|
 | **Status** | Proposed — not decided |
 | **Context** | LOAD-002 / LOAD-003 — warm analyzer is CPU-heavy (torch, faiss CPU, embeddings) |
-| **Investigation** | [k8-hpa-autoscale/](./README.md) · [LOAD-002](../analyzer-saturation/) |
+| **Investigation** | [kubernetes-analyzer-saturation/](./README.md) · [LOAD-002](../analyzer-saturation/) |
 
 ## Problem
 

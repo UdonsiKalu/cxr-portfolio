@@ -63,8 +63,8 @@ kubectl get nodes
 ```bash
 cd ~/staging/cxr-portfolio
 export CXR_LOCUST_URL=http://127.0.0.1:8092
-./investigations/k8-hpa-autoscale/run-k8-load-with-metrics.sh
-# saves to investigations/k8-hpa-autoscale/results/load-YYYYMMDD-HHMMSS.csv
+./investigations/kubernetes-analyzer-saturation/run-k8-load-with-metrics.sh
+# saves to investigations/kubernetes-analyzer-saturation/results/load-YYYYMMDD-HHMMSS.csv
 ```
 
 **Terminal B — Locust GUI ramp:**
@@ -86,9 +86,9 @@ Stop when failures/p95 break (same criteria as LOAD-003). Save screenshots to `e
 
 **Plot (after run):**
 ```bash
-python3 investigations/k8-hpa-autoscale/plot_load_test.py \
-  investigations/k8-hpa-autoscale/results/load-YYYYMMDD-HHMMSS.csv \
-  -o investigations/k8-hpa-autoscale/results/load-004-charts
+python3 investigations/kubernetes-analyzer-saturation/plot_load_test.py \
+  investigations/kubernetes-analyzer-saturation/results/load-YYYYMMDD-HHMMSS.csv \
+  -o investigations/kubernetes-analyzer-saturation/results/load-004-charts
 ```
 
 ---
