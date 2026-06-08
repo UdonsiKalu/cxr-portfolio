@@ -49,6 +49,23 @@ Screenshots to add manually: `locust-final-195users.png`, `hpa-watch-4-replicas.
 
 **Warm check before run:** `cxr-ops-lab/scripts/16-k8-stack-verify.sh` → `warmed: true`, **:8081** HTTP 200.
 
+## kind vs Docker Desktop (comparison)
+
+| | kind (2026-06-07) | Docker Desktop (2026-06-08) |
+|---|-------------------|----------------------------|
+| Context | `kind-cxr-lab` | `docker-desktop` |
+| HPA caps | analyzer **4**, UI **3** | analyzer **8**, UI **5** |
+| Peak users | ~**195** | **200** |
+| Peak RPS | ~**20** | ~**50** (plot) / ~**33** (Locust UI) |
+| Analyzer at peak | **4/4**, **309%/70%** | **8/8**, **330%/70%** |
+| UI at peak | **3/3** | **5/5** |
+| Failures | ~**0.43 fail/s** | ~**0**/s |
+| Scheduling pressure | **1 Pending**, restarts | **0 Pending** (all Running) |
+| Node CPU (plot) | n/a | ~**25%** at peak — pod cap not host |
+
+**Conclusion:** Both runs proved HPA autoscaling and beat LOAD-002 RPS. Desktop with raised caps reached **~2.5×** kind peak RPS with **0** failures; bottleneck shifted from Pending pods to **HPA maxReplicas**.
+
 ## Follow-up
 
-**LOAD-004** — raise HPA caps (analyzer **8**, UI **5**) + multi-node kind; rerun same ramp. See [../LOAD-004-capacity-expanded.md](../LOAD-004-capacity-expanded.md).
+- **GITOPS-001** — Argo CD on Desktop; Git as source of truth ([kubernetes-deploy](../../kubernetes-deploy/))
+- Archived kind LOAD-004: [../../archive/](../../archive/)

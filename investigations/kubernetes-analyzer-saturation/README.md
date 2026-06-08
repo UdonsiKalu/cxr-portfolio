@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | Complete (initial run 2026-06-08) |
+| **Status** | Complete (2026-06-08) |
 | **ID** | LOAD-003 |
 | **Component** | K8 stack — `cxr-ui` + `cxr-analyzer` on **Docker Desktop K8** (or **kind**), HPA, Locust → **:8081** |
 | **Builds on** | [LOAD-002 analyzer-saturation](../analyzer-saturation/) · [kubernetes-deploy](../kubernetes-deploy/) |
@@ -16,7 +16,7 @@ Does **Kubernetes HPA** scale the CXR analyzer tier under Locust load, and does 
 
 ## Hypothesis
 
-HPA adds **analyzer pods** (1→4) and **UI pods** (1→3) under sustained CPU; total RPS increases before **kind single-node** limits cause Pending pods and failures.
+HPA adds **analyzer** and **UI** pods under sustained CPU; aggregate RPS beats LOAD-002 before Helm **maxReplicas** or node scheduling limits saturation.
 
 **Outcome (kind, 2026-06-07):** ~**195 users**, **~20 RPS**, analyzer **4/4**, UI **3/3**, **309%/70%** HPA CPU, **1 Pending** + restarts — RPS **> LOAD-002**.
 
@@ -142,7 +142,7 @@ Future decision: [ADR-future-gpu-analyzer-scaling.md](./ADR-future-gpu-analyzer-
 | | LOAD-002 | LOAD-003 |
 |---|----------|----------|
 | Target | **:8251** → **:8766** | **:8081** → in-cluster analyzer |
-| Replicas | 1 | HPA **4** analyzer, **3** UI |
+| Replicas | 1 | HPA dynamic (kind **4/3** · Desktop **8/5**) |
 | Peak RPS | ~**15–16** | ~**20** (kind) · ~**50** (Desktop **8/5**) |
 | Peak users | ~225 | ~**195** (kind) · **200** (Desktop) |
 | Failures | 0% | ~**0%** at Desktop cap (kind: small rate at node limit) |
@@ -169,8 +169,6 @@ Future decision: [ADR-future-gpu-analyzer-scaling.md](./ADR-future-gpu-analyzer-
 
 ## Follow-up
 
-- LOAD-003 evidence: [evidence/load-003/](./evidence/load-003/)
-- **Archived** kind LOAD-004/005 notes: [archive/](./archive/) (not needed for Docker Desktop daily path)
-- `git push` **cxr-ops-lab** (infra scripts still local)
-- Optional: raise **`maxReplicas`** via **`helm upgrade`**; optional HPA cap bump + rerun
-- Optional: Prometheus custom metric HPA (RPS-based)
+- Evidence + kind vs Desktop table: [evidence/load-003/](./evidence/load-003/)
+- **Archived** kind LOAD-004: [archive/](./archive/)
+- Next: [GITOPS-001](../gitops-deploy/) — Argo CD on Desktop
