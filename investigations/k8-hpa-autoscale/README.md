@@ -18,7 +18,46 @@ Does **Kubernetes HPA** scale the CXR analyzer tier under Locust load, and does 
 
 HPA adds **analyzer pods** (1→4) and **UI pods** (1→3) under sustained CPU; total RPS increases before **kind single-node** limits cause Pending pods and failures.
 
-**Outcome (2026-06-08):** Confirmed. Stopped ~**195 users**, **~20 RPS**, analyzer **4/4**, UI **3/3**, **309%/70%** HPA CPU, **1 Pending** + restarts, **~0.43 fail/s** at stop. RPS **> LOAD-002**; node saturation not app crash.
+**Outcome (kind, 2026-06-07):** ~**195 users**, **~20 RPS**, analyzer **4/4**, UI **3/3**, **309%/70%** HPA CPU, **1 Pending** + restarts — RPS **> LOAD-002**.
+
+**Outcome (Docker Desktop K8, 2026-06-08):** **200 users**, peak **~50 RPS**, analyzer **8/8** (**330%/70%**), UI **5/5** (**110%/80%**), **0** fail/s — HPA scaled to Helm caps; node CPU still ~**25%** (pod cap, not host exhaustion).
+
+---
+
+## Evidence (screenshots)
+
+### Autoscale chart (from metrics CSV)
+
+![LOAD-003 — users, RPS, latency, HPA replicas, node CPU](./screenshots/load-test-autoscaling.png)
+
+Generated: `plot_load_test.py results/load-20260608-125236.csv -o results/charts`
+
+### Mid-ramp — ~50 users, analyzer HPA maxing out
+
+![k8-hpa-watch + Locust at ~50 users — analyzer 8/8, 175%/70%](./screenshots/locust-hpa-mid-50users.png)
+
+| Observation | Value |
+|-------------|-------|
+| Users | ~**50** |
+| RPS | ~**10** |
+| Analyzer HPA | **8/8**, **175%/70%** |
+| UI HPA | **3/3**, **66%/80%** |
+| Failures | **0**/s |
+
+### Final frame — 200 users, both HPAs at max
+
+![k8-hpa-watch + Locust at 200 users — analyzer 8/8, UI 5/5](./screenshots/locust-hpa-final-200users.png)
+
+| Observation | Value |
+|-------------|-------|
+| Users | **200** |
+| RPS | ~**33** |
+| p50 / p95 | ~**2s** / ~**7.3s** |
+| Analyzer HPA | **8/8**, **330%/70%** |
+| UI HPA | **5/5**, **110%/80%** |
+| Failures | ~**0**/s |
+
+More captures: [screenshots/](./screenshots/)
 
 ---
 
@@ -104,9 +143,9 @@ Future decision: [ADR-future-gpu-analyzer-scaling.md](./ADR-future-gpu-analyzer-
 |---|----------|----------|
 | Target | **:8251** → **:8766** | **:8081** → in-cluster analyzer |
 | Replicas | 1 | HPA **4** analyzer, **3** UI |
-| Peak RPS | ~**15–16** | ~**20** |
-| Peak users | ~225 | ~**195** (stopped) |
-| Failures | 0% | Small rate at node limit |
+| Peak RPS | ~**15–16** | ~**20** (kind) · ~**50** (Desktop **8/5**) |
+| Peak users | ~225 | ~**195** (kind) · **200** (Desktop) |
+| Failures | 0% | ~**0%** at Desktop cap (kind: small rate at node limit) |
 
 ---
 
@@ -132,6 +171,6 @@ Future decision: [ADR-future-gpu-analyzer-scaling.md](./ADR-future-gpu-analyzer-
 
 - **LOAD-004** — capacity-expanded autoscaling: [LOAD-004-capacity-expanded.md](./LOAD-004-capacity-expanded.md)
 - LOAD-003 evidence: [evidence/load-003/](./evidence/load-003/)
-- Publish PNGs to [screenshots/](./screenshots/)
-- `git push` **cxr-portfolio** + **cxr-ops-lab**
+- Screenshots embedded above in [screenshots/](./screenshots/)
+- `git push` **cxr-ops-lab** (infra scripts still local)
 - Optional: Prometheus custom metric HPA (RPS-based)
