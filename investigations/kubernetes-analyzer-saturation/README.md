@@ -149,9 +149,24 @@ Future decision: [ADR-future-gpu-analyzer-scaling.md](./ADR-future-gpu-analyzer-
 
 ---
 
-## Jaeger (optional)
+## Jaeger + live Grafana (OBS-001)
 
-**http://127.0.0.1:16686** — service **`cxr-analyzer-service`** during peak load (`07-observe-up.sh` if down).
+```bash
+cd ~/staging/cxr-ops-lab && export PATH="$PWD/bin:$PATH"
+./scripts/23-k8-load-observe-up.sh
+```
+
+| URL | Live during load |
+|-----|------------------|
+| http://127.0.0.1:3001/d/cxr-hpa-load-003 | HPA replicas, Pending pods |
+| http://127.0.0.1:16686 | Jaeger — **`cxr-analyzer-service`** (and **`cxr-ui-k8`** if UI OTEL enabled) |
+| http://127.0.0.1:8092 | Locust RPS / p95 |
+
+Full runbook: `cxr-ops-lab/docs/K8-LOAD-OBSERVE-RUNBOOK.md`
+
+## LOAD-003b (maxReplicas 20 experiment, 2026-06-08)
+
+GitOps raised caps to **20/20**; run `load-20260608-182451.csv` — HPA thrashing, Pending pods, p95 spikes. Compare to stable **`load-20260608-125236.csv`** (8/5 caps).
 
 ---
 
