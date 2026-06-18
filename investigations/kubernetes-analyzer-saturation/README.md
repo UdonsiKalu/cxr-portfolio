@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | Complete (2026-06-08) |
+| **Status** | Complete (2026-06-08); observe deep-dive **2026-06-17** |
 | **ID** | LOAD-003 |
 | **Component** | K8 stack — `cxr-ui` + `cxr-analyzer` on **Docker Desktop K8** (or **kind**), HPA, Locust → **:8081** |
 | **Builds on** | [LOAD-002 analyzer-saturation](../analyzer-saturation/) · [kubernetes-deploy](../kubernetes-deploy/) |
@@ -164,6 +164,18 @@ cd ~/staging/cxr-ops-lab && export PATH="$PWD/bin:$PATH"
 
 Full runbook: `cxr-ops-lab/docs/K8-LOAD-OBSERVE-RUNBOOK.md`
 
+### OBS-001 deep-dive (2026-06-17)
+
+Grafana + Jaeger session while node CPU stayed **~10–15%** but p95 reached **4–6s+**:
+
+| Finding | Evidence |
+|---------|----------|
+| HPA scaled analyzer **1 → ~18**; **up to ~6 pending pods** | [Grafana screenshot](./evidence/load-observe/grafana-load-003-2x2-live.png) |
+| Cold start **~15–17s** per new pod | [Jaeger startup compare](./evidence/load-observe/jaeger-compare-startup-pair.png) |
+| Steady-state slowness in **`context_builder`** (3.8–6.2s), not LLM/retrieval | [POST waterfalls](./evidence/load-observe/jaeger-post-7s-context-builder.png) |
+
+Full write-up: **[evidence/load-observe/RUN-2026-06-17.md](./evidence/load-observe/RUN-2026-06-17.md)**
+
 ## LOAD-003b (maxReplicas 20 experiment, 2026-06-08)
 
 GitOps raised caps to **20/20**; run `load-20260608-182451.csv` — HPA thrashing, Pending pods, p95 spikes. Compare to stable **`load-20260608-125236.csv`** (8/5 caps).
@@ -184,6 +196,7 @@ GitOps raised caps to **20/20**; run `load-20260608-182451.csv` — HPA thrashin
 
 ## Follow-up
 
+- Grafana + Jaeger observe runs: [evidence/load-observe/](./evidence/load-observe/)
 - Evidence + kind vs Desktop table: [evidence/load-003/](./evidence/load-003/)
 - **Archived** kind LOAD-004: [archive/](./archive/)
 - Next: [GITOPS-001](../gitops-deploy/) — Argo CD on Desktop
