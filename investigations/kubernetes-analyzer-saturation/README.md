@@ -166,11 +166,13 @@ Full runbook: `cxr-ops-lab/docs/K8-LOAD-OBSERVE-RUNBOOK.md`
 
 ### OBS-001 deep-dive (2026-06-17)
 
-Grafana + Jaeger session while node CPU stayed **~10–15%** but p95 reached **4–6s+**:
+![LOAD-003 problem summary — unstable RPS, p95 ~9s, HPA thrashing, pending pods, low node CPU](./evidence/load-observe/grafana-load-003-problem-summary.png)
+
+Grafana + Jaeger session: **0→200 users**, node CPU **~15%**, p95 **~9s**, RPS oscillating **~10–60**:
 
 | Finding | Evidence |
 |---------|----------|
-| HPA scaled analyzer **1 → ~18**; **up to ~6 pending pods** | [Grafana screenshot](./evidence/load-observe/grafana-load-003-2x2-live.png) |
+| Unstable throughput + pending pods while node not saturated | [Problem summary](./evidence/load-observe/grafana-load-003-problem-summary.png) |
 | Cold start **~15–17s** per new pod | [Jaeger startup compare](./evidence/load-observe/jaeger-compare-startup-pair.png) |
 | Steady-state slowness in **`context_builder`** (3.8–6.2s), not LLM/retrieval | [POST waterfalls](./evidence/load-observe/jaeger-post-7s-context-builder.png) |
 

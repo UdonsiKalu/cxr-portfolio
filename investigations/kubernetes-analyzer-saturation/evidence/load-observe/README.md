@@ -6,7 +6,7 @@ Artifacts from [`23-k8-load-observe-up.sh`](../../../../cxr-ops-lab/scripts/23-k
 
 | Run | Doc | Highlights |
 |-----|-----|------------|
-| **2026-06-17** | [RUN-2026-06-17.md](./RUN-2026-06-17.md) | Grafana 2×2 live; Jaeger startup + POST compares; `context_builder` bottleneck |
+| **2026-06-17** | [RUN-2026-06-17.md](./RUN-2026-06-17.md) | **[Problem summary](./grafana-load-003-problem-summary.png)** — full 0→200 run; Jaeger startup + POST; `context_builder` |
 | 2026-06-08 | [../load-003/](../load-003/) | CSV + Locust screenshots (pre-unified Grafana) |
 
 ## How to add a new run
