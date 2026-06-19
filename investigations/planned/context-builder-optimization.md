@@ -3,6 +3,7 @@
 | | |
 |---|---|
 | **Status** | PERF-002 spans done; **PERF-003** optimize on branch `perf-003-context-builder-optimize` |
+| **Changelog** | [kubernetes-analyzer-saturation/CHANGELOG.md](../kubernetes-analyzer-saturation/CHANGELOG.md) |
 | **ID** | PERF-002 |
 | **Builds on** | [LOAD-003 OBS-001](../kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) |
 | **Code** | `cxr_kernel_v3_2_integrated.py` → `ContextCollector.gather_full_context` |

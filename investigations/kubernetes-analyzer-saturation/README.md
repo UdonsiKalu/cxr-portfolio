@@ -162,7 +162,8 @@ cd ~/staging/cxr-ops-lab && export PATH="$PWD/bin:$PATH"
 | http://127.0.0.1:16686 | Jaeger — **`cxr-analyzer-service`** (and **`cxr-ui-k8`** if UI OTEL enabled) |
 | http://127.0.0.1:8092 | Locust RPS / p95 |
 
-Full runbook: `cxr-ops-lab/docs/K8-LOAD-OBSERVE-RUNBOOK.md`
+Full runbook: `cxr-ops-lab/docs/K8-LOAD-OBSERVE-RUNBOOK.md`  
+**Automated gate:** `cxr-ops-lab/docs/K8-LOAD-GATE.md` · `./scripts/k8-load-gate.sh`
 
 ### OBS-001 deep-dive (2026-06-17)
 
@@ -188,6 +189,7 @@ GitOps raised caps to **20/20**; run `load-20260608-182451.csv` — HPA thrashin
 
 | Path | Purpose |
 |------|---------|
+| **[CHANGELOG.md](./CHANGELOG.md)** | **Problems & resolutions** (living LOAD/PERF log) |
 | [run-k8-load-with-metrics.sh](./run-k8-load-with-metrics.sh) | Start CSV collector |
 | [plot_load_test.py](./plot_load_test.py) | Charts from CSV |
 | [ARCHITECTURE-scaling-layers.md](./ARCHITECTURE-scaling-layers.md) | HPA vs CA vs metrics |
