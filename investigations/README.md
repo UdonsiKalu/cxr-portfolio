@@ -26,6 +26,8 @@ cd ~/staging/cxr-portfolio
 
 **`.md` files** remain for GitHub rendering only. Edit the notebook for daily work; re-run sync script if you need to refresh notebooks from README sources.
 
+> **Project changelog (all areas):** [../CHANGELOG.md](../CHANGELOG.md)
+
 > **Locust p95** (aggregate under load) ≠ **Jaeger** single-trace duration. Report both separately.
 
 ---
