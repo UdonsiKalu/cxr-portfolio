@@ -2,7 +2,11 @@
 
 **Start here** if you are an academic advisor, thesis reviewer, hiring manager, or collaborator evaluating this work.
 
-This repository documents **platform engineering, DevOps, and SRE-style practice** on **CXR** (Claim eXamination & Reasoning) — a healthcare claims analysis system studied in **local lab environments with synthetic data**. It is **not** the full product codebase; it is the **evidence and narrative layer** for how the system was built, tested, and improved.
+This repository documents **platform engineering, DevOps, and SRE-style practice** on **CXR** (Claim eXamination & Reasoning) — a healthcare claims analysis system studied in **local lab environments with synthetic data**. It is **not** the CXR application codebase; it is the **evidence and narrative layer** for investigations, decisions, and operational learnings. Runnable code lives in companion repos (`cxr-ops-lab`, analyzer, UI) and is **linked**, not embedded here.
+
+**Timeline:** Investigation folders and commits span **2025–2026** lab work. The root [CHANGELOG.md](../CHANGELOG.md) is a **consolidated audit log** (from June 2026); per-study evidence remains in each investigation folder with its own dates.
+
+**Maintainers:** work is tracked via [GitHub Issues](https://github.com/UdonsiKalu/cxr-portfolio/issues) and [GITHUB-WORKFLOW.md](GITHUB-WORKFLOW.md) (Projects, PRs, releases).
 
 ---
 
@@ -20,6 +24,7 @@ This repository documents **platform engineering, DevOps, and SRE-style practice
 | **Architecture** | C4, request flow, evolution | [../architecture/README.md](../architecture/README.md) |
 | **Operations** | Docker, CI/CD, Kubernetes | [../operations/README.md](../operations/README.md) |
 | **Demo** | Runnable walkthrough | [../demo/RUN.md](../demo/RUN.md) |
+| **GitHub workflow** | Issues, Projects, PRs, CI | [GITHUB-WORKFLOW.md](GITHUB-WORKFLOW.md) |
 
 **Disclaimer:** [../archive/DISCLAIMER.md](../archive/DISCLAIMER.md) — synthetic data, lab-only configs, not production.
 

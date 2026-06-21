@@ -25,6 +25,7 @@ This portfolio documents **platform engineering, DevOps, and SRE-style practice*
 | Impact summary | [archive/meta/my-impact.md](archive/meta/my-impact.md) |
 | Disclaimer | [archive/DISCLAIMER.md](archive/DISCLAIMER.md) |
 | Going public | [docs/GO-PUBLIC.md](docs/GO-PUBLIC.md) |
+| GitHub workflow (Issues, PRs) | [docs/GITHUB-WORKFLOW.md](docs/GITHUB-WORKFLOW.md) |
 
 ---
 
