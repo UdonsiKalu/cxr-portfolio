@@ -53,6 +53,15 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Performance & load — LOAD-003 arc (2026-06)
 
+#### 2026-06-19 — GATE-002 Helm tuner complete (11/12 pass) ✅
+
+| | |
+|---|---|
+| **Problem** | Manual Helm/Grafana tuning not reproducible; OBS-comparable saturation needed after Jun 18 instability. |
+| **Method** | `k8-load-tuner.sh` — 12 recipes × cumulative analyze-only ramp (15→200 users); score via `k8-load-gate.sh`. |
+| **Outcome** | ✅ **Winner candidate 4**: analyzer `maxReplicas=8`, `minReplicas=1`, UI `maxReplicas=4`, KEDA p95 2000ms — **102 RPS**, p95 **~820ms**, **0 failures/s** @ 200. **Only failure:** candidate 1 (UI max=5, min=1) — **116 failures/s**. |
+| **Artifacts** | [tuner-summary-20260619-080505.json](investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) · [failures index](failures/README.md) · [SLO.md](reliability/SLO.md) · [docs/history.md](docs/history.md) |
+
 #### 2026-06-18 — Post-fix ramp still unstable at 200 users ⚠️
 
 | | |

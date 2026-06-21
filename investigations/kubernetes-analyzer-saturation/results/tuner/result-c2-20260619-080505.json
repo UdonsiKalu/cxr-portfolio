@@ -1,0 +1,67 @@
+{
+  "score": -2591.0,
+  "all_pass": true,
+  "stages": [
+    {
+      "csv": "/home/udonsi-kalu/staging/cxr-portfolio/investigations/kubernetes-analyzer-saturation/results/tuner/run-20260619-080505-c2/gate-20260619-092813-cumulative.csv",
+      "users_target": 100,
+      "samples": 10,
+      "max_users": 100.0,
+      "max_rps": 55.4,
+      "max_p95_ms": 350.0,
+      "max_failures_per_s": 0.0,
+      "max_analyzer_replicas": 0,
+      "max_pending_pods": 0,
+      "collapse_count": 0,
+      "collapses": [],
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "csv": "/home/udonsi-kalu/staging/cxr-portfolio/investigations/kubernetes-analyzer-saturation/results/tuner/run-20260619-080505-c2/gate-20260619-092813-cumulative.csv",
+      "users_target": 150,
+      "samples": 10,
+      "max_users": 150.0,
+      "max_rps": 77.3,
+      "max_p95_ms": 580.0,
+      "max_failures_per_s": 0.0,
+      "max_analyzer_replicas": 0,
+      "max_pending_pods": 0,
+      "collapse_count": 0,
+      "collapses": [],
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "csv": "/home/udonsi-kalu/staging/cxr-portfolio/investigations/kubernetes-analyzer-saturation/results/tuner/run-20260619-080505-c2/gate-20260619-092813-cumulative.csv",
+      "users_target": 200,
+      "samples": 40,
+      "max_users": 200.0,
+      "max_rps": 98.1,
+      "max_p95_ms": 810.0,
+      "max_failures_per_s": 0.0,
+      "max_analyzer_replicas": 0,
+      "max_pending_pods": 0,
+      "collapse_count": 0,
+      "collapses": [],
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "csv": "/home/udonsi-kalu/staging/cxr-portfolio/investigations/kubernetes-analyzer-saturation/results/tuner/run-20260619-080505-c2/gate-20260619-092813-cumulative.csv",
+      "users_target": 50,
+      "samples": 10,
+      "max_users": 50.0,
+      "max_rps": 28.3,
+      "max_p95_ms": 140.0,
+      "max_failures_per_s": 0.0,
+      "max_analyzer_replicas": 0,
+      "max_pending_pods": 0,
+      "collapse_count": 0,
+      "collapses": [],
+      "pass": true,
+      "reasons": []
+    }
+  ],
+  "gate_report": "/home/udonsi-kalu/staging/cxr-portfolio/investigations/kubernetes-analyzer-saturation/results/tuner/run-20260619-080505-c2/gate-report-20260619-092813.json"
+}

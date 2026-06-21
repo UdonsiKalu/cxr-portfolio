@@ -1,6 +1,10 @@
-# Gitignore raw CSV from load runs (keep charts in repo)
+# Gitignore raw CSV from load runs (keep charts + tuner summaries in repo)
 *
 !.gitignore
 !README.md
 !charts/
 !charts/**
+!tuner/
+!tuner/README.md
+!tuner/tuner-summary-*.json
+!tuner/result-c*-080505.json
