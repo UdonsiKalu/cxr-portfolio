@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Reviewer guide (read-only)
+    url: https://github.com/UdonsiKalu/cxr-portfolio/blob/master/docs/REVIEWER-GUIDE.md
+    about: For advisors evaluating this portfolio — start here, not Issues.
+  - name: Development history
+    url: https://github.com/UdonsiKalu/cxr-portfolio/blob/master/docs/history.md
+    about: Curated arc of CXR platform work.

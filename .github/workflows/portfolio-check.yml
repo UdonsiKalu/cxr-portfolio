@@ -1,0 +1,41 @@
+# Light CI for cxr-portfolio (docs + evidence — no app build).
+name: portfolio-check
+
+on:
+  pull_request:
+    branches: [master, main]
+  push:
+    branches: [master, main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Block likely secret files
+        run: |
+          set -euo pipefail
+          bad=$(git ls-files | grep -E '\.(env|pem)$|credentials|secrets/' || true)
+          if [ -n "$bad" ]; then
+            echo "Rejected paths:"
+            echo "$bad"
+            exit 1
+          fi
+
+      - name: Validate GATE-002 tuner summary JSON
+        run: |
+          python3 -m json.tool \
+            investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json \
+            > /dev/null
+
+      - name: Required reviewer paths exist
+        run: |
+          test -f docs/README.md
+          test -f docs/REVIEWER-GUIDE.md
+          test -f CHANGELOG.md
+          test -f failures/README.md
+          test -f reliability/SLO.md
