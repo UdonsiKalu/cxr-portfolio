@@ -6,7 +6,12 @@ How **cxr-portfolio** uses GitHub for honest DevOps portfolio work — planning,
 
 ## Project board
 
-**Project:** [CXR Portfolio DevOps](https://github.com/users/UdonsiKalu/projects) (user project — link from GitHub **Projects** tab if URL differs)
+Create once in GitHub UI (requires `project` scope on `gh auth` for CLI):
+
+1. **Profile → Projects → New project** → name: **CXR Portfolio DevOps**
+2. **Link repository:** `UdonsiKalu/cxr-portfolio`
+3. Set columns: **Backlog → In Progress → Testing → Documenting → Done**
+4. Add open issues from [Issues](https://github.com/UdonsiKalu/cxr-portfolio/issues)
 
 | Column | Meaning |
 |--------|---------|
@@ -15,6 +20,14 @@ How **cxr-portfolio** uses GitHub for honest DevOps portfolio work — planning,
 | **Testing** | Gate run, metrics, reproduce |
 | **Documenting** | Writing investigation + CHANGELOG |
 | **Done** | Merged to `master`; evidence linked |
+
+**Open issues (milestone: Autoscaling & load gates):**
+
+| Issue | Title |
+|-------|--------|
+| [#2](https://github.com/UdonsiKalu/cxr-portfolio/issues/2) | OBS-002: Analyzer replica metrics in Grafana and gate CSV |
+| [#3](https://github.com/UdonsiKalu/cxr-portfolio/issues/3) | OPS-001: Publish cxr-ops-lab load gate automation |
+| [#4](https://github.com/UdonsiKalu/cxr-portfolio/issues/4) | DOC-003: GitHub Pages for reviewer hub (optional) |
 
 ---
 
