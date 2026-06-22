@@ -27,7 +27,7 @@ Use this checklist to evaluate CXR as a **complete engineering portfolio**: arch
 
 - [ ] Read [history.md](history.md) — four arcs (latency, capacity, reliability, platform)  
 - [ ] Skim [CHANGELOG.md](../CHANGELOG.md) — newest entries under Investigations and Operations  
-- [ ] Confirm failed paths are documented, not hidden ([failures/README.md](../failures/README.md))
+- [ ] Confirm failed paths are documented as a readable narrative ([failures/README.md](../failures/README.md))
 
 ### 2. Architecture & decisions
 
