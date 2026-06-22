@@ -26,8 +26,12 @@ Create once in GitHub UI (requires `project` scope on `gh auth` for CLI):
 | Issue | Title |
 |-------|--------|
 | [#2](https://github.com/UdonsiKalu/cxr-portfolio/issues/2) | OBS-002: Analyzer replica metrics in Grafana and gate CSV |
+| [#25](https://github.com/UdonsiKalu/cxr-portfolio/issues/25) | PERF-008: Queue / backpressure KEDA A/B — PR [#26](https://github.com/UdonsiKalu/cxr-portfolio/pull/26) |
 | [#3](https://github.com/UdonsiKalu/cxr-portfolio/issues/3) | OPS-001: Publish cxr-ops-lab load gate automation |
 | [#4](https://github.com/UdonsiKalu/cxr-portfolio/issues/4) | DOC-003: GitHub Pages for reviewer hub (optional) |
+| [#24](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) | GIT-001: Argo / Git values drift |
+
+**Backlog (milestone: Phase 2 — investigations backlog):** [#6–#23](https://github.com/UdonsiKalu/cxr-portfolio/issues?q=is%3Aissue+is%3Aopen+milestone%3A%22Phase+2+%E2%80%94+investigations+backlog%22) — imported from [investigations/planned/](../investigations/planned/README.md) (2026-06-21).
 
 ---
 
@@ -35,7 +39,9 @@ Create once in GitHub UI (requires `project` scope on `gh auth` for CLI):
 
 | Milestone | Scope |
 |-----------|--------|
-| **Autoscaling & load gates** | LOAD-003, OBS-001, GATE-002, exporter metrics, ops-lab publish |
+| **Autoscaling & load gates** | LOAD-003, OBS-001, GATE-002, exporter metrics, ops-lab publish, GIT-001 |
+| **Phase 2 — investigations backlog** | All items in `investigations/planned/` → GitHub Issues #6–#23 |
+| **PERF-008** | [Queue / backpressure autoscaling](../docs/PERF-008-queue-depth-autoscaling.md) — branch `feature/perf-008-queue-backpressure` |
 | *(add later)* **Observability** | OTEL, Jaeger, trace completeness |
 | *(add later)* **Open source readiness** | LICENSE, ops-lab public, Pages |
 

@@ -208,7 +208,7 @@ Prometheus rules (partial): `cxr-ops-lab/observe/prometheus/cxr_recording_rules.
 
 ## Open actions
 
-1. Wire analyzer replica SLI in exporter (KEDA-aware) — currently blind in Grafana/CSV.
+1. Wire analyzer replica SLI in exporter (KEDA-aware) — **fixed on branch `feature/perf-008-queue-backpressure`** (Deployment readyReplicas); merge + verify under load.
 2. Promote production SLO-P* after first staging with real-shaped traffic.
 3. Implement multi-burn-rate alert rules in Prometheus/Alertmanager.
 4. Add lightweight mixed profile SLO row (75% UI / 25% analyze) separate from saturation gate.

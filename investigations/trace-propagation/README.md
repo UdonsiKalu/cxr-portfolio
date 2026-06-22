@@ -41,7 +41,7 @@ Trace ID prefix: **`fa90404…`**
 | **Services** | **2** (`cxr-ui-rehearsal`, `cxr-analyzer-service`) |
 | **Spans** | **27** (rehearsal **7**, analyzer **20**) |
 | **Depth** | **11** |
-| **Linked hop** | **`fetch POST http://127.0.0.1:8766/analyze`** ✓ |
+| **Linked hop** | **`fetch POST http://127.0.0.1:8766/analyze`** (present) |
 
 ### Jaeger search
 
