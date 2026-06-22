@@ -13,6 +13,22 @@ Create once in GitHub UI (requires `project` scope on `gh auth` for CLI):
 3. Set columns: **Backlog → In Progress → Testing → Documenting → Done**
 4. Add open issues from [Issues](https://github.com/UdonsiKalu/cxr-portfolio/issues)
 
+### Make the board public (reviewers)
+
+GitHub Projects are **private by default**. To share the Kanban with recruiters or interviewers:
+
+1. Open **https://github.com/users/UdonsiKalu/projects** (or **Profile → Projects** → **CXR Portfolio DevOps**).
+2. Click **⋯** (project menu) → **Settings**.
+3. Under **Visibility**, choose **Public** → confirm.
+
+After publishing, link the project URL from [failures/README.md](../failures/README.md) and your portfolio README. CLI (after `gh auth refresh -h github.com -s project,read:project`):
+
+```bash
+gh project list --owner UdonsiKalu
+# Note the project number, then:
+gh project edit <NUMBER> --owner UdonsiKalu --visibility public
+```
+
 | Column | Meaning |
 |--------|---------|
 | **Backlog** | Scoped, not started |
