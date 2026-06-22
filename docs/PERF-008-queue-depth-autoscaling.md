@@ -4,7 +4,7 @@
 |---|---|
 | **Status** | **A/B complete** (2026-06-21 / 2026-06-22) — recommendation below; branches `feature/perf-008-queue-backpressure` |
 | **Depends on** | [OBS-002](https://github.com/UdonsiKalu/cxr-portfolio/issues/2) (replica truth in Grafana/CSV) |
-| **Builds on** | [LOAD-003 / OBS-001](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) · [GATE-002 tuner](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) |
+| **Builds on** | [GATE-002 KEDA + Helm grid](GATE-002-keda-helm-grid-study.md) (candidate 4 baseline) · [OBS-001 run](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) |
 | **Ops branch** | `cxr-ops-lab` → `feature/perf-008-queue-backpressure` |
 | **Analyzer branch** | `claim_analysis_tools` → `feature/perf-008-analyzer-metrics` |
 

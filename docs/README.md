@@ -45,7 +45,7 @@ Add to the path above:
 4. [../investigations/latency-investigation/README.md](../investigations/latency-investigation/README.md) — tracing + root cause  
 5. [../investigations/postmortems/python-import-bottleneck.md](../investigations/postmortems/python-import-bottleneck.md) — incident record  
 6. [../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) — OBS-001 deep dive  
-7. [../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) — GATE-002 winner  
+7. [GATE-002-keda-helm-grid-study.md](GATE-002-keda-helm-grid-study.md) — first KEDA apply, 12-candidate Helm grid (Jun 19)  
 8. [PERF-008-queue-depth-autoscaling.md](PERF-008-queue-depth-autoscaling.md) — OBS-002 fix + KEDA A/B (p95 vs inflight)  
 
 ### Half day — full project review

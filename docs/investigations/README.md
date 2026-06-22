@@ -14,7 +14,7 @@ Each folder under [`investigations/`](../investigations/) is one **question** ru
 | LOAD-001 | [single-analyzer-capacity](../investigations/single-analyzer-capacity/) | Capacity of one warm analyzer | Complete |
 | LOAD-002 | [analyzer-saturation](../investigations/analyzer-saturation/) | Single-process saturation knee | Complete |
 | LOAD-003 | [kubernetes-analyzer-saturation](../investigations/kubernetes-analyzer-saturation/) | K8 HPA vs LOAD-002; OBS deep dive | Complete |
-| GATE-002 | [tuner results](../investigations/kubernetes-analyzer-saturation/results/tuner/) | Helm grid under analyze saturation | Complete (2026-06-19) |
+| **GATE-002** | [tuner results](../investigations/kubernetes-analyzer-saturation/results/tuner/) | First **KEDA** apply — 12-point Helm grid (Jun 19) | Complete — [study doc](GATE-002-keda-helm-grid-study.md) |
 | OTEL-001 | [trace-propagation](../investigations/trace-propagation/) | End-to-end trace linkage | Complete |
 | CI-001 | [ci-pipeline](../investigations/ci-pipeline/) | GitHub Actions validation | Complete |
 | K8-001 | [kubernetes-deploy](../investigations/kubernetes-deploy/) | Helm deploy to local K8 | Complete |
@@ -31,7 +31,7 @@ Each folder under [`investigations/`](../investigations/) is one **question** ru
 | Artifact | Link |
 |----------|------|
 | OBS-001 run write-up | [RUN-2026-06-17.md](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) |
-| GATE-002 winner | [tuner-summary-20260619-080505.json](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) |
+| GATE-002 winner | [tuner-summary-20260619-080505.json](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) · [grid study write-up](GATE-002-keda-helm-grid-study.md) |
 | Failed Jun 18 ramp | [load-20260618-064836.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-064836.csv) (if present in clone) |
 | Screenshots | [kubernetes-analyzer-saturation/screenshots/](../investigations/kubernetes-analyzer-saturation/screenshots/) |
 

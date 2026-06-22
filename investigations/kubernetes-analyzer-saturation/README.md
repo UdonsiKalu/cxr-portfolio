@@ -22,7 +22,7 @@ HPA adds **analyzer** and **UI** pods under sustained CPU; aggregate RPS beats L
 
 **Outcome (Docker Desktop K8, 2026-06-08):** **200 users**, peak **~50 RPS**, analyzer **8/8** (**330%/70%**), UI **5/5** (**110%/80%**), **0** fail/s — HPA scaled to Helm caps; node CPU still ~**25%** (pod cap, not host exhaustion).
 
-**Outcome (GATE-002 tuner, 2026-06-19):** Automated 12-recipe Helm grid under **OBS-comparable** analyze-only cumulative ramp. **11/12 passed**; winner **candidate 4** — analyzer `maxReplicas=8`, UI `maxReplicas=4` — **~102 RPS**, p95 **~820ms**, **0 failures/s** @ 200 users; node CPU **&lt;11%**. Summary: [tuner-summary-20260619-080505.json](./results/tuner/tuner-summary-20260619-080505.json). Failed recipe: [failures index](../../failures/README.md#load--performance).
+**Outcome (GATE-002, 2026-06-19):** First **KEDA** apply — automated **12-point Helm grid** under OBS-comparable analyze-only ramp. **11/12 passed**; winner **candidate 4** — analyzer `maxReplicas=8`, `minReplicas=1`, UI `maxReplicas=4`, KEDA p95 **2000 ms** — **~102 RPS**, p95 **~820ms**, **0 failures/s** @ 200. Study: [GATE-002 doc](../../docs/GATE-002-keda-helm-grid-study.md). Summary: [tuner-summary-20260619-080505.json](./results/tuner/tuner-summary-20260619-080505.json). Failed grid point: [failures Arc 4](../../failures/README.md).
 
 ---
 

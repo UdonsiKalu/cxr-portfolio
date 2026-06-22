@@ -30,9 +30,9 @@ A **single-page arc** of how the CXR engineering program evolved. For dated deta
 | **OBS-001** | Deep observe: **p95 ~9s** at 200 users, pending pods, cold start **~15–17s**, `context_builder` **3–6s**. |
 | **PERF-003** | Context-builder cache → image `perf003`; micro-load validation passed. |
 | **Jun 18 regression** | Post-fix ramp still unstable: collapses, **~132 failures/s** — UI/HPA/scheduling, not host CPU. |
-| **GATE-002 (Jun 19)** | Automated 12-recipe Helm tuner; **11/12 pass**; winner **candidate 4** (~**102 RPS**, p95 **~820ms**, 0 failures @ 200). |
+| **GATE-002 (Jun 19)** | Automated 12-recipe **KEDA + Helm grid**; **11/12 pass**; winner **candidate 4** (~**102 RPS**, p95 **~820ms**, 0 failures @ 200). Study: [GATE-002 doc](../docs/GATE-002-keda-helm-grid-study.md). |
 
-**Read:** [kubernetes-analyzer-saturation](../investigations/kubernetes-analyzer-saturation/) · [OBS-001 run](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) · [tuner winner](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) · [failures: c1](../failures/README.md)
+**Read:** [kubernetes-analyzer-saturation](../investigations/kubernetes-analyzer-saturation/) · [GATE-002 KEDA grid study](GATE-002-keda-helm-grid-study.md) · [OBS-001 run](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) · [tuner winner](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) · [failures: c1](../failures/README.md)
 
 ---
 
