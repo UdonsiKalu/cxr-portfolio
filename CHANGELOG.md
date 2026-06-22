@@ -62,14 +62,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | **Outcome** | **Resolved:** **GATE PASS @ 200** — 101 RPS, p95 **790 ms**, **0 failures/s**, replicas **2→8**. OBS-002 replica truth validated. |
 | **Artifacts** | [PERF-008 doc](docs/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-a-20260621-184452/` |
 
-#### 2026-06-19 — GATE-002 Helm tuner complete (11/12 pass) (resolved)
+#### 2026-06-19 — GATE-002: first KEDA apply + 12-point Helm grid (11/12 pass) (resolved)
 
 | | |
 |---|---|
-| **Problem** | Manual Helm/Grafana tuning not reproducible; OBS-comparable saturation needed after Jun 18 instability. |
-| **Method** | `k8-load-tuner.sh` — 12 recipes × cumulative analyze-only ramp (15→200 users); score via `k8-load-gate.sh`. |
-| **Outcome** | **Resolved:** **Winner candidate 4**: analyzer `maxReplicas=8`, `minReplicas=1`, UI `maxReplicas=4`, KEDA p95 2000ms — **102 RPS**, p95 **~820ms**, **0 failures/s** @ 200. **Only failure:** candidate 1 (UI max=5, min=1) — **116 failures/s**. |
-| **Artifacts** | [tuner-summary-20260619-080505.json](investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) · [failures index](failures/README.md) · [SLO.md](reliability/SLO.md) · [docs/history.md](docs/history.md) |
+| **Problem** | CPU-only HPA produced thrash and collapses; manual Grafana tuning was not reproducible. Needed first controlled **KEDA** deployment and a searchable **Helm cap** recipe under OBS-comparable load. |
+| **Method** | Install KEDA (`11-keda-install.sh`); replace analyzer HPA with `ScaledObject` (CPU 70% + `cxr_locust_p95_ms` > 2000 ms). **`k8-load-tuner.sh`** grid: 12 candidates (analyzer max 6/8/10 × min 1/2 × UI max 4/5), cumulative ramp 15→200, score via `k8-load-gate.sh`. |
+| **Outcome** | **Resolved:** **11/12 passed.** **Winner candidate 4** — analyzer `maxReplicas=8`, `minReplicas=1`, UI `maxReplicas=4`, KEDA p95 2000 ms — **102 RPS**, p95 **~820ms**, **0 failures/s** @ 200. **Only failure:** candidate 1 (UI max=5, min=1) — **116 failures/s**. Lab baseline for PERF-008. |
+| **Artifacts** | [GATE-002 KEDA grid study](docs/GATE-002-keda-helm-grid-study.md) · [tuner-summary-20260619-080505.json](investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) · [failures Arc 4](failures/README.md) · [SLO.md](reliability/SLO.md) |
 
 #### 2026-06-18 — Post-fix ramp still unstable at 200 users (mitigated)
 

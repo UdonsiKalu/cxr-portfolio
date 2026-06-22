@@ -6,7 +6,7 @@ This repository documents **platform engineering, DevOps, and SRE-style practice
 
 **Timeline:** Investigation folders and commits span **2025–2026** lab work. The root [CHANGELOG.md](../CHANGELOG.md) is a **consolidated audit log** (from June 2026); per-study evidence remains in each investigation folder with its own dates.
 
-**Maintainers:** work is tracked via [GitHub Issues](https://github.com/UdonsiKalu/cxr-portfolio/issues) and [GITHUB-WORKFLOW.md](GITHUB-WORKFLOW.md) (Projects, PRs, releases).
+**Maintainers:** work is tracked on public GitHub — [Issues](https://github.com/UdonsiKalu/cxr-portfolio/issues) · [Pull requests](https://github.com/UdonsiKalu/cxr-portfolio/pulls) · [Discussions](https://github.com/UdonsiKalu/cxr-portfolio/discussions) · [Project board](https://github.com/users/UdonsiKalu/projects) (Kanban — set project visibility to **Public** in project Settings). See [GITHUB-WORKFLOW.md](GITHUB-WORKFLOW.md).
 
 ---
 
@@ -45,7 +45,7 @@ Add to the path above:
 4. [../investigations/latency-investigation/README.md](../investigations/latency-investigation/README.md) — tracing + root cause  
 5. [../investigations/postmortems/python-import-bottleneck.md](../investigations/postmortems/python-import-bottleneck.md) — incident record  
 6. [../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) — OBS-001 deep dive  
-7. [../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) — GATE-002 winner  
+7. [GATE-002-keda-helm-grid-study.md](GATE-002-keda-helm-grid-study.md) — first KEDA apply, 12-candidate Helm grid (Jun 19)  
 8. [PERF-008-queue-depth-autoscaling.md](PERF-008-queue-depth-autoscaling.md) — OBS-002 fix + KEDA A/B (p95 vs inflight)  
 
 ### Half day — full project review

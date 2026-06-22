@@ -82,21 +82,34 @@ Under load, the same operation showed a wide tail (fast POSTs ~100ms vs slow one
 
 ---
 
-## Arc 4 — Automated tuning found a winner by rejecting almost everything (Jun 19)
+## Arc 4 — First KEDA apply: 12-point Helm grid (GATE-002, Jun 19)
 
-**Hypothesis:** Twelve Helm “recipes” (UI/analyzer replica bounds + KEDA targets) could be scored automatically with the same cumulative ramp and gate script.
+**Context:** CPU-only HPA had produced thrash and collapses (Arcs 2–3). **KEDA** was installed to scale the analyzer from **CPU + Locust E2E p95** (`cxr_locust_p95_ms` > 2000 ms) via a `ScaledObject`, replacing the legacy HPA.
 
-**What we did:** `k8-load-tuner.sh` — 12 recipes × ramp **15→200 users**; pass = **0 failures/s** and tiered p95 limits ([tuner summary](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json)).
+**Hypothesis:** With KEDA handling *runtime* replica count, we can **grid-search deploy-time caps** — analyzer/UI `minReplicas` / `maxReplicas` — and pick a recipe that passes the same automated gate every time.
 
-**What failed:** **Candidate 1** — UI `maxReplicas=5`, analyzer `minReplicas=1` — hit **116 failures/s** at 200 users. Analyzer stayed at one replica while UI CPU pegged; the UI forward path became the bottleneck.
+**What we did:** [GATE-002 KEDA + Helm grid study](../docs/GATE-002-keda-helm-grid-study.md) — `k8-load-tuner.sh` over **12 candidates** (3×2×1×2 grid from `tuner_config.yaml`), each with KEDA enabled, cumulative ramp **15→200 users**, scored by `k8-load-gate.sh`.
 
-![GATE-002 candidate 1 — failures spike @ 200 users](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-c1-fail-20260619.png)
+| Dimension | Values searched |
+|-----------|-----------------|
+| Analyzer `maxReplicas` | 6, 8, 10 |
+| Analyzer `minReplicas` | 1, 2 |
+| KEDA p95 threshold | 2000 ms (fixed) |
+| UI `maxReplicas` | 4, 5 |
 
-Earlier tuner runs showed the same pattern: UI HPA thrash, analyzer not scaling, pending UI pods.
+**Outcome:** **11/12 passed.** **Winner: candidate 4** — analyzer max **8**, min **1**, UI max **4** — **102.1 RPS**, p95 **820 ms**, **0 failures/s** @ 200 ([summary JSON](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json)).
 
-![GATE tuner — analyzer replicas flat, UI CPU volatile](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-tuner-analyzer-replicas-zero.png)
+**The one grid failure:** **Candidate 1** (UI max **5**, analyzer min **1**) — **116 failures/s** at 200 users. UI HPA pegged at cap; analyzer did not scale out; forward path saturated.
 
-**What won:** **Candidate 4** — analyzer max **8**, UI max **4**, KEDA on p95 — **102 RPS**, p95 **~820ms**, **0 failures/s** @ 200. That recipe is the baseline for later PERF work.
+![GATE-002 candidate 1 — the only grid point that failed @ 200](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-c1-fail-20260619.png)
+
+![GATE tuner — UI thrash while analyzer replicas stay flat (failure shape)](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-tuner-analyzer-replicas-zero.png)
+
+The full grid session ran multiple cumulative ramps; the same UI-thrash signature appears across candidates:
+
+![GATE-002 grid session — four cumulative ramps](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-tuner-multi-cycle-20260619.png)
+
+**What we kept:** Candidate 4 became the **lab baseline** for KEDA + Helm (including PERF-008 Experiment A). Promoting it to git-managed `main` is still open ([GIT-001](https://github.com/UdonsiKalu/cxr-portfolio/issues/24)).
 
 ---
 
@@ -104,7 +117,7 @@ Earlier tuner runs showed the same pattern: UI HPA thrash, analyzer not scaling,
 
 **Hypothesis:** Scaling on **in-flight requests per pod** (backpressure) would scale earlier and more safely than **Locust E2E p95 + CPU**.
 
-**Prerequisite fix (OBS-002):** Grafana and gate CSV had shown **`analyzer_replicas = 0`** while pods were actually running under KEDA — the exporter read removed HPA objects, not Deployment truth. Fixed before any A/B comparison ([PERF-008 doc](../docs/PERF-008-queue-depth-autoscaling.md)).
+**Prerequisites:** (1) Helm caps from [GATE-002 KEDA grid study](../docs/GATE-002-keda-helm-grid-study.md) — candidate 4. (2) **OBS-002 fix:** Grafana and gate CSV had shown **`analyzer_replicas = 0`** while pods were actually running under KEDA — the exporter read removed HPA objects, not Deployment truth. Fixed before any A/B comparison ([PERF-008 doc](../docs/PERF-008-queue-depth-autoscaling.md)).
 
 **Experiment A (p95 + CPU KEDA):** **GATE PASS @ 200** — 101 RPS, p95 **790ms**, **0 failures/s**, replicas **2→8**.
 
@@ -151,7 +164,7 @@ Quick lookup for reviewers who already know the arc. Files live in-repo; gate JS
 | Jun 8 | maxReplicas 20/20 regression | `load-20260608-182451.csv` |
 | Jun 18 | Replicas 20→0 collapse | [load-20260618-060419.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-060419.csv) |
 | Jun 18 | Post-PERF-003 ramp unstable | [load-20260618-064836.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-064836.csv) |
-| Jun 19 | GATE-002 c1 fail | [result-c1](../investigations/kubernetes-analyzer-saturation/results/tuner/result-c1-20260619-080505.json) |
+| Jun 19 | GATE-002 **KEDA + Helm grid** (11/12 pass) | [GATE-002 study](../docs/GATE-002-keda-helm-grid-study.md) · [result-c1](../investigations/kubernetes-analyzer-saturation/results/tuner/result-c1-20260619-080505.json) |
 | Jun 21–22 | PERF-008 B rejected | [PERF-008 doc](../docs/PERF-008-queue-depth-autoscaling.md) |
 | — | Grafana screenshot catalog | [evidence/failures/](../investigations/kubernetes-analyzer-saturation/evidence/failures/README.md), [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) |
 

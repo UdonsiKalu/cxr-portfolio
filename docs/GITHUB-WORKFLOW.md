@@ -4,6 +4,19 @@ How **cxr-portfolio** uses GitHub for honest DevOps portfolio work — planning,
 
 ---
 
+## Public surfaces (reviewers)
+
+| Surface | URL | Visibility |
+|---------|-----|------------|
+| Repository | https://github.com/UdonsiKalu/cxr-portfolio | **Public** |
+| Documentation | `docs/README.md` (this tree) | Public with repo |
+| Issues | https://github.com/UdonsiKalu/cxr-portfolio/issues | **Public** |
+| Pull requests | https://github.com/UdonsiKalu/cxr-portfolio/pulls | **Public** |
+| Discussions | https://github.com/UdonsiKalu/cxr-portfolio/discussions | **Public** (enabled on repo) |
+| Project board (Kanban) | https://github.com/users/UdonsiKalu/projects | **You** set project → Settings → Visibility → **Public** (projects default private) |
+
+---
+
 ## Project board
 
 Create once in GitHub UI (requires `project` scope on `gh auth` for CLI):
