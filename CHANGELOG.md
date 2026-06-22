@@ -25,15 +25,6 @@ Each entry follows the same shape where possible:
 
 ---
 
-## How to add an entry
-
-1. Pick the **area** section below (or add a dated block at the top of that section).
-2. Tag the line: `[Investigations]` `[Architecture]` etc.
-3. Link evidence—do not paste large tables or screenshots here.
-4. Record **mistakes** and **reverted paths**—they are as valuable as wins.
-
----
-
 ## Index (by area)
 
 | Area | What belongs here |
