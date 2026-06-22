@@ -131,6 +131,16 @@ Verify Prometheus targets: `cxr-load-exporter`, `kube-state-metrics`, **`cxr-ana
 
 PERF-008 panels are in a **single landscape row** (four charts); scrape health stays at the bottom. Queue/wait panel uses **milliseconds** + optional **queue depth** (right axis).
 
+**Screenshots** (portfolio repo):
+
+| Run | Load row | Backpressure row |
+|-----|----------|------------------|
+| Experiment A (PASS) | [load-full](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-load-full.png) | [backpressure](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-backpressure.png) |
+| Experiment B (FAIL) | [load + failures](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-b-load.png) | [KEDA staircase](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-b-backpressure.png) |
+| First A attempt (no `/metrics`) | — | [empty panels](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-backpressure-nodata.png) |
+
+Full index: [evidence/perf008/README.md](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md).
+
 ---
 
 ## Build notes (faiss_gpu1 + K8 image)
@@ -266,7 +276,7 @@ python3 scripts/lib/perf008_summarize_run.py --experiment a --dir evidence/perf0
 | **replica collapses (gate)** | **0** | 0 |
 | **max replicas (CSV)** | **8** | **8** |
 | **RPS @ 200 users** | 101.1 | 115.8 (before collapse) |
-| **Grafana evidence** | `cxr-ops-lab/evidence/perf008/exp-a-20260621-184452/` | `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` |
+| **Grafana evidence** | [exp-a screenshots](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) · `cxr-ops-lab/evidence/perf008/exp-a-20260621-184452/` | [exp-b screenshots](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) · `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` |
 
 **Checkpoint detail (gate scorer):**
 

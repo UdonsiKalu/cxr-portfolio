@@ -10,17 +10,17 @@ An honest index of **what did not work** or **what we tried and rejected**. Fail
 
 | Date | What failed | Why | Evidence | Screenshot / chart |
 |------|-------------|-----|----------|-------------------|
-| 2026-06-22 | PERF-008 **Experiment B** @ 200 users | Inflight/pod KEDA scaled to 8 but **115 failures/s** (`status 0`) — rejected as scaling signal | [PERF-008 doc](../docs/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` | Grafana: add PNGs under [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/) (see note below) |
-| 2026-06-21 | PERF-008 Experiment A (first run) | Metrics layer built but pods kept cached `perf003` image — **no analyzer `/metrics`** in Prometheus for that window | [PERF-008 doc](../docs/PERF-008-queue-depth-autoscaling.md) · `exp-a-20260621-174522/` | — |
-| 2026-06-19 | GATE-002 **candidate 1** (1/12 recipes) | UI `maxReplicas=5` + analyzer `minReplicas=1` → **116 failures/s** @ 200 users | [result-c1](../investigations/kubernetes-analyzer-saturation/results/tuner/result-c1-20260619-080505.json) | — |
+| 2026-06-22 | PERF-008 **Experiment B** @ 200 users | Inflight/pod KEDA scaled to 8 but **115 failures/s** (`status 0`) — rejected as scaling signal | [PERF-008 doc](../docs/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` | [exp-b load](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-b-load.png) · [backpressure](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-b-backpressure.png) |
+| 2026-06-21 | PERF-008 Experiment A (first run) | Metrics layer built but pods kept cached `perf003` image — **no analyzer `/metrics`** in Prometheus for that window | [PERF-008 doc](../docs/PERF-008-queue-depth-autoscaling.md) · `exp-a-20260621-174522/` | [empty backpressure panels](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-backpressure-nodata.png) |
+| 2026-06-19 | GATE-002 **candidate 1** (1/12 recipes) | UI `maxReplicas=5` + analyzer `minReplicas=1` → **116 failures/s** @ 200 users | [result-c1](../investigations/kubernetes-analyzer-saturation/results/tuner/result-c1-20260619-080505.json) | [c1 fail](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-c1-fail-20260619.png) |
 | 2026-06-19 | Lightweight mixed tuner (`072020`) | Not OBS-comparable; UI-only bottleneck — archived | [lightweight-mixed-072020/](../investigations/kubernetes-analyzer-saturation/results/tuner/lightweight-mixed-072020/) | — |
-| 2026-06-18 | Full **0→200** ramp after PERF-003 | **18×** replica collapses (8→1), **~132 failures/s**, sawtooth RPS, UI at **5/5** | [load-20260618-064836.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-064836.csv) | [load-test-autoscaling](../investigations/kubernetes-analyzer-saturation/screenshots/load-test-autoscaling.png) |
-| 2026-06-18 | Analyzer **maxReplicas: 20** | **20→1** collapses, **6 pending** pods; node CPU still **~8–15%** | [load-20260618-060419.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-060419.csv) | [locust-hpa-final-200users](../investigations/kubernetes-analyzer-saturation/screenshots/locust-hpa-final-200users.png) |
-| 2026-06-17 | OBS-001 full ramp @ 200 users | **p95 ~9s**, volatile RPS, analyzer pending, HPA thrash — not host CPU saturation | [RUN-2026-06-17](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) | [grafana problem summary](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/grafana-load-003-problem-summary.png) |
+| 2026-06-18 | Full **0→200** ramp after PERF-003 | **18×** replica collapses (8→1), **~132 failures/s**, sawtooth RPS, UI at **5/5** | [load-20260618-064836.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-064836.csv) | [post-perf003 unstable](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-jun18-post-perf003-unstable.png) · [load-test-autoscaling](../investigations/kubernetes-analyzer-saturation/screenshots/load-test-autoscaling.png) |
+| 2026-06-18 | Analyzer **maxReplicas: 20** | **20→1** collapses, **6 pending** pods; node CPU still **~8–15%** | [load-20260618-060419.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-060419.csv) | [maxReplicas collapse](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-jun18-maxreplicas20-collapse.png) · [pending pods](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-jun18-pending-pods.png) |
+| 2026-06-17 | OBS-001 full ramp @ 200 users | **p95 ~9s**, volatile RPS, analyzer pending, HPA thrash — not host CPU saturation | [RUN-2026-06-17](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) | [full run](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-obs-001-full-run-20260617.png) · [problem summary](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/grafana-load-003-problem-summary.png) |
 | 2026-06-08 | LOAD-003b **maxReplicas 20/20** | Worse than **8/5** caps on single node — scheduling thrash | `load-20260608-182451.csv` vs `load-20260608-125236.csv` | [locust-hpa-mid-50users](../investigations/kubernetes-analyzer-saturation/screenshots/locust-hpa-mid-50users.png) |
 | 2026-06 (LOAD-002) | Single-process saturation | Tail latency runaway to **~225 users**; **~15–16 RPS** ceiling (0% hard failures) | [analyzer-saturation](../investigations/analyzer-saturation/README.md) | [locust continuous ramp](../investigations/analyzer-saturation/screenshots/locust-continuous-ramp-225users-saturation.png) |
 
-**Contrast (success):** GATE-002 winner [candidate 4](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) — **102 RPS**, **0 failures**, p95 **~820ms** @ 200. PERF-008 Experiment A (re-run): **101 RPS**, p95 **790 ms**, **0 failures** @ 200.
+**Contrast (success):** GATE-002 winner [candidate 4](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) — **102 RPS**, **0 failures**, p95 **~820ms** @ 200. PERF-008 Experiment A (re-run): **101 RPS**, p95 **790 ms**, **0 failures** @ 200 — [Grafana](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-load-full.png).
 
 ---
 
@@ -64,7 +64,7 @@ An honest index of **what did not work** or **what we tried and rejected**. Fail
 | Jaeger short trace ID → 404 | Lost time in UI | Use full trace ID from search | [404 short id](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/jaeger-compare-404-short-trace-id.png) |
 | Discrete load stages (early tuner) | Over-optimistic vs cumulative ramp | GATE-002 cumulative ramp | — |
 | Locust p95 vs single Jaeger trace | Comparing unlike metrics | Documented in investigations README | — |
-| Load CSV has no `context_builder` column | Tail attribution requires Jaeger | PERF-009 planned; optional OTLP→Prometheus later | [context_builder 7s](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/jaeger-post-7s-context-builder.png) |
+| Load CSV has no `context_builder` column | Tail attribution requires Jaeger | PERF-009 planned; optional OTLP→Prometheus later | [context_builder 7s](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/jaeger-post-7s-context-builder.png) · [3.8s span](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/jaeger-context-builder-3p8s-20260617.png) · [tail scatter](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/jaeger-analyze-request-tail-scatter-20260617.png) |
 | Missing / minimal trace profiles | Hid startup and `context_builder` cost | Reject minimal Jaeger profiles under load | [postmortem: jaeger trace profile](../investigations/postmortems/jaeger-trace-profile.md) |
 
 ---
@@ -75,10 +75,19 @@ An honest index of **what did not work** or **what we tried and rejected**. Fail
 
 | Image | Run / theme |
 |-------|-------------|
+| [grafana-obs-001-full-run-20260617.png](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-obs-001-full-run-20260617.png) | OBS-001 — full ramp, analyzer thrash 2↔20 |
 | [grafana-load-003-problem-summary.png](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/grafana-load-003-problem-summary.png) | OBS-001 — p95 to ~9s, pending pods, low node CPU |
 | [grafana-load-003-2x2-live.png](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/grafana-load-003-2x2-live.png) | OBS-001 mid-ramp |
+| [grafana-jun18-maxreplicas20-collapse.png](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-jun18-maxreplicas20-collapse.png) | Jun 18 — replicas 20→0 |
+| [grafana-jun18-post-perf003-unstable.png](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-jun18-post-perf003-unstable.png) | Jun 18 — sawtooth RPS, ~132 failures/s |
+| [grafana-jun18-hpa-thrash.png](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-jun18-hpa-thrash.png) | Jun 18 — UI replica oscillation |
+| [grafana-gate-c1-fail-20260619.png](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-c1-fail-20260619.png) | GATE-002 c1 — 116 failures/s @ 200 |
+| [grafana-gate-tuner-analyzer-replicas-zero.png](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-tuner-analyzer-replicas-zero.png) | GATE tuner — analyzer replicas flat |
+| [grafana-gate-tuner-multi-cycle-20260619.png](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-tuner-multi-cycle-20260619.png) | GATE tuner — four cumulative ramps |
 | [locust-hpa-final-200users.png](../investigations/kubernetes-analyzer-saturation/screenshots/locust-hpa-final-200users.png) | Early K8 — HPA at caps |
 | [load-test-autoscaling.png](../investigations/kubernetes-analyzer-saturation/screenshots/load-test-autoscaling.png) | Jun 18 instability chart |
+
+Full catalog: [evidence/failures/README.md](../investigations/kubernetes-analyzer-saturation/evidence/failures/README.md)
 
 ### Jaeger — tail latency and mistakes
 
@@ -97,13 +106,16 @@ An honest index of **what did not work** or **what we tried and rejected**. Fail
 | [before-jaeger-python-module-import-7s-2026-06-01.png](../investigations/latency-investigation/screenshots/before-jaeger-python-module-import-7s-2026-06-01.png) | Import span dominates |
 | [after-jaeger-locust-154ms-22spans-2026-06-02.png](../investigations/latency-investigation/screenshots/after-jaeger-locust-154ms-22spans-2026-06-02.png) | After warm analyzer (contrast) |
 
-### PERF-008 (add screenshots)
+### PERF-008 (Experiment A pass vs B fail)
 
-Save full-page Grafana captures from Experiments A and B into:
+| Image | Run / theme |
+|-------|-------------|
+| [grafana-perf008-exp-a-load-full.png](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-load-full.png) | Experiment A — PASS @ 200, replicas 2→8 |
+| [grafana-perf008-exp-a-backpressure.png](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-backpressure.png) | Experiment A — KEDA staircase + ~1 ms wait |
+| [grafana-perf008-exp-b-load.png](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-b-load.png) | Experiment B — 115 failures/s, UI thrash |
+| [grafana-perf008-exp-b-backpressure.png](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-b-backpressure.png) | Experiment B — scaled 2→8 but gate FAIL |
 
-`investigations/kubernetes-analyzer-saturation/evidence/perf008/`
-
-Suggested names: `grafana-perf008-exp-a-load.png`, `grafana-perf008-exp-a-backpressure.png`, `grafana-perf008-exp-b-failures.png`. CSV and JSON remain in `cxr-ops-lab/evidence/perf008/`.
+Full catalog: [evidence/perf008/README.md](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md). CSV and JSON remain in `cxr-ops-lab/evidence/perf008/`.
 
 ---
 
