@@ -44,6 +44,15 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Performance & load — LOAD-003 arc (2026-06)
 
+#### 2026-06-22 — OBS-003: shared SQL connection busy under concurrent analyze (resolved)
+
+| | |
+|---|---|
+| **Problem** | Jaeger slow traces showed **2 Errors** on `context.7_policy` / `context.7_policy.sql` during PERF-009 review — `pyodbc.Error: Connection is busy with results for another command`. |
+| **Cause** | One **shared** SQL connection per analyzer pod; **4 concurrent** `/analyze` handlers (`MAX_CONCURRENT=4`) issued overlapping cursors via `ContextCollector`. |
+| **Outcome** | **Resolved:** `threading.Lock` + `_db_cursor()` in `ContextCollector`; lab image `cxr-analyzer:perf009-sql`. Verified 0 policy span errors in fresh Jaeger window @100 users. |
+| **Artifacts** | [PERF-009 § SQL errors](docs/PERF-009-jaeger-tail-latency.md#jaeger-trace-errors-sql-concurrency) · [failures Arc 5](failures/README.md) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · `cxr-saas` / `cxr-ops-lab` PRs |
+
 #### 2026-06-22 — PERF-009 Jaeger tail latency attribution (resolved)
 
 | | |

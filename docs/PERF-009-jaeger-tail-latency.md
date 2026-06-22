@@ -158,6 +158,25 @@ This explains why **inflight/pod KEDA (B)** scaled replicas but did **not** fix 
 
 ---
 
+## Jaeger trace errors (SQL concurrency)
+
+While attributing tail latency, many slow `POST` traces showed **“2 Errors”** and **Incomplete** badges. These were **not** LLM failures or missing instrumentation.
+
+| Span | Error |
+|------|--------|
+| `context.7_policy.sql` | `pyodbc.Error: Connection is busy with results for another command` |
+| `context.7_policy` | Same (parent of SQL span) |
+
+**Cause:** `ContextCollector` used a **single shared `pyodbc` connection** on the per-pod kernel singleton while **up to 4 concurrent** `/analyze` handlers ran (`CXR_ANALYZER_MAX_CONCURRENT=4`). pyodbc connections are not thread-safe.
+
+**Impact:** HTTP responses often still **200** (v4 catches context errors and falls back), but Jaeger traces were misleading and policy SQL could fail under load.
+
+**Fix ([OBS-003](https://github.com/UdonsiKalu/cxr-portfolio/issues/33)):** `threading.Lock` + `_db_cursor()` in `cxr_kernel_v3_2_integrated.py`; ops image layer `cxr-analyzer:perf009-sql`. After lab deploy, **0** `context.7_policy*` errors in a fresh 100-user Jaeger window.
+
+**Reviewer tip:** Jaeger lookback **Last 1 hour** mixes pre-fix traces — use a **short custom window** after load, or search traces from the last few minutes only.
+
+---
+
 ## Reproduce
 
 ```bash
