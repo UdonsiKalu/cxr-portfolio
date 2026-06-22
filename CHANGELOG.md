@@ -44,6 +44,15 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Performance & load — LOAD-003 arc (2026-06)
 
+#### 2026-06-22 — PERF-009 Jaeger tail latency attribution (resolved)
+
+| | |
+|---|---|
+| **Problem** | PERF-008 rejected inflight KEDA but did not explain **why p95 climbs** (~150 ms → ~800 ms) while p50 stays low. |
+| **Method** | Jaeger fast (80–250 ms) vs slow (600–1200 ms) `POST` traces; 3+3 per PERF-008 Experiment A and B helm profiles; replay @200 users (original gate traces not in Jaeger retention). |
+| **Outcome** | **Resolved:** Tail dominated by **HTTP/client wait** (UI `fetch` → analyzer, ~+565–617 ms median slow−fast). Analyzer `context_builder`/policy/archetype secondary (+30–40 ms). **B vs A:** same slow-span pattern. |
+| **Artifacts** | [PERF-009 doc](docs/PERF-009-jaeger-tail-latency.md) · [evidence/perf009/](investigations/kubernetes-analyzer-saturation/evidence/perf009/) · `cxr-ops-lab/scripts/perf009-jaeger-attribution.sh` |
+
 #### 2026-06-22 — PERF-008 Experiment B (in-flight/pod KEDA) (mitigated)
 
 | | |

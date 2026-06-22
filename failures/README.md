@@ -133,6 +133,8 @@ Backpressure metrics were visible but did not predict stability better than p95 
 
 **Decision:** Keep **p95 + CPU** for KEDA; use inflight/wait panels for **diagnosis only**. First A run failed to scrape `/metrics` (pods kept cached `perf003` image) — [empty panels capture](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-backpressure-nodata.png).
 
+**Tail attribution ([PERF-009](../docs/PERF-009-jaeger-tail-latency.md)):** Jaeger fast vs slow comparison @200 users — **HTTP/client wait** on UI→analyzer `fetch` accounts for most of the ~650 ms p95 tail; analyzer `context_builder` / policy are secondary. Experiment B did not change the slow-span pattern.
+
 ---
 
 ## Operations and GitOps
