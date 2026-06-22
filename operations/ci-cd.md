@@ -2,18 +2,24 @@
 
 ## Canonical workflow
 
-**Rehearsal UI** (`cxr-ui-prune-rehearsal/cxr-ui`) carries bootcamp CI:
+**Rehearsal UI** (`cxr-ui-rehearsal`) carries bootcamp CI:
 
 - SW.6 build
 - SW.6a Playwright smoke
-- SW.7 Trivy policy scan
+- SW.7 Docker build + Trivy policy scan
 
-File: `.github/workflows/ci.yml` in the UI repo (when published).
+File: `.github/workflows/ci.yml` in the UI repo.
 
-## Portfolio scope
+**Portfolio investigation:** [investigations/ci-pipeline/](../investigations/ci-pipeline/) (CI-001)
 
-This repo documents CI **evidence** and architecture; workflow YAML lives with application code to avoid duplication.
+## CD / GitOps (separate)
+
+- **Not** in the CI workflow — no auto-deploy to **:8251** or **:8081**
+- SW.8 Argo CD in **`cxr-ops-lab`** (`13-argo-install.sh`, **:8083**)
+- **Portfolio investigation:** [investigations/kubernetes-deploy/](../investigations/kubernetes-deploy/) (K8-001)
 
 ## Related evidence
 
-- `cxr-ops-lab/evidence/SW7-trivy-verify.md` (companion monorepo)
+- `cxr-ops-lab/evidence/SW7-trivy-verify.md`
+- `cxr-ops-lab/evidence/SW3-k8-evidence.md`
+- `cxr-ui-rehearsal` Actions: https://github.com/UdonsiKalu/cxr-ui-rehearsal/actions

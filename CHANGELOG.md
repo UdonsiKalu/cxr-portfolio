@@ -53,6 +53,24 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Performance & load — LOAD-003 arc (2026-06)
 
+#### 2026-06-22 — PERF-008 Experiment B (in-flight/pod KEDA) ⚠️
+
+| | |
+|---|---|
+| **Problem** | Does scaling on **analyzer in-flight per pod** beat **Locust E2E p95** for stability and tail latency? |
+| **Method** | Same cumulative ramp as A (`analyzer_saturation`, 15→200); KEDA on `sum(inflight)/replicas > 2` + CPU; image `perf008`, lab `MAX_CONCURRENT=4`. |
+| **Outcome** | ⚠️ Scaled **2→8** replicas but **GATE FAIL @ 200 users** — **115.8 failures/s** (`status 0` connectivity). **Decision:** keep **p95 + CPU** for KEDA; use inflight/wait for diagnosis only. |
+| **Artifacts** | [PERF-008 doc](docs/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` |
+
+#### 2026-06-21 — PERF-008 Experiment A (p95 KEDA) + OBS-002 fix ✅
+
+| | |
+|---|---|
+| **Problem** | OBS-002: Grafana/CSV showed **analyzer_replicas = 0** after KEDA replaced HPA. Need honest A/B: p95 vs backpressure autoscaling signals. |
+| **Method** | Instrument analyzer `/metrics` (inflight, queue wait); fix exporter to read Deployment readyReplicas; cumulative gate; Experiment A = KEDA on `cxr_locust_p95_ms`. |
+| **Outcome** | ✅ **GATE PASS @ 200** — 101 RPS, p95 **790 ms**, **0 failures/s**, replicas **2→8**. OBS-002 replica truth validated. |
+| **Artifacts** | [PERF-008 doc](docs/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-a-20260621-184452/` |
+
 #### 2026-06-19 — GATE-002 Helm tuner complete (11/12 pass) ✅
 
 | | |

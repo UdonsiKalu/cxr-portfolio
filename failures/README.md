@@ -10,6 +10,7 @@ An honest index of **what did not work** or **what we tried and rejected**. Fail
 
 | Date | What failed | Why | Evidence |
 |------|-------------|-----|----------|
+| 2026-06-22 | PERF-008 **Experiment B** @ 200 users | Inflight/pod KEDA scaled to 8 but **115 failures/s** (`status 0`) — rejected as scaling signal | [PERF-008 doc](docs/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` |
 | 2026-06-18 | Full **0→200** ramp after initial PERF-003 fix | Replica collapses, **~132 failures/s**, UI bottleneck, HPA thrash | [CHANGELOG](../CHANGELOG.md) · [load-20260618-064836.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-064836.csv) |
 | 2026-06-18 | **maxReplicas: 20** analyzer | Scheduling pressure, **20→1** collapses, pending pods; node CPU still low | [CHANGELOG](../CHANGELOG.md) · [load-20260618-060419.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-060419.csv) |
 | 2026-06-19 | GATE-002 **candidate 1** only (1/12) | UI `maxReplicas=5` + analyzer `minReplicas=1` → **116 failures/s** @ 200 users | [result-c1](../investigations/kubernetes-analyzer-saturation/results/tuner/result-c1-20260619-080505.json) |
@@ -39,7 +40,7 @@ An honest index of **what did not work** or **what we tried and rejected**. Fail
 
 | Issue | Impact | Mitigation |
 |-------|--------|------------|
-| Analyzer replicas **0** in LOAD CSV/Grafana | Cannot attribute tail to analyzer scale in dashboard | Open: fix KEDA replica polling in exporter |
+| Analyzer replicas **0** in LOAD CSV/Grafana | Could not attribute tail to analyzer scale in dashboard | ✅ **Resolved** OBS-002 / PERF-008 — Deployment readyReplicas in exporter ([PERF-008](docs/PERF-008-queue-depth-autoscaling.md)) |
 | Discrete load stages (early tuner) | Over-optimistic vs cumulative ramp | Replaced with cumulative ramp in GATE-002 |
 | Locust p95 vs Jaeger single trace | Comparing unlike metrics | Documented in investigations README |
 
