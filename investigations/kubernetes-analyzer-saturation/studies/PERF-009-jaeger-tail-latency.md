@@ -145,7 +145,7 @@ During manual Jaeger review (same load window, **2026-06-22 ~11:28 local**), a *
 | **`analyze_request`** | ~30 ms | **~57 ms**, starts **~652 ms** after trace start |
 | **Pre-handler gap** | ~0 ms | **~649 ms** (`fetch` open before analyzer work begins) |
 
-![Jaeger Compare — fast vs slow POST at same second](../evidence/perf009/jaeger-compare-fast-vs-slow-post-20260622.png)
+**Jaeger Compare** (Search → select two traces → **Compare**) is useful interactively but does not export well to a readable static image — the table compresses span names and durations. For documentation we use **individual trace waterfalls** below and the gap table above. In the lab UI: search service `cxr-ui-k8`, operation `POST`, find traces `fd42f1c` and `f541546` (~2026-06-22 11:28), or open each waterfall directly when the observe stack is up.
 
 **Fast trace** — `fetch` and `analyze_request` overlap; almost all E2E is real analyzer work:
 
