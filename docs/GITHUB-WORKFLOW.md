@@ -55,7 +55,8 @@ gh project edit <NUMBER> --owner UdonsiKalu --visibility public
 | Issue | Title |
 |-------|--------|
 | [#2](https://github.com/UdonsiKalu/cxr-portfolio/issues/2) | OBS-002: Analyzer replica metrics in Grafana and gate CSV |
-| [#25](https://github.com/UdonsiKalu/cxr-portfolio/issues/25) | PERF-008: Queue / backpressure KEDA A/B — PR [#26](https://github.com/UdonsiKalu/cxr-portfolio/pull/26) |
+| [#33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) | OBS-003: Shared SQL connection busy — Jaeger `context.7_policy` errors |
+| [#32](https://github.com/UdonsiKalu/cxr-portfolio/issues/32) | PERF-009: Jaeger tail latency attribution |
 | [#3](https://github.com/UdonsiKalu/cxr-portfolio/issues/3) | OPS-001: Publish cxr-ops-lab load gate automation |
 | [#4](https://github.com/UdonsiKalu/cxr-portfolio/issues/4) | DOC-003: GitHub Pages for reviewer hub (optional) |
 | [#24](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) | GIT-001: Argo / Git values drift |

@@ -307,6 +307,7 @@ Rationale:
 
 **Follow-ups (out of scope for PERF-008 gate):**
 
+- [PERF-009 Jaeger tail attribution](PERF-009-jaeger-tail-latency.md) — **done** — HTTP wait dominates p95 tail; B unchanged vs A.
 - Fix *Scaling signals* panel so `cxr_analyzer_replicas` is readable alongside UI CPU (separate Y scale or panel split).
 - UI HPA thrash (1–5 replicas) under mixed load — track under OPS/load, not PERF-008.
 - Optional: re-run B after UI forward stability fix if a clean B gate pass is needed for symmetry; current B result is still valid for “pressure signal not superior.”

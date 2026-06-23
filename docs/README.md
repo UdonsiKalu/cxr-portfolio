@@ -47,6 +47,7 @@ Add to the path above:
 6. [../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) — OBS-001 deep dive  
 7. [GATE-002-keda-helm-grid-study.md](GATE-002-keda-helm-grid-study.md) — first KEDA apply, 12-candidate Helm grid (Jun 19)  
 8. [PERF-008-queue-depth-autoscaling.md](PERF-008-queue-depth-autoscaling.md) — OBS-002 fix + KEDA A/B (p95 vs inflight)  
+9. [PERF-009-jaeger-tail-latency.md](PERF-009-jaeger-tail-latency.md) — Jaeger tail attribution (HTTP wait vs analyzer spans)
 
 ### Half day — full project review
 
