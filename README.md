@@ -12,7 +12,7 @@
 |------------------------|--------|
 | **Required** | Study write-up under `investigations/<name>/studies/` · `evidence/` · [CHANGELOG.md](CHANGELOG.md) |
 | **Milestone only** | [failures/README.md](failures/README.md) arc summary |
-| **Rarely** | [architecture/adrs/](architecture/adrs/) · [reliability/SLO.md](reliability/SLO.md) |
+| **Rarely** | [archive/decisions/adrs/](archive/decisions/adrs/) · [reliability/SLO.md](reliability/SLO.md) |
 
 **GitHub:** [operations/GITHUB-WORKFLOW.md](operations/GITHUB-WORKFLOW.md) — Issues, PRs, Kanban.
 
@@ -29,7 +29,7 @@
 | [CHANGELOG.md](CHANGELOG.md) | Dated audit log (one entry per landed study) |
 | [failures/](failures/README.md) | Honest index of rejected paths (arc rollups) |
 | [reliability/SLO.md](reliability/SLO.md) | SLIs and load gates |
-| [architecture/adrs/](architecture/README.md) | Stable decision records |
+| [archive/decisions/adrs/](archive/decisions/README.md) | Stable decision records |
 | [archive/](archive/README.md) | Reviewer pack, demo walkthroughs, C4 diagrams |
 
 ---
@@ -40,7 +40,7 @@
 
 ~10–12s analyze under load → Jaeger showed Python import per request → long-running analyzer on **:8766** → p95 ~1.5s.
 
-- [latency investigation](investigations/latency-investigation/) · [postmortem](investigations/postmortems/python-import-bottleneck.md) · [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md)
+- [latency investigation](investigations/latency-investigation/) · [postmortem](investigations/postmortems/python-import-bottleneck.md) · [ADR-004](archive/decisions/adrs/ADR-004-long-running-analyzer.md)
 
 ### Capacity — K8 saturation, GATE-002, PERF-008/009
 

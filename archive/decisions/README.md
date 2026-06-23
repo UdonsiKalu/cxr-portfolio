@@ -1,6 +1,6 @@
 # Architecture decisions (ADRs)
 
-Stable **why** records — updated only when a decision changes, not on every load test.
+Historical **why** records — not updated during load-test / DevOps work. For system diagrams see [architecture-c4/](../architecture-c4/README-architecture-hub.md).
 
 | ADR | Topic |
 |-----|-------|
@@ -11,4 +11,4 @@ Stable **why** records — updated only when a decision changes, not on every lo
 | [ADR-005](adrs/ADR-005-kubernetes-roadmap.md) | Kubernetes deployment roadmap |
 | [ADR-006](adrs/ADR-006-monolith-vs-microservices.md) | Monolith vs microservices |
 
-C4 diagrams and evolution narrative: [archive/architecture-c4/](../archive/architecture-c4/README-architecture-hub.md).
+Reviewer index: [archive/reviewer/decisions/README.md](../reviewer/decisions/README.md).

@@ -15,7 +15,7 @@
 | [investigations/latency-investigation/](../../investigations/latency-investigation/) | Complete |
 | [GATE-002 tuner summary](../../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) | Complete |
 | [Python import bottleneck postmortem](../../investigations/postmortems/python-import-bottleneck.md) | Complete |
-| [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md) | Complete |
+| [ADR-004](../../archive/decisions/adrs/ADR-004-long-running-analyzer.md) | Complete |
 | [archive/demo/RUN.md](../../archive/demo/RUN.md) | Complete |
 
 ## Full outline
@@ -31,6 +31,6 @@ See [archive/reviewer/GO-PUBLIC.md](../../archive/reviewer/GO-PUBLIC.md). Summar
 - [x] SLO document
 - [ ] Commit and push pending local changes
 - [ ] Reviewer fast path verified on a second machine (optional)
-- [ ] C4 PNGs in `architecture/diagrams/` (optional)
+- [ ] C4 PNGs in `archive/architecture-c4/diagrams/` (optional)
 - [ ] `gh repo edit --visibility public` + pin on profile
 - [ ] Push `cxr-ops-lab` gate automation (optional, for reproduction)

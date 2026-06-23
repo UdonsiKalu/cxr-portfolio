@@ -26,7 +26,7 @@ The trace told the same story: a multi-second **module import** span on every ca
 
 ![Jaeger — Python module import ~7s per request](../investigations/latency-investigation/screenshots/before-jaeger-python-module-import-7s-2026-06-01.png)
 
-**Decision:** Reject subprocess-per-request ([ADR-003](../architecture/adrs/ADR-003-python-subprocess.md)). Ship a **warm analyzer** on port 8766 ([ADR-004](../architecture/adrs/ADR-004-long-running-analyzer.md)).
+**Decision:** Reject subprocess-per-request ([ADR-003](../archive/decisions/adrs/ADR-003-python-subprocess.md)). Ship a **warm analyzer** on port 8766 ([ADR-004](../archive/decisions/adrs/ADR-004-long-running-analyzer.md)).
 
 **Outcome:** Locust p95 dropped to ~1.5s on light load; warm traces fell to **154–708ms**. That unlocked real capacity work instead of fighting imports.
 
@@ -171,7 +171,7 @@ Quick lookup for reviewers who already know the arc. Files live in-repo; gate JS
 
 | Date / ID | Failure (one line) | Primary evidence |
 |-----------|-------------------|------------------|
-| May–Jun | Subprocess import ~7–8s | [postmortem](../investigations/postmortems/python-import-bottleneck.md), [ADR-003](../architecture/adrs/ADR-003-python-subprocess.md) |
+| May–Jun | Subprocess import ~7–8s | [postmortem](../investigations/postmortems/python-import-bottleneck.md), [ADR-003](../archive/decisions/adrs/ADR-003-python-subprocess.md) |
 | Jun 17 | OBS-001: p95 ~9s, low node CPU | [RUN-2026-06-17](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) |
 | Jun 8 | maxReplicas 20/20 regression | `load-20260608-182451.csv` |
 | Jun 18 | Replicas 20→0 collapse | [load-20260618-060419.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-060419.csv) |

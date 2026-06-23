@@ -23,6 +23,6 @@ Docker, environment management, service orchestration, dependency wiring, reprod
 
 ## Related architecture
 
-Evolution subprocess → warm analyzer: [latency investigation](../../latency-investigation/), [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md).
+Evolution subprocess → warm analyzer: [latency investigation](../../latency-investigation/), [ADR-004](../../archive/decisions/adrs/ADR-004-long-running-analyzer.md).
 
 When written, promote to `platform-bootstrap/` folder at investigations root.

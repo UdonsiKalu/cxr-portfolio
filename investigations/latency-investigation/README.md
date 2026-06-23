@@ -131,7 +131,7 @@ sequenceDiagram
 - Next.js uses `ANALYZER_URL` + W3C trace propagation.
 - Default dev stack (`cxr up`) uses the warm path.
 
-Decision record: [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md)
+Decision record: [ADR-004](../../archive/decisions/adrs/ADR-004-long-running-analyzer.md)
 
 ---
 

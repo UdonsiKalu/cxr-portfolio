@@ -49,7 +49,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | | |
 |---|---|
 | **Problem** | PERF-009 touched five+ top-level trees (`docs/`, `failures/`, `evidence/`, `CHANGELOG`, workflow) — too many places per study. |
-| **Outcome** | **Documented:** Study write-ups co-located under `investigations/kubernetes-analyzer-saturation/studies/`; `operations/GITHUB-WORKFLOW.md`; `demo/` and reviewer indexes → `archive/`; C4 docs → `archive/architecture-c4/`; keep `architecture/adrs/` only. |
+| **Outcome** | **Documented:** Studies under `investigations/.../studies/`; workflow in `operations/`; `demo/`, reviewer pack, ADRs, C4 → `archive/`. No top-level `docs/`, `demo/`, or `architecture/`. |
 | **Artifacts** | [README.md](README.md) · [studies/README.md](investigations/kubernetes-analyzer-saturation/studies/README.md) |
 
 #### 2026-06-23 — PERF-009 addendum: canonical Jaeger compare pair (documented)
@@ -204,7 +204,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 |---|---|
 | **Problem** | Claim analysis **~10–12s** under load; subprocess-per-request import cost. |
 | **Outcome** | **Resolved:** Warm analyzer on **:8766**; p95 **~1.5s**; traces **~154–708ms** warm. |
-| **Artifacts** | [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md) · [python-import-bottleneck](investigations/postmortems/python-import-bottleneck.md) · [latency-investigation](investigations/latency-investigation/README.md) |
+| **Artifacts** | [ADR-004](archive/decisions/adrs/ADR-004-long-running-analyzer.md) · [python-import-bottleneck](investigations/postmortems/python-import-bottleneck.md) · [latency-investigation](investigations/latency-investigation/README.md) |
 
 ### Investigations — backlog / planned
 
@@ -227,7 +227,7 @@ System design, ADRs, observability model, evolution narrative.
 | | |
 |---|---|
 | **Decision** | Replace subprocess analyze with persistent `analyzer_service` (:8766). |
-| **Artifacts** | [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md) · [architecture-evolution.md](archive/architecture-c4/architecture-evolution.md) |
+| **Artifacts** | [ADR-004](archive/decisions/adrs/ADR-004-long-running-analyzer.md) · [architecture-evolution.md](archive/architecture-c4/architecture-evolution.md) |
 
 #### Detailed trace profile by default (documented)
 
@@ -308,7 +308,7 @@ This repository and lab workspace.
 
 | | |
 |---|---|
-| **Artifacts** | [cxr-lab.code-workspace](cxr-lab.code-workspace) · [lab-workflow.mmd](architecture/diagrams/lab-workflow.mmd) |
+| **Artifacts** | [cxr-lab.code-workspace](cxr-lab.code-workspace) · [lab-workflow.mmd](archive/architecture-c4/diagrams/lab-workflow.mmd) |
 
 ---
 
