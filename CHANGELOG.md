@@ -44,6 +44,15 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Performance & load — LOAD-003 arc (2026-06)
 
+#### 2026-06-23 — PERF-009 addendum: canonical Jaeger compare pair (documented)
+
+| | |
+|---|---|
+| **Problem** | PR #31 merged before reviewer walkthrough screenshots were in-repo; medians alone did not show the **pre-handler wait gap** as clearly as a single fast/slow pair. |
+| **Finding** | Same load second: fast trace `fd42f1c` **40.7 ms** vs slow `f541546` **824 ms**. Slow trace: `fetch` **818 ms**, `analyze_request` **~57 ms** starting **~652 ms** in → **~649 ms** client wait before handler work. Analyzer stages stay short; OBS-003 SQL errors are inside that short window, not the gap. |
+| **Outcome** | **Documented** — visual evidence in PERF-009 § canonical pair; screenshots in `evidence/perf009/`. |
+| **Artifacts** | [PERF-009 § visual evidence](docs/PERF-009-jaeger-tail-latency.md#visual-evidence--canonical-fast-vs-slow-pair-reviewer-walkthrough) · [failures Arc 5](failures/README.md) · follow-up PR after #31 |
+
 #### 2026-06-22 — OBS-003: shared SQL connection busy under concurrent analyze (resolved)
 
 | | |
@@ -59,8 +68,8 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 |---|---|
 | **Problem** | PERF-008 rejected inflight KEDA but did not explain **why p95 climbs** (~150 ms → ~800 ms) while p50 stays low. |
 | **Method** | Jaeger fast (80–250 ms) vs slow (600–1200 ms) `POST` traces; 3+3 per PERF-008 Experiment A and B helm profiles; replay @200 users (original gate traces not in Jaeger retention). |
-| **Outcome** | **Resolved:** Tail dominated by **HTTP/client wait** (UI `fetch` → analyzer, ~+565–617 ms median slow−fast). Analyzer `context_builder`/policy/archetype secondary (+30–40 ms). **B vs A:** same slow-span pattern. |
-| **Artifacts** | [PERF-009 doc](docs/PERF-009-jaeger-tail-latency.md) · [evidence/perf009/](investigations/kubernetes-analyzer-saturation/evidence/perf009/) · `cxr-ops-lab/scripts/perf009-jaeger-attribution.sh` |
+| **Outcome** | **Resolved:** Tail dominated by **HTTP/client wait** (UI `fetch` → analyzer, ~+565–617 ms median slow−fast). Confirmed on canonical pair `fd42f1c` (41 ms) vs `f541546` (824 ms): **~649 ms** pre-handler wait, **~57 ms** analyzer work. Analyzer `context_builder`/policy/archetype secondary (+30–40 ms). **B vs A:** same slow-span pattern. |
+| **Artifacts** | [PERF-009 doc](docs/PERF-009-jaeger-tail-latency.md) · [evidence/perf009/](investigations/kubernetes-analyzer-saturation/evidence/perf009/) (JSON + compare screenshots) · `cxr-ops-lab/scripts/perf009-jaeger-attribution.sh` |
 
 #### 2026-06-22 — PERF-008 Experiment B (in-flight/pod KEDA) (mitigated)
 

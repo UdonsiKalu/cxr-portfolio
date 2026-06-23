@@ -133,6 +133,40 @@ Full URLs in [exp-b-jaeger-attribution.json](../investigations/kubernetes-analyz
 
 ---
 
+## Visual evidence — canonical fast vs slow pair (reviewer walkthrough)
+
+During manual Jaeger review (same load window, **2026-06-22 ~11:28 local**), a **side-by-side Compare** of one fast and one slow `POST` trace makes the tail mechanism obvious without aggregating medians.
+
+| | Fast (p50-ish) | Slow (p95-ish) |
+|---|----------------|----------------|
+| **Trace ID** | `fd42f1c` (Jaeger UI prefix; search in lab) | `f541546` (Jaeger UI prefix; search in lab) |
+| **E2E** | **40.7 ms** | **824 ms** |
+| **`fetch POST http://cxr-analyzer`** | ~36 ms (aligned with handler) | **818 ms** (starts ~3 ms into E2E) |
+| **`analyze_request`** | ~30 ms | **~57 ms**, starts **~652 ms** after trace start |
+| **Pre-handler gap** | ~0 ms | **~649 ms** (`fetch` open before analyzer work begins) |
+
+![Jaeger Compare — fast vs slow POST at same second](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-compare-fast-vs-slow-post-20260622.png)
+
+**Fast trace** — `fetch` and `analyze_request` overlap; almost all E2E is real analyzer work:
+
+![Fast trace waterfall — 40.7 ms E2E](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-fast-trace-fd42f1c-41ms-20260622.png)
+
+**Slow trace** — E2E is almost entirely **waiting on the open HTTP client**; handler work stays short once it starts:
+
+![Slow trace waterfall — 824 ms E2E](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-slow-trace-f541546-824ms-20260622.png)
+
+![Slow trace — fetch 818 ms, analyze_request starts at ~652 ms](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-slow-fetch-wait-gap-20260622.png)
+
+**Takeaways from this pair:**
+
+1. **Tail = minority of requests** where the UI keeps `fetch` open while the analyzer **starts the handler late** — not a uniform slowdown of kernel stages.
+2. **Analyzer work stays ~30–60 ms** even on the 824 ms trace; the **~649 ms gap** is client-visible queue/wait before `analyze_request`.
+3. **OBS-003 policy SQL errors** (when present) occur **inside** the short analyzer window — they pollute trace badges but **do not explain** the pre-handler wait gap. Treat SQL concurrency and fetch-wait tail as **separate** findings.
+
+Screenshots: [evidence/perf009/](../investigations/kubernetes-analyzer-saturation/evidence/perf009/).
+
+---
+
 ## Attribution verdict
 
 | Hypothesis | Result |
