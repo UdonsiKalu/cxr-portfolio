@@ -135,6 +135,12 @@ Backpressure metrics were visible but did not predict stability better than p95 
 
 **Tail attribution ([PERF-009](../docs/PERF-009-jaeger-tail-latency.md)):** Jaeger fast vs slow comparison @200 users — **HTTP/client wait** on UI→analyzer `fetch` accounts for most of the ~650 ms p95 tail; analyzer `context_builder` / policy are secondary. Experiment B did not change the slow-span pattern.
 
+**Canonical pair (2026-06-22 ~11:28):** Compare `fd42f1c` (**40.7 ms** E2E, p50-ish) vs `f541546` (**824 ms**, p95-ish) — same `POST` pipeline, same second. Slow trace keeps `fetch` open **~818 ms** while `analyze_request` starts **~652 ms** late and runs only **~57 ms** → **~649 ms pre-handler wait**, not slow kernel/LLM.
+
+![Jaeger Compare — fast vs slow POST](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-compare-fast-vs-slow-post-20260622.png)
+
+![Slow trace — fetch wait gap before analyze_request](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-slow-fetch-wait-gap-20260622.png)
+
 **Jaeger “2 Errors” on slow traces ([OBS-003](https://github.com/UdonsiKalu/cxr-portfolio/issues/33)):** While reviewing PERF-009 waterfalls, many ~800 ms `POST` traces showed **ERROR** on `context.7_policy` / `context.7_policy.sql` — not LLM or missing spans. Root cause: **one shared `pyodbc` connection** per analyzer pod with **up to 4 concurrent `/analyze` handlers** (`MAX_CONCURRENT=4`). Error text: `Connection is busy with results for another command`. Requests often still returned HTTP 200 (context layer catches and falls back), but traces were polluted and policy SQL could fail under load.
 
 **Fix:** Thread-safe `_db_cursor()` lock in `ContextCollector` (`cxr_kernel_v3_2_integrated.py`); image `cxr-analyzer:perf009-sql` in lab. After deploy, fresh Jaeger windows show **0 policy span errors** @100 users.
