@@ -137,7 +137,7 @@ Backpressure metrics were visible but did not predict stability better than p95 
 
 **Tail attribution ([PERF-009](../investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md)):** Jaeger fast vs slow comparison @200 users — **HTTP/client wait** on UI→analyzer `fetch` accounts for most of the ~650 ms p95 tail; analyzer `context_builder` / policy are secondary. Experiment B did not change the slow-span pattern.
 
-**Canonical pair (2026-06-22 ~11:28):** Compare `fd42f1c` (**40.7 ms** E2E, p50-ish) vs `f541546` (**824 ms**, p95-ish) — same `POST` pipeline, same second. Slow trace keeps `fetch` open **~818 ms** while `analyze_request` starts **~652 ms** late and runs only **~57 ms** → **~649 ms pre-handler wait**, not slow kernel/LLM. See [PERF-009 study](../investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md#visual-evidence--canonical-fast-vs-slow-pair-reviewer-walkthrough) for waterfall screenshots (Jaeger Compare table is not exported — too compressed for readers).
+**Canonical pair (2026-06-22 ~11:28):** Compare `fd42f1c` (**40.7 ms** E2E, p50-ish) vs `f541546` (**824 ms**, p95-ish) — same `POST` pipeline, same second. Slow trace keeps `fetch` open **~818 ms** while `analyze_request` starts **~652 ms** late and runs only **~57 ms** → **~649 ms pre-handler wait**, not slow kernel/LLM. See [PERF-009 walkthrough](../investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md#walkthrough--one-fast-one-slow-trace) for waterfall screenshots.
 
 ![Slow trace — fetch wait gap before analyze_request](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-slow-fetch-wait-gap-20260622.png)
 
@@ -178,7 +178,7 @@ Quick lookup for reviewers who already know the arc. Files live in-repo; gate JS
 | Jun 18 | Post-PERF-003 ramp unstable | [load-20260618-064836.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-064836.csv) |
 | Jun 19 | GATE-002 **KEDA + Helm grid** (11/12 pass) | [GATE-002 study](../investigations/kubernetes-analyzer-saturation/studies/GATE-002-keda-helm-grid-study.md) · [result-c1](../investigations/kubernetes-analyzer-saturation/results/tuner/result-c1-20260619-080505.json) |
 | Jun 21–22 | PERF-008 B rejected | [PERF-008 doc](../investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) |
-| Jun 22 | OBS-003: shared SQL connection busy (`context.7_policy` Jaeger errors) | [PERF-009 doc](../investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md#jaeger-trace-errors-sql-concurrency) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) |
+| Jun 22 | OBS-003: shared SQL connection busy (`context.7_policy` Jaeger errors) | [PERF-009 § OBS-003](../investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md#obs-003--jaeger-sql-errors-separate-finding) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) |
 | — | Grafana screenshot catalog | [evidence/failures/](../investigations/kubernetes-analyzer-saturation/evidence/failures/README.md), [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) |
 
 ---
