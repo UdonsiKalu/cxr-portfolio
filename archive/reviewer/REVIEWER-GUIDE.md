@@ -13,7 +13,7 @@ Use this checklist to evaluate CXR as a **complete engineering portfolio**: arch
 | **Problem framing** | [my-impact.md](../archive/meta/my-impact.md), investigation READMEs (Question / Hypothesis) |
 | **Methodology** | Locust load tests, Jaeger traces, K8 metrics CSV, automated gates |
 | **Root-cause analysis** | Postmortems, OBS-001 run doc, latency investigation |
-| **Architectural decisions** | [ADRs](../archive/decisions/adrs/) |
+| **Architectural decisions** | [ADRs](../architecture/adrs/) |
 | **Iteration & mistakes** | [CHANGELOG](../CHANGELOG.md), [failures/](../failures/README.md) |
 | **Operational practice** | [operations/](../operations/README.md), SLO doc, CI/K8 investigations |
 | **Reproducibility** | Scripts in `cxr-ops-lab` (linked), demo runbook, tuner JSON summaries |
@@ -31,9 +31,9 @@ Use this checklist to evaluate CXR as a **complete engineering portfolio**: arch
 
 ### 2. Architecture & decisions
 
-- [ ] [archive/decisions/README.md](../archive/decisions/README.md) — system context  
+- [ ] [architecture/README.md](../architecture/README.md) — system context  
 - [ ] [architecture-evolution.md](../archive/architecture-c4/architecture-evolution.md) — how design changed  
-- [ ] ADRs (minimum): [ADR-004](../archive/decisions/adrs/ADR-004-long-running-analyzer.md), [ADR-002](../archive/decisions/adrs/ADR-002-opentelemetry.md), [ADR-005](../archive/decisions/adrs/ADR-005-kubernetes-roadmap.md)  
+- [ ] ADRs (minimum): [ADR-004](../architecture/adrs/ADR-004-long-running-analyzer.md), [ADR-002](../architecture/adrs/ADR-002-opentelemetry.md), [ADR-005](../architecture/adrs/ADR-005-kubernetes-roadmap.md)  
 - [ ] Full index: [decisions/README.md](decisions/README.md)
 
 ### 3. Investigations (performance & observability)

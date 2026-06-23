@@ -7,7 +7,7 @@
 | **Component** | One warm FastAPI analyzer `:8766` |
 | **Tools** | Locust (staged GUI + headless) · Jaeger |
 | **Environment** | Local dev (`cxr up`, `ANALYZER_URL` → `:8766`) |
-| **Related** | [PERF-004 cold vs warm](../cold-vs-warm-analyzer/) · [load-testing](../load-testing/) · [ADR-004](../../archive/decisions/adrs/ADR-004-long-running-analyzer.md) |
+| **Related** | [PERF-004 cold vs warm](../cold-vs-warm-analyzer/) · [load-testing](../load-testing/) · [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md) |
 
 **PDF guide (full template + code + evidence):** [LOAD-001-capacity-testing-guide.pdf](./LOAD-001-capacity-testing-guide.pdf) · [Markdown source](./LOAD-001-capacity-testing-guide.md)
 

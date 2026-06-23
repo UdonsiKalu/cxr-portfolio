@@ -13,7 +13,7 @@ A **single-page arc** of how the CXR engineering program evolved. For dated deta
 | **Problem** | POST `/api/claim-studio/analyze` averaged **~10–12s** under Locust; unclear where time went. |
 | **Method** | OpenTelemetry + Jaeger on UI and Python; Locust at `:8251`. |
 | **Finding** | Subprocess-per-request paid **~7–8s** import/initialize on every call; kernel work was ~1–2s once warm. |
-| **Decision** | Long-running FastAPI analyzer on **:8766** ([ADR-004](../archive/decisions/adrs/ADR-004-long-running-analyzer.md)). |
+| **Decision** | Long-running FastAPI analyzer on **:8766** ([ADR-004](../architecture/adrs/ADR-004-long-running-analyzer.md)). |
 | **Outcome** | Locust p95 **~1.5s**; warm Jaeger traces **~154–708ms**. |
 
 **Read:** [latency investigation](../investigations/latency-investigation/) · [postmortem: python import](../investigations/postmortems/python-import-bottleneck.md)

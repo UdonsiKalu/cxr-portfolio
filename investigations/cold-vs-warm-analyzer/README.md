@@ -6,7 +6,7 @@
 | **Component** | FastAPI analyzer `:8766` |
 | **Tools** | Jaeger · Locust · `curl /health` |
 | **Environment** | Local dev (`cxr up`) |
-| **Related** | [PERF-001 latency investigation](../latency-investigation/) · [ADR-004](../../archive/decisions/adrs/ADR-004-long-running-analyzer.md) |
+| **Related** | [PERF-001 latency investigation](../latency-investigation/) · [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md) |
 
 ---
 
