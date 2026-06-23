@@ -2,7 +2,7 @@
 
 Automated **KEDA + Helm grid search** under analyze-only saturation (OBS-comparable).
 
-**Full study write-up:** [docs/GATE-002-keda-helm-grid-study.md](../../../../docs/GATE-002-keda-helm-grid-study.md) — first KEDA apply, 12 candidates, grid dimensions, pass/fail table @ 200 users.
+**Full study write-up:** [../../studies/GATE-002-keda-helm-grid-study.md](../../studies/GATE-002-keda-helm-grid-study.md) — first KEDA apply, 12 candidates, grid dimensions, pass/fail table @ 200 users.
 
 ## Canonical public evidence (2026-06-19)
 

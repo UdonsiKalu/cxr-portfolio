@@ -1,6 +1,6 @@
 # PERF-009 — Jaeger tail latency evidence
 
-Attribution replay for [PERF-009](../../../../docs/PERF-009-jaeger-tail-latency.md) (PERF-008 Experiment A vs B helm profiles).
+Attribution replay for [PERF-009](../../studies/PERF-009-jaeger-tail-latency.md) (PERF-008 Experiment A vs B helm profiles).
 
 | File | Experiment | Contents |
 |------|------------|----------|

@@ -30,5 +30,5 @@ Each record typically covers: **context**, **decision**, **consequences**, and *
 ## Related
 
 - [Architecture overview](../architecture/README.md)  
-- [Architecture evolution](../architecture/architecture-evolution.md)  
+- [Architecture evolution](../archive/architecture-c4/architecture-evolution.md)  
 - [Development history](history.md)

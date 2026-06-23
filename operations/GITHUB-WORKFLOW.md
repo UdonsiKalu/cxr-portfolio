@@ -9,7 +9,7 @@ How **cxr-portfolio** uses GitHub for honest DevOps portfolio work — planning,
 | Surface | URL | Visibility |
 |---------|-----|------------|
 | Repository | https://github.com/UdonsiKalu/cxr-portfolio | **Public** |
-| Documentation | `docs/README.md` (this tree) | Public with repo |
+| Documentation | [README.md](../README.md) | Public with repo |
 | Issues | https://github.com/UdonsiKalu/cxr-portfolio/issues | **Public** |
 | Pull requests | https://github.com/UdonsiKalu/cxr-portfolio/pulls | **Public** |
 | Discussions | https://github.com/UdonsiKalu/cxr-portfolio/discussions | **Public** (enabled on repo) |
@@ -71,7 +71,7 @@ gh project edit <NUMBER> --owner UdonsiKalu --visibility public
 |-----------|--------|
 | **Autoscaling & load gates** | LOAD-003, OBS-001, GATE-002, exporter metrics, ops-lab publish, GIT-001 |
 | **Phase 2 — investigations backlog** | All items in `investigations/planned/` → GitHub Issues #6–#23 |
-| **PERF-008** | [Queue / backpressure autoscaling](../docs/PERF-008-queue-depth-autoscaling.md) — branch `feature/perf-008-queue-backpressure` |
+| **PERF-008** | [Queue / backpressure autoscaling](../investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) — branch `feature/perf-008-queue-backpressure` |
 | *(add later)* **Observability** | OTEL, Jaeger, trace completeness |
 | *(add later)* **Open source readiness** | LICENSE, ops-lab public, Pages |
 

@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Performance & load — LOAD-003 arc (2026-06)
 
+#### 2026-06-23 — Portfolio layout: DevOps-first directories (documented)
+
+| | |
+|---|---|
+| **Problem** | PERF-009 touched five+ top-level trees (`docs/`, `failures/`, `evidence/`, `CHANGELOG`, workflow) — too many places per study. |
+| **Outcome** | **Documented:** Study write-ups co-located under `investigations/kubernetes-analyzer-saturation/studies/`; `operations/GITHUB-WORKFLOW.md`; `demo/` and reviewer indexes → `archive/`; C4 docs → `archive/architecture-c4/`; keep `architecture/adrs/` only. |
+| **Artifacts** | [README.md](README.md) · [studies/README.md](investigations/kubernetes-analyzer-saturation/studies/README.md) |
+
 #### 2026-06-23 — PERF-009 addendum: canonical Jaeger compare pair (documented)
 
 | | |
@@ -51,7 +59,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | **Problem** | PR #31 merged before reviewer walkthrough screenshots were in-repo; medians alone did not show the **pre-handler wait gap** as clearly as a single fast/slow pair. |
 | **Finding** | Same load second: fast trace `fd42f1c` **40.7 ms** vs slow `f541546` **824 ms**. Slow trace: `fetch` **818 ms**, `analyze_request` **~57 ms** starting **~652 ms** in → **~649 ms** client wait before handler work. Analyzer stages stay short; OBS-003 SQL errors are inside that short window, not the gap. |
 | **Outcome** | **Documented** — visual evidence in PERF-009 § canonical pair; screenshots in `evidence/perf009/`. |
-| **Artifacts** | [PERF-009 § visual evidence](docs/PERF-009-jaeger-tail-latency.md#visual-evidence--canonical-fast-vs-slow-pair-reviewer-walkthrough) · [failures Arc 5](failures/README.md) · follow-up PR after #31 |
+| **Artifacts** | [PERF-009 § visual evidence](investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md#visual-evidence--canonical-fast-vs-slow-pair-reviewer-walkthrough) · [failures Arc 5](failures/README.md) · follow-up PR after #31 |
 
 #### 2026-06-22 — OBS-003: shared SQL connection busy under concurrent analyze (resolved)
 
@@ -60,7 +68,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | **Problem** | Jaeger slow traces showed **2 Errors** on `context.7_policy` / `context.7_policy.sql` during PERF-009 review — `pyodbc.Error: Connection is busy with results for another command`. |
 | **Cause** | One **shared** SQL connection per analyzer pod; **4 concurrent** `/analyze` handlers (`MAX_CONCURRENT=4`) issued overlapping cursors via `ContextCollector`. |
 | **Outcome** | **Resolved:** `threading.Lock` + `_db_cursor()` in `ContextCollector`; lab image `cxr-analyzer:perf009-sql`. Verified 0 policy span errors in fresh Jaeger window @100 users. |
-| **Artifacts** | [PERF-009 § SQL errors](docs/PERF-009-jaeger-tail-latency.md#jaeger-trace-errors-sql-concurrency) · [failures Arc 5](failures/README.md) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · `cxr-saas` / `cxr-ops-lab` PRs |
+| **Artifacts** | [PERF-009 § SQL errors](investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md#jaeger-trace-errors-sql-concurrency) · [failures Arc 5](failures/README.md) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · `cxr-saas` / `cxr-ops-lab` PRs |
 
 #### 2026-06-22 — PERF-009 Jaeger tail latency attribution (resolved)
 
@@ -69,7 +77,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | **Problem** | PERF-008 rejected inflight KEDA but did not explain **why p95 climbs** (~150 ms → ~800 ms) while p50 stays low. |
 | **Method** | Jaeger fast (80–250 ms) vs slow (600–1200 ms) `POST` traces; 3+3 per PERF-008 Experiment A and B helm profiles; replay @200 users (original gate traces not in Jaeger retention). |
 | **Outcome** | **Resolved:** Tail dominated by **HTTP/client wait** (UI `fetch` → analyzer, ~+565–617 ms median slow−fast). Confirmed on canonical pair `fd42f1c` (41 ms) vs `f541546` (824 ms): **~649 ms** pre-handler wait, **~57 ms** analyzer work. Analyzer `context_builder`/policy/archetype secondary (+30–40 ms). **B vs A:** same slow-span pattern. |
-| **Artifacts** | [PERF-009 doc](docs/PERF-009-jaeger-tail-latency.md) · [evidence/perf009/](investigations/kubernetes-analyzer-saturation/evidence/perf009/) (JSON + compare screenshots) · `cxr-ops-lab/scripts/perf009-jaeger-attribution.sh` |
+| **Artifacts** | [PERF-009 doc](investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md) · [evidence/perf009/](investigations/kubernetes-analyzer-saturation/evidence/perf009/) (JSON + compare screenshots) · `cxr-ops-lab/scripts/perf009-jaeger-attribution.sh` |
 
 #### 2026-06-22 — PERF-008 Experiment B (in-flight/pod KEDA) (mitigated)
 
@@ -78,7 +86,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | **Problem** | Does scaling on **analyzer in-flight per pod** beat **Locust E2E p95** for stability and tail latency? |
 | **Method** | Same cumulative ramp as A (`analyzer_saturation`, 15→200); KEDA on `sum(inflight)/replicas > 2` + CPU; image `perf008`, lab `MAX_CONCURRENT=4`. |
 | **Outcome** | **Mitigated:** Scaled **2→8** replicas but **GATE FAIL @ 200 users** — **115.8 failures/s** (`status 0` connectivity). **Decision:** keep **p95 + CPU** for KEDA; use inflight/wait for diagnosis only. |
-| **Artifacts** | [PERF-008 doc](docs/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` |
+| **Artifacts** | [PERF-008 doc](investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` |
 
 #### 2026-06-21 — PERF-008 Experiment A (p95 KEDA) + OBS-002 fix (resolved)
 
@@ -87,7 +95,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | **Problem** | OBS-002: Grafana/CSV showed **analyzer_replicas = 0** after KEDA replaced HPA. Need honest A/B: p95 vs backpressure autoscaling signals. |
 | **Method** | Instrument analyzer `/metrics` (inflight, queue wait); fix exporter to read Deployment readyReplicas; cumulative gate; Experiment A = KEDA on `cxr_locust_p95_ms`. |
 | **Outcome** | **Resolved:** **GATE PASS @ 200** — 101 RPS, p95 **790 ms**, **0 failures/s**, replicas **2→8**. OBS-002 replica truth validated. |
-| **Artifacts** | [PERF-008 doc](docs/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-a-20260621-184452/` |
+| **Artifacts** | [PERF-008 doc](investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) · `cxr-ops-lab/evidence/perf008/exp-a-20260621-184452/` |
 
 #### 2026-06-19 — GATE-002: first KEDA apply + 12-point Helm grid (11/12 pass) (resolved)
 
@@ -96,7 +104,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | **Problem** | CPU-only HPA produced thrash and collapses; manual Grafana tuning was not reproducible. Needed first controlled **KEDA** deployment and a searchable **Helm cap** recipe under OBS-comparable load. |
 | **Method** | Install KEDA (`11-keda-install.sh`); replace analyzer HPA with `ScaledObject` (CPU 70% + `cxr_locust_p95_ms` > 2000 ms). **`k8-load-tuner.sh`** grid: 12 candidates (analyzer max 6/8/10 × min 1/2 × UI max 4/5), cumulative ramp 15→200, score via `k8-load-gate.sh`. |
 | **Outcome** | **Resolved:** **11/12 passed.** **Winner candidate 4** — analyzer `maxReplicas=8`, `minReplicas=1`, UI `maxReplicas=4`, KEDA p95 2000 ms — **102 RPS**, p95 **~820ms**, **0 failures/s** @ 200. **Only failure:** candidate 1 (UI max=5, min=1) — **116 failures/s**. Lab baseline for PERF-008. |
-| **Artifacts** | [GATE-002 KEDA grid study](docs/GATE-002-keda-helm-grid-study.md) · [tuner-summary-20260619-080505.json](investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) · [failures Arc 4](failures/README.md) · [SLO.md](reliability/SLO.md) |
+| **Artifacts** | [GATE-002 KEDA grid study](investigations/kubernetes-analyzer-saturation/studies/GATE-002-keda-helm-grid-study.md) · [tuner-summary-20260619-080505.json](investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) · [failures Arc 4](failures/README.md) · [SLO.md](reliability/SLO.md) |
 
 #### 2026-06-18 — Post-fix ramp still unstable at 200 users (mitigated)
 
@@ -219,7 +227,7 @@ System design, ADRs, observability model, evolution narrative.
 | | |
 |---|---|
 | **Decision** | Replace subprocess analyze with persistent `analyzer_service` (:8766). |
-| **Artifacts** | [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md) · [architecture-evolution.md](architecture/architecture-evolution.md) |
+| **Artifacts** | [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md) · [architecture-evolution.md](archive/architecture-c4/architecture-evolution.md) |
 
 #### Detailed trace profile by default (documented)
 
@@ -269,7 +277,7 @@ Local walkthroughs and stakeholder-facing material.
 
 | Date | Entry |
 |------|--------|
-| — | *Add demo session notes here* — [demo/RUN.md](demo/RUN.md) |
+| — | *Add demo session notes here* — [archive/demo/RUN.md](archive/demo/RUN.md) |
 
 ---
 

@@ -2,79 +2,61 @@
 
 <!-- portfolio -->
 
-**CXR** (Claim eXamination & Reasoning) is a healthcare claims analysis system used as the subject of real engineering work—not a product demo repo.
-
-This portfolio documents **platform engineering, DevOps, and SRE-style practice**: architecture, observability, reliability, performance investigations, and operations. Evidence comes from development environments with **synthetic data**, not production workloads.
+**CXR** (Claim eXamination & Reasoning) — healthcare claims analysis used as the subject of **platform engineering, DevOps, and SRE-style** lab work. Synthetic data only; not production.
 
 ---
 
-## For reviewers and academic advisors
+## DevOps workflow (maintainers)
 
-**Start here:** **[docs/README.md](docs/README.md)** — entry point with reading paths (15 min / 45 min / half day).
+| When you close a study | Update |
+|------------------------|--------|
+| **Required** | Study write-up under `investigations/<name>/studies/` · `evidence/` · [CHANGELOG.md](CHANGELOG.md) |
+| **Milestone only** | [failures/README.md](failures/README.md) arc summary |
+| **Rarely** | [architecture/adrs/](architecture/adrs/) · [reliability/SLO.md](reliability/SLO.md) |
 
-| Element | Link |
-|---------|------|
-| Reviewer checklist | [docs/REVIEWER-GUIDE.md](docs/REVIEWER-GUIDE.md) |
-| Development history (curated) | [docs/history.md](docs/history.md) |
-| Full changelog | [CHANGELOG.md](CHANGELOG.md) |
-| Investigations | [docs/investigations/README.md](docs/investigations/README.md) |
-| Decisions (ADRs) | [docs/decisions/README.md](docs/decisions/README.md) |
-| Postmortems | [docs/postmortems/README.md](docs/postmortems/README.md) |
-| Failures (honest index) | [failures/README.md](failures/README.md) |
-| SLOs & reliability | [reliability/SLO.md](reliability/SLO.md) |
-| Impact summary | [archive/meta/my-impact.md](archive/meta/my-impact.md) |
-| Disclaimer | [archive/DISCLAIMER.md](archive/DISCLAIMER.md) |
-| Going public | [docs/GO-PUBLIC.md](docs/GO-PUBLIC.md) |
-| GitHub workflow (Issues, PRs) | [docs/GITHUB-WORKFLOW.md](docs/GITHUB-WORKFLOW.md) |
+**GitHub:** [operations/GITHUB-WORKFLOW.md](operations/GITHUB-WORKFLOW.md) — Issues, PRs, Kanban.
+
+**LOAD-003 arc (current):** [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-analyzer-saturation/studies/) — GATE-002, PERF-008, PERF-009 beside evidence.
 
 ---
 
-## Purpose
+## Repository layout
 
-This repository is an **engineering portfolio and documentation repository**. It is not the full CXR product codebase. Companion implementation repos: `cxr-ops-lab`, `cxr-ui-rehearsal`, `cxrlabs-dev/claim_analysis_tools` (linked from investigations and operations docs).
-
----
-
-## Repository structure
-
-- **[docs/](docs/README.md)** — reviewer hub (start here for external review)
-- **[CHANGELOG.md](CHANGELOG.md)** — project-wide audit log
-- **[architecture/](architecture/README.md)** — system design, ADRs, evolution
-- **[investigations/](investigations/README.md)** — performance, load, reliability studies
-- **[failures/](failures/README.md)** — failed experiments and reverted paths
-- **[reliability/](reliability/SLO.md)** — SLIs, SLOs, load gates
-- **[operations/](operations/README.md)** — Docker, CI/CD, Kubernetes
-- **[demo/](demo/README.md)** — local demonstration walkthroughs
+| Path | Role |
+|------|------|
+| [investigations/](investigations/README.md) | Hypothesis, method, **studies**, evidence |
+| [operations/](operations/README.md) | CI/CD, stack ops, **GitHub workflow** |
+| [CHANGELOG.md](CHANGELOG.md) | Dated audit log (one entry per landed study) |
+| [failures/](failures/README.md) | Honest index of rejected paths (arc rollups) |
+| [reliability/SLO.md](reliability/SLO.md) | SLIs and load gates |
+| [architecture/adrs/](architecture/README.md) | Stable decision records |
+| [archive/](archive/README.md) | Reviewer pack, demo walkthroughs, C4 diagrams |
 
 ---
 
-## Featured work (two arcs)
+## Featured arcs
 
-### Latency — subprocess to warm analyzer
+### Latency — subprocess → warm analyzer
 
-Claim analysis averaged **~10–12s** under load. OpenTelemetry + Jaeger showed **Python import cost per request**. Migration to a long-running analyzer on **:8766** dropped Locust p95 to **~1.5s**.
+~10–12s analyze under load → Jaeger showed Python import per request → long-running analyzer on **:8766** → p95 ~1.5s.
 
-- [latency investigation](investigations/latency-investigation/)
-- [postmortem: python import bottleneck](investigations/postmortems/python-import-bottleneck.md)
-- [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md)
+- [latency investigation](investigations/latency-investigation/) · [postmortem](investigations/postmortems/python-import-bottleneck.md) · [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md)
 
-### Capacity — Kubernetes saturation & GATE-002
+### Capacity — K8 saturation, GATE-002, PERF-008/009
 
-LOAD-003 + OBS-001 showed **p95 ~9s** at 200 users with **low node CPU** (autoscaling/scheduling, not host exhaustion). Automated Helm tuner (**GATE-002**, 2026-06-19): **11/12** recipes passed; winner **~102 RPS**, **0 failures**, p95 **~820ms** @ 200 synthetic analyze users.
-
-- [kubernetes-analyzer-saturation](investigations/kubernetes-analyzer-saturation/)
-- [OBS-001 run doc](investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md)
-- [GATE-002 tuner winner (JSON)](investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json)
+- [LOAD-003](investigations/kubernetes-analyzer-saturation/) · [OBS-001](investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md)
+- [GATE-002](investigations/kubernetes-analyzer-saturation/studies/GATE-002-keda-helm-grid-study.md) · [PERF-008](investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) · [PERF-009](investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md)
 
 ---
 
-## Engineering lab workspace (optional)
+## For reviewers (optional path)
 
-For hands-on reproduction: [demo/RUN.md](demo/RUN.md), [cxr-lab.code-workspace](cxr-lab.code-workspace), Jupyter notebooks under `investigations/`. Reviewers doing **document-only** review can skip this section.
+Academic / hiring review: [archive/reviewer/REVIEWER-GUIDE.md](archive/reviewer/REVIEWER-GUIDE.md) · [history](archive/reviewer/history.md) · [impact summary](archive/meta/my-impact.md).
+
+Hands-on lab: `cxr-ops-lab` + [archive/demo/RUN.md](archive/demo/RUN.md).
 
 ---
 
-## Navigate investigations
+## Companion repos
 
-- Markdown index: [investigations/README.md](investigations/README.md)
-- Jupyter: `investigations/README.ipynb` (local lab)
+`cxr-ops-lab` (deploy/gates) · `cxr-ui-rehearsal` (UI) · `cxrlabs-dev/claim_analysis_tools` (analyzer)

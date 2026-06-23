@@ -34,8 +34,9 @@ jobs:
 
       - name: Required reviewer paths exist
         run: |
-          test -f docs/README.md
-          test -f docs/REVIEWER-GUIDE.md
+          test -f README.md
+          test -f archive/reviewer/REVIEWER-GUIDE.md
           test -f CHANGELOG.md
           test -f failures/README.md
           test -f reliability/SLO.md
+          test -f operations/GITHUB-WORKFLOW.md

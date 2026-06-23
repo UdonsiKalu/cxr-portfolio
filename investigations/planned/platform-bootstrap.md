@@ -15,7 +15,7 @@ Document reproducible local ops:
 - Health checks (`curl :8766/health`, `warmed: true`)
 - Degraded modes (Qdrant optional, etc.)
 
-See [demo/RUN.md](../../demo/RUN.md) as source material.
+See [archive/demo/RUN.md](../../archive/demo/RUN.md) as source material.
 
 ## Competencies
 

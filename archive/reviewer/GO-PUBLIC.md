@@ -8,10 +8,10 @@ Steps to publish **`cxr-portfolio`** for academic advisors, reviewers, and your 
 
 ### Content readiness
 
-- [ ] [docs/README.md](README.md) — reviewer entry point is accurate  
-- [ ] [docs/REVIEWER-GUIDE.md](REVIEWER-GUIDE.md) — checklist matches repo contents  
+- [ ] [README.md](README.md) — reviewer entry point is accurate  
+- [ ] [archive/reviewer/REVIEWER-GUIDE.md](REVIEWER-GUIDE.md) — checklist matches repo contents  
 - [ ] [CHANGELOG.md](../CHANGELOG.md) — includes GATE-002 / latest milestones  
-- [ ] [docs/history.md](history.md) — curated arc current  
+- [ ] [archive/reviewer/history.md](history.md) — curated arc current  
 - [ ] [failures/README.md](../failures/README.md) — honest failure index  
 - [ ] [reliability/SLO.md](../reliability/SLO.md) — SLO tiers documented  
 - [ ] [archive/DISCLAIMER.md](../archive/DISCLAIMER.md) — synthetic data / not production  
@@ -23,7 +23,7 @@ Steps to publish **`cxr-portfolio`** for academic advisors, reviewers, and your 
 
 - [ ] Remove or gitignore `.ipynb_checkpoints/`  
 - [ ] Do not commit multi-GB CSV dumps — use `.gitignore` under `results/` (summaries + charts only)  
-- [ ] Optional: second-machine check of [demo/RUN.md](../demo/RUN.md) reviewer path
+- [ ] Optional: second-machine check of [archive/demo/RUN.md](../archive/demo/RUN.md) reviewer path
 
 ### Companion repos (optional for reviewers)
 
@@ -66,7 +66,7 @@ gh repo edit UdonsiKalu/cxr-portfolio --visibility public
 
 ## After going public
 
-1. Add to profile README (optional): one paragraph + link to [docs/README.md](README.md)  
+1. Add to profile README (optional): one paragraph + link to [README.md](README.md)  
 2. Share **15-minute path**: [my-impact.md](../archive/meta/my-impact.md) → [history.md](history.md) → ADR-004  
 3. Share **full review path**: [REVIEWER-GUIDE.md](REVIEWER-GUIDE.md)  
 4. Update [PORTFOLIO-STATUS.md](../archive/meta/PORTFOLIO-STATUS.md) — check off go-public items  
@@ -86,7 +86,7 @@ gh repo edit UdonsiKalu/cxr-portfolio --visibility public
 
 | Audience | Entry URL |
 |----------|-----------|
-| Reviewers / advisors | [docs/README.md](README.md) |
+| Reviewers / advisors | [README.md](README.md) |
 | Quick impact summary | [archive/meta/my-impact.md](../archive/meta/my-impact.md) |
 | Full changelog | [CHANGELOG.md](../CHANGELOG.md) |
 | Maintainers | [archive/meta/PORTFOLIO-STATUS.md](../archive/meta/PORTFOLIO-STATUS.md) |

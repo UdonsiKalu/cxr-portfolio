@@ -26,4 +26,4 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for visibility and go-public ch
 
 1. [../README.md](../README.md) — then [latency investigation](../investigations/latency-investigation/)
 2. [investigations/postmortems/python-import-bottleneck.md](../investigations/postmortems/python-import-bottleneck.md)
-3. [demo/RUN.md](../demo/RUN.md)
+3. [archive/demo/RUN.md](../archive/demo/RUN.md)

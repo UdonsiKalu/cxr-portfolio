@@ -6,7 +6,7 @@
 | **Builds on** | [PERF-008](PERF-008-queue-depth-autoscaling.md) Experiment A (p95 KEDA) and B (inflight/pod KEDA) |
 | **Goal** | Attribute **p95 E2E growth** (~150 ms → ~800 ms @ 200 users) to a **span**, not change autoscaling |
 | **Ops scripts** | `cxr-ops-lab/scripts/perf009-jaeger-attribution.sh`, `scripts/lib/perf009_jaeger_extract.py` |
-| **Evidence** | [perf009/](../investigations/kubernetes-analyzer-saturation/evidence/perf009/) |
+| **Evidence** | [perf009/](../evidence/perf009/) |
 
 ---
 
@@ -52,7 +52,7 @@ PERF-009 replay evidence: `cxr-ops-lab/evidence/perf009/exp-a-20260622-092152/`,
 | Policy extraction | `context.7_policy*` sub-spans |
 | LLM / Ollama | `llm_inference*`, `llm.model_request*` |
 
-Compare uses **full 32-char trace IDs** in Jaeger 2.19.0 ([OBS-001 lesson](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md)).
+Compare uses **full 32-char trace IDs** in Jaeger 2.19.0 ([OBS-001 lesson](../evidence/load-observe/RUN-2026-06-17.md)).
 
 ---
 
@@ -100,7 +100,7 @@ Compare uses **full 32-char trace IDs** in Jaeger 2.19.0 ([OBS-001 lesson](../in
 | Slow | `ff08d38c3fa1cda7ef10f008c4104a29` | 1022 |
 | Slow | `c2bf65935b00615902280f3794f9039b` | 591 |
 
-Full URLs in [exp-b-jaeger-attribution.json](../investigations/kubernetes-analyzer-saturation/evidence/perf009/exp-b-jaeger-attribution.json).
+Full URLs in [exp-b-jaeger-attribution.json](../evidence/perf009/exp-b-jaeger-attribution.json).
 
 ### Span table — Experiment B (median of 3 traces)
 
@@ -145,17 +145,17 @@ During manual Jaeger review (same load window, **2026-06-22 ~11:28 local**), a *
 | **`analyze_request`** | ~30 ms | **~57 ms**, starts **~652 ms** after trace start |
 | **Pre-handler gap** | ~0 ms | **~649 ms** (`fetch` open before analyzer work begins) |
 
-![Jaeger Compare — fast vs slow POST at same second](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-compare-fast-vs-slow-post-20260622.png)
+![Jaeger Compare — fast vs slow POST at same second](../evidence/perf009/jaeger-compare-fast-vs-slow-post-20260622.png)
 
 **Fast trace** — `fetch` and `analyze_request` overlap; almost all E2E is real analyzer work:
 
-![Fast trace waterfall — 40.7 ms E2E](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-fast-trace-fd42f1c-41ms-20260622.png)
+![Fast trace waterfall — 40.7 ms E2E](../evidence/perf009/jaeger-fast-trace-fd42f1c-41ms-20260622.png)
 
 **Slow trace** — E2E is almost entirely **waiting on the open HTTP client**; handler work stays short once it starts:
 
-![Slow trace waterfall — 824 ms E2E](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-slow-trace-f541546-824ms-20260622.png)
+![Slow trace waterfall — 824 ms E2E](../evidence/perf009/jaeger-slow-trace-f541546-824ms-20260622.png)
 
-![Slow trace — fetch 818 ms, analyze_request starts at ~652 ms](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-slow-fetch-wait-gap-20260622.png)
+![Slow trace — fetch 818 ms, analyze_request starts at ~652 ms](../evidence/perf009/jaeger-slow-fetch-wait-gap-20260622.png)
 
 **Takeaways from this pair:**
 
@@ -163,7 +163,7 @@ During manual Jaeger review (same load window, **2026-06-22 ~11:28 local**), a *
 2. **Analyzer work stays ~30–60 ms** even on the 824 ms trace; the **~649 ms gap** is client-visible queue/wait before `analyze_request`.
 3. **OBS-003 policy SQL errors** (when present) occur **inside** the short analyzer window — they pollute trace badges but **do not explain** the pre-handler wait gap. Treat SQL concurrency and fetch-wait tail as **separate** findings.
 
-Screenshots: [evidence/perf009/](../investigations/kubernetes-analyzer-saturation/evidence/perf009/).
+Screenshots: [evidence/perf009/](../evidence/perf009/).
 
 ---
 
@@ -229,5 +229,5 @@ python3 scripts/lib/perf009_jaeger_extract.py --experiment A --stamp <STAMP> \
 ## Related
 
 - [PERF-008](PERF-008-queue-depth-autoscaling.md) — KEDA A/B decision
-- [OBS-001 Jaeger run](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) — earlier `context_builder` dominance at higher HPA caps
-- [context-builder optimization (planned)](../investigations/planned/context-builder-optimization.md)
+- [OBS-001 Jaeger run](../evidence/load-observe/RUN-2026-06-17.md) — earlier `context_builder` dominance at higher HPA caps
+- [context-builder optimization (planned)](../../planned/context-builder-optimization.md)
