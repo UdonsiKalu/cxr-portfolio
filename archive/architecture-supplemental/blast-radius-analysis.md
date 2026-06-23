@@ -12,4 +12,4 @@
 
 ## What we do not claim
 
-This is a **local engineering stack**, not multi-tenant SaaS isolation. Blast radius for production K8 is tracked in [future-state-architecture.md](../../architecture/future-state-architecture.md) and [ADR-005](../../architecture/adrs/ADR-005-kubernetes-roadmap.md).
+This is a **local engineering stack**, not multi-tenant SaaS isolation. Blast radius for production K8 is tracked in [future-state-architecture.md](../../archive/architecture-c4/future-state-architecture.md) and [ADR-005](../../architecture/adrs/ADR-005-kubernetes-roadmap.md).

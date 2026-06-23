@@ -79,7 +79,7 @@ http://127.0.0.1:8089 → `http://127.0.0.1:8251`. Start with `cxr up`.
 
 ### Lab workflow {#lab-workflow}
 
-`../architecture/diagrams/lab-workflow.mmd`
+`../archive/architecture-c4/diagrams/lab-workflow.mmd`
 
 ---
 

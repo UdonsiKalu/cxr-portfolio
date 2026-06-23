@@ -32,7 +32,7 @@ Use this checklist to evaluate CXR as a **complete engineering portfolio**: arch
 ### 2. Architecture & decisions
 
 - [ ] [architecture/README.md](../architecture/README.md) — system context  
-- [ ] [architecture-evolution.md](../architecture/architecture-evolution.md) — how design changed  
+- [ ] [architecture-evolution.md](../archive/architecture-c4/architecture-evolution.md) — how design changed  
 - [ ] ADRs (minimum): [ADR-004](../architecture/adrs/ADR-004-long-running-analyzer.md), [ADR-002](../architecture/adrs/ADR-002-opentelemetry.md), [ADR-005](../architecture/adrs/ADR-005-kubernetes-roadmap.md)  
 - [ ] Full index: [decisions/README.md](decisions/README.md)
 
@@ -68,7 +68,7 @@ Index: [postmortems/README.md](postmortems/README.md)
 
 - [ ] [operations/ci-cd.md](../operations/ci-cd.md) — CI investigation  
 - [ ] [kubernetes-deploy](../investigations/kubernetes-deploy/) — K8-001  
-- [ ] [demo/RUN.md](../demo/RUN.md) — runnable stack (optional hands-on)
+- [ ] [archive/demo/RUN.md](../archive/demo/RUN.md) — runnable stack (optional hands-on)
 
 ---
 
@@ -86,7 +86,7 @@ Index: [postmortems/README.md](postmortems/README.md)
 
 Requires local Docker/K8 setup (~1–2 hours). Not required for document-only review.
 
-1. [demo/RUN.md](../demo/RUN.md) — warm stack + Jaeger  
+1. [archive/demo/RUN.md](../archive/demo/RUN.md) — warm stack + Jaeger  
 2. `cxr-ops-lab` — `16-k8-stack-verify.sh`, `k8-load-gate.sh` (see ops-lab `docs/K8-LOAD-GATE.md` on that repo)
 
 ---

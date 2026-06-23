@@ -27,7 +27,7 @@ Rehearsal injects **`traceparent`** on the HTTP call to **`POST http://127.0.0.1
 4. **Search:** Service **`cxr-ui-rehearsal`** · Operation **`POST /api/claim-studio/analyze`** · Lookback **15 min** → **Find Traces**.
 5. Open the latest trace → expand waterfall: rehearsal root → **`fetch POST :8766/analyze`** → analyzer **`analyzer_service.analyze_request`** → kernel spans.
 
-Rehearsal must export traces (`OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4318` in `cxr-ui/.env.local`). See [demo/walkthrough/trace-request.md](../../demo/walkthrough/trace-request.md).
+Rehearsal must export traces (`OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4318` in `cxr-ui/.env.local`). See [demo/walkthrough/trace-request.md](../../archive/demo/walkthrough/trace-request.md).
 
 ---
 

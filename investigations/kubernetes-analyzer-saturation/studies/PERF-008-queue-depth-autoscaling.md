@@ -4,7 +4,7 @@
 |---|---|
 | **Status** | **A/B complete** (2026-06-21 / 2026-06-22) — recommendation below; branches `feature/perf-008-queue-backpressure` |
 | **Depends on** | [OBS-002](https://github.com/UdonsiKalu/cxr-portfolio/issues/2) (replica truth in Grafana/CSV) |
-| **Builds on** | [GATE-002 KEDA + Helm grid](GATE-002-keda-helm-grid-study.md) (candidate 4 baseline) · [OBS-001 run](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) |
+| **Builds on** | [GATE-002 KEDA + Helm grid](GATE-002-keda-helm-grid-study.md) (candidate 4 baseline) · [OBS-001 run](../evidence/load-observe/RUN-2026-06-17.md) |
 | **Ops branch** | `cxr-ops-lab` → `feature/perf-008-queue-backpressure` |
 | **Analyzer branch** | `claim_analysis_tools` → `feature/perf-008-analyzer-metrics` |
 
@@ -48,7 +48,7 @@ Do **not** call Experiment B “queue-depth scaling” unless a bounded queue/se
 
 During LOAD-003 observe runs (June 2026):
 
-1. **E2E p95** (Locust) rises under load while **node CPU stays low** — latency is queueing + per-request work, not host saturation ([OBS-001](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md)).
+1. **E2E p95** (Locust) rises under load while **node CPU stays low** — latency is queueing + per-request work, not host saturation ([OBS-001](../evidence/load-observe/RUN-2026-06-17.md)).
 2. **OBS-002:** After KEDA replaced legacy analyzer HPA, Grafana/CSV showed **`analyzer_replicas = 0`** while pods scaled — exporter read removed HPA objects, not Deployment/ScaledObject truth.
 3. KEDA Experiment A uses **`cxr_locust_p95_ms`** (client E2E) + CPU — may lag analyzer-side backlog visible in Jaeger as **queue wait before `context_builder`**.
 
@@ -135,11 +135,11 @@ PERF-008 panels are in a **single landscape row** (four charts); scrape health s
 
 | Run | Load row | Backpressure row |
 |-----|----------|------------------|
-| Experiment A (PASS) | [load-full](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-load-full.png) | [backpressure](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-backpressure.png) |
-| Experiment B (FAIL) | [load + failures](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-b-load.png) | [KEDA staircase](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-b-backpressure.png) |
-| First A attempt (no `/metrics`) | — | [empty panels](../investigations/kubernetes-analyzer-saturation/evidence/perf008/grafana-perf008-exp-a-backpressure-nodata.png) |
+| Experiment A (PASS) | [load-full](../evidence/perf008/grafana-perf008-exp-a-load-full.png) | [backpressure](../evidence/perf008/grafana-perf008-exp-a-backpressure.png) |
+| Experiment B (FAIL) | [load + failures](../evidence/perf008/grafana-perf008-exp-b-load.png) | [KEDA staircase](../evidence/perf008/grafana-perf008-exp-b-backpressure.png) |
+| First A attempt (no `/metrics`) | — | [empty panels](../evidence/perf008/grafana-perf008-exp-a-backpressure-nodata.png) |
 
-Full index: [evidence/perf008/README.md](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md).
+Full index: [evidence/perf008/README.md](../evidence/perf008/README.md).
 
 ---
 
@@ -276,7 +276,7 @@ python3 scripts/lib/perf008_summarize_run.py --experiment a --dir evidence/perf0
 | **replica collapses (gate)** | **0** | 0 |
 | **max replicas (CSV)** | **8** | **8** |
 | **RPS @ 200 users** | 101.1 | 115.8 (before collapse) |
-| **Grafana evidence** | [exp-a screenshots](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) · `cxr-ops-lab/evidence/perf008/exp-a-20260621-184452/` | [exp-b screenshots](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) · `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` |
+| **Grafana evidence** | [exp-a screenshots](../evidence/perf008/README.md) · `cxr-ops-lab/evidence/perf008/exp-a-20260621-184452/` | [exp-b screenshots](../evidence/perf008/README.md) · `cxr-ops-lab/evidence/perf008/exp-b-20260622-034010/` |
 
 **Checkpoint detail (gate scorer):**
 
@@ -318,6 +318,6 @@ Close [OBS-002](https://github.com/UdonsiKalu/cxr-portfolio/issues/2) when repli
 
 ## Related
 
-- [SLO.md](../reliability/SLO.md) — replica SLI / open OBS-002 action
+- [SLO.md](../../../reliability/SLO.md) — replica SLI / open OBS-002 action
 - [GITHUB #2 OBS-002](https://github.com/UdonsiKalu/cxr-portfolio/issues/2)
 - Ops runbook: `cxr-ops-lab/docs/K8-LOAD-OBSERVE-RUNBOOK.md`

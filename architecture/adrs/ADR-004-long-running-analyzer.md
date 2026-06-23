@@ -24,9 +24,9 @@ Run a **long-lived FastAPI** analyzer (`analyzer_service_app.py`) on **8766**. N
 
 - Another process to run in dev (`cxr up` mitigates).
 - Stale code until analyzer restart after Python changes.
-- Port **8766** must be free (see [demo/RUN.md](../demo/RUN.md)).
+- Port **8766** must be free (see [archive/demo/RUN.md](../../archive/demo/RUN.md)).
 
 ## Alternatives considered
 
 - Optimize kernel only — insufficient while subprocess remained.
-- Minimal Jaeger profile — rejected; see [trace profiles](../investigations/README.md#trace-profiles).
+- Minimal Jaeger profile — rejected; see [trace profiles](../../../investigations/README.md#trace-profiles).

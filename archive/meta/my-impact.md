@@ -35,10 +35,10 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 ### 4. Operability for humans (including future me)
 
 - **`cxr up` / `cxr down`** — Jaeger + warm analyzer + rehearsal UI + Locust without memorizing fifteen commands.
-- Demo runbook and troubleshooting in [demo/RUN.md](./demo/RUN.md).
+- Demo runbook and troubleshooting in [archive/demo/RUN.md](../archive/demo/RUN.md).
 - Bootcamp lab index (Kafka, ELK, Redis, …) kept **optional** so daily dev stays light.
 
-**Evidence:** [demo/RUN.md](./demo/RUN.md) · [operations/restart-stack.md](./operations/restart-stack.md)
+**Evidence:** [archive/demo/RUN.md](../archive/demo/RUN.md) · [operations/restart-stack.md](./operations/restart-stack.md)
 
 ## Metrics that matter (local dev, reproducible)
 

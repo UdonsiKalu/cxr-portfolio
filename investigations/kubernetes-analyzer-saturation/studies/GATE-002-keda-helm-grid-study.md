@@ -6,7 +6,7 @@
 | **Date** | 2026-06-19 (stamp `080505`) |
 | **Depends on** | KEDA installed (`cxr-ops-lab/scripts/11-keda-install.sh`), load gate ([K8-LOAD-GATE.md](https://github.com/UdonsiKalu/cxr-ops-lab/blob/feature/perf-008-queue-backpressure/docs/K8-LOAD-GATE.md)) |
 | **Profile** | Analyze-only cumulative ramp 15→200 users (OBS-comparable) |
-| **Evidence** | [tuner-summary-20260619-080505.json](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) |
+| **Evidence** | [tuner-summary-20260619-080505.json](../results/tuner/tuner-summary-20260619-080505.json) |
 
 This is the **first time KEDA replaced CPU-only HPA** on `cxr-analyzer` in a controlled, repeatable way. We did not hand-pick one Helm overlay — we ran a **12-point grid search** over deploy-time caps while KEDA scaled replicas at runtime from **CPU + Locust E2E p95**.
 
@@ -73,7 +73,7 @@ From `cxr-ops-lab/tuner_config.yaml` — Cartesian product = **12 candidates**:
 
 **Score:** 11/12 passed. **Winner: candidate 4** (best throughput among passes — 102.1 RPS, lowest gate score).
 
-Per-candidate JSON: [results/tuner/](../investigations/kubernetes-analyzer-saturation/results/tuner/README.md).
+Per-candidate JSON: [results/tuner/](../results/tuner/README.md).
 
 ---
 
@@ -81,15 +81,15 @@ Per-candidate JSON: [results/tuner/](../investigations/kubernetes-analyzer-satur
 
 **Candidate 1** (UI `maxReplicas=5`, analyzer `minReplicas=1`) is the only grid point that failed. Grafana shows UI HPA at cap with volatile CPU while analyzer replicas stayed flat — the **UI forward path** saturated before the analyzer tier.
 
-![GATE-002 c1 — 116 failures/s @ 200](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-c1-fail-20260619.png)
+![GATE-002 c1 — 116 failures/s @ 200](../evidence/failures/grafana-gate-c1-fail-20260619.png)
 
 That failure shape is why the winning recipe caps UI at **4** replicas, not 5.
 
-![GATE tuner — UI thrash, analyzer replicas flat](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-tuner-analyzer-replicas-zero.png)
+![GATE tuner — UI thrash, analyzer replicas flat](../evidence/failures/grafana-gate-tuner-analyzer-replicas-zero.png)
 
 Four back-to-back cumulative ramps on the same day show the same UI-thrash pattern on non-winning configs:
 
-![GATE tuner — four cumulative ramps (grid session)](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-tuner-multi-cycle-20260619.png)
+![GATE tuner — four cumulative ramps (grid session)](../evidence/failures/grafana-gate-tuner-multi-cycle-20260619.png)
 
 ---
 

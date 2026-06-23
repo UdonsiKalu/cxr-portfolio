@@ -2,7 +2,7 @@
 
 Gate CSV, JSON, and summaries live in **`cxr-ops-lab/evidence/perf008/`** on branch `feature/perf-008-queue-backpressure`.
 
-Study write-up: [docs/PERF-008-queue-depth-autoscaling.md](../../../../docs/PERF-008-queue-depth-autoscaling.md)
+Study write-up: [../../studies/PERF-008-queue-depth-autoscaling.md](../../studies/PERF-008-queue-depth-autoscaling.md)
 
 ## Runs
 

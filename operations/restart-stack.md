@@ -35,4 +35,4 @@ alias cxr='~/staging/cxr-dev.sh'
 
 Script: `cxr-ops-lab/scripts/cxr-dev-stack.sh` (wrapper at `staging/cxr-dev.sh`).
 
-See [demo/RUN.md](../demo/RUN.md#troubleshooting) for slow analyze and missing traces.
+See [archive/demo/RUN.md](../archive/demo/RUN.md#troubleshooting) for slow analyze and missing traces.
