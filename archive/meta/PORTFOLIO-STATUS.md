@@ -26,7 +26,7 @@ All paths from [STRUCTURE.md](./STRUCTURE.md) exist with **content**. Sections m
 
 See [archive/reviewer/GO-PUBLIC.md](../../archive/reviewer/GO-PUBLIC.md). Summary:
 
-- [x] Reviewer hub (`docs/`) with decisions / investigations / postmortems / failures indexes
+- [x] Reviewer hub (`README.md`) with archive/reviewer indexes and investigation links
 - [x] GATE-002 summary in changelog + failures index
 - [x] SLO document
 - [ ] Commit and push pending local changes

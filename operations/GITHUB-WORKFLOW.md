@@ -142,7 +142,7 @@ Release notes = excerpt from [CHANGELOG.md](../CHANGELOG.md), not product semver
 
 ## GitHub Pages (later)
 
-Optional: publish `docs/` + investigation index as a static site. Defer until advisor review cycle completes.
+Optional: publish `README.md` + investigation index as a static site. Defer until advisor review cycle completes.
 
 ---
 
