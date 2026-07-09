@@ -27,7 +27,7 @@ On a typical **slow** request, the UI opens `fetch POST http://cxr-analyzer` and
 | [Walkthrough — one fast, one slow trace](#walkthrough--one-fast-one-slow-trace) | Everyone | Screenshots + gap table — the “aha” moment |
 | [Verdict](#verdict) | Reviewers | Hypothesis table + what to do next |
 | [Automated replay — Experiments A & B](#automated-replay--experiments-a--b) | Deep dive | 3 fast + 3 slow traces per helm profile, median tables |
-| [OBS-003 — Jaeger SQL errors](#obs-003--jaeger-sql-errors-separate-finding) | Ops | Policy span errors — **not** the 649 ms wait |
+| [OBS-003 — Jaeger SQL errors](#obs-003--jaeger-sql-errors-separate-finding) | Ops | Policy span errors — **not** the 649 ms wait · **full write-up:** [OBS-003-shared-sql-connection.md](OBS-003-shared-sql-connection.md) |
 | [Reproduce](#reproduce) | Lab | Scripts to re-run attribution |
 
 ---
@@ -202,13 +202,15 @@ Use **full 32-char trace IDs** in Jaeger 2.19.0 ([OBS-001 lesson](../evidence/lo
 
 While reviewing slow traces, many showed **“2 Errors”** on `context.7_policy` / `context.7_policy.sql`. These are **not** the p95 tail mechanism.
 
+**Full write-up (mechanism, architecture, before/after code, verification):** [OBS-003-shared-sql-connection.md](OBS-003-shared-sql-connection.md)
+
 | Span | Error |
 |------|--------|
 | `context.7_policy.sql` | `pyodbc.Error: Connection is busy with results for another command` |
 
-**Cause:** one shared `pyodbc` connection per analyzer pod with up to **4 concurrent** `/analyze` handlers (`MAX_CONCURRENT=4`).
+**Cause (one line):** one shared `pyodbc` connection per pod kernel singleton; up to **4 concurrent** `/analyze` threads opened cursors without a lock.
 
-**Fix:** [OBS-003](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) — `threading.Lock` + `_db_cursor()`; image `cxr-analyzer:perf009-sql`. Verified **0** policy span errors in a fresh post-fix window.
+**Fix:** [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · [cxr-platform PR #3](https://github.com/UdonsiKalu/cxr-platform/pull/3) — `threading.Lock` + `_db_cursor()`; image `cxr-analyzer:perf009-sql`. Verified **0** policy span errors post-fix.
 
 > Keep **fetch-wait tail** and **SQL concurrency** as separate findings. SQL errors occur inside the short `analyze_request` window; they do not explain the ~649 ms pre-handler gap.
 
