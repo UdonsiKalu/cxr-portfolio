@@ -2,6 +2,8 @@
 
 How **cxr-portfolio** uses GitHub for honest DevOps portfolio work — planning, documenting, and publishing evidence. **Not** the CXR application codebase; runnable automation lives in **`cxr-ops-lab`** (when published).
 
+**Naming standards (all CXR GitHub repos):** [cxr-platform docs/GITHUB-NAMING-STANDARDS.md](https://github.com/UdonsiKalu/cxr-platform/blob/main/docs/GITHUB-NAMING-STANDARDS.md) — Conventional Commits PR titles, `type/id-slug` branches, investigation IDs. Local copy while syncing: `cxr-ops-lab/docs/GITHUB-NAMING-STANDARDS.md`.
+
 ---
 
 ## Public surfaces (reviewers)
@@ -55,7 +57,7 @@ gh project edit <NUMBER> --owner UdonsiKalu --visibility public
 | Issue | Title |
 |-------|--------|
 | [#2](https://github.com/UdonsiKalu/cxr-portfolio/issues/2) | OBS-002: Analyzer replica metrics in Grafana and gate CSV |
-| [#33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) | OBS-003: Shared SQL connection busy — Jaeger `context.7_policy` errors |
+| [#33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) | OBS-003: Shared SQL connection busy — Jaeger `context.7_policy` errors — [study doc](../investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) |
 | [#32](https://github.com/UdonsiKalu/cxr-portfolio/issues/32) | PERF-009: Jaeger tail latency attribution |
 | [#3](https://github.com/UdonsiKalu/cxr-portfolio/issues/3) | OPS-001: Publish cxr-ops-lab load gate automation |
 | [#4](https://github.com/UdonsiKalu/cxr-portfolio/issues/4) | DOC-003: GitHub Pages for reviewer hub (optional) |

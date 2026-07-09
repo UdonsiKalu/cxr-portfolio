@@ -141,9 +141,9 @@ Backpressure metrics were visible but did not predict stability better than p95 
 
 ![Slow trace — fetch wait gap before analyze_request](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-slow-fetch-wait-gap-20260622.png)
 
-**Jaeger “2 Errors” on slow traces ([OBS-003](https://github.com/UdonsiKalu/cxr-portfolio/issues/33)):** While reviewing PERF-009 waterfalls, many ~800 ms `POST` traces showed **ERROR** on `context.7_policy` / `context.7_policy.sql` — not LLM or missing spans. Root cause: **one shared `pyodbc` connection** per analyzer pod with **up to 4 concurrent `/analyze` handlers** (`MAX_CONCURRENT=4`). Error text: `Connection is busy with results for another command`. Requests often still returned HTTP 200 (context layer catches and falls back), but traces were polluted and policy SQL could fail under load.
+**Jaeger “2 Errors” on slow traces ([OBS-003](https://github.com/UdonsiKalu/cxr-portfolio/issues/33)):** While reviewing PERF-009 waterfalls, many ~800 ms `POST` traces showed **ERROR** on `context.7_policy` / `context.7_policy.sql` — not LLM or missing spans. **Full mechanism write-up:** [OBS-003-shared-sql-connection.md](../investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md). Summary: one warm kernel per pod → one shared `pyodbc` connection; up to 4 concurrent `/analyze` threads collided on cursors → `Connection is busy with results for another command`. HTTP often still 200; Jaeger polluted and policy context could be wrong.
 
-**Fix:** Thread-safe `_db_cursor()` lock in `ContextCollector` (`cxr_kernel_v3_2_integrated.py`); image `cxr-analyzer:perf009-sql` in lab. After deploy, fresh Jaeger windows show **0 policy span errors** @100 users.
+**Fix:** Thread-safe `_db_cursor()` lock in `ContextCollector`; image `cxr-analyzer:perf009-sql`. Post-fix: **0 policy span errors** @100 users. **Not** the p95 tail (~649 ms pre-handler wait) — see [PERF-009](investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md).
 
 ---
 
@@ -178,7 +178,7 @@ Quick lookup for reviewers who already know the arc. Files live in-repo; gate JS
 | Jun 18 | Post-PERF-003 ramp unstable | [load-20260618-064836.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-064836.csv) |
 | Jun 19 | GATE-002 **KEDA + Helm grid** (11/12 pass) | [GATE-002 study](../investigations/kubernetes-analyzer-saturation/studies/GATE-002-keda-helm-grid-study.md) · [result-c1](../investigations/kubernetes-analyzer-saturation/results/tuner/result-c1-20260619-080505.json) |
 | Jun 21–22 | PERF-008 B rejected | [PERF-008 doc](../investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) |
-| Jun 22 | OBS-003: shared SQL connection busy (`context.7_policy` Jaeger errors) | [PERF-009 § OBS-003](../investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md#obs-003--jaeger-sql-errors-separate-finding) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) |
+| Jun 22 | OBS-003: shared SQL connection busy (`context.7_policy` Jaeger errors) | [OBS-003 study](../investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · [cxr-platform PR #3](https://github.com/UdonsiKalu/cxr-platform/pull/3) |
 | — | Grafana screenshot catalog | [evidence/failures/](../investigations/kubernetes-analyzer-saturation/evidence/failures/README.md), [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) |
 
 ---
