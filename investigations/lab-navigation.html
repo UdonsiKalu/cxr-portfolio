@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CXR Investigations — Lab Navigation</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+    h1 { font-size: 1.4rem; }
+    .note { background: #fff8e6; border: 1px solid #e6c200; padding: 0.75rem 1rem; border-radius: 6px; margin: 1rem 0; }
+    ul.links { list-style: none; padding: 0; }
+    ul.links li { margin: 0.35rem 0; }
+    ul.links a { color: #0550ae; font-size: 1.05rem; text-decoration: none; }
+    ul.links a:hover { text-decoration: underline; }
+    .id { color: #57606a; font-size: 0.85rem; margin-right: 0.5rem; }
+    section { margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>CXR Investigations — Lab Navigation</h1>
+  <p>All reports are <strong>.ipynb notebooks</strong> (clickable links in JupyterLab after <strong>Shift+Enter</strong> on the nav cell).</p>
+  <div class="note">
+    <strong>Start JupyterLab:</strong> <code>cd ~/staging/cxr-portfolio && ./scripts/start-lab-notebook.sh</code><br />
+    <strong>New study:</strong> copy <code>template-investigation.ipynb</code> → <code>&lt;study&gt;/notebook.ipynb</code>
+  </div>
+
+  <section>
+    <h2>Start here</h2>
+    <ul class="links">
+      <li><a href="00-navigation.ipynb">00-navigation.ipynb</a> — index (JupyterLab)</li>
+      <li><a href="README.ipynb">README.ipynb</a> — investigations index</li>
+      <li><a href="template-investigation.ipynb">template-investigation.ipynb</a> — new study</li>
+      <li><a href="../README.ipynb">../README.ipynb</a> — portfolio home</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Completed investigations</h2>
+    <ul class="links">
+      <li><span class="id">—</span><a href="latency-investigation/notebook.ipynb">Claim analysis latency</a></li>
+      <li><span class="id">—</span><a href="load-testing/notebook.ipynb">Locust load baseline</a></li>
+      <li><span class="id">—</span><a href="missing-spans/notebook.ipynb">Missing spans / trace profile</a></li>
+      <li><span class="id">—</span><a href="postmortems/notebook.ipynb">Postmortems</a></li>
+      <li><span class="id">PERF-004</span><a href="cold-vs-warm-analyzer/notebook.ipynb">Cold vs warm analyzer</a></li>
+      <li><span class="id">LOAD-001</span><a href="single-analyzer-capacity/notebook.ipynb">Single analyzer capacity</a></li>
+      <li><span class="id">LOAD-002</span><a href="analyzer-saturation/notebook.ipynb">Analyzer saturation</a></li>
+      <li><span class="id">CHAOS-001</span><a href="kill-analyzer-under-traffic/notebook.ipynb">Kill analyzer under traffic</a></li>
+      <li><span class="id">DEP-001</span><a href="qdrant-outage/notebook.ipynb">Qdrant outage</a></li>
+      <li><span class="id">OTEL-001</span><a href="trace-propagation/notebook.ipynb">Trace propagation</a></li>
+      <li><span class="id">CI-001</span><a href="ci-pipeline/notebook.ipynb">Bootcamp CI pipeline</a></li>
+      <li><span class="id">K8-001</span><a href="kubernetes-deploy/notebook.ipynb">Kubernetes deploy</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Phase 2 (planned)</h2>
+    <ul class="links">
+      <li><a href="planned/platform-bootstrap.ipynb">Platform bootstrap</a></li>
+      <li><a href="planned/kubernetes-migration.ipynb">Kubernetes migration / Argo</a></li>
+      <li><a href="planned/notebook.ipynb">Full backlog</a></li>
+    </ul>
+  </section>
+</body>
+</html>
