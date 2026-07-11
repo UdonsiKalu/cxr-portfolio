@@ -33,26 +33,56 @@ start_ollama() {
     log "ollama_already_up url=${OLLAMA_URL}"
     return 0
   fi
-  log "ollama_systemctl_start"
-  systemctl start ollama 2>/dev/null || sudo systemctl start ollama
+  # Prefer non-interactive sudo (NOPASSWD). Never call interactive sudo — it hangs CI/agents.
+  if sudo -n systemctl start ollama 2>/dev/null; then
+    log "ollama_start via sudo -n systemctl"
+  elif systemctl --user start ollama 2>/dev/null; then
+    log "ollama_start via systemctl --user"
+  else
+    log "ollama_start via user ollama serve (no sudo)"
+    nohup ollama serve >>/tmp/cxr-ollama-serve.log 2>&1 &
+  fi
   for i in $(seq 1 30); do
     ollama_up && { log "ollama_ready elapsed_s=${i}"; return 0; }
     sleep 1
   done
   echo "ERROR: Ollama did not start on ${OLLAMA_URL}" >&2
+  echo "  If system ollama is stopped, either:" >&2
+  echo "    sudo systemctl start ollama" >&2
+  echo "    OR run once: ./investigations/ollama-outage/setup-passwordless-ollama-ctl.sh" >&2
   exit 1
 }
 
 stop_ollama() {
-  log "ollama_systemctl_stop"
-  systemctl stop ollama 2>/dev/null || sudo systemctl stop ollama || true
-  sleep 2
-  if ollama_up; then
-    log "ollama_still_up_after_stop - trying pkill"
-    pkill -f 'ollama serve' 2>/dev/null || true
-    sleep 2
+  # Do NOT use interactive sudo (password prompt). Order:
+  # 1) sudo -n systemctl stop (works after setup-passwordless-ollama-ctl.sh)
+  # 2) systemctl --user stop
+  # 3) tell the human to stop once / install NOPASSWD
+  if sudo -n systemctl stop ollama 2>/dev/null; then
+    log "ollama_stop via sudo -n systemctl"
+  elif systemctl --user stop ollama 2>/dev/null; then
+    log "ollama_stop via systemctl --user"
+  else
+    log "ollama_stop_needs_passwordless_sudo"
+    echo "" >&2
+    echo "Ollama is a system service — stopping it needs root." >&2
+    echo "This script will not ask for your password (that hangs automation)." >&2
+    echo "" >&2
+    echo "One-time fix (you type your password once):" >&2
+    echo "  ./investigations/ollama-outage/setup-passwordless-ollama-ctl.sh" >&2
+    echo "" >&2
+    echo "Or stop manually in another terminal, then re-run:" >&2
+    echo "  sudo systemctl stop ollama" >&2
+    echo "" >&2
+    exit 2
   fi
-  ollama_up && log "WARN ollama_still_reachable" || log "ollama_down_confirmed"
+  sleep 2
+  # systemd may still own the unit; pkill alone often gets respawned
+  if ollama_up; then
+    log "WARN ollama_still_reachable after stop"
+  else
+    log "ollama_down_confirmed"
+  fi
 }
 
 kill_analyzer() {
