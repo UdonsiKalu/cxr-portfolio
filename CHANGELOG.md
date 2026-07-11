@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-11 — OBS-003 study rewritten in plain language (documented)
+
+| | |
+|---|---|
+| **Problem** | OBS-003 (SQL context / shared connection) write-up was dense; issue #33 still open while platform PR #8 awaits merge. |
+| **Outcome** | **Documented:** Rewrote [OBS-003 study](investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) in simple language; linked current PR #8 and honest open status. |
+| **Artifacts** | [OBS-003 study](investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) |
+
 #### 2026-07-11 — Trim investigations nav clutter (documented)
 
 | | |
