@@ -16,5 +16,6 @@ These folders moved to keep `investigations/` small:
 | `investigations/qdrant-outage-k8/` | [archive/old-investigations/qdrant-outage-k8/](../archive/old-investigations/qdrant-outage-k8/) |
 | `investigations/trace-propagation/` | [archive/old-investigations/trace-propagation/](../archive/old-investigations/trace-propagation/) |
 | `investigations/missing-spans/` | [archive/old-investigations/missing-spans/](../archive/old-investigations/missing-spans/) |
+| `investigations/postmortems/` | [archive/old-investigations/postmortems/](../archive/old-investigations/postmortems/) |
 
 Old deep links to those folders 404; use this table or the archive index.

@@ -40,7 +40,7 @@
 
 ~10–12s analyze under load → Jaeger showed Python import per request → long-running analyzer on **:8766** → p95 ~1.5s.
 
-- [latency investigation](investigations/latency-investigation/) · [postmortem](investigations/postmortems/python-import-bottleneck.md) · [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md)
+- [latency investigation](investigations/latency-investigation/) · [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md)
 
 ### Capacity — K8 saturation, GATE-002, PERF-008/009
 

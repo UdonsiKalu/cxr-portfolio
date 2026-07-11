@@ -23,4 +23,4 @@ Minimal profile collapsed stages into events but increased confusing Operation n
 - Fewer span names ≠ clearer observability.
 - Startup traces require explicit export + analyzer restart to appear in Operation dropdown.
 
-See [investigations README — Jaeger](../README.md#jaeger).
+See [investigations README — Jaeger](../../investigations/README.md#jaeger).

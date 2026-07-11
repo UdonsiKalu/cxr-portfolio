@@ -171,7 +171,7 @@ Quick lookup for reviewers who already know the arc. Files live in-repo; gate JS
 
 | Date / ID | Failure (one line) | Primary evidence |
 |-----------|-------------------|------------------|
-| May–Jun | Subprocess import ~7–8s | [postmortem](../investigations/postmortems/python-import-bottleneck.md), [ADR-003](../architecture/adrs/ADR-003-python-subprocess.md) |
+| May–Jun | Subprocess import ~7–8s | [latency investigation](../investigations/latency-investigation/), [ADR-003](../architecture/adrs/ADR-003-python-subprocess.md) |
 | Jun 17 | OBS-001: p95 ~9s, low node CPU | [RUN-2026-06-17](../investigations/kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) |
 | Jun 8 | maxReplicas 20/20 regression | `load-20260608-182451.csv` |
 | Jun 18 | Replicas 20→0 collapse | [load-20260618-060419.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-060419.csv) |
@@ -187,6 +187,7 @@ Quick lookup for reviewers who already know the arc. Files live in-repo; gate JS
 
 - [archive/reviewer/history.md](../archive/reviewer/history.md) — full program arc including wins  
 - [CHANGELOG.md](../CHANGELOG.md) — dated journal entries for every row above  
-- [investigations/postmortems/README.md](../investigations/postmortems/README.md) — long-form incident write-ups  
+- [latency-investigation](../investigations/latency-investigation/) — subprocess → warm analyzer  
+- [archive/old-investigations/postmortems/](../archive/old-investigations/postmortems/) — optional incident one-pagers (archived)  
 - [reliability/SLO.md](../reliability/SLO.md) — lab gate vs production SLO  
 - [archive/reviewer/REVIEWER-GUIDE.md](../archive/reviewer/REVIEWER-GUIDE.md) — how to evaluate this portfolio
