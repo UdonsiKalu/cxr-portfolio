@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | Lab fix verified (2026-06-22); platform PR still open |
+| **Status** | Resolved — lab verified 2026-06-22; [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) merged; [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) closed |
 | **In one sentence** | Several analyze requests on the same pod shared one SQL connection and stepped on each other |
 | **Where we saw it** | Jaeger errors on `context.7_policy.sql` while reviewing slow traces |
 | **GitHub issue** | [cxr-portfolio#33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) |
@@ -157,14 +157,14 @@ Same area of the code (`ContextCollector` / context SQL), **different problem**:
 
 ---
 
-## Still open (honest status)
+## Status (closed)
 
 | Item | Status |
 |------|--------|
 | Portfolio study (this file) | Written |
 | Lab verification | Done 2026-06-22 |
-| [Issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) | Still open until platform merge is confirmed |
-| [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) | Open — may need conflict resolution with `main` |
+| [Issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) | Closed |
+| [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) | Merged |
 
 ---
 

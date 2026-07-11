@@ -151,8 +151,8 @@ Backpressure metrics were visible but did not predict stability better than p95 
 
 | Failure | What happened | Status |
 |---------|-----------------|--------|
-| Argo overwrites local Helm | `helm upgrade` on cluster reverted by auto-sync from stale Git `main` | Mitigated via Argo parameters; [GIT-001](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) tracks promoting GATE-002 winner to `main` |
-| GIT-001 values drift | Winning caps exist in lab evidence but not yet on git-managed defaults | Open |
+| Argo overwrites local Helm | `helm upgrade` on cluster reverted by auto-sync from stale Git `main` | Fixed by putting GATE-002 caps in Git values ([GIT-001](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) · [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11)) |
+| GIT-001 values drift | UI maxReplicas still 5 on Git while lab used 4 | Closing via PR #11 — UI max **4**, analyzer max **8** / min **2** |
 
 ---
 

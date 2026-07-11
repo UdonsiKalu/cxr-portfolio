@@ -26,6 +26,6 @@ Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evi
 | Cost per claim | [cost-per-claim.md](./cost-per-claim.md) | [#21](https://github.com/UdonsiKalu/cxr-portfolio/issues/21) |
 | Analyzer efficiency | [analyzer-efficiency.md](./analyzer-efficiency.md) | [#22](https://github.com/UdonsiKalu/cxr-portfolio/issues/22) |
 
-**CHANGELOG-only backlog (no `planned/*.md` yet):** [#23 SCALE-003 UI bottleneck](https://github.com/UdonsiKalu/cxr-portfolio/issues/23) · [#24 GIT-001 Argo drift](https://github.com/UdonsiKalu/cxr-portfolio/issues/24)
+**CHANGELOG-only backlog (no `planned/*.md` yet):** [#23 SCALE-003 UI bottleneck](https://github.com/UdonsiKalu/cxr-portfolio/issues/23) · [#24 GIT-001 Argo drift](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) (in progress — [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11))
 
 [← Investigations index](../README.md)
