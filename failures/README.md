@@ -111,7 +111,7 @@ The full grid session ran multiple cumulative ramps; the same UI-thrash signatur
 
 ![GATE-002 grid session — four cumulative ramps](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/grafana-gate-tuner-multi-cycle-20260619.png)
 
-**What we kept:** Candidate 4 became the **lab baseline** for KEDA + Helm (including PERF-008 Experiment A). Promoting it to git-managed `main` is still open ([GIT-001](https://github.com/UdonsiKalu/cxr-portfolio/issues/24)).
+**What we kept:** Candidate 4 became the **lab baseline** for KEDA + Helm (including PERF-008 Experiment A). Those caps were later written into Git Helm values ([Arc 7 — GIT-001](#arc-7--git-and-the-cluster-disagreed-git-001)).
 
 ---
 
@@ -141,18 +141,42 @@ Backpressure metrics were visible but did not predict stability better than p95 
 
 ![Slow trace — fetch wait gap before analyze_request](../investigations/kubernetes-analyzer-saturation/evidence/perf009/jaeger-slow-fetch-wait-gap-20260622.png)
 
-**Jaeger “2 Errors” on slow traces ([OBS-003](https://github.com/UdonsiKalu/cxr-portfolio/issues/33)):** While reviewing PERF-009 waterfalls, many ~800 ms `POST` traces showed **ERROR** on `context.7_policy` / `context.7_policy.sql` — not LLM or missing spans. **Full mechanism write-up:** [OBS-003-shared-sql-connection.md](../investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md). Summary: one warm kernel per pod → one shared `pyodbc` connection; up to 4 concurrent `/analyze` threads collided on cursors → `Connection is busy with results for another command`. HTTP often still 200; Jaeger polluted and policy context could be wrong.
-
-**Fix:** Thread-safe `_db_cursor()` lock in `ContextCollector`; image `cxr-analyzer:perf009-sql`. Post-fix: **0 policy span errors** @100 users. **Not** the p95 tail (~649 ms pre-handler wait) — see [PERF-009](investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md).
+While reviewing those waterfalls we also saw red **“2 Errors”** badges — that turned out to be a **different** bug ([Arc 6](#arc-6--shared-sql-connection-under-load-obs-003-jun-22)), not the 649 ms wait. The wait itself is still open for deeper UI-path study ([SCALE-003](https://github.com/UdonsiKalu/cxr-portfolio/issues/23)).
 
 ---
 
-## Operations and GitOps
+## Arc 6 — Shared SQL connection under load (OBS-003, Jun 22)
 
-| Failure | What happened | Status |
-|---------|-----------------|--------|
-| Argo overwrites local Helm | `helm upgrade` on cluster reverted by auto-sync from stale Git `main` | Fixed by putting GATE-002 caps in Git values ([GIT-001](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) · [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11)) |
-| GIT-001 values drift | UI maxReplicas still 5 on Git while lab used 4 | Closing via PR #11 — UI max **4**, analyzer max **8** / min **2** |
+**Hypothesis (wrong at first):** The red Jaeger errors on slow traces were “just” another view of the p95 tail.
+
+**What we saw:** In the same PERF-009 window, almost every long `POST` showed **2 Errors**. Opening a slow waterfall pinned them on **`context.7_policy`** / **`context.7_policy.sql`**.
+
+![Jaeger search — slow POSTs each with 2 Errors](../investigations/kubernetes-analyzer-saturation/evidence/obs003/jaeger-search-2-errors-slow-posts-20260622.png)
+
+![Slow waterfall — red errors on context.7_policy.sql](../investigations/kubernetes-analyzer-saturation/evidence/obs003/jaeger-waterfall-policy-sql-errors-f541546-20260622.png)
+
+**What failed:** One warm analyzer pod kept **one shared SQL connection**. Up to four concurrent `/analyze` handlers opened cursors on it at once. pyodbc refused that → `Connection is busy with results for another command`. HTTP often still **200**; Jaeger looked broken and policy context could be wrong.
+
+**Fix:** Thread-safe `_db_cursor()` lock in `ContextCollector`; shipped in [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8). Lab verify: **0** policy span errors @100 users. Portfolio issue [#33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) closed.
+
+**Not fixed by this:** the ~649 ms pre-handler wait (Arc 5 / PERF-009) — see [OBS-003 study](../investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md).
+
+---
+
+## Arc 7 — Git and the cluster disagreed (GIT-001)
+
+**Hypothesis:** Live Helm / Argo parameter patches were “good enough” for lab stability.
+
+**What failed:** GATE-002’s winning caps (especially **UI maxReplicas = 4**) lived in evidence and on the live cluster, while Git `main` still had **UI max = 5** — the only grid point that failed @200 users (Arc 4). Argo auto-sync from stale Git could put the bad number back after a local fix.
+
+**Fix:** Put the baseline into Helm values on Git and document the loop (edit values → push → Argo sync): [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11) · [gitops-values-drift runbook](https://github.com/UdonsiKalu/cxr-platform/blob/main/docs/runbooks/gitops-values-drift.md).
+
+| Chart | Cap on `main` now |
+|-------|-------------------|
+| Analyzer | max **8**, min **2**, KEDA p95 **2000** |
+| UI | max **4** |
+
+Issue [#24](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) closed. No Argo UI screenshot for this arc — the story is the values diff + GATE-002 failure pics above.
 
 ---
 
@@ -178,8 +202,9 @@ Quick lookup for reviewers who already know the arc. Files live in-repo; gate JS
 | Jun 18 | Post-PERF-003 ramp unstable | [load-20260618-064836.csv](../investigations/kubernetes-analyzer-saturation/results/load-20260618-064836.csv) |
 | Jun 19 | GATE-002 **KEDA + Helm grid** (11/12 pass) | [GATE-002 study](../investigations/kubernetes-analyzer-saturation/studies/GATE-002-keda-helm-grid-study.md) · [result-c1](../investigations/kubernetes-analyzer-saturation/results/tuner/result-c1-20260619-080505.json) |
 | Jun 21–22 | PERF-008 B rejected | [PERF-008 doc](../investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) |
-| Jun 22 | OBS-003: shared SQL connection busy (`context.7_policy` Jaeger errors) | [OBS-003 study](../investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · [cxr-platform PR #3](https://github.com/UdonsiKalu/cxr-platform/pull/3) |
-| — | Grafana screenshot catalog | [evidence/grafana-arcs/](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/README.md), [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) |
+| Jun 22 | OBS-003: shared SQL connection busy (`context.7_policy` Jaeger errors) | [OBS-003 study](../investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) · [evidence/obs003/](../investigations/kubernetes-analyzer-saturation/evidence/obs003/) · [PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) |
+| Jul 11 | GIT-001: Git Helm caps lagged lab winner | [Arc 7](#arc-7--git-and-the-cluster-disagreed-git-001) · [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11) |
+| — | Grafana screenshot catalog | [evidence/grafana-arcs/](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/README.md), [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md), [evidence/obs003/](../investigations/kubernetes-analyzer-saturation/evidence/obs003/README.md) |
 
 ---
 

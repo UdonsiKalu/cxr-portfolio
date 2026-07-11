@@ -10,6 +10,8 @@ Attribution replay for [PERF-009](../../studies/PERF-009-jaeger-tail-latency.md)
 | `jaeger-slow-trace-f541546-824ms-20260622.png` | Manual review | Slow waterfall — 824 ms E2E, handler ~57 ms at end |
 | `jaeger-slow-fetch-wait-gap-20260622.png` | Manual review | Slow trace detail — `fetch` 818 ms, `analyze_request` starts ~652 ms |
 
+**OBS-003 (same session, separate finding):** red **2 Errors** on `context.7_policy*` — screenshots in [../obs003/](../obs003/).
+
 Raw gate CSV and console logs: `cxr-ops-lab/evidence/perf009/exp-a-20260622-092152/`, `exp-b-20260622-093426/`.
 
 Trace IDs in JSON include local Jaeger URLs (`http://127.0.0.1:16686/trace/<id>`) — valid when the observe stack is up.
