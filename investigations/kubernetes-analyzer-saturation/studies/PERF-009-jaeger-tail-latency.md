@@ -18,6 +18,8 @@ On a typical **slow** request, the UI opens `fetch POST http://cxr-analyzer` and
 
 **Experiment B (inflight KEDA) did not change this pattern.** Scaling added replicas; it did not remove the UI→analyzer handoff wait that dominates p95.
 
+**Named follow-up:** [SCALE-003 — UI bottleneck at peak load](SCALE-003-ui-bottleneck.md) ties this wait to the GATE-002 / PERF-008 UI thrash evidence.
+
 ---
 
 ## How to read this document

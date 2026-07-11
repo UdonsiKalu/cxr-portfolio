@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-11 — SCALE-003: UI bottleneck at peak load (documented)
+
+| | |
+|---|---|
+| **Problem** | Peak-load pain kept showing up on the **UI path**, but it was scattered across GATE-002 / PERF-008 / PERF-009 without one named study. |
+| **Outcome** | **Documented:** [SCALE-003 study](investigations/kubernetes-analyzer-saturation/studies/SCALE-003-ui-bottleneck.md) + [evidence/scale003/](investigations/kubernetes-analyzer-saturation/evidence/scale003/) + [failures Arc 8](failures/README.md#arc-8--ui-path-bottleneck-at-peak-load-scale-003). Mitigations already in place (UI max 4, GIT-001). |
+| **Artifacts** | [issue #23](https://github.com/UdonsiKalu/cxr-portfolio/issues/23) · parent chain GATE-002 → PERF-008 → PERF-009 |
+
 #### 2026-07-11 — Failures arcs 6–7 + OBS-003 screenshots (documented)
 
 | | |
@@ -284,7 +292,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 | ID | Area | Summary | Status |
 |----|------|---------|--------|
-| SCALE-003 | Investigations | UI bottleneck at peak load | Open |
+| SCALE-003 | Investigations | UI bottleneck at peak load | Documented ([study](investigations/kubernetes-analyzer-saturation/studies/SCALE-003-ui-bottleneck.md)) |
 | OBS-002 | Investigations | `context_builder` in Prometheus | Open |
 | GIT-001 | Operations | Argo/Git values drift | Resolved ([platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11)) |
 

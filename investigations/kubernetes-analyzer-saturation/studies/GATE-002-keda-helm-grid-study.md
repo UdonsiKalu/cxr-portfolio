@@ -83,7 +83,7 @@ Per-candidate JSON: [results/tuner/](../results/tuner/README.md).
 
 ![GATE-002 c1 — 116 failures/s @ 200](../evidence/grafana-arcs/grafana-gate-c1-fail-20260619.png)
 
-That failure shape is why the winning recipe caps UI at **4** replicas, not 5.
+That failure shape is why the winning recipe caps UI at **4** replicas, not 5. Named study of the pattern: [SCALE-003 — UI bottleneck](SCALE-003-ui-bottleneck.md).
 
 ![GATE tuner — UI thrash, analyzer replicas flat](../evidence/grafana-arcs/grafana-gate-tuner-analyzer-replicas-zero.png)
 
