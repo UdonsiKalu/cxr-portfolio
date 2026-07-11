@@ -1,101 +1,113 @@
-# OBS-003 — Shared SQL connection busy under concurrent `/analyze`
+# OBS-003 — SQL context errors under load (shared connection)
 
 | | |
 |---|---|
-| **Status** | **Resolved** (2026-06-22) |
-| **Discovered during** | [PERF-009 Jaeger tail attribution](PERF-009-jaeger-tail-latency.md) — reviewing slow traces @200 users |
+| **Status** | Lab fix verified (2026-06-22); platform PR still open |
+| **In one sentence** | Several analyze requests on the same pod shared one SQL connection and stepped on each other |
+| **Where we saw it** | Jaeger errors on `context.7_policy.sql` while reviewing slow traces |
 | **GitHub issue** | [cxr-portfolio#33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) |
-| **Ops PR** | [cxr-platform#3](https://github.com/UdonsiKalu/cxr-platform/pull/3) — branch `feature/perf009-sql-thread-safety` |
-| **Lab image** | `cxr-analyzer:perf009-sql` (layers patched kernel into existing CPU base) |
-| **Code change** | `ContextCollector` in `cxr_kernel_v3_2_integrated.py` — `threading.Lock` + `_db_cursor()` |
-
-> **Naming note:** This OBS-003 (SQL concurrency) is **not** the planned [alerting-strategy](../../planned/alerting-strategy.md) doc, which reused the OBS- prefix in an early backlog. Issue **#33** and this write-up are the authoritative **OBS-003** for the saturation arc.
+| **Code fix PR** | [cxr-platform#8](https://github.com/UdonsiKalu/cxr-platform/pull/8) |
+| **Found while doing** | [PERF-009](PERF-009-jaeger-tail-latency.md) (tail latency) |
 
 ---
 
-## Answer (read this first)
+## The short story (start here)
 
-While load-testing the analyzer in Kubernetes, Jaeger showed **ERROR spans on `context.7_policy.sql`** even though many requests still returned **HTTP 200**.
+We were load-testing claim analysis in Kubernetes. Most requests still returned **HTTP 200**, but Jaeger showed **red ERROR badges** on the SQL steps that build “context” for a claim — especially the **policy** step (`context.7_policy.sql`).
 
-**Root cause:** Each analyzer **pod** keeps **one warm kernel** (singleton) with **one shared `pyodbc` SQL Server connection**. FastAPI serves `/analyze` with **multiple concurrent worker threads** per pod (lab: up to **4** when `CXR_ANALYZER_MAX_CONCURRENT=4`). The old `ContextCollector` opened cursors on that shared connection **without synchronization**. pyodbc does not allow overlapping commands on one connection → `Connection is busy with results for another command`.
+The error message was:
 
-**Fix:** Serialize cursor use with a per-collector lock and a `_db_cursor()` context manager. Deploy via Docker layer `cxr-analyzer:perf009-sql`.
+> Connection is busy with results for another command
 
-**Not the p95 tail:** This bug pollutes Jaeger and can make policy context wrong under load. It does **not** explain the ~649 ms **pre-handler wait** between UI `fetch` and `analyze_request` — see [PERF-009](PERF-009-jaeger-tail-latency.md).
+**What that means in plain English:**  
+One analyzer pod kept a **single** open database connection. Under load, **up to four** analyze requests could run at the same time on that pod. Each request needed to run SQL for context (patient, provider, policy, …). Two requests tried to use that **one** connection at once. The database driver (pyodbc) does not allow that — so one of them failed.
+
+**Why it matters:**  
+The API often still said “OK” (200), but the **policy / provider context could be wrong or empty** when SQL failed quietly. Tracing looked dirty (“2 Errors” on an otherwise successful request).
+
+**What we did:**  
+Make every SQL cursor take a **lock** so only one request talks on that connection at a time. After the fix, a load re-run showed **zero** of those policy SQL errors in Jaeger.
+
+**What this is *not*:**  
+This is **not** the main reason p95 climbed to ~800 ms. That was mostly **waiting** before the analyzer started work ([PERF-009](PERF-009-jaeger-tail-latency.md)). This bug is about **correctness and clean traces** under concurrency.
 
 ---
 
-## What went wrong (mechanism)
+## Background: what “context” means here
 
-### Architecture that created the bug
+When the analyzer runs `/analyze`, it does not only call an LLM. It first builds a **context pack** for the claim — facts pulled from SQL and related sources. That work lives in a span called **`context_builder`**.
 
-```mermaid
-flowchart TB
-  subgraph pod["One analyzer pod (one Python process)"]
-    FA[FastAPI /analyze]
-    SEM["Semaphore MAX_CONCURRENT=4"]
-    KC["Kernel singleton<br/>one pyodbc connection"]
-    CC["ContextCollector<br/>(7 SQL context types)"]
-    FA --> SEM
-    SEM --> T1["Thread: request A"]
-    SEM --> T2["Thread: request B"]
-    SEM --> T3["Thread: request C"]
-    SEM --> T4["Thread: request D"]
-    T1 --> KC
-    T2 --> KC
-    T3 --> KC
-    T4 --> KC
-    KC --> CC
-  end
-  SQL[(SQL Server)]
-  CC --> SQL
+Inside that span are seven stages (from [PERF-002](PERF-002-context-builder-bottleneck.md)):
+
+```text
+context_builder
+├── context.1_patient
+├── context.2_provider      (+ .sql)
+├── context.3_payer
+├── context.4_temporal
+├── context.5_financial     (+ .sql)
+├── context.6_relationship
+└── context.7_policy        (+ .sql)   ← where we noticed the errors most
 ```
 
-1. **Warm singleton:** `get_or_create_corrector()` creates one `ClaimCorrectorV31Integrated` per process. That loads `CXRKernelFullContext`, which opens **one** `pyodbc.connect(...)` at init and passes it to `ContextCollector`.
-2. **Concurrent handlers:** `/analyze` is a sync FastAPI route. Under load, Starlette runs multiple requests in a **thread pool**. With `CXR_ANALYZER_MAX_CONCURRENT=4`, up to four handlers can execute `gather_full_context()` at the same time.
-3. **Unsafe cursor pattern (before fix):** Each context method did `cursor = self.conn.cursor()` directly on the shared connection.
-4. **pyodbc rule:** A connection can have **at most one active result set / command** at a time. Thread B's `cursor.execute()` while thread A still has an open cursor → **`Connection is busy with results for another command`**.
-
-### Timeline inside one request (where it surfaced)
-
-During `gather_full_context()`, the kernel runs seven traced stages. Policy is stage 7:
-
-| Stage | Jaeger span | SQL? |
-|-------|-------------|------|
-| 1 | `context.1_patient` | Sometimes |
-| 2 | `context.2_provider` | Yes (`context.2_provider.sql`) |
-| … | … | … |
-| 7 | `context.7_policy` | Yes (`context.7_policy.sql`) |
-
-Under concurrency, **any** of these SQL spans could error, but reviewers noticed **`context.7_policy`** most often because:
-
-- It runs late in the pipeline — other threads are still mid-flight on the same connection.
-- PERF-009 attribution tables highlighted policy extraction as a visible delta on some slow traces.
-- Jaeger UI badges **"2 Errors"** on otherwise-200 traces, drawing attention during waterfall review.
-
-### What users / operators saw
-
-| Symptom | Detail |
-|---------|--------|
-| **Jaeger** | ERROR on `context.7_policy` / `context.7_policy.sql` |
-| **Error text** | `pyodbc.Error: Connection is busy with results for another command` |
-| **HTTP** | Often still **200** — context methods catch SQL failures and fall back to defaults |
-| **Correctness** | Policy / provider / financial context could be **wrong or stale** when SQL failed silently |
-| **Load correlation** | Errors appear when **multiple `/analyze` hit the same pod** (PERF-008/009 @100–200 users) |
-
-### What it was *not*
-
-| Misread | Reality |
-|---------|---------|
-| "Slow SQL caused p95 ~800 ms" | Analyzer work stayed ~30–60 ms; tail was **wait before handler** ([PERF-009](PERF-009-jaeger-tail-latency.md)) |
-| "LLM or Qdrant failure" | Retrieval/LLM spans ≈ 0 ms in sampled traces |
-| "Need a connection pool" | Lock fixes **correctness** on the existing singleton; pooling/admission is separate future work for tail latency |
+So “SQL context analysis latency / errors” here means: **the SQL that feeds those context stages**, under concurrent load — not “the whole POST is slow because of SQL.”
 
 ---
 
-## Before and after (code)
+## How we found it
 
-**Before** — any thread could collide on `self.conn`:
+1. We ran load toward **100–200 users** (PERF-008 / PERF-009 style gates).  
+2. In Jaeger we opened **slow** POST traces to explain p95.  
+3. Many traces showed **“2 Errors”** on `context.7_policy` / `context.7_policy.sql`.  
+4. The error text was always the busy-connection message above.
+
+We noticed policy most often because it runs **late** in the seven stages — by then other threads are often still using the same connection. Any of the SQL stages could hit the same bug.
+
+---
+
+## Root cause (simple picture)
+
+```mermaid
+flowchart LR
+  subgraph pod["One analyzer pod"]
+    R1[Request A]
+    R2[Request B]
+    R3[Request C]
+    R4[Request D]
+    Conn["ONE shared SQL connection"]
+    R1 --> Conn
+    R2 --> Conn
+    R3 --> Conn
+    R4 --> Conn
+  end
+  Conn --> DB[(SQL Server)]
+```
+
+| Piece | What we had |
+|-------|-------------|
+| Per pod | One warm Python analyzer process |
+| Database | **One** long-lived `pyodbc` connection for context SQL |
+| Concurrency | Up to **4** `/analyze` handlers at once (`MAX_CONCURRENT=4`) |
+| Bug | Each handler opened a cursor on that shared connection **with no lock** |
+
+Database rule: **one active command per connection.** Two cursors at once → busy error.
+
+---
+
+## What people saw vs what was true
+
+| You might think | What was actually going on |
+|-----------------|----------------------------|
+| “SQL is making p95 800 ms” | Analyzer work was still ~tens of ms; the big wait was **before** the handler ([PERF-009](PERF-009-jaeger-tail-latency.md)) |
+| “The API failed” | HTTP was often **200** — failures were swallowed and context fell back |
+| “LLM or Qdrant broke” | Those spans were tiny / fine in the traces we checked |
+| “We must add a connection pool today” | A **lock** fixed the collision on the existing connection; pooling is a later performance option |
+
+---
+
+## The fix (what changed in code)
+
+**Before:** any thread could run SQL on `self.conn` at the same time.
 
 ```python
 cursor = self.conn.cursor()
@@ -104,88 +116,76 @@ row = cursor.fetchone()
 cursor.close()
 ```
 
-**After** — one cursor at a time per pod kernel:
+**After:** take a lock, then open a cursor; always release the lock when done.
 
 ```python
-def __init__(self, conn):
-    self.conn = conn
-    self._db_lock = threading.Lock()
-
-@contextmanager
-def _db_cursor(self):
-    self._db_lock.acquire()
-    cursor = self.conn.cursor()
-    try:
-        yield cursor
-    finally:
-        cursor.close()
-        self._db_lock.release()
-
-# Usage in get_policy_context, get_provider_context, etc.:
+# one lock for this ContextCollector
 with self._db_cursor() as cursor:
     cursor.execute(...)
     row = cursor.fetchone()
 ```
 
-**Trade-off:** SQL reads for concurrent requests on the same pod are **serialized**. That adds a little lock wait but eliminates hard failures. Acceptable because context SQL is milliseconds; the dominant tail is elsewhere.
+**Trade-off:** on one pod, concurrent SQL for context is **one-at-a-time**. That may add a little wait under heavy concurrency, but:
+
+- context SQL is usually **milliseconds**
+- wrong or empty policy context is worse than a small lock wait
+- the big p95 story was elsewhere (HTTP wait)
+
+**Lab packaging:** image tag `cxr-analyzer:perf009-sql` (kernel patch layered for K8 experiments).
 
 ---
 
-## Fix delivery (why a Docker layer, not a direct app PR)
-
-| Layer | Location |
-|-------|----------|
-| **Patched source** | `cxrlabs-dev/claim_analysis_tools/.../cxr_kernel_v3_2_integrated.py` |
-| **Lab packaging** | `cxr-ops-lab/Dockerfile.analyzer.perf008-layer` copies kernel into image |
-| **Build** | `CXR_ANALYZER_IMAGE=cxr-analyzer:perf009-sql ./scripts/02-build-analyzer-perf008-layer.sh` |
-| **Deploy** | Helm values for PERF-008/009 experiments reference the tagged image |
-
-This keeps the portfolio/ops evidence in **cxr-platform** while the canonical Python tree stays in `claim_analysis_tools` until explicitly promoted.
-
----
-
-## Verification
+## How we checked it worked
 
 | Check | Result |
 |-------|--------|
-| Re-run load @100 users with `perf009-sql` image | **0** `context.7_policy` span errors in fresh Jaeger window |
-| Pre-fix windows | Many traces showed **2 Errors** on policy SQL |
-| Evidence paths | [perf009 replay dirs](../evidence/perf009/) (attribution captured pre/post fix narrative in [PERF-009](PERF-009-jaeger-tail-latency.md)) |
+| Before | Many Jaeger traces with ERROR on `context.7_policy*` |
+| After (`perf009-sql`) @ ~100 users | **0** of those policy SQL errors in a fresh Jaeger window |
+| Evidence nearby | [evidence/perf009/](../evidence/perf009/) · story also in [PERF-009](PERF-009-jaeger-tail-latency.md) |
 
 ---
 
-## Related PRs (cxr-platform)
+## How this fits the larger arc
 
-These three open PRs are **one investigation arc**, split for review — see [cxr-ops-lab PR index](../../../../cxr-ops-lab/docs/investigations/README.md):
+| Study | Role |
+|-------|------|
+| [PERF-002](PERF-002-context-builder-bottleneck.md) | Made `context_builder` measurable; cache cut redundant SQL |
+| [PERF-009](PERF-009-jaeger-tail-latency.md) | Explained most of the p95 **tail** (wait before analyze) |
+| **OBS-003 (this doc)** | Fixed **SQL collisions** inside context under concurrent analyze |
 
-| PR | Branch | What it adds |
-|----|--------|--------------|
-| [#1](https://github.com/UdonsiKalu/cxr-platform/pull/1) | `feature/perf-008-queue-backpressure` | KEDA A/B harness, OBS-002 replica truth, `evidence/perf008/` |
-| [#2](https://github.com/UdonsiKalu/cxr-platform/pull/2) | `feature/perf-009-jaeger-attribution` | Jaeger replay scripts, `evidence/perf009/` |
-| [#3](https://github.com/UdonsiKalu/cxr-platform/pull/3) | `feature/perf009-sql-thread-safety` | **This fix** — thread-safe kernel in Docker layer |
-
-Merge order: **#1 → #2 → #3**, or merge **#3 alone** (contains all prior work) and close #1/#2.
+Same area of the code (`ContextCollector` / context SQL), **different problem**: speed of the black box (PERF-002) vs **thread-safe use of one connection** (OBS-003).
 
 ---
 
-## Reproduce
+## Still open (honest status)
+
+| Item | Status |
+|------|--------|
+| Portfolio study (this file) | Written |
+| Lab verification | Done 2026-06-22 |
+| [Issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) | Still open until platform merge is confirmed |
+| [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) | Open — may need conflict resolution with `main` |
+
+---
+
+## How to reproduce (lab)
 
 ```bash
 cd ~/staging/cxr-ops-lab
 ./scripts/23-k8-load-observe-up.sh
-# Pre-fix image: errors on context.7_policy.sql under @100+ users
-# Post-fix:
+# Under load @100+ users, search Jaeger for context.7_policy* ERROR (pre-fix image)
+
 CXR_ANALYZER_IMAGE=cxr-analyzer:perf009-sql ./scripts/02-build-analyzer-perf008-layer.sh
-# redeploy analyzer helm with new image, re-run gate / Jaeger search
+# Redeploy analyzer with that image, re-run load, confirm ERRORs gone
 ```
 
-Jaeger: service `cxr-analyzer-service` or pod name, filter spans `context.7_policy*`, look for ERROR status.
+In Jaeger: analyzer service / pod → filter `context.7_policy*` → look for ERROR status.
 
 ---
 
 ## Related
 
-- [PERF-009 — tail latency (separate finding)](PERF-009-jaeger-tail-latency.md)
-- [PERF-008 — KEDA A/B](PERF-008-queue-depth-autoscaling.md)
-- [failures/README.md — Arc 5](../../../failures/README.md)
-- [CHANGELOG.md — 2026-06-22 OBS-003](../../../CHANGELOG.md)
+- [PERF-009 — p95 tail attribution](PERF-009-jaeger-tail-latency.md)  
+- [PERF-002 — context_builder stages](PERF-002-context-builder-bottleneck.md)  
+- [failures Arc 5](../../../failures/README.md)  
+- [CHANGELOG — OBS-003](../../../CHANGELOG.md)

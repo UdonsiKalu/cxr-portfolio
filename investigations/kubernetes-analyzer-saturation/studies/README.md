@@ -11,6 +11,6 @@ Portfolio-wide index: [studies/README.md](../../../studies/README.md).
 | GATE-002 | [GATE-002-keda-helm-grid-study.md](GATE-002-keda-helm-grid-study.md) | [results/tuner/](../results/tuner/) · [grafana-arcs](../evidence/grafana-arcs/) |
 | PERF-008 | [PERF-008-queue-depth-autoscaling.md](PERF-008-queue-depth-autoscaling.md) | [evidence/perf008/](../evidence/perf008/) |
 | PERF-009 | [PERF-009-jaeger-tail-latency.md](PERF-009-jaeger-tail-latency.md) | [evidence/perf009/](../evidence/perf009/) |
-| OBS-003 | [OBS-003-shared-sql-connection.md](OBS-003-shared-sql-connection.md) | [perf009 replay](../evidence/perf009/) · [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) |
+| OBS-003 | [OBS-003-shared-sql-connection.md](OBS-003-shared-sql-connection.md) — SQL context errors under load | [perf009](../evidence/perf009/) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) |
 
 **When you close a study:** update the study `.md`, `evidence/`, and one [CHANGELOG.md](../../../CHANGELOG.md) entry. [failures/README.md](../../../failures/README.md) only on major arc milestones.
