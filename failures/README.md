@@ -180,6 +180,20 @@ Issue [#24](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) closed. No Ar
 
 ---
 
+## Arc 8 — UI path bottleneck at peak load (SCALE-003)
+
+**Hypothesis (early):** The analyzer kernel or autoscaling signal was the main peak-load problem.
+
+**What the evidence showed:** Across GATE-002, PERF-008, and PERF-009, the **UI forward path** saturated first — replica thrash at UI max, failures while analyzer stayed calm, and Jaeger p95 dominated by **wait before** `analyze_request` starts.
+
+**What we did:** Cap UI at **4** (GATE-002 winner), keep that in Git (Arc 7), document the pattern as [SCALE-003](../investigations/kubernetes-analyzer-saturation/studies/SCALE-003-ui-bottleneck.md). Deeper UI code fixes remain optional follow-ups.
+
+![GATE-002 c1 — UI max 5 fails](../investigations/kubernetes-analyzer-saturation/evidence/scale003/grafana-gate-c1-fail-20260619.png)
+
+![Slow POST — fetch wait before analyzer](../investigations/kubernetes-analyzer-saturation/evidence/scale003/jaeger-slow-fetch-wait-gap-20260622.png)
+
+---
+
 ## Reliability notes (not all are “failures”)
 
 | Event | Result |
@@ -204,7 +218,8 @@ Quick lookup for reviewers who already know the arc. Files live in-repo; gate JS
 | Jun 21–22 | PERF-008 B rejected | [PERF-008 doc](../investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) |
 | Jun 22 | OBS-003: shared SQL connection busy (`context.7_policy` Jaeger errors) | [OBS-003 study](../investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) · [evidence/obs003/](../investigations/kubernetes-analyzer-saturation/evidence/obs003/) · [PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) |
 | Jul 11 | GIT-001: Git Helm caps lagged lab winner | [Arc 7](#arc-7--git-and-the-cluster-disagreed-git-001) · [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11) |
-| — | Grafana screenshot catalog | [evidence/grafana-arcs/](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/README.md), [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md), [evidence/obs003/](../investigations/kubernetes-analyzer-saturation/evidence/obs003/README.md) |
+| Jun–Jul | SCALE-003: UI path bottleneck at peak load | [SCALE-003 study](../investigations/kubernetes-analyzer-saturation/studies/SCALE-003-ui-bottleneck.md) · [evidence/scale003/](../investigations/kubernetes-analyzer-saturation/evidence/scale003/) · [Arc 8](#arc-8--ui-path-bottleneck-at-peak-load-scale-003) |
+| — | Grafana screenshot catalog | [evidence/grafana-arcs/](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/README.md), [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md), [evidence/obs003/](../investigations/kubernetes-analyzer-saturation/evidence/obs003/README.md), [evidence/scale003/](../investigations/kubernetes-analyzer-saturation/evidence/scale003/README.md) |
 
 ---
 

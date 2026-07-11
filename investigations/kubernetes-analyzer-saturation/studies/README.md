@@ -13,5 +13,6 @@ Portfolio-wide index: [studies/README.md](../../../studies/README.md).
 | PERF-009 | [PERF-009-jaeger-tail-latency.md](PERF-009-jaeger-tail-latency.md) | [evidence/perf009/](../evidence/perf009/) |
 | OBS-003 | [OBS-003-shared-sql-connection.md](OBS-003-shared-sql-connection.md) — SQL context errors under load | [evidence/obs003/](../evidence/obs003/) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) (closed) · [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) (merged) |
 | GIT-001 | GATE-002 caps in Git Helm values (UI max 4) | [GATE-002](GATE-002-keda-helm-grid-study.md) · [failures Arc 7](../../../failures/README.md#arc-7--git-and-the-cluster-disagreed-git-001) · [issue #24](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) (closed) · [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11) |
+| SCALE-003 | [SCALE-003-ui-bottleneck.md](SCALE-003-ui-bottleneck.md) — UI path bottleneck at peak load | [evidence/scale003/](../evidence/scale003/) · [issue #23](https://github.com/UdonsiKalu/cxr-portfolio/issues/23) |
 
 **When you close a study:** update the study `.md`, `evidence/`, and one [CHANGELOG.md](../../../CHANGELOG.md) entry. [failures/README.md](../../../failures/README.md) only on major arc milestones.

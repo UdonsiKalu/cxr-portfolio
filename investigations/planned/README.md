@@ -26,6 +26,6 @@ Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evi
 | Cost per claim | [cost-per-claim.md](./cost-per-claim.md) | [#21](https://github.com/UdonsiKalu/cxr-portfolio/issues/21) |
 | Analyzer efficiency | [analyzer-efficiency.md](./analyzer-efficiency.md) | [#22](https://github.com/UdonsiKalu/cxr-portfolio/issues/22) |
 
-**CHANGELOG-only backlog (no `planned/*.md` yet):** [#23 SCALE-003 UI bottleneck](https://github.com/UdonsiKalu/cxr-portfolio/issues/23) · ~~[#24 GIT-001](https://github.com/UdonsiKalu/cxr-portfolio/issues/24)~~ (closed — [failures Arc 7](../../failures/README.md#arc-7--git-and-the-cluster-disagreed-git-001))
+**CHANGELOG-only backlog (no `planned/*.md` yet):** ~~[#23 SCALE-003](https://github.com/UdonsiKalu/cxr-portfolio/issues/23)~~ (documented — [SCALE-003 study](../kubernetes-analyzer-saturation/studies/SCALE-003-ui-bottleneck.md)) · ~~[#24 GIT-001](https://github.com/UdonsiKalu/cxr-portfolio/issues/24)~~ (closed — [failures Arc 7](../../failures/README.md#arc-7--git-and-the-cluster-disagreed-git-001))
 
 [← Investigations index](../README.md)
