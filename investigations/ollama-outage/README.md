@@ -32,6 +32,16 @@ Two different paths talk to Ollama:
 
 So Ollama is a **soft** dependency for day-to-day Analyze (on Compliant traffic), and a **hard** dependency for the Auditor path.
 
+### Pictorial evidence
+
+![Probe results table](screenshots/results-table-ollama-outage.png)
+
+![Auditor — Failed to connect to Ollama](screenshots/auditor-ollama-down-error.png)
+
+![Jaeger — Analyze POST still completes (HTTP 200)](screenshots/jaeger-analyze-waterfall-rel002.png)
+
+More files: [screenshots/](screenshots/).
+
 ---
 
 ## Method

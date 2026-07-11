@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta charset=utf-8>
+<title>REL-002 results table</title>
+<style>
+body{font-family:ui-sans-serif,system-ui,sans-serif;background:#0f1419;color:#e7ecf3;margin:0;padding:40px}
+.card{max-width:1000px;margin:0 auto;background:#1a2332;border:1px solid #2d3a4d;border-radius:12px;padding:28px}
+h1{font-size:22px;margin:0 0 8px}
+.sub{color:#9aa8bc;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border-bottom:1px solid #2d3a4d;padding:10px 8px;text-align:left}
+th{color:#9aa8bc;font-weight:600}
+.up{color:#a8f0c0} .down{color:#ffb4b4} .http{color:#9ecbff}
+pre{background:#0d1117;padding:14px;border-radius:8px;font-size:12px;line-height:1.4}
+</style></head><body><div class=card>
+<h1>REL-002 — Ollama outage probe results</h1>
+<p class=sub>Automated run (<code>run-ollama-outage-check.sh</code>). Analyze stays up; Auditor depends on Ollama.</p>
+<table>
+<tr><th>Phase</th><th>Kind</th><th>HTTP</th><th>ms</th><th>Ollama</th><th>Note</th></tr>
+<tr><td>baseline_ollama_up</td><td>analyze</td><td class=http>200</td><td>9733</td><td class=up>up</td><td>Compliant</td></tr>
+<tr><td>baseline_ollama_up</td><td>audit</td><td class=http>200</td><td>15348</td><td class=up>up</td><td>error</td></tr>
+<tr><td>test_a_mid_outage_analyze</td><td>analyze</td><td class=http>200</td><td>10269</td><td class=down>down</td><td>Compliant</td></tr>
+<tr><td>test_a_mid_outage_audit</td><td>audit</td><td class=http>200</td><td>190</td><td class=down>down</td><td>error</td></tr>
+<tr><td>recovery_analyze</td><td>analyze</td><td class=http>200</td><td>9519</td><td class=up>up</td><td>Compliant</td></tr>
+<tr><td>recovery_audit</td><td>audit</td><td class=http>200</td><td>15289</td><td class=up>up</td><td>error</td></tr>
+<tr><td>test_b_boot_without_ollama</td><td>analyze</td><td class=http>200</td><td>10016</td><td class=down>down</td><td>Compliant</td></tr>
+<tr><td>final_both_up</td><td>analyze</td><td class=http>200</td><td>9797</td><td class=up>up</td><td>Compliant</td></tr>
+</table>
+<p class=sub style="margin-top:20px">Unique Auditor capture (Ollama down): Failed to connect to Ollama</p>
+<pre>baseline_ollama_up [analyze]: http=200 ms=9733 ollama=up note=Compliant
+baseline_ollama_up [audit]: http=200 ms=15348 ollama=up note=error
+test_a_mid_outage_analyze [analyze]: http=200 ms=10269 ollama=down note=Compliant
+test_a_mid_outage_audit [audit]: http=200 ms=190 ollama=down note=error
+recovery_analyze [analyze]: http=200 ms=9519 ollama=up note=Compliant
+recovery_audit [audit]: http=200 ms=15289 ollama=up note=error
+test_b_boot_without_ollama [analyze]: http=200 ms=10016 ollama=down note=Compliant
+final_both_up [analyze]: http=200 ms=9797 ollama=up note=Compliant
+
+total_probes=8 non_200=0
+</pre>
+</div></body></html>
