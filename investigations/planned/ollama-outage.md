@@ -1,6 +1,6 @@
 # REL-002 — Ollama outage
 
-**Status:** Planned (Phase 2)
+**Status:** **Promoted** — closed study: [../ollama-outage/](../ollama-outage/)
 
 ## Question
 
@@ -12,4 +12,5 @@ Stop LLM; verify recommendation path errors gracefully; note Compliant-only path
 
 ## Record results in
 
-`cxr-ops-lab/evidence/` and promote to `ollama-outage/` folder when run.
+`investigations/ollama-outage/results/` (ran 2026-07-11).
+

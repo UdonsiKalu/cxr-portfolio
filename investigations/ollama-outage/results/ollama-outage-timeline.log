@@ -1,0 +1,22 @@
+2026-07-11T16:28:44-05:00  preflight host=http://127.0.0.1:8251 analyzer=http://127.0.0.1:8766
+2026-07-11T16:28:44-05:00  ollama_already_up url=http://127.0.0.1:11434
+2026-07-11T16:28:54-05:00  analyze label=baseline_ollama_up http=200 ms=10385 ollama=up archetype=Compliant
+2026-07-11T16:29:10-05:00  audit label=baseline_ollama_up http=200 ms=15273 ollama=up status=error
+2026-07-11T16:29:10-05:00  ollama_systemctl_stop
+2026-07-11T16:29:37-05:00  ollama_down_confirmed
+2026-07-11T16:29:47-05:00  analyze label=test_a_mid_outage_analyze http=200 ms=9977 ollama=down archetype=Compliant
+2026-07-11T16:29:48-05:00  audit label=test_a_mid_outage_audit http=200 ms=231 ollama=down status=error
+2026-07-11T16:29:48-05:00  ollama_systemctl_start
+2026-07-11T16:30:02-05:00  ollama_ready elapsed_s=2
+2026-07-11T16:30:15-05:00  analyze label=recovery_analyze http=200 ms=10377 ollama=up archetype=Compliant
+2026-07-11T16:30:31-05:00  audit label=recovery_audit http=200 ms=15363 ollama=up status=error
+2026-07-11T16:30:31-05:00  ollama_systemctl_stop
+2026-07-11T16:30:42-05:00  ollama_down_confirmed
+2026-07-11T16:30:45-05:00  analyzer_restart_begin
+2026-07-11T16:30:56-05:00  analyzer_warmed elapsed_s=12
+2026-07-11T16:31:06-05:00  analyze label=test_b_boot_without_ollama http=200 ms=10083 ollama=down archetype=Compliant
+2026-07-11T16:31:06-05:00  ollama_systemctl_start
+2026-07-11T16:31:14-05:00  ollama_ready elapsed_s=2
+2026-07-11T16:31:17-05:00  analyzer_restart_begin
+2026-07-11T16:31:27-05:00  analyzer_warmed elapsed_s=11
+2026-07-11T16:31:37-05:00  analyze label=final_both_up http=200 ms=10386 ollama=up archetype=Compliant

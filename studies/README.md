@@ -17,6 +17,7 @@ Full table: [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-
 | PERF-009 | [Jaeger tail latency](investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md) |
 | OBS-003 | [Shared SQL / context errors under load](investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) |
 | SCALE-003 | [UI bottleneck at peak load](investigations/kubernetes-analyzer-saturation/studies/SCALE-003-ui-bottleneck.md) |
+| REL-002 | [Ollama outage](investigations/ollama-outage/) |
 
 ## Earlier arcs (folder READMEs)
 
