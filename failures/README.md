@@ -42,7 +42,7 @@ The trace told the same story: a multi-second **module import** span on every ca
 
 **What failed:** The cluster **looked busy in Grafana** but **host CPU stayed low (~15%)**. Tail latency still reached **~9s**. Analyzer replicas **thrashed** (2↔20), pods sat **pending**, and RPS was a volatile sawtooth — classic **scheduling and HPA signal** problems, not “the machine is out of CPU.”
 
-![OBS-001 — full 0→200 ramp: p95 to ~9s, analyzer HPA thrash, pending pods, low node CPU](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-obs-001-full-run-20260617.png)
+![OBS-001 — full 0→200 ramp: p95 to ~9s, analyzer HPA thrash, pending pods, low node CPU](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/grafana-obs-001-full-run-20260617.png)
 
 Jaeger explained *why* latency was high without high node CPU: **cold pod startup (~15–17s)** and a **`context_builder` span of 3–7s** on slow requests — SQL/context work, not LLM inference.
 
@@ -72,11 +72,11 @@ Under load, the same operation showed a wide tail (fast POSTs ~100ms vs slow one
 
 2. **maxReplicas 20 (Jun 18 morning):** Analyzer pinned at **20 replicas**, **6 pending**, then **20→1 collapses** while node CPU remained **~8–15%** — memory requests and probe kills, not CPU saturation.
 
-![Jun 18 — analyzer replicas 20→0, failure spike](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-jun18-maxreplicas20-collapse.png)
+![Jun 18 — analyzer replicas 20→0, failure spike](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/grafana-jun18-maxreplicas20-collapse.png)
 
 3. **After PERF-003 (Jun 18 afternoon):** Context cache helped micro-load, but a full **0→200** ramp still saw **~132 failures/s**, **18× replica collapses (8→1)**, and sawtooth RPS with UI at **5/5** replicas.
 
-![Jun 18 — post-PERF-003 ramp: sawtooth RPS and instability at 200 users](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-jun18-post-perf003-unstable.png)
+![Jun 18 — post-PERF-003 ramp: sawtooth RPS and instability at 200 users](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/grafana-jun18-post-perf003-unstable.png)
 
 **Mitigation:** Cap analyzer at **8** and UI at **5**; reduce memory pressure. A clean **200-user gate pass** remained open until GATE-002 tuning.
 
@@ -103,13 +103,13 @@ Under load, the same operation showed a wide tail (fast POSTs ~100ms vs slow one
 
 **The one grid failure:** **Candidate 1** (UI max **5**, analyzer min **1**) — **116 failures/s** at 200 users. UI HPA pegged at cap; analyzer did not scale out; forward path saturated.
 
-![GATE-002 candidate 1 — the only grid point that failed @ 200](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-c1-fail-20260619.png)
+![GATE-002 candidate 1 — the only grid point that failed @ 200](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/grafana-gate-c1-fail-20260619.png)
 
-![GATE tuner — UI thrash while analyzer replicas stay flat (failure shape)](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-tuner-analyzer-replicas-zero.png)
+![GATE tuner — UI thrash while analyzer replicas stay flat (failure shape)](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/grafana-gate-tuner-analyzer-replicas-zero.png)
 
 The full grid session ran multiple cumulative ramps; the same UI-thrash signature appears across candidates:
 
-![GATE-002 grid session — four cumulative ramps](../investigations/kubernetes-analyzer-saturation/evidence/failures/grafana-gate-tuner-multi-cycle-20260619.png)
+![GATE-002 grid session — four cumulative ramps](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/grafana-gate-tuner-multi-cycle-20260619.png)
 
 **What we kept:** Candidate 4 became the **lab baseline** for KEDA + Helm (including PERF-008 Experiment A). Promoting it to git-managed `main` is still open ([GIT-001](https://github.com/UdonsiKalu/cxr-portfolio/issues/24)).
 
@@ -179,7 +179,7 @@ Quick lookup for reviewers who already know the arc. Files live in-repo; gate JS
 | Jun 19 | GATE-002 **KEDA + Helm grid** (11/12 pass) | [GATE-002 study](../investigations/kubernetes-analyzer-saturation/studies/GATE-002-keda-helm-grid-study.md) · [result-c1](../investigations/kubernetes-analyzer-saturation/results/tuner/result-c1-20260619-080505.json) |
 | Jun 21–22 | PERF-008 B rejected | [PERF-008 doc](../investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) |
 | Jun 22 | OBS-003: shared SQL connection busy (`context.7_policy` Jaeger errors) | [OBS-003 study](../investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) · [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · [cxr-platform PR #3](https://github.com/UdonsiKalu/cxr-platform/pull/3) |
-| — | Grafana screenshot catalog | [evidence/failures/](../investigations/kubernetes-analyzer-saturation/evidence/failures/README.md), [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) |
+| — | Grafana screenshot catalog | [evidence/grafana-arcs/](../investigations/kubernetes-analyzer-saturation/evidence/grafana-arcs/README.md), [evidence/perf008/](../investigations/kubernetes-analyzer-saturation/evidence/perf008/README.md) |
 
 ---
 
