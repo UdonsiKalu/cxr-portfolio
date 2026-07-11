@@ -2,11 +2,13 @@
 
 | | |
 |---|---|
-| **Status** | PERF-002 spans done; **PERF-003** optimize on branch `perf-003-context-builder-optimize` |
+| **Status** | **Promoted** — closed study: [PERF-002-context-builder-bottleneck.md](../kubernetes-analyzer-saturation/studies/PERF-002-context-builder-bottleneck.md) |
 | **Changelog** | [CHANGELOG.md](../../CHANGELOG.md) (portfolio root — Investigations → LOAD-003) |
 | **ID** | PERF-002 |
 | **Builds on** | [LOAD-003 OBS-001](../kubernetes-analyzer-saturation/evidence/load-observe/RUN-2026-06-17.md) |
 | **Code** | `cxr_kernel_v3_2_integrated.py` → `ContextCollector.gather_full_context` |
+
+> **Maintainer note:** This file is the historical planned stub. Prefer the [closed study](../kubernetes-analyzer-saturation/studies/PERF-002-context-builder-bottleneck.md) for readers.
 
 ## Background
 
@@ -44,10 +46,10 @@ context_builder
 
 ## Success criteria
 
-- [ ] Identify which of the 7 types (or SQL sub-spans) consumes most of 3.8–6.2s under load
-- [ ] Top 3 slowest sub-spans documented with screenshots
-- [ ] Evidence doc: `evidence/load-observe/PERF-002-YYYY-MM-DD.md`
-- [ ] Optimization proposal tied to measured dominant span only
+- [x] Identify which of the 7 types (or SQL sub-spans) consumes most of 3.8–6.2s under load
+- [x] Top 3 slowest sub-spans documented with screenshots *(problem-era shots in load-observe; stage tree in closed study)*
+- [x] Evidence / study write-up: [PERF-002-context-builder-bottleneck.md](../kubernetes-analyzer-saturation/studies/PERF-002-context-builder-bottleneck.md)
+- [x] Optimization proposal tied to measured dominant span only → PERF-003 cache
 
 ## Out of scope
 
