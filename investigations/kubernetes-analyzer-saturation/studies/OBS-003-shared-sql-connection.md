@@ -31,6 +31,14 @@ Make every SQL cursor take a **lock** so only one request talks on that connecti
 **What this is *not*:**  
 This is **not** the main reason p95 climbed to ~800 ms. That was mostly **waiting** before the analyzer started work ([PERF-009](PERF-009-jaeger-tail-latency.md)). This bug is about **correctness and clean traces** under concurrency.
 
+### Evidence (screenshots)
+
+![Jaeger search — slow POSTs with 2 Errors](../evidence/obs003/jaeger-search-2-errors-slow-posts-20260622.png)
+
+![Waterfall — red errors on context.7_policy / context.7_policy.sql](../evidence/obs003/jaeger-waterfall-policy-sql-errors-f541546-20260622.png)
+
+More files: [evidence/obs003/](../evidence/obs003/). Story arc: [failures Arc 6](../../../failures/README.md#arc-6--shared-sql-connection-under-load-obs-003-jun-22).
+
 ---
 
 ## Background: what “context” means here
@@ -141,7 +149,7 @@ with self._db_cursor() as cursor:
 |-------|--------|
 | Before | Many Jaeger traces with ERROR on `context.7_policy*` |
 | After (`perf009-sql`) @ ~100 users | **0** of those policy SQL errors in a fresh Jaeger window |
-| Evidence nearby | [evidence/perf009/](../evidence/perf009/) · story also in [PERF-009](PERF-009-jaeger-tail-latency.md) |
+| Evidence nearby | [evidence/obs003/](../evidence/obs003/) · [evidence/perf009/](../evidence/perf009/) · [PERF-009](PERF-009-jaeger-tail-latency.md) · [failures Arc 6](../../../failures/README.md#arc-6--shared-sql-connection-under-load-obs-003-jun-22) |
 
 ---
 

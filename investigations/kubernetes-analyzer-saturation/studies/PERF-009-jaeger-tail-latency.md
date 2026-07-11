@@ -210,7 +210,7 @@ While reviewing slow traces, many showed **“2 Errors”** on `context.7_policy
 
 **Cause (one line):** one shared `pyodbc` connection per pod kernel singleton; up to **4 concurrent** `/analyze` threads opened cursors without a lock.
 
-**Fix:** [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · [cxr-platform PR #3](https://github.com/UdonsiKalu/cxr-platform/pull/3) — `threading.Lock` + `_db_cursor()`; image `cxr-analyzer:perf009-sql`. Verified **0** policy span errors post-fix.
+**Fix:** [issue #33](https://github.com/UdonsiKalu/cxr-portfolio/issues/33) · [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) — `threading.Lock` + `_db_cursor()`; image `cxr-analyzer:perf009-sql`. Verified **0** policy span errors post-fix. Screenshots: [evidence/obs003/](../evidence/obs003/).
 
 > Keep **fetch-wait tail** and **SQL concurrency** as separate findings. SQL errors occur inside the short `analyze_request` window; they do not explain the ~649 ms pre-handler gap.
 

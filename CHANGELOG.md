@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-11 — Failures arcs 6–7 + OBS-003 screenshots (documented)
+
+| | |
+|---|---|
+| **Problem** | OBS-003 and GIT-001 were buried in Arc 5 / a table; OBS-003 had no dedicated pics in-repo. |
+| **Outcome** | **Documented:** [failures](failures/README.md) Arc 6 (SQL busy) + Arc 7 (Git drift); copied Jaeger “2 Errors” / policy SQL screenshots to [evidence/obs003/](investigations/kubernetes-analyzer-saturation/evidence/obs003/). |
+| **Artifacts** | [failures/README.md](failures/README.md) · [evidence/obs003/](investigations/kubernetes-analyzer-saturation/evidence/obs003/) · [OBS-003 study](investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) |
+
 #### 2026-07-11 — OBS-003 platform fix merged; issue closed (resolved)
 
 | | |
@@ -52,13 +60,13 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | **Outcome** | **Resolved:** [cxr-platform PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) merged; portfolio issue closed. |
 | **Artifacts** | [OBS-003 study](investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) · [PR #8](https://github.com/UdonsiKalu/cxr-platform/pull/8) |
 
-#### 2026-07-11 — GIT-001: promote GATE-002 Helm defaults to Git (in progress)
+#### 2026-07-11 — GIT-001: promote GATE-002 Helm defaults to Git (resolved)
 
 | | |
 |---|---|
 | **Problem** | Lab winner caps lived in evidence / live Argo patches; Git `main` still had UI `maxReplicas: 5` (GATE-002 c1 failure shape). |
-| **Outcome** | **In progress:** [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11) — UI max **4**, analyzer max **8** / min **2**, drift runbook. |
-| **Artifacts** | [issue #24](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) · [GATE-002 study](investigations/kubernetes-analyzer-saturation/studies/GATE-002-keda-helm-grid-study.md) · [gitops-values-drift.md](https://github.com/UdonsiKalu/cxr-platform/blob/fix/git-001-gate002-helm-defaults/docs/runbooks/gitops-values-drift.md) |
+| **Outcome** | **Resolved:** [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11) merged — UI max **4**, analyzer max **8** / min **2**, drift runbook; issue [#24](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) closed. |
+| **Artifacts** | [failures Arc 7](failures/README.md#arc-7--git-and-the-cluster-disagreed-git-001) · [GATE-002 study](investigations/kubernetes-analyzer-saturation/studies/GATE-002-keda-helm-grid-study.md) · [gitops-values-drift.md](https://github.com/UdonsiKalu/cxr-platform/blob/main/docs/runbooks/gitops-values-drift.md) |
 
 #### 2026-07-11 — OBS-003 study rewritten in plain language (documented)
 
@@ -278,7 +286,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 |----|------|---------|--------|
 | SCALE-003 | Investigations | UI bottleneck at peak load | Open |
 | OBS-002 | Investigations | `context_builder` in Prometheus | Open |
-| GIT-001 | Operations | Argo/Git values drift | In progress ([platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11)) |
+| GIT-001 | Operations | Argo/Git values drift | Resolved ([platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11)) |
 
 *Automation track (load gate, KEDA, VPA) is documented in ops-lab on branch `feature/load-perf-automation`—not merged to portfolio yet.*
 
