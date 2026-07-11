@@ -81,15 +81,15 @@ Per-candidate JSON: [results/tuner/](../results/tuner/README.md).
 
 **Candidate 1** (UI `maxReplicas=5`, analyzer `minReplicas=1`) is the only grid point that failed. Grafana shows UI HPA at cap with volatile CPU while analyzer replicas stayed flat — the **UI forward path** saturated before the analyzer tier.
 
-![GATE-002 c1 — 116 failures/s @ 200](../evidence/failures/grafana-gate-c1-fail-20260619.png)
+![GATE-002 c1 — 116 failures/s @ 200](../evidence/grafana-arcs/grafana-gate-c1-fail-20260619.png)
 
 That failure shape is why the winning recipe caps UI at **4** replicas, not 5.
 
-![GATE tuner — UI thrash, analyzer replicas flat](../evidence/failures/grafana-gate-tuner-analyzer-replicas-zero.png)
+![GATE tuner — UI thrash, analyzer replicas flat](../evidence/grafana-arcs/grafana-gate-tuner-analyzer-replicas-zero.png)
 
 Four back-to-back cumulative ramps on the same day show the same UI-thrash pattern on non-winning configs:
 
-![GATE tuner — four cumulative ramps (grid session)](../evidence/failures/grafana-gate-tuner-multi-cycle-20260619.png)
+![GATE tuner — four cumulative ramps (grid session)](../evidence/grafana-arcs/grafana-gate-tuner-multi-cycle-20260619.png)
 
 ---
 
