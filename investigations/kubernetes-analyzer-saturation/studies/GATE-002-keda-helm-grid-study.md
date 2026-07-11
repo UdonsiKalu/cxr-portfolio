@@ -106,7 +106,7 @@ ui:
 
 This became the **baseline Helm overlay** for later work, including PERF-008 Experiment A (same KEDA triggers; validated again with OBS-002 replica truth and `perf008` metrics).
 
-**Not yet on git `main`:** tracked as [GIT-001](https://github.com/UdonsiKalu/cxr-portfolio/issues/24) — winner lives in lab evidence until Argo-managed values merge.
+**On git `main` (GIT-001):** [cxr-platform PR #11](https://github.com/UdonsiKalu/cxr-platform/pull/11) pins UI `maxReplicas: 4` and documents the analyzer baseline (`maxReplicas: 8`, `minReplicas: 2`, KEDA p95 2000) in Helm values + [gitops-values-drift runbook](https://github.com/UdonsiKalu/cxr-platform/blob/fix/git-001-gate002-helm-defaults/docs/runbooks/gitops-values-drift.md). Analyzer `minReplicas` stays **2** (hardened vs grid winner’s `1`; still gate-pass).
 
 ---
 
