@@ -1,0 +1,6 @@
+Run ID: 26505883238
+URL: https://github.com/UdonsiKalu/cxr-ui-rehearsal/actions/runs/26505883238
+Branch: chore/rehearsal-high-risk-batch11
+Title: Add SW.6a Playwright smoke and unify bootcamp CI workflow.
+Conclusion: success
+Created: 2026-05-27T10:32:20Z
