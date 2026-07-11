@@ -160,8 +160,8 @@ Backpressure metrics were visible but did not predict stability better than p95 
 
 | Event | Result |
 |-------|--------|
-| **Kill analyzer under traffic** (CHAOS-001) | ~64 requests returned **500** / `fetch failed` until cold restart (~7s) — [investigation](../investigations/kill-analyzer-under-traffic/README.md) |
-| **Qdrant outage** (DEP-001) | HTTP **200** with degraded retrieval — graceful degradation, not a user-visible hard failure — [investigation](../investigations/qdrant-outage/README.md) |
+| **Kill analyzer under traffic** (CHAOS-001) | ~64 requests returned **500** / `fetch failed` until cold restart (~7s) — [investigation](../archive/old-investigations/kill-analyzer-under-traffic/README.md) |
+| **Qdrant outage** (DEP-001) | HTTP **200** with degraded retrieval — graceful degradation, not a user-visible hard failure — [investigation](../archive/old-investigations/qdrant-outage/README.md) |
 
 ---
 

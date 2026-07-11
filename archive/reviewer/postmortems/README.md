@@ -12,7 +12,7 @@ Canonical files: [`investigations/postmortems/`](../investigations/postmortems/)
 |------------|----------------------|---------|
 | [Python import bottleneck](../investigations/postmortems/python-import-bottleneck.md) | [latency-investigation](../investigations/latency-investigation/) | Subprocess-per-request re-imported heavy ML stack every call |
 | [High API latency under load](../investigations/postmortems/high-latency-under-load.md) | [latency-investigation](../investigations/latency-investigation/) | Load-test view of the latency crisis |
-| [Jaeger trace profile UX](../investigations/postmortems/jaeger-trace-profile.md) | [missing-spans](../investigations/missing-spans/) | Trace visualization trade-offs |
+| [Jaeger trace profile UX](../investigations/postmortems/jaeger-trace-profile.md) | [missing-spans](../old-investigations/missing-spans/) | Trace visualization trade-offs |
 
 ---
 

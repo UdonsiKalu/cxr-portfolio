@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-11 — Archive cold investigations (documented)
+
+| | |
+|---|---|
+| **Problem** | `investigations/` listed ~16 peer folders; completed LOAD-001/002, chaos, deploy cluttered the happy path. |
+| **Outcome** | **Documented:** Moved 10 folders to `archive/old-investigations/`; active tree keeps latency, load-testing, cold-vs-warm, ci-pipeline, saturation, planned, postmortems. Path map: [ARCHIVED.md](investigations/ARCHIVED.md). |
+| **Artifacts** | [archive/old-investigations/](archive/old-investigations/README.md) · [investigations/README.md](investigations/README.md) · [studies index](studies/README.md) |
+
 #### 2026-07-11 — PERF-002 study promoted + studies index (documented)
 
 | | |
@@ -244,7 +252,7 @@ System design, ADRs, observability model, evolution narrative.
 | | |
 |---|---|
 | **Decision** | Reject “minimal” Jaeger profiles that hide startup/import/`context_builder` cost. |
-| **Artifacts** | [missing-spans](investigations/missing-spans/README.md) · `CXR_TRACE_PROFILE=detailed` |
+| **Artifacts** | [missing-spans](archive/old-investigations/missing-spans/README.md) · `CXR_TRACE_PROFILE=detailed` |
 
 #### LOAD-003 scaling layers (documented)
 

@@ -26,6 +26,10 @@ Full table: [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-
 | Cold vs warm | [cold-vs-warm-analyzer](investigations/cold-vs-warm-analyzer/) |
 | CI evidence | [ci-pipeline](investigations/ci-pipeline/) |
 
+## Archived investigations
+
+Completed LOAD-001/002, chaos, deploy, etc. live under [archive/old-investigations/](archive/old-investigations/README.md). Path map: [investigations/ARCHIVED.md](investigations/ARCHIVED.md).
+
 ## Open backlog
 
 Planned specs (not yet promoted): [investigations/planned/](investigations/planned/README.md) · GitHub milestone **Phase 2 — investigations backlog**.

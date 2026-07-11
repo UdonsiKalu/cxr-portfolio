@@ -14,7 +14,7 @@ Index of **automation used in CXR investigations**. Scripts stay in place — th
 |--------|----------|---------|--------|---------|-------|-------------------|
 | `start-lab-notebook.sh` | [start-lab-notebook.sh](./start-lab-notebook.sh) | Launch JupyterLab on `:8888` for investigation notebooks | `pip install jupyterlab` once | Browser UI with working markdown links | `jupyter lab` | All — active documentation |
 | `sync-investigation-notebooks.py` | [sync-investigation-notebooks.py](./sync-investigation-notebooks.py) | Build `notebook.ipynb` from each `README.md` | Python 3 | `*/notebook.ipynb`, `README.ipynb` | — | All — refresh after md edits |
-| `capture-ci-k8-screenshots.sh` | [capture-ci-k8-screenshots.sh](./capture-ci-k8-screenshots.sh) | Regenerate CI/K8 evidence PNGs | `gh` auth, `:8081` up, Chrome headless | PNGs in `investigations/*/screenshots/` | `kubectl`, `helm`, `gh run list` | [CI-001](../investigations/ci-pipeline/), [K8-001](../investigations/kubernetes-deploy/) |
+| `capture-ci-k8-screenshots.sh` | [capture-ci-k8-screenshots.sh](./capture-ci-k8-screenshots.sh) | Regenerate CI/K8 evidence PNGs | `gh` auth, `:8081` up, Chrome headless | PNGs in `investigations/*/screenshots/` | `kubectl`, `helm`, `gh run list` | [CI-001](../investigations/ci-pipeline/), [K8-001](../archive/old-investigations/kubernetes-deploy/) |
 
 ---
 
@@ -22,14 +22,14 @@ Index of **automation used in CXR investigations**. Scripts stay in place — th
 
 | Script | Location | Purpose | Inputs | Outputs | Calls | Investigation(s) |
 |--------|----------|---------|--------|---------|-------|-------------------|
-| `run-capacity-sweep.sh` | [../investigations/single-analyzer-capacity/run-capacity-sweep.sh](../investigations/single-analyzer-capacity/run-capacity-sweep.sh) | Headless Locust capacity sweep 1→15 | `CXR_CAPACITY_USERS`, warm `:8251` | CSV in `results/` | `locustfile-analyze-only.py` | LOAD-001 |
-| `run-capacity-locust-gui.sh` | [../investigations/single-analyzer-capacity/run-capacity-locust-gui.sh](../investigations/single-analyzer-capacity/run-capacity-locust-gui.sh) | Locust GUI staged ramp 1→15 | `:8089` or `CXR_LOCUST_WEB_PORT` | Charts screenshot | `locustfile-staged-gui.py` | LOAD-001 |
-| `locustfile-analyze-only.py` | [../investigations/single-analyzer-capacity/locustfile-analyze-only.py](../investigations/single-analyzer-capacity/locustfile-analyze-only.py) | POST-only analyze load | Target URL `:8251` | Locust stats | — | LOAD-001 |
-| `locustfile-staged-gui.py` | [../investigations/single-analyzer-capacity/locustfile-staged-gui.py](../investigations/single-analyzer-capacity/locustfile-staged-gui.py) | `LoadTestShape` staged users | Env tier list | Locust stats | — | LOAD-001, LOAD-002 |
-| `run-saturation-sweep.sh` | [../investigations/analyzer-saturation/run-saturation-sweep.sh](../investigations/analyzer-saturation/run-saturation-sweep.sh) | Headless 15→35 saturation | `CXR_CAPACITY_*` | `results/saturation-sweep.csv` | `locustfile-staged-gui.py` | LOAD-002 |
-| `run-saturation-locust-gui.sh` | [../investigations/analyzer-saturation/run-saturation-locust-gui.sh](../investigations/analyzer-saturation/run-saturation-locust-gui.sh) | GUI staged 15→35 | `:8090` default | Charts PNG | `run-capacity-locust-gui.sh` | LOAD-002 |
-| `run-saturation-ramp-until-break-gui.sh` | [../investigations/analyzer-saturation/run-saturation-ramp-until-break-gui.sh](../investigations/analyzer-saturation/run-saturation-ramp-until-break-gui.sh) | Continuous ramp until stop | `CXR_RAMP_MAX_USERS` | Charts PNG | `locustfile-ramp-continuous.py` | LOAD-002 |
-| `locustfile-ramp-continuous.py` | [../investigations/analyzer-saturation/locustfile-ramp-continuous.py](../investigations/analyzer-saturation/locustfile-ramp-continuous.py) | Continuous user ramp shape | Max users/duration env | Locust stats | — | LOAD-002 |
+| `run-capacity-sweep.sh` | [../archive/old-investigations/single-analyzer-capacity/run-capacity-sweep.sh](../archive/old-investigations/single-analyzer-capacity/run-capacity-sweep.sh) | Headless Locust capacity sweep 1→15 | `CXR_CAPACITY_USERS`, warm `:8251` | CSV in `results/` | `locustfile-analyze-only.py` | LOAD-001 |
+| `run-capacity-locust-gui.sh` | [../archive/old-investigations/single-analyzer-capacity/run-capacity-locust-gui.sh](../archive/old-investigations/single-analyzer-capacity/run-capacity-locust-gui.sh) | Locust GUI staged ramp 1→15 | `:8089` or `CXR_LOCUST_WEB_PORT` | Charts screenshot | `locustfile-staged-gui.py` | LOAD-001 |
+| `locustfile-analyze-only.py` | [../archive/old-investigations/single-analyzer-capacity/locustfile-analyze-only.py](../archive/old-investigations/single-analyzer-capacity/locustfile-analyze-only.py) | POST-only analyze load | Target URL `:8251` | Locust stats | — | LOAD-001 |
+| `locustfile-staged-gui.py` | [../archive/old-investigations/single-analyzer-capacity/locustfile-staged-gui.py](../archive/old-investigations/single-analyzer-capacity/locustfile-staged-gui.py) | `LoadTestShape` staged users | Env tier list | Locust stats | — | LOAD-001, LOAD-002 |
+| `run-saturation-sweep.sh` | [../archive/old-investigations/analyzer-saturation/run-saturation-sweep.sh](../archive/old-investigations/analyzer-saturation/run-saturation-sweep.sh) | Headless 15→35 saturation | `CXR_CAPACITY_*` | `results/saturation-sweep.csv` | `locustfile-staged-gui.py` | LOAD-002 |
+| `run-saturation-locust-gui.sh` | [../archive/old-investigations/analyzer-saturation/run-saturation-locust-gui.sh](../archive/old-investigations/analyzer-saturation/run-saturation-locust-gui.sh) | GUI staged 15→35 | `:8090` default | Charts PNG | `run-capacity-locust-gui.sh` | LOAD-002 |
+| `run-saturation-ramp-until-break-gui.sh` | [../archive/old-investigations/analyzer-saturation/run-saturation-ramp-until-break-gui.sh](../archive/old-investigations/analyzer-saturation/run-saturation-ramp-until-break-gui.sh) | Continuous ramp until stop | `CXR_RAMP_MAX_USERS` | Charts PNG | `locustfile-ramp-continuous.py` | LOAD-002 |
+| `locustfile-ramp-continuous.py` | [../archive/old-investigations/analyzer-saturation/locustfile-ramp-continuous.py](../archive/old-investigations/analyzer-saturation/locustfile-ramp-continuous.py) | Continuous user ramp shape | Max users/duration env | Locust stats | — | LOAD-002 |
 
 ---
 
@@ -37,11 +37,11 @@ Index of **automation used in CXR investigations**. Scripts stay in place — th
 
 | Script | Location | Purpose | Inputs | Outputs | Calls | Investigation(s) |
 |--------|----------|---------|--------|---------|-------|-------------------|
-| `run-kill-analyzer-chaos.sh` | [../investigations/kill-analyzer-under-traffic/run-kill-analyzer-chaos.sh](../investigations/kill-analyzer-under-traffic/run-kill-analyzer-chaos.sh) | Automated CHAOS-001 timeline | `:8766` warm, Locust 5 users | `results/kill-chaos-*` | `kill-analyzer.sh`, `restart-analyzer-wait-warm.sh`, `locustfile-chaos-steady.py` | CHAOS-001 |
-| `run-chaos-locust-gui.sh` | [../investigations/kill-analyzer-under-traffic/run-chaos-locust-gui.sh](../investigations/kill-analyzer-under-traffic/run-chaos-locust-gui.sh) | GUI chaos run for screenshots | Locust `:8089` | Charts PNG | `locustfile-chaos-steady.py` | CHAOS-001 |
-| `kill-analyzer.sh` | [../investigations/kill-analyzer-under-traffic/kill-analyzer.sh](../investigations/kill-analyzer-under-traffic/kill-analyzer.sh) | Kill `:8766` analyzer | Running analyzer | Process stopped | `fuser -k 8766/tcp` | CHAOS-001 |
-| `restart-analyzer-wait-warm.sh` | [../investigations/kill-analyzer-under-traffic/restart-analyzer-wait-warm.sh](../investigations/kill-analyzer-under-traffic/restart-analyzer-wait-warm.sh) | Restart analyzer until warmed | `start_analyzer_service.sh` on PATH | `/health` warmed | — | CHAOS-001 |
-| `run-qdrant-outage-check.sh` | [../investigations/qdrant-outage/run-qdrant-outage-check.sh](../investigations/qdrant-outage/run-qdrant-outage-check.sh) | Qdrant up/down analyze checks | Docker Qdrant `:6333`, `:8251` | stdout summary | `curl`, analyzer restart | DEP-001 |
+| `run-kill-analyzer-chaos.sh` | [../archive/old-investigations/kill-analyzer-under-traffic/run-kill-analyzer-chaos.sh](../archive/old-investigations/kill-analyzer-under-traffic/run-kill-analyzer-chaos.sh) | Automated CHAOS-001 timeline | `:8766` warm, Locust 5 users | `results/kill-chaos-*` | `kill-analyzer.sh`, `restart-analyzer-wait-warm.sh`, `locustfile-chaos-steady.py` | CHAOS-001 |
+| `run-chaos-locust-gui.sh` | [../archive/old-investigations/kill-analyzer-under-traffic/run-chaos-locust-gui.sh](../archive/old-investigations/kill-analyzer-under-traffic/run-chaos-locust-gui.sh) | GUI chaos run for screenshots | Locust `:8089` | Charts PNG | `locustfile-chaos-steady.py` | CHAOS-001 |
+| `kill-analyzer.sh` | [../archive/old-investigations/kill-analyzer-under-traffic/kill-analyzer.sh](../archive/old-investigations/kill-analyzer-under-traffic/kill-analyzer.sh) | Kill `:8766` analyzer | Running analyzer | Process stopped | `fuser -k 8766/tcp` | CHAOS-001 |
+| `restart-analyzer-wait-warm.sh` | [../archive/old-investigations/kill-analyzer-under-traffic/restart-analyzer-wait-warm.sh](../archive/old-investigations/kill-analyzer-under-traffic/restart-analyzer-wait-warm.sh) | Restart analyzer until warmed | `start_analyzer_service.sh` on PATH | `/health` warmed | — | CHAOS-001 |
+| `run-qdrant-outage-check.sh` | [../archive/old-investigations/qdrant-outage/run-qdrant-outage-check.sh](../archive/old-investigations/qdrant-outage/run-qdrant-outage-check.sh) | Qdrant up/down analyze checks | Docker Qdrant `:6333`, `:8251` | stdout summary | `curl`, analyzer restart | DEP-001 |
 
 ---
 
