@@ -42,6 +42,16 @@ Each entry follows the same shape where possible:
 
 Performance, reliability, and observability studies. Deep dives live in each study folder; this log is the cross-study narrative.
 
+### Portfolio navigation (2026-07)
+
+#### 2026-07-11 — PERF-002 study promoted + studies index (documented)
+
+| | |
+|---|---|
+| **Problem** | PERF-002/003 work was done (CHANGELOG + planned stub) but issue #6 still looked open and there was no single studies index. |
+| **Outcome** | **Documented:** Closed study under saturation `studies/`; portfolio [studies/README.md](studies/README.md) index; planned stub marked promoted. |
+| **Artifacts** | [PERF-002 study](investigations/kubernetes-analyzer-saturation/studies/PERF-002-context-builder-bottleneck.md) · [studies index](studies/README.md) · [issue #6](https://github.com/UdonsiKalu/cxr-portfolio/issues/6) |
+
 ### Performance & load — LOAD-003 arc (2026-06)
 
 #### 2026-06-23 — Portfolio layout: DevOps-first directories (documented)

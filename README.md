@@ -16,7 +16,7 @@
 
 **GitHub:** [operations/GITHUB-WORKFLOW.md](operations/GITHUB-WORKFLOW.md) — Issues, PRs, Kanban.
 
-**LOAD-003 arc (current):** [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-analyzer-saturation/studies/) — GATE-002, PERF-008, PERF-009 beside evidence.
+**Studies index:** [studies/README.md](studies/README.md) — PERF-002, GATE-002, PERF-008/009, OBS-003, and earlier arcs.
 
 ---
 
