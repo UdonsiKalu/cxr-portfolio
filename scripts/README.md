@@ -12,8 +12,8 @@ Index of **automation used in CXR investigations**. Scripts stay in place — th
 
 | Script | Location | Purpose | Inputs | Outputs | Calls | Investigation(s) |
 |--------|----------|---------|--------|---------|-------|-------------------|
-| `start-lab-notebook.sh` | [start-lab-notebook.sh](./start-lab-notebook.sh) | Launch JupyterLab on `:8888` for investigation notebooks | `pip install jupyterlab` once | Browser UI with working markdown links | `jupyter lab` | All — active documentation |
-| `sync-investigation-notebooks.py` | [sync-investigation-notebooks.py](./sync-investigation-notebooks.py) | Build `notebook.ipynb` from each `README.md` | Python 3 | `*/notebook.ipynb`, `README.ipynb` | — | All — refresh after md edits |
+| `start-lab-notebook.sh` | [start-lab-notebook.sh](./start-lab-notebook.sh) | Optional JupyterLab on `:8888` | `pip install jupyterlab` | Browser UI | `jupyter lab` | Optional |
+| `sync-investigation-notebooks.py` | [sync-investigation-notebooks.py](./sync-investigation-notebooks.py) | Legacy: rebuild notebooks from markdown | Python 3 | `*/notebook.ipynb` | — | Optional / archived nav |
 | `capture-ci-k8-screenshots.sh` | [capture-ci-k8-screenshots.sh](./capture-ci-k8-screenshots.sh) | Regenerate CI/K8 evidence PNGs | `gh` auth, `:8081` up, Chrome headless | PNGs in `investigations/*/screenshots/` | `kubectl`, `helm`, `gh run list` | [CI-001](../investigations/ci-pipeline/), [K8-001](../archive/old-investigations/kubernetes-deploy/) |
 
 ---

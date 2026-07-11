@@ -20,5 +20,6 @@ Completed or superseded investigation folders moved out of `investigations/` so 
 | [trace-propagation](./trace-propagation/) | OTEL-001 |
 | [missing-spans](./missing-spans/) | Trace profile / Jaeger UX |
 | [postmortems](./postmortems/) | Incident one-pagers (redundant with latency investigation) |
+| [_lab-nav](./_lab-nav/) | Old Jupyter/HTML navigation + notebook templates |
 
 Stubs were skipped on purpose so GitHub’s `investigations/` tree stays short — use [../../investigations/ARCHIVED.md](../../investigations/ARCHIVED.md) for old→new paths.

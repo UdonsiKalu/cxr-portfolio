@@ -1,18 +1,42 @@
-# Investigation format — use notebook only
+# Investigation template
 
 <!-- portfolio -->
 
-**Active documentation is `.ipynb` only.** Markdown links do not work in Cursor.
+Copy this file to `investigations/<your-id>/README.md` (and add `screenshots/` when you have evidence).
 
-| Use this | Not this |
-|----------|----------|
-| [template-investigation.ipynb](../template-investigation.ipynb) | ~~template-investigation.md~~ |
-| `<study>/notebook.ipynb` | ~~`<study>/README.md`~~ for daily work |
+| | |
+|---|---|
+| **Status** | Planned / In progress / Resolved |
+| **ID** | e.g. PERF-00X |
+| **Tools** | |
+| **Environment** | Local lab, synthetic data |
 
-**Refresh all notebooks from markdown (optional GitHub export):**
+---
 
-```bash
-python3 scripts/sync-investigation-notebooks.py
-```
+## Question
 
-Open [00-navigation.ipynb](../00-navigation.ipynb) or [lab-navigation.html](../lab-navigation.html) for clickable indexes.
+What are we trying to learn?
+
+## Hypothesis
+
+What do we expect?
+
+## Method
+
+1. …
+2. …
+
+## Results
+
+| Signal | Observation |
+|--------|-------------|
+| | |
+
+## Decision / follow-ups
+
+-
+
+## Evidence
+
+- Screenshots: `./screenshots/`
+- Related: [investigations/README.md](./README.md) · [CHANGELOG.md](../CHANGELOG.md)

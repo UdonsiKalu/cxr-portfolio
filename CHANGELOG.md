@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-11 — Trim investigations nav clutter (documented)
+
+| | |
+|---|---|
+| **Problem** | `investigations/` root had duplicate indexes (md + ipynb + html) and dual templates. |
+| **Outcome** | **Documented:** Keep `README.md`, `ARCHIVED.md`, `template-investigation.md` only; move Jupyter/HTML nav to `archive/old-investigations/_lab-nav/`. |
+| **Artifacts** | [investigations/README.md](investigations/README.md) · [_lab-nav](archive/old-investigations/_lab-nav/) |
+
 #### 2026-07-11 — Archive postmortems (documented)
 
 | | |
