@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-11 — REL-002: Ollama outage (resolved)
+
+| | |
+|---|---|
+| **Problem** | Unknown blast radius if Ollama (LLM) is down during Analyze / Auditor. |
+| **Outcome** | **Resolved (lab):** Analyze on Compliant claims stays **HTTP 200** with LLM skipped; Auditor returns clear **Failed to connect to Ollama** when down. |
+| **Artifacts** | [ollama-outage/](investigations/ollama-outage/) · [issue #13](https://github.com/UdonsiKalu/cxr-portfolio/issues/13) |
+
 #### 2026-07-11 — SCALE-003: UI bottleneck at peak load (documented)
 
 | | |

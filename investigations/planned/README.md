@@ -15,7 +15,7 @@ Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evi
 | Kubernetes migration | [kubernetes-migration.md](./kubernetes-migration.md) | [#10](https://github.com/UdonsiKalu/cxr-portfolio/issues/10) |
 | Load balancing | [load-balancing.md](./load-balancing.md) | [#11](https://github.com/UdonsiKalu/cxr-portfolio/issues/11) |
 | Autoscaling | [autoscaling.md](./autoscaling.md) | [#12](https://github.com/UdonsiKalu/cxr-portfolio/issues/12) |
-| Ollama outage | [ollama-outage.md](./ollama-outage.md) | [#13](https://github.com/UdonsiKalu/cxr-portfolio/issues/13) |
+| Ollama outage | [ollama-outage.md](./ollama-outage.md) → **done:** [../ollama-outage/](../ollama-outage/) | [#13](https://github.com/UdonsiKalu/cxr-portfolio/issues/13) (closing) |
 | Database unavailable | [database-unavailable.md](./database-unavailable.md) | [#14](https://github.com/UdonsiKalu/cxr-portfolio/issues/14) |
 | Network latency injection | [network-latency-injection.md](./network-latency-injection.md) | [#15](https://github.com/UdonsiKalu/cxr-portfolio/issues/15) |
 | Packet loss injection | [packet-loss-injection.md](./packet-loss-injection.md) | [#16](https://github.com/UdonsiKalu/cxr-portfolio/issues/16) |

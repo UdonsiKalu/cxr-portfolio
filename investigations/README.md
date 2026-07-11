@@ -20,6 +20,7 @@ Hypothesis-driven lab work on the local CXR stack (synthetic data only).
 | Cold vs warm analyzer | [cold-vs-warm-analyzer/](./cold-vs-warm-analyzer/) |
 | Bootcamp CI pipeline | [ci-pipeline/](./ci-pipeline/) |
 | Kubernetes saturation (LOAD-003+) | [kubernetes-analyzer-saturation/](./kubernetes-analyzer-saturation/) |
+| Ollama outage (REL-002) | [ollama-outage/](./ollama-outage/) |
 | Planned backlog | [planned/](./planned/) |
 
 ---
