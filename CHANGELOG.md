@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-11 — Load-testing investigation enriched (documented)
+
+| | |
+|---|---|
+| **Problem** | Active `load-testing/` folder only held the Locust baseline; LOAD-001/002 evidence lived in archive after the tree shrink. |
+| **Outcome** | **Documented:** Full Locust program write-up in `investigations/load-testing/` (baseline → LOAD-001 → LOAD-002 → LOAD-003 pointer) with key screenshots copied in-folder. |
+| **Artifacts** | [load-testing/README.md](investigations/load-testing/README.md) · [LOAD-001 archive](archive/old-investigations/single-analyzer-capacity/) · [LOAD-002 archive](archive/old-investigations/analyzer-saturation/) |
+
 #### 2026-07-11 — Archive cold investigations (documented)
 
 | | |

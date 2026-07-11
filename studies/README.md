@@ -22,7 +22,7 @@ Full table: [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-
 | Theme | Entry |
 |-------|--------|
 | Subprocess → warm analyzer | [latency-investigation](investigations/latency-investigation/) · [postmortems](investigations/postmortems/) |
-| Locust baseline | [load-testing](investigations/load-testing/) |
+| Locust load program (baseline → LOAD-001/002) | [load-testing](investigations/load-testing/) · [archives](archive/old-investigations/) |
 | Cold vs warm | [cold-vs-warm-analyzer](investigations/cold-vs-warm-analyzer/) |
 | CI evidence | [ci-pipeline](investigations/ci-pipeline/) |
 
