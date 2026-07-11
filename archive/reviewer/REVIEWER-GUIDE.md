@@ -41,13 +41,13 @@ Use this checklist to evaluate CXR as a **complete engineering portfolio**: arch
 | ID | Study | Key evidence |
 |----|-------|--------------|
 | LAT | [latency-investigation](../investigations/latency-investigation/) | Jaeger waterfalls, before/after p95 |
-| LOAD-001 | [single-analyzer-capacity](../investigations/single-analyzer-capacity/) | Staged ramp screenshots |
-| LOAD-002 | [analyzer-saturation](../investigations/analyzer-saturation/) | Continuous ramp to ~225 users |
+| LOAD-001 | [single-analyzer-capacity](../old-investigations/single-analyzer-capacity/) | Staged ramp screenshots |
+| LOAD-002 | [analyzer-saturation](../old-investigations/analyzer-saturation/) | Continuous ramp to ~225 users |
 | LOAD-003 | [kubernetes-analyzer-saturation](../investigations/kubernetes-analyzer-saturation/) | HPA, Grafana, OBS-001 |
 | GATE-002 | [tuner summary](../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) | 12-candidate Helm grid, winner |
-| OTEL | [trace-propagation](../investigations/trace-propagation/) | Cross-service traceparent |
-| CHAOS | [kill-analyzer-under-traffic](../investigations/kill-analyzer-under-traffic/) | Failure mode under load |
-| DEP | [qdrant-outage](../investigations/qdrant-outage/) | Dependency outage behavior |
+| OTEL | [trace-propagation](../old-investigations/trace-propagation/) | Cross-service traceparent |
+| CHAOS | [kill-analyzer-under-traffic](../old-investigations/kill-analyzer-under-traffic/) | Failure mode under load |
+| DEP | [qdrant-outage](../old-investigations/qdrant-outage/) | Dependency outage behavior |
 
 Full index: [investigations/README.md](investigations/README.md)
 
@@ -67,7 +67,7 @@ Index: [postmortems/README.md](postmortems/README.md)
 ### 6. Operations & platform
 
 - [ ] [operations/ci-cd.md](../operations/ci-cd.md) — CI investigation  
-- [ ] [kubernetes-deploy](../investigations/kubernetes-deploy/) — K8-001  
+- [ ] [kubernetes-deploy](../old-investigations/kubernetes-deploy/) — K8-001  
 - [ ] [archive/demo/RUN.md](../archive/demo/RUN.md) — runnable stack (optional hands-on)
 
 ---

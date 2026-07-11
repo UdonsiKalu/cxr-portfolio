@@ -1,0 +1,23 @@
+# K8 cluster snapshot — 2026-06-07
+
+Kubernetes control plane is running at https://127.0.0.1:45995
+CoreDNS is running at https://127.0.0.1:45995/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+
+NAME                          READY   STATUS    RESTARTS      AGE
+pod/cxr-ui-77b7b7f684-bz85h   1/1     Running   6 (35h ago)   9d
+
+NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+service/cxr-ui   ClusterIP   10.96.187.56   <none>        3000/TCP   9d
+
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/cxr-ui   1/1     1            1           9d
+
+NAME                                DESIRED   CURRENT   READY   AGE
+replicaset.apps/cxr-ui-77b7b7f684   1         1         1       9d
+
+NAME  	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART       	APP VERSION
+cxr-ui	cxr-ui   	8       	2026-06-02 22:35:58.074092069 -0500 CDT	deployed	cxr-ui-0.1.0	1.0.0      
+
+Image: cxr-ui:local
+HTTP :8081: 200

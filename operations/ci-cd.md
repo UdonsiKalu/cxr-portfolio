@@ -16,7 +16,7 @@ File: `.github/workflows/ci.yml` in the UI repo.
 
 - **Not** in the CI workflow — no auto-deploy to **:8251** or **:8081**
 - SW.8 Argo CD in **`cxr-ops-lab`** (`13-argo-install.sh`, **:8083**)
-- **Portfolio investigation:** [investigations/kubernetes-deploy/](../investigations/kubernetes-deploy/) (K8-001)
+- **Portfolio investigation:** [archive/old-investigations/kubernetes-deploy/](../archive/old-investigations/kubernetes-deploy/) (K8-001)
 
 ## Related evidence
 

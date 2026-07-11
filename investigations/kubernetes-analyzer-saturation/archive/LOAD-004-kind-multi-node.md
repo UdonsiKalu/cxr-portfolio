@@ -73,7 +73,7 @@ cd ~/staging/cxr-portfolio
 CXR_LOAD_URL=http://127.0.0.1:8081 \
 CXR_LOCUST_WEB_PORT=8092 \
 CXR_RAMP_MAX_USERS=200 CXR_RAMP_START_USERS=15 CXR_RAMP_STEP_USERS=5 CXR_RAMP_STAGE_SECONDS=60 \
-./investigations/analyzer-saturation/run-saturation-ramp-until-break-gui.sh
+./archive/old-investigations/analyzer-saturation/run-saturation-ramp-until-break-gui.sh
 ```
 
 **Terminal C — watch:**
