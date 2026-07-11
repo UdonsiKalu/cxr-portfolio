@@ -36,6 +36,15 @@ So Ollama is a **soft** dependency for day-to-day Analyze (on Compliant traffic)
 
 ## Method
 
+**Password / sudo note:** Ollama runs as a **system** systemd service, so stop/start normally asks for your password. The lab script never uses interactive `sudo` (that hangs). One-time:
+
+```bash
+./investigations/ollama-outage/setup-passwordless-ollama-ctl.sh   # type password once
+./investigations/ollama-outage/run-ollama-outage-check.sh
+```
+
+Or stop/start Ollama yourself in another terminal (`sudo systemctl stop|start ollama`) while the script runs only the probes.
+
 Automated: [`run-ollama-outage-check.sh`](./run-ollama-outage-check.sh)
 
 ```bash
