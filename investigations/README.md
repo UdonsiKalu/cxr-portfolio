@@ -2,68 +2,30 @@
 
 <!-- portfolio -->
 
-Each **folder** is one question we ran (or will run) on the local CXR stack. Synthetic data, dev environment only.
+Hypothesis-driven lab work on the local CXR stack (synthetic data only).
 
-**Studies index (start here):** [../studies/README.md](../studies/README.md)
+**Studies index:** [../studies/README.md](../studies/README.md)  
+**Archived folders:** [ARCHIVED.md](./ARCHIVED.md) · [../archive/old-investigations/](../archive/old-investigations/)
 
-> **Open notebooks, not markdown:** use **`README.ipynb`**, **`00-navigation.ipynb`**, or **`lab-navigation.html`**. Plain `.md` files do not show clickable links in Cursor.
-
-**New investigation:** copy `template-investigation.ipynb` → `<your-study>/notebook.ipynb`  
-**Refresh notebooks from markdown sources:** `python3 scripts/sync-investigation-notebooks.py`  
-**Scripts:** [../scripts/README.md](../scripts/README.md)
-
-Older completed folders live in [../archive/old-investigations/](../archive/old-investigations/README.md) — see [ARCHIVED.md](./ARCHIVED.md) for the path map.
+**New study:** copy [template-investigation.md](./template-investigation.md) → `<id>/README.md`
 
 ---
 
-## How to work
-
-```bash
-cd ~/staging/cxr-portfolio
-./scripts/start-lab-notebook.sh
-# browser → http://127.0.0.1:8888/lab
-```
-
-1. Open **`00-navigation.ipynb`** → **Shift+Enter** on first cell → click any study  
-2. Or open **`lab-navigation.html`** in Chrome/Firefox (no Jupyter needed)  
-3. Edit **`notebook.ipynb`** in each folder — add code cells, run commands with `!`
-
-> **Project changelog:** [../CHANGELOG.md](../CHANGELOG.md)
-
-> **Locust p95** (aggregate under load) ≠ **Jaeger** single-trace duration. Report both separately.
-
----
-
-## Active (happy path)
+## Active
 
 | Investigation | Entry |
 |---------------|--------|
 | Claim analysis latency | [latency-investigation/](./latency-investigation/) |
-| Locust load baseline | [load-testing/](./load-testing/) |
+| Locust load program | [load-testing/](./load-testing/) |
 | Cold vs warm analyzer | [cold-vs-warm-analyzer/](./cold-vs-warm-analyzer/) |
 | Bootcamp CI pipeline | [ci-pipeline/](./ci-pipeline/) |
-| Kubernetes analyzer saturation (LOAD-003+) | [kubernetes-analyzer-saturation/](./kubernetes-analyzer-saturation/) |
+| Kubernetes saturation (LOAD-003+) | [kubernetes-analyzer-saturation/](./kubernetes-analyzer-saturation/) |
 | Planned backlog | [planned/](./planned/) |
 
 ---
 
-## Archived (moved)
+## Notes
 
-See [ARCHIVED.md](./ARCHIVED.md) and [archive/old-investigations/](../archive/old-investigations/).
-
----
-
-## Tools
-
-### Jaeger
-
-http://127.0.0.1:16686 — filter **`cxr-ui-rehearsal`** → **`POST /api/claim-studio/analyze`**
-
-### Locust
-
-http://127.0.0.1:8089 → `http://127.0.0.1:8251`. Start with `cxr up`.
-
-### CI & Kubernetes
-
-- **CI:** [ci-pipeline/](./ci-pipeline/)
-- **LOAD-003:** [kubernetes-analyzer-saturation/](./kubernetes-analyzer-saturation/)
+- Prefer **Markdown on GitHub** for write-ups. Optional Jupyter notebooks under a study folder are fine but not required.
+- Locust p95 (aggregate) ≠ Jaeger single-trace duration — report both when relevant.
+- Changelog: [../CHANGELOG.md](../CHANGELOG.md)

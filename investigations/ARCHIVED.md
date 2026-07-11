@@ -17,5 +17,6 @@ These folders moved to keep `investigations/` small:
 | `investigations/trace-propagation/` | [archive/old-investigations/trace-propagation/](../archive/old-investigations/trace-propagation/) |
 | `investigations/missing-spans/` | [archive/old-investigations/missing-spans/](../archive/old-investigations/missing-spans/) |
 | `investigations/postmortems/` | [archive/old-investigations/postmortems/](../archive/old-investigations/postmortems/) |
+| `investigations/00-navigation.ipynb`, `lab-navigation.html`, `README.ipynb`, `template-investigation.ipynb` | [archive/old-investigations/_lab-nav/](../archive/old-investigations/_lab-nav/) |
 
 Old deep links to those folders 404; use this table or the archive index.
