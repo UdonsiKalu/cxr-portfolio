@@ -14,7 +14,7 @@
 | [archive/meta/my-impact.md](../meta/my-impact.md) | Complete |
 | [investigations/latency-investigation/](../../investigations/latency-investigation/) | Complete |
 | [GATE-002 tuner summary](../../investigations/kubernetes-analyzer-saturation/results/tuner/tuner-summary-20260619-080505.json) | Complete |
-| [Python import bottleneck postmortem](../../investigations/postmortems/python-import-bottleneck.md) | Complete |
+| [Python import bottleneck postmortem](../../archive/old-investigations/postmortems/python-import-bottleneck.md) | Complete |
 | [ADR-004](../../architecture/adrs/ADR-004-long-running-analyzer.md) | Complete |
 | [archive/demo/RUN.md](../../archive/demo/RUN.md) | Complete |
 

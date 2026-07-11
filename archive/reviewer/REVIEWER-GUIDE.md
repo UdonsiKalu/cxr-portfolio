@@ -53,9 +53,9 @@ Full index: [investigations/README.md](investigations/README.md)
 
 ### 4. Postmortems
 
-- [ ] [python-import-bottleneck](../investigations/postmortems/python-import-bottleneck.md)  
-- [ ] [high-latency-under-load](../investigations/postmortems/high-latency-under-load.md)  
-- [ ] [jaeger-trace-profile](../investigations/postmortems/jaeger-trace-profile.md)  
+- [ ] [python-import-bottleneck](../old-investigations/postmortems/python-import-bottleneck.md)  
+- [ ] [high-latency-under-load](../old-investigations/postmortems/high-latency-under-load.md)  
+- [ ] [jaeger-trace-profile](../old-investigations/postmortems/jaeger-trace-profile.md)  
 
 Index: [postmortems/README.md](postmortems/README.md)
 

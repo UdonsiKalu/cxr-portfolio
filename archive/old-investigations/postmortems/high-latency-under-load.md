@@ -18,5 +18,5 @@ Warm analyzer service; re-run Locust; confirm p95 **~1.5s** and Jaeger traces **
 
 ## Evidence
 
-- [latency investigation](../latency-investigation/)
-- Screenshots: [../latency-investigation/screenshots/](../latency-investigation/screenshots/)
+- [latency investigation](../../investigations/latency-investigation/)
+- Screenshots: [../latency-investigation/screenshots/](../../investigations/latency-investigation/screenshots/)

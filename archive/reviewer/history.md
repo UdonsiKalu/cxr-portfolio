@@ -16,7 +16,7 @@ A **single-page arc** of how the CXR engineering program evolved. For dated deta
 | **Decision** | Long-running FastAPI analyzer on **:8766** ([ADR-004](../architecture/adrs/ADR-004-long-running-analyzer.md)). |
 | **Outcome** | Locust p95 **~1.5s**; warm Jaeger traces **~154–708ms**. |
 
-**Read:** [latency investigation](../investigations/latency-investigation/) · [postmortem: python import](../investigations/postmortems/python-import-bottleneck.md)
+**Read:** [latency investigation](../investigations/latency-investigation/) · [postmortem: python import](../old-investigations/postmortems/python-import-bottleneck.md)
 
 ---
 

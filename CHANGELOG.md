@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-11 — Archive postmortems (documented)
+
+| | |
+|---|---|
+| **Problem** | `investigations/postmortems/` duplicated the latency story as thin INC one-pagers. |
+| **Outcome** | **Documented:** Moved to `archive/old-investigations/postmortems/`; active path points at [latency-investigation](investigations/latency-investigation/) + ADRs. |
+| **Artifacts** | [ARCHIVED.md](investigations/ARCHIVED.md) · [postmortems archive](archive/old-investigations/postmortems/) |
+
 #### 2026-07-11 — Load-testing investigation enriched (documented)
 
 | | |
@@ -230,7 +238,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 |---|---|
 | **Problem** | Claim analysis **~10–12s** under load; subprocess-per-request import cost. |
 | **Outcome** | **Resolved:** Warm analyzer on **:8766**; p95 **~1.5s**; traces **~154–708ms** warm. |
-| **Artifacts** | [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md) · [python-import-bottleneck](investigations/postmortems/python-import-bottleneck.md) · [latency-investigation](investigations/latency-investigation/README.md) |
+| **Artifacts** | [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md) · [latency-investigation](investigations/latency-investigation/README.md) · [archived postmortem](archive/old-investigations/postmortems/python-import-bottleneck.md) |
 
 ### Investigations — backlog / planned
 

@@ -43,7 +43,6 @@ cd ~/staging/cxr-portfolio
 | Cold vs warm analyzer | [cold-vs-warm-analyzer/](./cold-vs-warm-analyzer/) |
 | Bootcamp CI pipeline | [ci-pipeline/](./ci-pipeline/) |
 | Kubernetes analyzer saturation (LOAD-003+) | [kubernetes-analyzer-saturation/](./kubernetes-analyzer-saturation/) |
-| Postmortems | [postmortems/](./postmortems/) |
 | Planned backlog | [planned/](./planned/) |
 
 ---
