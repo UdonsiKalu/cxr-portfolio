@@ -4,6 +4,8 @@
 
 Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evidenced.
 
+**Format:** backlog stubs are **Markdown only** (`.md`). Optional Jupyter twins were removed — portfolio work uses GitHub Markdown, not notebooks.
+
 **Kanban:** each row has a GitHub Issue on project [@cxr-devops](https://github.com/users/UdonsiKalu/projects) (milestone **Phase 2 — investigations backlog**, Status **Backlog** via project automation).
 
 | Topic | File | Issue |
