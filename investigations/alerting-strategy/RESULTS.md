@@ -27,7 +27,7 @@ Use the labs you already ran as the rulebook:
 
 ## What we asked vs what we are *not* doing
 
-This study is a **strategy** from evidence — not a new chaos run, and not “Prometheus is fully wired in prod.” Local SLOs stay **dev targets** ([slos-and-slis.md](../../archive/investigations-supplemental/slos-and-slis.md)).
+We wrote a **strategy** from prior labs, then **implemented a local blackbox** for the page-class checks (A1–A3). Soft alerts (Ollama/Qdrant) and full Alertmanager/Slack are still deferred. Local SLOs stay **dev targets** ([slos-and-slis.md](../../archive/investigations-supplemental/slos-and-slis.md)).
 
 ---
 
@@ -94,11 +94,31 @@ This study is a **strategy** from evidence — not a new chaos run, and not “P
 
 ---
 
-## Suggested first wiring (local)
+## Implemented locally (2026-07-12)
 
-1. **Blackbox:** loop curl Analyze + `/health` + SQL probe every 30–60s; alert script on consecutive fails → covers A1–A3.  
-2. **Log/metric:** count Auditor connect errors → A4.  
-3. **Later:** PromQL on request latency histogram for A6 once metrics are scraped.
+**Blackbox script:** [`run-alert-probes.sh`](./run-alert-probes.sh) — see [`RUNBOOK.md`](./RUNBOOK.md)
+
+| Step | What |
+|------|------|
+| 1 | One-shot A2 `/health` |
+| 2 | `--loop` every 30s |
+| 3 | **ALERT** after 3 bad cycles / **CLEAR** on recover |
+| 4 | **A3** TCP SQL `:1433` |
+| 5 | **A1** POST Analyze |
+| 6 | Writes `prometheus/cxr_obs003_probe.prom` + draft alert rules |
+
+Still deferred: Slack/PagerDuty, soft A4/A5 (Ollama/Qdrant), live Prometheus scrape in ops-lab (rules draft only).
+
+### Lab evidence (recorded)
+
+| Artifact | What |
+|----------|------|
+| [results/one-shot-pass.txt](./results/one-shot-pass.txt) | Terminal: A2+A3+A1 all **PASS** |
+| [results/cxr_obs003_probe.prom](./results/cxr_obs003_probe.prom) | Prometheus textfile gauges = 1 |
+| [results/alerts-sample.log](./results/alerts-sample.log) | Sample `alerts.log` lines |
+| [RUNBOOK.md](./RUNBOOK.md) | How to run / force FAIL / Prom wire |
+
+To reproduce: `./investigations/alerting-strategy/run-alert-probes.sh`
 
 ---
 

@@ -1,0 +1,5 @@
+OBS-003 one-shot: A2 health + A3 SQL + A1 Analyze
+metrics: /home/udonsi-kalu/staging/cxr-portfolio/investigations/alerting-strategy/prometheus/cxr_obs003_probe.prom
+PASS A2 health (HTTP 200)
+PASS A3 sql (127.0.0.1:1433 open)
+PASS A1 analyze (HTTP 200)

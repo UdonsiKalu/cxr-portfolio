@@ -51,7 +51,16 @@ Details + “do not alert” list: [RESULTS.md](./RESULTS.md)
 - Treat **Ollama (Auditor)** and **Qdrant soft fallback** as degraded-mode tickets, not 3am pages — unless product requires Auditor for every claim.
 - Never page solely on Analyze wall clock when Jaeger `retrieval` is tens of ms (PERF-003 lesson).
 
+## How to run probes
+
+```bash
+./investigations/alerting-strategy/run-alert-probes.sh          # one-shot A2+A3+A1
+./investigations/alerting-strategy/run-alert-probes.sh --loop   # + ALERT after 3 fails
+```
+
+Details: [RUNBOOK.md](./RUNBOOK.md) · Prometheus draft: [prometheus/](./prometheus/)
+
 ## Evidence
 
-- This folder: [RESULTS.md](./RESULTS.md)
+- This folder: [RESULTS.md](./RESULTS.md) · [RUNBOOK.md](./RUNBOOK.md)
 - Prior labs linked above · supplemental: [prometheus.md](../../archive/investigations-supplemental/prometheus.md) · [slos-and-slis.md](../../archive/investigations-supplemental/slos-and-slis.md)
