@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Game day — timeline log</title>
+<style>
+body { font-family: ui-sans-serif, system-ui, sans-serif; margin: 28px; background: #0f1419; color: #e7ecf1; }
+h1 { font-size: 22px; margin: 0 0 8px; }
+p.sub { color: #9aa7b5; margin: 0 0 18px; font-size: 13px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { border: 1px solid #2a3540; padding: 8px 10px; text-align: left; }
+th { background: #1a2330; }
+tr:nth-child(even) { background: #151c25; }
+.ok { color: #3dd68c; font-weight: 600; }
+.bad { color: #ff6b6b; font-weight: 600; }
+.slow { color: #ffd166; font-weight: 600; }
+pre { background: #151c25; border: 1px solid #2a3540; padding: 14px; overflow: auto;
+       font-size: 11px; line-height: 1.35; white-space: pre-wrap; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; background: #243044; font-size: 12px; }
+</style></head><body>
+<h1>Game day — timeline log</h1>
+<p class="sub">CXR Game day · local lab · synthetic data</p>
+<pre>2026-07-12T16:46:16-05:00  S0_baseline_begin
+2026-07-12T16:46:16-05:00  [S0/baseline] A2_health status=200 ms=26 note=health
+2026-07-12T16:46:16-05:00  [S0/baseline] A3_sql status=open ms=0 note=tcp_1433
+2026-07-12T16:46:16-05:00  [S0/baseline] ollama status=up ms=0 note=api_tags
+2026-07-12T16:46:31-05:00  [S0/baseline] A1_analyze status=200 ms=14989 note=Compliant
+2026-07-12T16:46:31-05:00  [S0/baseline] alert_probes_rc status=0 ms=0 note=skip_analyze
+2026-07-12T16:46:31-05:00  S0_baseline_end
+2026-07-12T16:46:31-05:00  S1_analyzer_down_begin
+2026-07-12T16:46:33-05:00  [S1/mid_outage] A2_health status=000000 ms=28 note=health
+2026-07-12T16:46:33-05:00  [S1/mid_outage] A3_sql status=open ms=0 note=tcp_1433
+2026-07-12T16:46:33-05:00  [S1/mid_outage] ollama status=up ms=0 note=api_tags
+2026-07-12T16:46:47-05:00  [S1/mid_outage] A1_analyze status=200 ms=14067 note=Compliant
+2026-07-12T16:46:48-05:00  [S1/mid_outage] alert_probes_rc status=1 ms=0 note=skip_analyze
+2026-07-12T16:46:48-05:00  S1_recover_begin
+2026-07-12T16:47:03-05:00  analyzer_warmed elapsed_s=16
+2026-07-12T16:47:03-05:00  [S1/recovered] A2_health status=200 ms=32 note=health
+2026-07-12T16:47:03-05:00  [S1/recovered] A3_sql status=open ms=0 note=tcp_1433
+2026-07-12T16:47:03-05:00  [S1/recovered] ollama status=up ms=0 note=api_tags
+2026-07-12T16:47:17-05:00  [S1/recovered] A1_analyze status=200 ms=14217 note=Compliant
+2026-07-12T16:47:18-05:00  [S1/recovered] alert_probes_rc status=0 ms=0 note=skip_analyze
+2026-07-12T16:47:18-05:00  S1_analyzer_down_end
+2026-07-12T16:47:18-05:00  S2_sql_down_begin
+2026-07-12T16:47:19-05:00  [S2/mid_outage] A2_health status=200 ms=27 note=health
+2026-07-12T16:47:19-05:00  [S2/mid_outage] A3_sql status=closed ms=0 note=tcp_1433
+2026-07-12T16:47:19-05:00  [S2/mid_outage] ollama status=up ms=0 note=api_tags
+2026-07-12T16:47:42-05:00  [S2/mid_outage] A1_analyze status=500 ms=23667 note=Failed to analyze claim.
+2026-07-12T16:47:43-05:00  [S2/mid_outage] alert_probes_rc status=1 ms=0 note=skip_analyze
+2026-07-12T16:47:43-05:00  S2_recover_begin
+2026-07-12T16:47:44-05:00  [S2/recovered] A2_health status=200 ms=32 note=health
+2026-07-12T16:47:44-05:00  [S2/recovered] A3_sql status=open ms=0 note=tcp_1433
+2026-07-12T16:47:44-05:00  [S2/recovered] ollama status=up ms=0 note=api_tags
+2026-07-12T16:47:58-05:00  [S2/recovered] A1_analyze status=200 ms=14096 note=Compliant
+2026-07-12T16:47:58-05:00  [S2/recovered] alert_probes_rc status=0 ms=0 note=skip_analyze
+2026-07-12T16:47:58-05:00  S2_sql_down_end
+2026-07-12T16:47:58-05:00  S3_ollama_down_begin
+2026-07-12T16:48:00-05:00  [S3/mid_outage] A2_health status=200 ms=35 note=health
+2026-07-12T16:48:00-05:00  [S3/mid_outage] A3_sql status=open ms=0 note=tcp_1433
+2026-07-12T16:48:00-05:00  [S3/mid_outage] ollama status=down ms=0 note=api_tags
+2026-07-12T16:48:14-05:00  [S3/mid_outage] A1_analyze status=200 ms=13701 note=Compliant
+2026-07-12T16:48:14-05:00  [S3/mid_outage] alert_probes_rc status=0 ms=0 note=skip_analyze
+2026-07-12T16:48:14-05:00  S3_recover_begin
+2026-07-12T16:48:16-05:00  [S3/recovered] A2_health status=200 ms=30 note=health
+2026-07-12T16:48:16-05:00  [S3/recovered] A3_sql status=open ms=0 note=tcp_1433
+2026-07-12T16:48:16-05:00  [S3/recovered] ollama status=up ms=0 note=api_tags
+2026-07-12T16:48:31-05:00  [S3/recovered] A1_analyze status=200 ms=14094 note=Compliant
+2026-07-12T16:48:31-05:00  [S3/recovered] alert_probes_rc status=0 ms=0 note=skip_analyze
+2026-07-12T16:48:31-05:00  S3_ollama_down_end
+2026-07-12T16:48:31-05:00  S4_cpu_begin
+2026-07-12T16:48:50-05:00  [S4/mid_outage] A2_health status=200 ms=25 note=health
+2026-07-12T16:48:50-05:00  [S4/mid_outage] A3_sql status=open ms=0 note=tcp_1433
+2026-07-12T16:48:50-05:00  [S4/mid_outage] ollama status=up ms=0 note=api_tags
+2026-07-12T16:49:06-05:00  [S4/mid_outage] A1_analyze status=200 ms=15607 note=Compliant
+2026-07-12T16:49:06-05:00  [S4/mid_outage] alert_probes_rc status=0 ms=0 note=skip_analyze
+2026-07-12T16:49:08-05:00  [S4/recovered] A2_health status=200 ms=31 note=health
+2026-07-12T16:49:08-05:00  [S4/recovered] A3_sql status=open ms=0 note=tcp_1433
+2026-07-12T16:49:08-05:00  [S4/recovered] ollama status=up ms=0 note=api_tags
+2026-07-12T16:49:22-05:00  [S4/recovered] A1_analyze status=200 ms=14184 note=Compliant
+2026-07-12T16:49:22-05:00  [S4/recovered] alert_probes_rc status=0 ms=0 note=skip_analyze
+2026-07-12T16:49:22-05:00  S4_cpu_end
+2026-07-12T16:49:22-05:00  [S5/final] A2_health status=200 ms=33 note=health
+2026-07-12T16:49:22-05:00  [S5/final] A3_sql status=open ms=0 note=tcp_1433
+2026-07-12T16:49:22-05:00  [S5/final] ollama status=up ms=0 note=api_tags
+2026-07-12T16:49:37-05:00  [S5/final] A1_analyze status=200 ms=14192 note=Compliant
+2026-07-12T16:49:37-05:00  [S5/final] alert_probes_rc status=0 ms=0 note=skip_analyze
+2026-07-12T16:49:37-05:00  done
+2026-07-12T16:49:37-05:00  cleanup_begin
+2026-07-12T16:49:38-05:00  cleanup_end
+</pre>
+</body></html>

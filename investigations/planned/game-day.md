@@ -1,11 +1,5 @@
 # Game day (combined failures)
 
-**Status:** Planned (Phase 2)
+**Status:** Promoted → [../game-day/](../game-day/)
 
-## Procedure (draft)
-
-Combine failures (e.g. analyzer kill + Qdrant down); document in postmortem template.
-
-## Record results in
-
-`cxr-ops-lab/evidence/` and link from active chaos/reliability reports when run.
+Issue [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18).
