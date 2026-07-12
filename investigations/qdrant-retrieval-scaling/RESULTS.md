@@ -1,18 +1,23 @@
 # What happened — PERF-003 in plain language
 
-**Question:** When we ramp concurrent Qdrant searches, what happens to retrieval latency / throughput?
-
 **Folder:** [`investigations/qdrant-retrieval-scaling/`](./) · Issue [#7](https://github.com/UdonsiKalu/cxr-portfolio/issues/7)
 
 ---
 
-## One-sentence answer
+## What we asked
 
-**The ramp is measured** (CSV + Jaeger). Under **64** concurrent direct searches we saw **real impact** (latency up, RPS plateau) but **no failures**, and search stayed in the **tens of ms**.
+When many searches hit Qdrant at once, does retrieval get slower or break?
 
 ---
 
-## Important: do *not* say “64 concurrent = no impact”
+## What we found
+
+**A little slower, not broken.**
+
+- At **8 → 64** concurrent searches: **0 failures**
+- Search time stays around **~20–40 ms** (tens of ms)
+- Throughput climbs, then **levels off ~280 requests/sec**
+- So there **is** impact (don’t say “no impact”), but **no crash / error cliff**
 
 | Concurrency | p50 | p95 | RPS | Failures |
 |------------:|----:|----:|----:|---------:|
@@ -23,16 +28,20 @@
 
 \*c=8 p95 includes **warmup**; steady tiers ~**50–66 ms** p95.
 
-| What we measured | Change |
-|------------------|--------|
-| p50 latency | ~**23 → ~30 ms** as concurrency rose |
-| Throughput | Climbed then **plateaued ~280 RPS** (16→64 almost flat) |
-| Failures | **Still 0** |
+Numbers match the instrumented re-run in Jaeger and [`results/qdrant-direct-pressure-summary.txt`](./results/qdrant-direct-pressure-summary.txt).
 
-**Correct claim:** small but real cost under load; no error cliff.  
-**Incorrect claim:** “no impact.”
+---
 
-Numbers above match the **instrumented** re-run visible in Jaeger (and [`results/qdrant-direct-pressure-summary.txt`](./results/qdrant-direct-pressure-summary.txt)).
+## What this is *not*
+
+The long Analyze times (**~15–30 seconds**) are mostly **not** Qdrant. In Jaeger, Analyze’s **`retrieval`** is still ~**76–87 ms**. The heavy time is elsewhere (imports, corrector, SQL, queue).
+
+---
+
+## How we proved it
+
+1. **CSV timings** from a direct Qdrant pressure script (`run-qdrant-direct-pressure.py`)
+2. **Jaeger** under service **`cxr-qdrant-pressure`** — tier Tags for concurrency **8 / 16 / 32 / 64**
 
 ---
 
