@@ -1,0 +1,17 @@
+n=16 ok=16 wall_ms=31628
+{'i': 1, 'code': 200, 'ms': 30657, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 2, 'code': 200, 'ms': 30454, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 3, 'code': 200, 'ms': 30595, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 4, 'code': 200, 'ms': 29468, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 5, 'code': 200, 'ms': 29452, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 6, 'code': 200, 'ms': 31011, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 7, 'code': 200, 'ms': 29968, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 8, 'code': 200, 'ms': 30432, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 9, 'code': 200, 'ms': 29846, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 10, 'code': 200, 'ms': 31539, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 11, 'code': 200, 'ms': 29847, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 12, 'code': 200, 'ms': 30332, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 13, 'code': 200, 'ms': 31603, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 14, 'code': 200, 'ms': 30791, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 15, 'code': 200, 'ms': 30438, 'policy_n': 5, 'arch': 'Compliant'}
+{'i': 16, 'code': 200, 'ms': 30094, 'policy_n': 5, 'arch': 'Compliant'}

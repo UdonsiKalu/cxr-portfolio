@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><title>PERF-003</title>
+<style>
+body{font-family:ui-sans-serif,system-ui,sans-serif;background:#0f1419;color:#e7ecf3;margin:0;padding:40px}
+.card{max-width:900px;margin:0 auto;background:#1a2332;border:1px solid #2d3a4d;border-radius:12px;padding:28px}
+h1{font-size:22px;margin:0 0 8px}.sub{color:#9aa8bc;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border-bottom:1px solid #2d3a4d;padding:10px 8px;text-align:left}
+th{color:#9aa8bc}
+</style></head><body><div class=card>
+<h1>PERF-003 — Qdrant retrieval scaling</h1>
+<p class=sub>~46k Qdrant points. Concurrent Analyze 1→8. Retrieval stays sub-second; Analyze wall ~14–16s.</p>
+<table><tr><th>Concurrency</th><th>N</th><th>HTTP</th><th>ms min</th><th>ms p50</th><th>ms max</th><th>policy docs</th></tr>
+<tr><td>1</td><td>1</td><td>200</td><td>14816</td><td>14816</td><td>14816</td><td>5</td></tr>
+<tr><td>3</td><td>3</td><td>200</td><td>13791</td><td>13826</td><td>14044</td><td>5</td></tr>
+<tr><td>5</td><td>5</td><td>200</td><td>14659</td><td>15278</td><td>15684</td><td>5</td></tr>
+<tr><td>8</td><td>8</td><td>200</td><td>14389</td><td>15370</td><td>16156</td><td>5</td></tr>
+</table>
+<p class=sub style="margin-top:18px">Jaeger retrieval (recent): p50 ~87ms · p95 ~917ms · max ~1016ms</p>
+</div></body></html>

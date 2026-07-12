@@ -9,7 +9,7 @@ Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evi
 | Topic | File | Issue |
 |-------|------|-------|
 | Context builder optimization | [context-builder-optimization.md](./context-builder-optimization.md) → **done:** [PERF-002 study](../kubernetes-analyzer-saturation/studies/PERF-002-context-builder-bottleneck.md) | [#6](https://github.com/UdonsiKalu/cxr-portfolio/issues/6) (closing) |
-| Qdrant retrieval scaling | [qdrant-retrieval-scaling.md](./qdrant-retrieval-scaling.md) | [#7](https://github.com/UdonsiKalu/cxr-portfolio/issues/7) |
+| Qdrant retrieval scaling | [qdrant-retrieval-scaling.md](./qdrant-retrieval-scaling.md) → **done:** [../qdrant-retrieval-scaling/](../qdrant-retrieval-scaling/) | [#7](https://github.com/UdonsiKalu/cxr-portfolio/issues/7) (closing) |
 | Horizontal scaling | [horizontal-scaling.md](./horizontal-scaling.md) | [#8](https://github.com/UdonsiKalu/cxr-portfolio/issues/8) |
 | Platform bootstrap | [platform-bootstrap.md](./platform-bootstrap.md) | [#9](https://github.com/UdonsiKalu/cxr-portfolio/issues/9) |
 | Kubernetes migration | [kubernetes-migration.md](./kubernetes-migration.md) | [#10](https://github.com/UdonsiKalu/cxr-portfolio/issues/10) |

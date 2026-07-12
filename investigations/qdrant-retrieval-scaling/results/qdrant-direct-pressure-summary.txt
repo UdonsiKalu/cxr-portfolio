@@ -1,0 +1,9 @@
+PERF-003 hard pressure — direct Qdrant search (bypass Analyze)
+collection=claims__cms_policies points~11892 vector_dim=768 limit=5
+requests_per_tier=64 tiers=[8, 16, 32, 64]
+tracing=on service=cxr-qdrant-pressure
+
+c=8: ok=64/64 fail=0 p50=23.0ms p95=358.8ms max=389.1ms rps=118.8 hits_p50=5.0
+c=16: ok=64/64 fail=0 p50=37.1ms p95=66.0ms max=78.9ms rps=290.5 hits_p50=5.0
+c=32: ok=64/64 fail=0 p50=32.3ms p95=48.4ms max=63.3ms rps=279.5 hits_p50=5.0
+c=64: ok=64/64 fail=0 p50=29.3ms p95=55.6ms max=111.4ms rps=282.1 hits_p50=5.0

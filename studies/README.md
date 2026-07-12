@@ -19,6 +19,7 @@ Full table: [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-
 | SCALE-003 | [UI bottleneck at peak load](investigations/kubernetes-analyzer-saturation/studies/SCALE-003-ui-bottleneck.md) |
 | REL-002 | [Ollama outage](investigations/ollama-outage/) |
 | REL-004 | [Database unavailable](investigations/database-unavailable/) |
+| PERF-003 (#7) | [Qdrant retrieval scaling](investigations/qdrant-retrieval-scaling/) |
 
 ## Earlier arcs (folder READMEs)
 

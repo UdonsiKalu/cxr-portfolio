@@ -1,19 +1,11 @@
 # PERF-003 — Qdrant retrieval scaling
 
-**Status:** Planned (Phase 2)
+**Status:** **Promoted** — closed study: [../qdrant-retrieval-scaling/](../qdrant-retrieval-scaling/)
 
-| Field | |
-|-------|---|
-| **Question** | How does retrieval latency change with collection size or concurrent queries? |
-| **Hypothesis** | TBD |
-| **Method** | TBD |
-| **Tools** | Jaeger, Locust, Qdrant metrics |
-| **Metrics** | Retrieval span duration vs load |
+## Question
 
-## Results
+How does retrieval latency change with collection size or concurrent queries?
 
-Not yet run.
+## Record results in
 
-## Follow-up
-
-Pairs with [qdrant-outage](../qdrant-outage/) (failure) vs this study (performance).
+`investigations/qdrant-retrieval-scaling/results/` (ran 2026-07-12).

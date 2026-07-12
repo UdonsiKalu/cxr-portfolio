@@ -1,0 +1,40 @@
+PERF-003 Qdrant retrieval scaling — summary
+generated=2026-07-11T22:07:29-05:00
+
+== collection sizes ==
+claims__cms_policies	11892
+claims__lcd_policies	14505
+claims__med_claims_policies	11884
+claims__ncci_edits	1034
+claims__ncd_policies	2954
+clinical_notes	54
+cms_lcds_evidence	3878
+local_cursor_index	0
+TOTAL_POINTS	46201
+
+== probes ==
+tier,concurrency,req,http,ms,policy_n,semantic,note
+c1,1,1,200,14816,5,0.60991646,Compliant
+c3,3,3,200,13791,5,0.60991646,Compliant
+c3,3,2,200,13826,5,0.60991646,Compliant
+c3,3,1,200,14044,5,0.60991646,Compliant
+c5,5,3,200,14659,5,0.60991646,Compliant
+c5,5,2,200,15014,5,0.60991646,Compliant
+c5,5,1,200,15278,5,0.60991646,Compliant
+c5,5,4,200,15279,5,0.60991646,Compliant
+c5,5,5,200,15684,5,0.60991646,Compliant
+c8,8,1,200,14389,5,0.60991646,Compliant
+c8,8,4,200,14822,5,0.60991646,Compliant
+c8,8,3,200,15078,5,0.60991646,Compliant
+c8,8,7,200,15293,5,0.60991646,Compliant
+c8,8,5,200,15370,5,0.60991646,Compliant
+c8,8,2,200,15563,5,0.60991646,Compliant
+c8,8,8,200,15786,5,0.60991646,Compliant
+c8,8,6,200,16156,5,0.60991646,Compliant
+
+== jaeger retrieval ==
+retrieval_spans=30
+retrieval_ms_min=0.0
+retrieval_ms_p50=87.3
+retrieval_ms_p95=917.1
+retrieval_ms_max=1016.4
