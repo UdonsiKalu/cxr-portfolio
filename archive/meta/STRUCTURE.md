@@ -13,38 +13,26 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for promotion checklist.
 ```
 cxr-portfolio/
 ├── README.md
-├── README.md
-├── archive/
-│   ├── DISCLAIMER.md
-│   └── meta/
-│       └── my-impact.md
-├── meta/                 ← INDEX, STRUCTURE, PORTFOLIO-STATUS (maintainers)
-│
-├── architecture/
-│   ├── c4-context.md … c4-component.md, request-flow.md, …
-│   └── diagrams/         ← PNGs planned (README lists names)
-│
-├── architecture/
-│   ├── engineering-philosophy.md …
-│   ├── architecture-journey/   (v1 … future-state)
-│   └── platform-model/
-│
+├── CHANGELOG.md
+├── failures/
+├── reliability/
 ├── investigations/
-│   ├── README.md              ← index, roadmap, tool notes
-│   ├── latency-investigation/ … task folders …
-│   ├── postmortems/
+│   ├── README.md
+│   ├── … study folders …
 │   └── planned/
-│
 ├── operations/
 │   ├── docker.md, ci-cd.md, …
-│   ├── kubernetes/       ← reference YAML from cxr-ops-lab
+│   ├── kubernetes/
 │   └── terraform/
-│
-├── archive/security-compliance/
-├── adrs/                 ← ADR-001–006
-├── demo/
-├── archive/
-└── templates/
+└── archive/
+    ├── architecture/          ← ADRs (ADR-001–006)
+    ├── architecture-c4/       ← C4 / evolution diagrams
+    ├── architecture-supplemental/
+    ├── reviewer/              ← hiring/academic pack
+    ├── demo/
+    ├── old-investigations/
+    ├── meta/                  ← INDEX, STRUCTURE, PORTFOLIO-STATUS
+    └── …
 ```
 
 Trace profile notes: [investigations/README.md#trace-profiles](../investigations/README.md#trace-profiles).

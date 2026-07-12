@@ -32,7 +32,7 @@ Use this checklist to evaluate CXR as a **complete engineering portfolio**: arch
 ### 2. Architecture & decisions
 
 - [ ] [architecture/README.md](../architecture/README.md) — system context  
-- [ ] [architecture-evolution.md](../archive/architecture-c4/architecture-evolution.md) — how design changed  
+- [ ] [architecture-evolution.md](../architecture-c4/architecture-evolution.md) — how design changed  
 - [ ] ADRs (minimum): [ADR-004](../architecture/adrs/ADR-004-long-running-analyzer.md), [ADR-002](../architecture/adrs/ADR-002-opentelemetry.md), [ADR-005](../architecture/adrs/ADR-005-kubernetes-roadmap.md)  
 - [ ] Full index: [decisions/README.md](decisions/README.md)
 

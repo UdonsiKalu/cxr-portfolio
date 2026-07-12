@@ -87,10 +87,10 @@ Companion repos: `cxr-ui-rehearsal`, `cxr-ops-lab`, `claim_analysis_tools`.""",
 
 ## What we do not claim
 
-This is a **local engineering stack**, not multi-tenant SaaS isolation. Blast radius for production K8 is tracked in [future-state-architecture.md](../../architecture/future-state-architecture.md) and [ADR-005](../../architecture/adrs/ADR-005-kubernetes-roadmap.md).""",
+This is a **local engineering stack**, not multi-tenant SaaS isolation. Blast radius for production K8 is tracked in [future-state-architecture.md](../../archive/architecture-c4/future-state-architecture.md) and [ADR-005](../architecture/adrs/ADR-005-kubernetes-roadmap.md).""",
     )
     w(
-        "architecture/future-state-architecture.md",
+        "archive/archive/architecture-c4/future-state-architecture.md",
         """# Future state architecture
 
 ## Target (bootcamp / portfolio roadmap)
@@ -172,7 +172,7 @@ See [platform-model/platform-roadmap.md](./platform-model/platform-roadmap.md)."
     for fn, title, body in [
         ("users.md", "Users", "Claims analysts and engineers using Claim Studio on :8251."),
         ("operators.md", "Operators", "Engineers running `cxr up`, Jaeger, Locust, optional `cxr lab`."),
-        ("dependencies.md", "Dependencies", "SQL, Qdrant, LLM, OTLP, Jaeger — see [architecture/dependency-map.md](../../architecture/dependency-map.md)."),
+        ("dependencies.md", "Dependencies", "SQL, Qdrant, LLM, OTLP, Jaeger — see [archive/architecture-supplemental/dependency-map.md](../../archive/architecture-supplemental/dependency-map.md)."),
         ("service-boundaries.md", "Service boundaries", "Browser → Next.js (`cxr-ui-rehearsal`) → analyzer (`cxr-analyzer-service`) → kernel/Python libs."),
         ("platform-roadmap.md", "Platform roadmap", "Populate portfolio → K8 evidence (SW.3–8) → optional M1.1 Solutions Atlas (deferred)."),
     ]:
@@ -530,7 +530,7 @@ Full write-up: [latency-investigation.md](../../observability/latency-investigat
         w(f"archive/{d}/README.md", f"# {d}\n\n{note}\n\nOptional personal archive; not required for portfolio reviewers.")
 
     w(
-        "architecture/diagrams/README.md",
+        "archive/archive/architecture-c4/diagrams/README.md",
         """# Architecture diagrams
 
 Add PNG exports here (same names as outline):

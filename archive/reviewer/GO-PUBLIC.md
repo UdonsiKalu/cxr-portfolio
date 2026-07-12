@@ -48,7 +48,7 @@ git status
 git diff --stat
 
 # Stage reviewer structure + evidence (adjust paths as needed)
-git add failures/ reliability/ CHANGELOG.md README.md investigations/ operations/ architecture/
+git add failures/ reliability/ CHANGELOG.md README.md investigations/ operations/ archive/architecture/
 git add investigations/kubernetes-analyzer-saturation/results/.gitignore
 git add investigations/kubernetes-analyzer-saturation/results/tuner/*.json
 
