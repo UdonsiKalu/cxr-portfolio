@@ -1,6 +1,8 @@
-# Architecture decisions
+# Architecture decisions (archived)
 
 **ADRs only** — stable “why” records, updated when a decision changes (not on every load test).
+
+Moved under `archive/` so the repo root stays investigation-first. Links from studies/failures still point here.
 
 | ADR | Topic |
 |-----|-------|
@@ -11,6 +13,6 @@
 | [ADR-005](adrs/ADR-005-kubernetes-roadmap.md) | Kubernetes deployment roadmap |
 | [ADR-006](adrs/ADR-006-monolith-vs-microservices.md) | Monolith vs microservices |
 
-C4 diagrams and evolution narrative: [archive/architecture-c4/](../archive/architecture-c4/README-architecture-hub.md) (reference only).
+C4 diagrams and evolution narrative: [architecture-c4/](../architecture-c4/README-architecture-hub.md) (reference only).
 
-Reviewer index: [archive/reviewer/decisions/README.md](../archive/reviewer/decisions/README.md).
+Reviewer index: [reviewer/decisions/README.md](../reviewer/decisions/README.md).

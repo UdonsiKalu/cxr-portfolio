@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-12 — Portfolio: ADRs moved under archive/
+
+| | |
+|---|---|
+| **Problem** | Top-level `architecture/` looked unused after C4 moved to archive; cluttered repo root. |
+| **Outcome** | **Moved** `architecture/` → [`archive/architecture/`](archive/architecture/) (ADRs kept); root README + study/failures links updated. |
+| **Artifacts** | [archive/architecture/README.md](archive/architecture/README.md) · [ADR-004](archive/architecture/adrs/ADR-004-long-running-analyzer.md) |
+
 #### 2026-07-12 — OBS-003: Alerting strategy (resolved)
 
 | | |
@@ -171,7 +179,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | | |
 |---|---|
 | **Problem** | PERF-009 touched five+ top-level trees (`docs/`, `failures/`, `evidence/`, `CHANGELOG`, workflow) — too many places per study. |
-| **Outcome** | **Documented:** Studies under `investigations/.../studies/`; workflow in `operations/`; thin `architecture/adrs/` only; demo, reviewer pack, C4 → `archive/`. |
+| **Outcome** | **Documented:** Studies under `investigations/.../studies/`; workflow in `operations/`; thin `archive/architecture/adrs/` only; demo, reviewer pack, C4 → `archive/`. |
 | **Artifacts** | [README.md](README.md) · [studies/README.md](investigations/kubernetes-analyzer-saturation/studies/README.md) |
 
 #### 2026-06-23 — PERF-009 addendum: canonical Jaeger compare pair (documented)
@@ -326,7 +334,7 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 |---|---|
 | **Problem** | Claim analysis **~10–12s** under load; subprocess-per-request import cost. |
 | **Outcome** | **Resolved:** Warm analyzer on **:8766**; p95 **~1.5s**; traces **~154–708ms** warm. |
-| **Artifacts** | [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md) · [latency-investigation](investigations/latency-investigation/README.md) · [archived postmortem](archive/old-investigations/postmortems/python-import-bottleneck.md) |
+| **Artifacts** | [ADR-004](archive/architecture/adrs/ADR-004-long-running-analyzer.md) · [latency-investigation](investigations/latency-investigation/README.md) · [archived postmortem](archive/old-investigations/postmortems/python-import-bottleneck.md) |
 
 ### Investigations — backlog / planned
 
@@ -349,7 +357,7 @@ System design, ADRs, observability model, evolution narrative.
 | | |
 |---|---|
 | **Decision** | Replace subprocess analyze with persistent `analyzer_service` (:8766). |
-| **Artifacts** | [ADR-004](architecture/adrs/ADR-004-long-running-analyzer.md) · [architecture-evolution.md](archive/architecture-c4/architecture-evolution.md) |
+| **Artifacts** | [ADR-004](archive/architecture/adrs/ADR-004-long-running-analyzer.md) · [architecture-evolution.md](archive/architecture-c4/architecture-evolution.md) |
 
 #### Detailed trace profile by default (documented)
 

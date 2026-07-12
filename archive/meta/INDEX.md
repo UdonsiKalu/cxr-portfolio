@@ -11,16 +11,14 @@ See [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) for visibility and go-public ch
 | [PORTFOLIO-STATUS.md](./PORTFOLIO-STATUS.md) | Complete | WIP checklist |
 | [my-impact.md](./my-impact.md) | Complete | Outcomes summary |
 | [DISCLAIMER.md](../DISCLAIMER.md) | Complete | Synthetic data / labs |
-| **architecture/** | Complete (md) | C4 + dependency + blast radius; PNGs in diagrams/ planned |
-| **architecture/** | Complete | Philosophy, journey, platform model |
+| **archive/architecture/** | Complete | ADRs (ADR-001–006); decision records only |
+| **archive/architecture-c4/** | Complete (md) | C4 + evolution; PNGs in diagrams/ planned |
 | **investigations/** | Complete | OTel, Jaeger, latency, load, Prom/Grafana |
 | **investigations/chaos-experiments/** | Planned runs | Procedures drafted; execute before claiming game-day |
 | **operations/** | Complete | docker, ci-cd, K8/tf reference copies |
 | **archive/security-compliance/** | Complete | Bootcamp-appropriate policies |
-| **adrs/** | Complete | ADR-001–006 |
-| **demo/** | Complete | RUN + walkthroughs; compose single-clone planned |
-| **archive/** | Optional | Personal notes |
-| **templates/** | Complete | All template types |
+| **archive/demo/** | Complete | RUN + walkthroughs; compose single-clone planned |
+| **archive/** | Optional | Reviewer pack, old investigations, templates |
 
 ## Reviewer fast path
 

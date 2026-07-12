@@ -22,7 +22,7 @@ Claim Studio’s **POST /api/claim-studio/analyze** felt “broken slow” under
 | Kernel-only view | **~1.5s** `context_builder` | Analyze logic was fast once the runtime was warm |
 | After fix | **~1.5s** Locust p95 · **~154–708ms** Jaeger traces | Long-lived **FastAPI analyzer** + `ANALYZER_URL` from Next.js |
 
-**Evidence:** [latency investigation](./investigations/latency-investigation/) · [ADR-004](./architecture/adrs/ADR-004-long-running-analyzer.md)
+**Evidence:** [latency investigation](./investigations/latency-investigation/) · [ADR-004](../architecture/adrs/ADR-004-long-running-analyzer.md)
 
 ### 3. Load-tested with intent (Locust)
 
