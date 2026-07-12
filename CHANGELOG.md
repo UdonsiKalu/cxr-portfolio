@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-12 — PERF-003: Qdrant retrieval scaling (resolved)
+
+| | |
+|---|---|
+| **Problem** | Unknown whether Qdrant retrieval slows / fails under concurrent search with a real ~46k-point corpus. |
+| **Outcome** | **Resolved (lab):** hard pressure **8→64** concurrent direct searches — **0** failures; p50 ~**23→30 ms**; RPS plateaus ~**280**. Analyze `retrieval` ~**76–87 ms** (not the multi-second wall clock). Instrumented pressure client → Jaeger **`cxr-qdrant-pressure`**. Distinct from K8 CHANGELOG “PERF-003” (context-builder cache). |
+| **Artifacts** | [qdrant-retrieval-scaling/](investigations/qdrant-retrieval-scaling/) · [RESULTS.md](investigations/qdrant-retrieval-scaling/RESULTS.md) · [screenshots/](investigations/qdrant-retrieval-scaling/screenshots/) · [issue #7](https://github.com/UdonsiKalu/cxr-portfolio/issues/7) |
+
 #### 2026-07-12 — REL-004: Database unavailable (resolved)
 
 | | |

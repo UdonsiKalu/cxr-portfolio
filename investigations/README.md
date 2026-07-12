@@ -22,6 +22,7 @@ Hypothesis-driven lab work on the local CXR stack (synthetic data only).
 | Kubernetes saturation (LOAD-003+) | [kubernetes-analyzer-saturation/](./kubernetes-analyzer-saturation/) |
 | Ollama outage (REL-002) | [ollama-outage/](./ollama-outage/) |
 | Database unavailable (REL-004) | [database-unavailable/](./database-unavailable/) |
+| Qdrant retrieval scaling (PERF-003 / #7) | [qdrant-retrieval-scaling/](./qdrant-retrieval-scaling/) |
 | Planned backlog | [planned/](./planned/) |
 
 ---

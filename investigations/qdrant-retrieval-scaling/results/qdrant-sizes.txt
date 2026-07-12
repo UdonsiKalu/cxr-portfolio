@@ -1,0 +1,9 @@
+claims__cms_policies	11892
+claims__lcd_policies	14505
+claims__med_claims_policies	11884
+claims__ncci_edits	1034
+claims__ncd_policies	2954
+clinical_notes	54
+cms_lcds_evidence	3878
+local_cursor_index	0
+TOTAL_POINTS	46201

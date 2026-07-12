@@ -1,0 +1,1 @@
+{"result":{"collections":[{"name":"claims__cms_policies"},{"name":"claims__lcd_policies"},{"name":"claims__med_claims_policies"},{"name":"claims__ncci_edits"},{"name":"claims__ncd_policies"},{"name":"clinical_notes"},{"name":"cms_lcds_evidence"},{"name":"local_cursor_index"}]},"status":"ok","time":0.000032296}
