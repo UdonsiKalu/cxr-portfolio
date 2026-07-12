@@ -1,50 +1,35 @@
-# The story — Game day (combined failures)
+# The story — Game day (short)
 
-**Read this first.** Issue [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18).
+**New to DevOps?** Read [LEARNER.md](./LEARNER.md) first (simplest language).  
+**Want the formal study?** Read [STUDY.md](./STUDY.md).
 
-We ran a fire drill: break one thing at a time, watch Analyze + health/SQL/Ollama checks, then fix it before the next break. Goal: see which failures are **hard** (Analyze dies) vs **soft** (Analyze still works).
+Issue [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18).
 
 ---
 
 ## In one paragraph
 
-Baseline was healthy (~15 s Analyze, HTTP 200). **Killing the warm analyzer** made `/health` fail, but Analyze still returned **200** (UI can fall back to another path — important surprise). **Blocking SQL** made Analyze **HTTP 500** (~24 s). **Stopping Ollama** left Analyze **200**. **CPU hog** made Analyze a bit slower but still **200**. After each fix, the stack came back. Soft vs hard matches what REL-002 / REL-004 / CHAOS-004 already taught.
+We ran a fire drill: break one dependency at a time, measure Analyze, then recover. **SQL down** → Analyze **HTTP 500** (hard). **Ollama down** and **CPU busy** → Analyze still **200** (soft). **Analyzer killed** → health fails, but Analyze can still return **200** via a fallback path — so “user OK” is not enough; watch health too.
 
 ---
 
-## Scenarios we ran
+## Results table
 
-| # | What we broke | Analyze mid-outage | Health / SQL / Ollama |
-|---|---------------|--------------------|------------------------|
-| S0 | Nothing (baseline) | **200** ~15 s | all OK |
-| S1 | Kill analyzer `:8766` | **200** ~14 s (fallback) | health **FAIL**, SQL OK |
-| S2 | Block SQL `:1433` | **500** ~24 s | SQL **closed**, health OK |
-| S3 | Stop Ollama | **200** ~14 s | Ollama **down** |
-| S4 | CPU hog (32 workers) | **200** ~15.6 s | all OK (slightly slower) |
-| S5 | Final check | **200** ~14 s | all OK |
-
----
-
-## What the screenshots show
-
-Many PNGs under [screenshots/](./screenshots/) — not one chart only:
-
-| File | Content |
-|------|---------|
-| `00-overview-matrix.png` | Every probe across every scenario |
-| `s0-card.png` … `s5-card.png` | Per-scenario cards + alert-probe text |
-| `analyze-across-scenarios.png` | Analyze HTTP/ms only |
-| `terminal-summary.png` | Summary dump |
-| `terminal-timeline.png` | Full timeline log |
-
-Numbers: [results/game-day-probes.csv](./results/game-day-probes.csv)
+| # | What we broke | Analyze mid-outage | Hard / soft |
+|---|---------------|--------------------|-------------|
+| S0 | Nothing | **200** ~15 s | — |
+| S1 | Analyzer `:8766` | **200** ~14 s | Soft for user; health failed |
+| S2 | SQL `:1433` | **500** ~24 s | **Hard** |
+| S3 | Ollama | **200** ~14 s | Soft |
+| S4 | CPU hog | **200** ~15.6 s | Soft |
+| S5 | Final | **200** ~14 s | recovered |
 
 ---
 
-## Takeaway
+## Pictures
 
-- **Page-worthy:** SQL down (hard fail), analyzer health down (even if Analyze falls back — ops should still care).
-- **Ticket / soft:** Ollama down, CPU busy (slow but up).
-- Game day ties REL + CHAOS + OBS-003 probes into one drill.
+![Overview](screenshots/00-overview-matrix.png)
+
+Full set: [screenshots/](./screenshots/) · Numbers: [results/game-day-probes.csv](./results/game-day-probes.csv)
 
 Re-run: [RUNBOOK.md](./RUNBOOK.md)
