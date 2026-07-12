@@ -9,7 +9,7 @@
 | **Environment** | Local `cxr` — `:8251`, `:8766`, `:1433`, Ollama |
 | **Issue** | [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18) |
 
-**Beginner (plain English):** [LEARNER.md](./LEARNER.md)  
+**Readable overview:** [LEARNER.md](./LEARNER.md)  
 **Study write-up:** [STUDY.md](./STUDY.md)  
 **Short results:** [RESULTS.md](./RESULTS.md) · **Runbook:** [RUNBOOK.md](./RUNBOOK.md)
 

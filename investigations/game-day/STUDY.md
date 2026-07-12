@@ -4,8 +4,8 @@
 |---|---|
 | **Status** | Complete (2026-07-12) |
 | **ID** | Game day / #18 |
-| **Audience** | Portfolio / technical interviewer |
-| **Learner path** | Start at [LEARNER.md](./LEARNER.md) if new to DevOps |
+| **Audience** | Portfolio / technical reviewer |
+| **Readable overview** | [LEARNER.md](./LEARNER.md) |
 
 ---
 

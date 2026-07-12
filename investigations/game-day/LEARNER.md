@@ -1,116 +1,83 @@
-# Game day — for a first-time DevOps learner
+# Game day — readable overview
 
-**Start here if you are new.** No jargon required.
+Issue [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18). Formal write-up: [STUDY.md](./STUDY.md).
 
-This folder is a **practice fire drill** for a small claims app (CXR). We purposely break parts of the system, watch what users would feel, then fix each break before the next one.
-
----
-
-## Words you need (30 seconds)
-
-| Word | Plain meaning |
-|------|----------------|
-| **Analyze** | The app’s main “check this claim” button / API call |
-| **HTTP 200** | “It worked” |
-| **HTTP 500** | “It failed on the server” — user sees an error |
-| **Health check** | A tiny “are you alive?” ping to a service |
-| **Hard failure** | The main user action stops working |
-| **Soft failure** | The main action still works; something else is degraded |
-| **Game day** | A planned practice outage — like a fire drill for computers |
+This study is a **controlled failure drill** on the local CXR stack. We inject one fault at a time, measure Claim Studio Analyze and dependency checks, restore service, then move to the next fault. The point is to separate **hard failures** (Analyze errors) from **soft failures** (Analyze still succeeds while something else is wrong).
 
 ---
 
-## What we were trying to learn
-
-When something breaks, does the user still get an answer — or do they get an error?
-
-Different broken parts behave differently. That matters for **alerts**: you wake someone up for hard failures; you open a ticket for soft ones.
-
----
-
-## The tiny system we poked
+## Scope
 
 ```text
-You / browser
-    → Claim Studio UI  (:8251)
-        → Analyzer     (:8766)   does the heavy claim work
-        → SQL database (:1433)   stores claim data
-        → Ollama       (LLM)     optional AI helper
+Claim Studio UI (:8251)
+  ├── Analyzer service (:8766)
+  ├── SQL Server (:1433)
+  └── Ollama (LLM, optional path)
 ```
 
-We did **not** break everything at once. We broke **one thing**, measured, **fixed it**, then broke the next.
+We did not cascade all faults at once. Order: baseline → analyzer kill → SQL block → Ollama stop → CPU contention → final health check.
 
 ---
 
-## What happened (the story)
+## Findings
 
-### Step 0 — Everything fine (baseline)
+### Baseline (S0)
 
-Analyze worked. It took about **15 seconds**. That is our “normal.”
+Analyze succeeded (**HTTP 200**, ~15 s). Dependencies healthy.
 
-![Baseline / overview](screenshots/00-overview-matrix.png)
+![Overview matrix](screenshots/00-overview-matrix.png)
 
-### Step 1 — We stopped the analyzer
+### S1 — Analyzer process stopped
 
-The analyzer’s **health** check failed (it was dead).
+`/health` on `:8766` failed. Analyze still returned **200** (~14 s). The UI can fall back when the warm analyzer is unavailable, so end-user success alone does not prove the preferred path is up. Ops should alert on **health**, not only on Analyze HTTP codes.
 
-But Analyze still returned **200** (success). Why? The UI can sometimes use a **backup path** when the warm analyzer is gone. So the user might not notice — but ops should still care that the main service is down.
+![S1](screenshots/s1-card.png)
 
-**Lesson:** “User still works” ≠ “system is healthy.”
+### S2 — SQL unreachable
 
-![S1 card](screenshots/s1-card.png)
+Analyze returned **HTTP 500** (~24 s). Hard dependency: without SQL, claim analysis fails. This is page-class in our alerting model.
 
-### Step 2 — We blocked the database (SQL)
+![S2](screenshots/s2-card.png)
 
-Analyze returned **HTTP 500** — failed. Took about **24 seconds** then errored.
+### S3 — Ollama stopped
 
-**Lesson:** No database → claim analysis **hard fails**. This is a wake-someone-up problem.
+Analyze stayed **200** (~14 s). Soft dependency for Compliant Analyze in this lab — ticket/watch, not a full page (see REL-002).
 
-![S2 card](screenshots/s2-card.png)
+![S3](screenshots/s3-card.png)
 
-### Step 3 — We stopped Ollama (the LLM)
+### S4 — CPU contention
 
-Analyze still returned **200**. The optional AI piece was down; the main path kept going.
+Analyze stayed **200**, slightly slower (~15.6 s). Soft degradation: latency, not availability (see CHAOS-004).
 
-**Lesson:** Soft dependency — ticket, not a full outage page (for this lab).
+![S4](screenshots/s4-card.png)
 
-![S3 card](screenshots/s3-card.png)
+### S5 — Recovery
 
-### Step 4 — We burned the CPU (made the machine busy)
+Stack healthy again; Analyze **200**.
 
-Analyze still returned **200**, a little slower.
-
-**Lesson:** Busy CPUs hurt **speed**, not “is it up?”
-
-![S4 card](screenshots/s4-card.png)
-
-### Step 5 — Final check
-
-Everything healthy again. Analyze **200**.
-
-![S5 card](screenshots/s5-card.png)
+![S5](screenshots/s5-card.png)
 
 ---
 
-## One table to remember
+## Summary
 
-| What we broke | Did Analyze work? | Hard or soft? |
-|---------------|-------------------|---------------|
-| Analyzer process | Yes (200) but health failed | Soft for user / still serious for ops |
-| SQL database | No (500) | **Hard** |
-| Ollama | Yes (200) | Soft |
-| CPU busy | Yes (200), slower | Soft |
+| Fault | Analyze | Classification |
+|-------|---------|----------------|
+| Analyzer down | 200 (health failed) | Soft for the request; still an ops incident |
+| SQL down | **500** | **Hard** |
+| Ollama down | 200 | Soft |
+| CPU busy | 200, slower | Soft |
+
+**Alerting implication:** page on SQL (and treat analyzer health seriously); ticket/watch Ollama and CPU pressure.
 
 ---
 
-## Where to look next
+## Artifacts
 
-| File | For whom |
-|------|----------|
-| **This page** (`LEARNER.md`) | First DevOps learner |
-| [STUDY.md](./STUDY.md) | Formal study write-up (interview / portfolio) |
-| [RESULTS.md](./RESULTS.md) | Short results summary |
-| [screenshots/](./screenshots/) | Pictures |
-| [results/game-day-probes.csv](./results/game-day-probes.csv) | Exact numbers |
-
-You do **not** need to read the `.sh` scripts to understand the lesson.
+| Path | Role |
+|------|------|
+| [STUDY.md](./STUDY.md) | Question / method / results (study format) |
+| [RESULTS.md](./RESULTS.md) | Short summary |
+| [screenshots/](./screenshots/) | Evidence images |
+| [results/game-day-probes.csv](./results/game-day-probes.csv) | Raw timings and codes |
+| [RUNBOOK.md](./RUNBOOK.md) | How to re-run |
