@@ -21,6 +21,7 @@ Full table: [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-
 | REL-004 | [Database unavailable](investigations/database-unavailable/) |
 | PERF-003 (#7) | [Qdrant retrieval scaling](investigations/qdrant-retrieval-scaling/) |
 | OBS-003 (#19) | [Alerting strategy](investigations/alerting-strategy/) — *ID reuses OBS-003; not the K8 shared-SQL study* |
+| CHAOS-004 (#17) | [CPU starvation](investigations/cpu-starvation/) |
 
 ## Earlier arcs (folder READMEs)
 

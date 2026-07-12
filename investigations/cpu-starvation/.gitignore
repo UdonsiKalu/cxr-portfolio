@@ -1,0 +1,5 @@
+# Runtime / local-only (not evidence)
+
+results/.cpu-hog.pids
+*.pyc
+__pycache__/

@@ -21,7 +21,7 @@ Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evi
 | Database unavailable | [database-unavailable.md](./database-unavailable.md) → **done:** [../database-unavailable/](../database-unavailable/) | [#14](https://github.com/UdonsiKalu/cxr-portfolio/issues/14) (closing) |
 | Network latency injection | [network-latency-injection.md](./network-latency-injection.md) | [#15](https://github.com/UdonsiKalu/cxr-portfolio/issues/15) |
 | Packet loss injection | [packet-loss-injection.md](./packet-loss-injection.md) | [#16](https://github.com/UdonsiKalu/cxr-portfolio/issues/16) |
-| CPU starvation | [cpu-starvation.md](./cpu-starvation.md) | [#17](https://github.com/UdonsiKalu/cxr-portfolio/issues/17) |
+| CPU starvation | [cpu-starvation.md](./cpu-starvation.md) → **done:** [../cpu-starvation/](../cpu-starvation/) | [#17](https://github.com/UdonsiKalu/cxr-portfolio/issues/17) (closing) |
 | Game day | [game-day.md](./game-day.md) | [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18) |
 | Alerting strategy | [alerting-strategy.md](./alerting-strategy.md) → **done:** [../alerting-strategy/](../alerting-strategy/) | [#19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19) (closing) |
 | GPU utilization | [gpu-utilization.md](./gpu-utilization.md) | [#20](https://github.com/UdonsiKalu/cxr-portfolio/issues/20) |
