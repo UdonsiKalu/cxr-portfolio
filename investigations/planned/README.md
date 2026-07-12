@@ -22,7 +22,7 @@ Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evi
 | Network latency injection | [network-latency-injection.md](./network-latency-injection.md) | [#15](https://github.com/UdonsiKalu/cxr-portfolio/issues/15) |
 | Packet loss injection | [packet-loss-injection.md](./packet-loss-injection.md) | [#16](https://github.com/UdonsiKalu/cxr-portfolio/issues/16) |
 | CPU starvation | [cpu-starvation.md](./cpu-starvation.md) → **done:** [../cpu-starvation/](../cpu-starvation/) | [#17](https://github.com/UdonsiKalu/cxr-portfolio/issues/17) (closing) |
-| Game day | [game-day.md](./game-day.md) | [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18) |
+| Game day | [game-day.md](./game-day.md) → **done:** [../game-day/](../game-day/) | [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18) (closing) |
 | Alerting strategy | [alerting-strategy.md](./alerting-strategy.md) → **done:** [../alerting-strategy/](../alerting-strategy/) | [#19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19) (closing) |
 | GPU utilization | [gpu-utilization.md](./gpu-utilization.md) | [#20](https://github.com/UdonsiKalu/cxr-portfolio/issues/20) |
 | Cost per claim | [cost-per-claim.md](./cost-per-claim.md) | [#21](https://github.com/UdonsiKalu/cxr-portfolio/issues/21) |

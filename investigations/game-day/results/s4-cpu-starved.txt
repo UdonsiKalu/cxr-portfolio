@@ -1,0 +1,70 @@
+== CHAOS-004 CPU starvation ==
+  Phase:        starved
+  Host Analyze: http://127.0.0.1:8251/api/claim-studio/analyze
+  Analyzer:     http://127.0.0.1:8766/health
+  Workers:      32 (nproc=64)
+  Probes/phase: 1
+
+{"status":"ok","warmed":"true"}
+analyzer warm OK
+2026-07-12T16:48:31-05:00  starvation_begin workers=32
+loadavg_during=12.63 8.66 7.71 36/11204 1897888 hog_pids=1897774 1897777 1897778 1897779 1897780 1897781 1897782 1897783 1897784 1897785 1897786 1897787 1897788 1897789 1897790 1897791 1897792 1897793 1897794 1897795 1897796 1897797 1897798 1897799 1897800 1897801 1897802 1897803 1897804 1897805 1897806 1897807 1897808 
+2026-07-12T16:48:34-05:00  phase_begin starved
+2026-07-12T16:48:50-05:00  starved [analyze p1]: http=200 ms=15685 load1=12.63 note=Compliant
+2026-07-12T16:48:50-05:00  phase_end starved
+
+NOTE: CPU hog still running — screenshot htop now, then:
+  /home/udonsi-kalu/staging/cxr-portfolio/investigations/cpu-starvation/run-cpu-starvation-check.sh --phase recovery
+  or: /home/udonsi-kalu/staging/cxr-portfolio/investigations/cpu-starvation/run-cpu-starvation-check.sh --phase stop-hog
+CHAOS-004 CPU starvation — summary
+generated=2026-07-12T16:48:50-05:00
+nproc=64
+starved_workers=32
+probes_per_phase=1
+phase_mode=starved
+
+baseline: n=2 http=200,200 ms_min=13484 ms_median=13500 ms_max=13515 load1_median=6.58
+starved: n=3 http=200,200,200 ms_min=15685 ms_median=21321 ms_max=21347 load1_median=12.63
+recovery: n=2 http=200,200 ms_min=13814 ms_median=13896 ms_max=13977 load1_median=31.55
+
+csv:
+phase,probe,http,ms,load1,load5,workers,note
+baseline,1,200,13484,6.55,6.22,0,Compliant
+baseline,2,200,13515,6.62,6.25,0,Compliant
+starved,1,200,21321,10.51,7.09,48,Compliant
+starved,2,200,21347,25.38,10.63,48,Compliant
+recovery,1,200,13814,34.74,14.14,0,Compliant
+recovery,2,200,13977,28.36,13.74,0,Compliant
+starved,1,200,15685,12.63,8.66,32,Compliant
+
+loadavg snapshots:
+loadavg_before=6.55 6.22 7.00 13/11342 1828312
+loadavg_during=10.51 7.09 7.26 59/11340 1829670 hog_pids=1829537 1829541 1829542 1829543 1829544 1829545 1829546 1829547 1829548 1829549 1829550 1829551 1829552 1829553 1829554 1829555 1829556 1829557 1829558 1829559 1829560 1829561 1829562 1829563 1829564 1829565 1829566 1829567 1829568 1829569 1829570 1829571 1829572 1829573 1829574 1829575 1829576 1829577 1829578 1829579 1829580 1829581 1829582 1829583 1829584 1829585 1829586 1829587 1829588 
+loadavg_after=34.74 14.14 9.64 9/11357 1831421
+loadavg_during=12.63 8.66 7.71 36/11204 1897888 hog_pids=1897774 1897777 1897778 1897779 1897780 1897781 1897782 1897783 1897784 1897785 1897786 1897787 1897788 1897789 1897790 1897791 1897792 1897793 1897794 1897795 1897796 1897797 1897798 1897799 1897800 1897801 1897802 1897803 1897804 1897805 1897806 1897807 1897808 
+
+timeline:
+2026-07-12T16:09:27-05:00  baseline_begin
+2026-07-12T16:09:27-05:00  phase_begin baseline
+2026-07-12T16:09:41-05:00  baseline [analyze p1]: http=200 ms=13484 load1=6.55 note=Compliant
+2026-07-12T16:09:54-05:00  baseline [analyze p2]: http=200 ms=13515 load1=6.62 note=Compliant
+2026-07-12T16:09:54-05:00  phase_end baseline
+2026-07-12T16:09:54-05:00  starvation_begin workers=48
+2026-07-12T16:09:58-05:00  phase_begin starved
+2026-07-12T16:10:19-05:00  starved [analyze p1]: http=200 ms=21321 load1=10.51 note=Compliant
+2026-07-12T16:10:40-05:00  starved [analyze p2]: http=200 ms=21347 load1=25.38 note=Compliant
+2026-07-12T16:10:40-05:00  phase_end starved
+2026-07-12T16:10:40-05:00  recovery_begin
+2026-07-12T16:10:44-05:00  phase_begin recovery
+2026-07-12T16:10:58-05:00  recovery [analyze p1]: http=200 ms=13814 load1=34.74 note=Compliant
+2026-07-12T16:11:12-05:00  recovery [analyze p2]: http=200 ms=13977 load1=28.36 note=Compliant
+2026-07-12T16:11:12-05:00  phase_end recovery
+2026-07-12T16:11:12-05:00  done
+2026-07-12T16:48:31-05:00  starvation_begin workers=32
+2026-07-12T16:48:34-05:00  phase_begin starved
+2026-07-12T16:48:50-05:00  starved [analyze p1]: http=200 ms=15685 load1=12.63 note=Compliant
+2026-07-12T16:48:50-05:00  phase_end starved
+2026-07-12T16:48:50-05:00  done
+
+Results: /home/udonsi-kalu/staging/cxr-portfolio/investigations/cpu-starvation/results
+Summary: /home/udonsi-kalu/staging/cxr-portfolio/investigations/cpu-starvation/results/cpu-starvation-summary.txt
