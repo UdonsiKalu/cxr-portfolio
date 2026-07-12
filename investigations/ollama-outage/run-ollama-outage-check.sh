@@ -157,7 +157,8 @@ req = urllib.request.Request(
     headers={"Content-Type": "application/json"},
 )
 try:
-    with urllib.request.urlopen(req, timeout=90) as resp:
+    # Must exceed CLAIM_STUDIO_AUDIT_TIMEOUT_MS (120s) so client does not abort first.
+    with urllib.request.urlopen(req, timeout=150) as resp:
         open(outp, "wb").write(resp.read())
         print(resp.status)
 except urllib.error.HTTPError as e:

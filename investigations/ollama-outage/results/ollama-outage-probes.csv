@@ -1,9 +1,9 @@
 phase,kind,http_code,elapsed_ms,ollama_state,note
-baseline_ollama_up,analyze,200,10385,up,Compliant
-baseline_ollama_up,audit,200,15273,up,error
-test_a_mid_outage_analyze,analyze,200,9977,down,Compliant
-test_a_mid_outage_audit,audit,200,231,down,error
-recovery_analyze,analyze,200,10377,up,Compliant
-recovery_audit,audit,200,15363,up,error
-test_b_boot_without_ollama,analyze,200,10083,down,Compliant
-final_both_up,analyze,200,10386,up,Compliant
+baseline_ollama_up,analyze,200,9733,up,Compliant
+baseline_ollama_up,audit,200,15348,up,error
+test_a_mid_outage_analyze,analyze,200,10269,down,Compliant
+test_a_mid_outage_audit,audit,200,190,down,error
+recovery_analyze,analyze,200,9519,up,Compliant
+recovery_audit,audit,200,15289,up,error
+test_b_boot_without_ollama,analyze,200,10016,down,Compliant
+final_both_up,analyze,200,9797,up,Compliant

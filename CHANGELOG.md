@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-12 — REL-002: terminal ON/OFF evidence pair (documented)
+
+| | |
+|---|---|
+| **Problem** | Need a clear pictorial pair: Auditor success with Ollama up vs connect-fail when down (earlier baseline audit was judge-timeout). |
+| **Outcome** | **Documented:** terminal **ON** (`status=done`) + **OFF** (`Failed to connect to Ollama`) in [screenshots/](investigations/ollama-outage/screenshots/); study README refreshed. Issue **#13** already closed; Kanban **Done**. |
+| **Artifacts** | [ollama-outage/](investigations/ollama-outage/) · [terminal-ollama-on-baseline.png](investigations/ollama-outage/screenshots/terminal-ollama-on-baseline.png) · [terminal-ollama-off-audit-error.png](investigations/ollama-outage/screenshots/terminal-ollama-off-audit-error.png) |
+
 #### 2026-07-11 — REL-002: Ollama outage (resolved)
 
 | | |

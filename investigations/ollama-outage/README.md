@@ -2,24 +2,13 @@
 
 | | |
 |---|---|
-| **Status** | Complete (2026-07-11) |
+| **Status** | Complete (2026-07-11; terminal evidence refreshed 2026-07-12) |
 | **ID** | REL-002 |
 | **Question** | What happens when Ollama (LLM) is down? |
-| **Tools** | `curl`, `systemctl` (stop/start ollama), Jaeger optional |
+| **Tools** | `curl`, `systemctl` (stop/start ollama), Claim Studio Auditor, Jaeger optional |
 | **Environment** | Local `cxr` stack — UI `:8251`, analyzer `:8766`, Ollama `:11434` |
-| **Issue** | [#13](https://github.com/UdonsiKalu/cxr-portfolio/issues/13) |
+| **Issue** | [#13](https://github.com/UdonsiKalu/cxr-portfolio/issues/13) (closed) · Kanban **@cxr-devops** → **Done** |
 | **Related** | [Qdrant outage (DEP-001)](../archive/old-investigations/qdrant-outage/) |
-
----
-
-## What you can watch live
-
-| App | Useful for this test? | What to look at |
-|-----|----------------------|-----------------|
-| **Jaeger** `:16686` | Yes | Service `cxr-analyzer-service` → `analyze_request`. Compliant claims show **`llm_inference.skipped`** (LLM never called). |
-| **Claim Studio** `:8251` | Yes | Run Analyze with Ollama stopped — should still return a result. Auditor/Coach (audit) should fail with an Ollama connection error. |
-| **Locust** `:8089` | No (optional) | This study is **single probes**, not a swarm. Locust would only show aggregate 200s — less useful here. |
-| **Script log** | Yes | `results/ollama-outage-timeline.log` prints each phase as it runs. |
 
 ---
 
@@ -27,82 +16,114 @@
 
 Two different paths talk to Ollama:
 
-1. **Analyze / policy recommendations** — only when the claim is **not Compliant** *and* policy docs exist. Our lab probes were **Compliant**, so the LLM was **skipped**. Stopping Ollama did **not** break Analyze (still HTTP **200**).
-2. **Claim Studio audit / judge** — always wants Ollama. With Ollama down, audit returns HTTP **200** with `status: error` and a clear message: *Failed to connect to Ollama…*
+1. **Analyze** (`POST /api/claim-studio/analyze`) — on **Compliant** lab claims the LLM is **skipped**. Stopping Ollama does **not** break Analyze (still HTTP **200**).
+2. **Auditor** (`POST /api/claim-studio/audit/start`) — always needs Ollama. When down: `status=error` and *Failed to connect to Ollama…*. When up (warm model + enough judge budget): `status=done`.
 
-So Ollama is a **soft** dependency for day-to-day Analyze (on Compliant traffic), and a **hard** dependency for the Auditor path.
+**Ollama = soft dependency for Analyze (Compliant traffic), hard dependency for Auditor.**
 
-### Pictorial evidence
+---
+
+## Pictorial evidence (primary)
+
+### ON — Ollama up
+
+![Terminal — Ollama ON baseline](screenshots/terminal-ollama-on-baseline.png)
+
+- `/api/tags` returns models
+- Analyze → **http=200**
+- Auditor → **`status=done`**, empty error
+
+### OFF — Ollama stopped
+
+![Terminal — Ollama OFF audit error](screenshots/terminal-ollama-off-audit-error.png)
+
+- `curl :11434` → connection refused
+- Analyze → still **http=200**
+- Auditor → **`status=error`** · *Failed to connect to Ollama…*
+- Then `systemctl start ollama` to recover
+
+### Supporting
 
 ![Probe results table](screenshots/results-table-ollama-outage.png)
 
-![Auditor — Failed to connect to Ollama](screenshots/auditor-ollama-down-error.png)
+![Auditor UI — Failed to connect to Ollama](screenshots/auditor-ollama-down-error.png)
 
 ![Jaeger — Analyze POST still completes (HTTP 200)](screenshots/jaeger-analyze-waterfall-rel002.png)
 
-More files: [screenshots/](screenshots/).
+Index: [screenshots/](screenshots/).
+
+---
+
+## What you can watch live
+
+| App | Useful? | What to look at |
+|-----|---------|-----------------|
+| **Claim Studio** `:8251` | Yes | Analyze still returns; Auditor fails when Ollama is down |
+| **Jaeger** `:16686` | Optional | Compliant path shows **`llm_inference.skipped`** (why Analyze stays up) |
+| **Locust** `:8089` | No | Single probes, not a swarm |
 
 ---
 
 ## Method
 
-**Password / sudo note:** Ollama runs as a **system** systemd service, so stop/start normally asks for your password. The lab script never uses interactive `sudo` (that hangs). One-time:
-
 ```bash
-./investigations/ollama-outage/setup-passwordless-ollama-ctl.sh   # type password once
+# One-time passwordless stop/start (optional)
+./investigations/ollama-outage/setup-passwordless-ollama-ctl.sh
+
+# Automated phases
 ./investigations/ollama-outage/run-ollama-outage-check.sh
 ```
 
-Or stop/start Ollama yourself in another terminal (`sudo systemctl stop|start ollama`) while the script runs only the probes.
-
-Automated: [`run-ollama-outage-check.sh`](./run-ollama-outage-check.sh)
+Or manual (as in the terminal screenshots):
 
 ```bash
-# Stack up (UI + analyzer + Jaeger). Ollama normally running.
-./investigations/ollama-outage/run-ollama-outage-check.sh
+# ON baseline
+curl -sS http://127.0.0.1:11434/api/tags | head -c 200; echo
+# … analyze + audit/start → expect done
+
+# OFF
+sudo -n systemctl stop ollama
+curl -sS http://127.0.0.1:11434/api/tags   # should fail
+# … analyze → 200; audit → Failed to connect to Ollama
+sudo -n systemctl start ollama
 ```
 
-Phases: baseline → stop Ollama → mid-outage analyze/audit → recover → boot analyzer without Ollama → final.
-
-Extra check (unique audit digest, Ollama down): `results/audit-unique-ollama-down.json`.
+**Note:** Auditor judge budget is **120s** on rehearsal (`CLAIM_STUDIO_AUDIT_TIMEOUT_MS`). Client `urlopen` should be **≥150s**. Warm the model once if the first ON audit is slow.
 
 ---
 
-## Results (2026-07-11)
+## Results
 
 | Phase | Kind | Ollama | HTTP | Note |
 |-------|------|--------|-----:|------|
-| baseline | analyze | up | **200** | archetype **Compliant** (~10s) |
-| baseline | audit | up | 200 | `status=error` judge **timeout** (~15s) — lab judge flaky even when up |
-| mid-outage | analyze | **down** | **200** | still Compliant (~10s) |
-| mid-outage | audit | down | 200 | cached prior error (~0.2s) — same digest |
-| unique audit | audit | **down** | 200 | **`Failed to connect to Ollama`** (~0.7s) — real outage signal |
-| recovery / final | analyze | up | **200** | unchanged |
-| boot without Ollama | analyze | down | **200** | analyzer warm OK; Analyze still works |
+| **ON baseline** | analyze | up | **200** | Compliant |
+| **ON baseline** | audit | up | 200 | **`status=done`** (warm model; ~5–13s) |
+| **OFF** | analyze | **down** | **200** | still Compliant — soft dependency |
+| **OFF** | audit | **down** | 200 | **`Failed to connect to Ollama`** — hard dependency |
+| recovery | — | up | — | `systemctl start ollama` |
 
-Raw: [results/ollama-outage-summary.txt](./results/ollama-outage-summary.txt) · [results/ollama-outage-probes.csv](./results/ollama-outage-probes.csv)
+Earlier automated run also covered boot-without-Ollama and digest cache quirks — raw: [results/](./results/).
 
 ---
 
 ## Findings
 
-1. **Analyze stays up** when Ollama is stopped — same pattern as Qdrant soft dependency for this lab claim shape.
-2. **LLM often skipped** on Compliant claims (`llm_inference.skipped` in Jaeger) — killing Ollama cannot break a path that never calls it.
-3. **Audit/judge hard-depends on Ollama** — connection error when down; when up, judge may still **timeout** on this machine (model/load) — separate reliability issue.
-4. **Audit caches by digest** — re-auditing the same claim+result returns the cached error quickly; use a new claim id to retest.
+1. **Analyze stays up** when Ollama is stopped (Compliant lab claims; LLM skipped).
+2. **Auditor hard-depends on Ollama** — clear connection error when down.
+3. **When Ollama is up**, Auditor can still **timeout** if the judge budget is too short or the model is cold — separate from outage (lab fixed with **120s** timeout + warm).
+4. **Audit caches by digest** — use a new `claim_id` when retesting OFF after an ON run.
 
 ---
 
 ## Decision
 
 - Treat Ollama as **optional for Analyze** on Compliant traffic; **required for Auditor**.
-- For production: health-check Ollama for audit features; don’t block Analyze readiness on Ollama if Compliant-only is acceptable.
-- Portfolio: pair with [Qdrant outage](../archive/old-investigations/qdrant-outage/) as soft vs hard dependency contrast.
+- Production: health-check Ollama for audit features; do not block Analyze readiness on Ollama if Compliant-only is acceptable.
+- Pair with [Qdrant outage](../archive/old-investigations/qdrant-outage/) as soft vs hard dependency contrast.
 
 ---
 
 ## Follow-up (optional)
 
-- Force a **non-Compliant** claim with policy docs so Analyze actually hits `llm.model_request.send`, then repeat the outage.
-- Fix / tune judge timeout when Ollama is up.
-- Screenshots: Jaeger `llm_inference.skipped` + Claim Studio audit error toast.
+- Force a **non-Compliant** claim with policy docs so Analyze hits `llm.model_request.send`, then repeat the outage.
+- No Kanban move needed — issue **#13** closed, board status **Done**.

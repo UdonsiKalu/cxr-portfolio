@@ -1,10 +1,10 @@
-baseline_ollama_up [analyze]: http=200 ms=10385 ollama=up note=Compliant
-baseline_ollama_up [audit]: http=200 ms=15273 ollama=up note=error
-test_a_mid_outage_analyze [analyze]: http=200 ms=9977 ollama=down note=Compliant
-test_a_mid_outage_audit [audit]: http=200 ms=231 ollama=down note=error
-recovery_analyze [analyze]: http=200 ms=10377 ollama=up note=Compliant
-recovery_audit [audit]: http=200 ms=15363 ollama=up note=error
-test_b_boot_without_ollama [analyze]: http=200 ms=10083 ollama=down note=Compliant
-final_both_up [analyze]: http=200 ms=10386 ollama=up note=Compliant
+baseline_ollama_up [analyze]: http=200 ms=9733 ollama=up note=Compliant
+baseline_ollama_up [audit]: http=200 ms=15348 ollama=up note=error
+test_a_mid_outage_analyze [analyze]: http=200 ms=10269 ollama=down note=Compliant
+test_a_mid_outage_audit [audit]: http=200 ms=190 ollama=down note=error
+recovery_analyze [analyze]: http=200 ms=9519 ollama=up note=Compliant
+recovery_audit [audit]: http=200 ms=15289 ollama=up note=error
+test_b_boot_without_ollama [analyze]: http=200 ms=10016 ollama=down note=Compliant
+final_both_up [analyze]: http=200 ms=9797 ollama=up note=Compliant
 
 total_probes=8 non_200=0
