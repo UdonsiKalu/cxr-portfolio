@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-12 — CHAOS-004: CPU starvation (resolved)
+
+| | |
+|---|---|
+| **Problem** | Unknown how host CPU contention affects warm Analyze latency (vs hard dependency outages). |
+| **Outcome** | **Resolved (lab):** 48 busy-loop workers → Analyze still **HTTP 200**; median latency ~**13.5 s → ~21.3 s (~+58%)**; recovery ~**14 s**. Soft degradation, not hard fail. Script: **`run-cpu-starvation-check.sh`** + **`cpu_hog.py`**. |
+| **Artifacts** | [cpu-starvation/](investigations/cpu-starvation/) · [RESULTS.md](investigations/cpu-starvation/RESULTS.md) (plain-English story) · [latency chart](investigations/cpu-starvation/screenshots/latency-by-phase.png) · [issue #17](https://github.com/UdonsiKalu/cxr-portfolio/issues/17) |
+
 #### 2026-07-12 — OBS-003: Alerting strategy (resolved)
 
 | | |

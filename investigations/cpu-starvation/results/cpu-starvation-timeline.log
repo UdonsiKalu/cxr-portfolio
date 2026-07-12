@@ -1,0 +1,16 @@
+2026-07-12T16:09:27-05:00  baseline_begin
+2026-07-12T16:09:27-05:00  phase_begin baseline
+2026-07-12T16:09:41-05:00  baseline [analyze p1]: http=200 ms=13484 load1=6.55 note=Compliant
+2026-07-12T16:09:54-05:00  baseline [analyze p2]: http=200 ms=13515 load1=6.62 note=Compliant
+2026-07-12T16:09:54-05:00  phase_end baseline
+2026-07-12T16:09:54-05:00  starvation_begin workers=48
+2026-07-12T16:09:58-05:00  phase_begin starved
+2026-07-12T16:10:19-05:00  starved [analyze p1]: http=200 ms=21321 load1=10.51 note=Compliant
+2026-07-12T16:10:40-05:00  starved [analyze p2]: http=200 ms=21347 load1=25.38 note=Compliant
+2026-07-12T16:10:40-05:00  phase_end starved
+2026-07-12T16:10:40-05:00  recovery_begin
+2026-07-12T16:10:44-05:00  phase_begin recovery
+2026-07-12T16:10:58-05:00  recovery [analyze p1]: http=200 ms=13814 load1=34.74 note=Compliant
+2026-07-12T16:11:12-05:00  recovery [analyze p2]: http=200 ms=13977 load1=28.36 note=Compliant
+2026-07-12T16:11:12-05:00  phase_end recovery
+2026-07-12T16:11:12-05:00  done
