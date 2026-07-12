@@ -23,7 +23,15 @@
 
 ![Pressure run waterfall](screenshots/jaeger-pressure-run-waterfall.png)
 
-![Tier c=64 tags](screenshots/jaeger-tier-concurrency-64.png)
+**Tier Tags (compare concurrency 8 → 64):**
+
+![Tier c=8](screenshots/jaeger-tier-concurrency-8.png)
+
+![Tier c=16](screenshots/jaeger-tier-concurrency-16.png)
+
+![Tier c=32](screenshots/jaeger-tier-concurrency-32.png)
+
+![Tier c=64](screenshots/jaeger-tier-concurrency-64.png)
 
 More: [screenshots/README.md](./screenshots/README.md) · full story in [RESULTS.md](./RESULTS.md)
 
