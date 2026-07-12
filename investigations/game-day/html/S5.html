@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Final — stack recovered</title>
+<style>
+body { font-family: ui-sans-serif, system-ui, sans-serif; margin: 28px; background: #0f1419; color: #e7ecf1; }
+h1 { font-size: 22px; margin: 0 0 8px; }
+p.sub { color: #9aa7b5; margin: 0 0 18px; font-size: 13px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { border: 1px solid #2a3540; padding: 8px 10px; text-align: left; }
+th { background: #1a2330; }
+tr:nth-child(even) { background: #151c25; }
+.ok { color: #3dd68c; font-weight: 600; }
+.bad { color: #ff6b6b; font-weight: 600; }
+.slow { color: #ffd166; font-weight: 600; }
+pre { background: #151c25; border: 1px solid #2a3540; padding: 14px; overflow: auto;
+       font-size: 11px; line-height: 1.35; white-space: pre-wrap; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; background: #243044; font-size: 12px; }
+</style></head><body>
+<h1>Final — stack recovered</h1>
+<p class="sub">CXR Game day · local lab · synthetic data</p>
+<table><thead><tr><th>Phase</th><th>Check</th><th>Status</th><th>Latency</th><th>Note</th></tr></thead><tbody><tr><td>final</td><td>A2_health</td><td class='ok'>200</td><td>33 ms</td><td>health</td></tr><tr><td>final</td><td>A3_sql</td><td class='ok'>open</td><td>0 ms</td><td>tcp_1433</td></tr><tr><td>final</td><td>ollama</td><td class='ok'>up</td><td>0 ms</td><td>api_tags</td></tr><tr><td>final</td><td>A1_analyze</td><td class='ok'>200</td><td>14192 ms</td><td>Compliant</td></tr><tr><td>final</td><td>alert_probes_rc</td><td class='ok'>0</td><td>0 ms</td><td>skip_analyze</td></tr></tbody></table><h2 style='font-size:16px;margin-top:18px'>Alert probes output</h2><pre>OBS-003 one-shot: A2 health + A3 SQL + A1 Analyze
+metrics: /home/udonsi-kalu/staging/cxr-portfolio/investigations/alerting-strategy/prometheus/cxr_obs003_probe.prom
+PASS A2 health (HTTP 200)
+PASS A3 sql (127.0.0.1:1433 open)
+SKIP A1 analyze (CXR_ALERT_SKIP_ANALYZE=1)
+</pre>
+</body></html>

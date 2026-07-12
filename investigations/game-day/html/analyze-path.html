@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Game day — Analyze path (A1) across scenarios</title>
+<style>
+body { font-family: ui-sans-serif, system-ui, sans-serif; margin: 28px; background: #0f1419; color: #e7ecf1; }
+h1 { font-size: 22px; margin: 0 0 8px; }
+p.sub { color: #9aa7b5; margin: 0 0 18px; font-size: 13px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { border: 1px solid #2a3540; padding: 8px 10px; text-align: left; }
+th { background: #1a2330; }
+tr:nth-child(even) { background: #151c25; }
+.ok { color: #3dd68c; font-weight: 600; }
+.bad { color: #ff6b6b; font-weight: 600; }
+.slow { color: #ffd166; font-weight: 600; }
+pre { background: #151c25; border: 1px solid #2a3540; padding: 14px; overflow: auto;
+       font-size: 11px; line-height: 1.35; white-space: pre-wrap; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; background: #243044; font-size: 12px; }
+</style></head><body>
+<h1>Game day — Analyze path (A1) across scenarios</h1>
+<p class="sub">CXR Game day · local lab · synthetic data</p>
+<table><thead><tr><th>Scenario</th><th>Phase</th><th>HTTP</th><th>ms</th><th>Note</th></tr></thead><tbody><tr><td>S0</td><td>baseline</td><td class='ok'>200</td><td>14989</td><td>Compliant</td></tr><tr><td>S1</td><td>mid_outage</td><td class='ok'>200</td><td>14067</td><td>Compliant</td></tr><tr><td>S1</td><td>recovered</td><td class='ok'>200</td><td>14217</td><td>Compliant</td></tr><tr><td>S2</td><td>mid_outage</td><td class='bad'>500</td><td>23667</td><td>Failed to analyze claim.</td></tr><tr><td>S2</td><td>recovered</td><td class='ok'>200</td><td>14096</td><td>Compliant</td></tr><tr><td>S3</td><td>mid_outage</td><td class='ok'>200</td><td>13701</td><td>Compliant</td></tr><tr><td>S3</td><td>recovered</td><td class='ok'>200</td><td>14094</td><td>Compliant</td></tr><tr><td>S4</td><td>mid_outage</td><td class='ok'>200</td><td>15607</td><td>Compliant</td></tr><tr><td>S4</td><td>recovered</td><td class='ok'>200</td><td>14184</td><td>Compliant</td></tr><tr><td>S5</td><td>final</td><td class='ok'>200</td><td>14192</td><td>Compliant</td></tr></tbody></table>
+</body></html>

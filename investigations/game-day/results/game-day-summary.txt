@@ -1,0 +1,67 @@
+Game day — summary
+generated=2026-07-12T16:49:37-05:00
+
+=== S0 ===
+  baseline     A2_health           200      26ms  health
+  baseline     A3_sql             open       0ms  tcp_1433
+  baseline     ollama               up       0ms  api_tags
+  baseline     A1_analyze          200   14989ms  Compliant
+  baseline     alert_probes_rc       0       0ms  skip_analyze
+
+=== S1 ===
+  mid_outage   A2_health        000000      28ms  health
+  mid_outage   A3_sql             open       0ms  tcp_1433
+  mid_outage   ollama               up       0ms  api_tags
+  mid_outage   A1_analyze          200   14067ms  Compliant
+  mid_outage   alert_probes_rc       1       0ms  skip_analyze
+  recovered    A2_health           200      32ms  health
+  recovered    A3_sql             open       0ms  tcp_1433
+  recovered    ollama               up       0ms  api_tags
+  recovered    A1_analyze          200   14217ms  Compliant
+  recovered    alert_probes_rc       0       0ms  skip_analyze
+
+=== S2 ===
+  mid_outage   A2_health           200      27ms  health
+  mid_outage   A3_sql           closed       0ms  tcp_1433
+  mid_outage   ollama               up       0ms  api_tags
+  mid_outage   A1_analyze          500   23667ms  Failed to analyze claim.
+  mid_outage   alert_probes_rc       1       0ms  skip_analyze
+  recovered    A2_health           200      32ms  health
+  recovered    A3_sql             open       0ms  tcp_1433
+  recovered    ollama               up       0ms  api_tags
+  recovered    A1_analyze          200   14096ms  Compliant
+  recovered    alert_probes_rc       0       0ms  skip_analyze
+
+=== S3 ===
+  mid_outage   A2_health           200      35ms  health
+  mid_outage   A3_sql             open       0ms  tcp_1433
+  mid_outage   ollama             down       0ms  api_tags
+  mid_outage   A1_analyze          200   13701ms  Compliant
+  mid_outage   alert_probes_rc       0       0ms  skip_analyze
+  recovered    A2_health           200      30ms  health
+  recovered    A3_sql             open       0ms  tcp_1433
+  recovered    ollama               up       0ms  api_tags
+  recovered    A1_analyze          200   14094ms  Compliant
+  recovered    alert_probes_rc       0       0ms  skip_analyze
+
+=== S4 ===
+  mid_outage   A2_health           200      25ms  health
+  mid_outage   A3_sql             open       0ms  tcp_1433
+  mid_outage   ollama               up       0ms  api_tags
+  mid_outage   A1_analyze          200   15607ms  Compliant
+  mid_outage   alert_probes_rc       0       0ms  skip_analyze
+  recovered    A2_health           200      31ms  health
+  recovered    A3_sql             open       0ms  tcp_1433
+  recovered    ollama               up       0ms  api_tags
+  recovered    A1_analyze          200   14184ms  Compliant
+  recovered    alert_probes_rc       0       0ms  skip_analyze
+
+=== S5 ===
+  final        A2_health           200      33ms  health
+  final        A3_sql             open       0ms  tcp_1433
+  final        ollama               up       0ms  api_tags
+  final        A1_analyze          200   14192ms  Compliant
+  final        alert_probes_rc       0       0ms  skip_analyze
+
+csv: /home/udonsi-kalu/staging/cxr-portfolio/investigations/game-day/results/game-day-probes.csv
+timeline: /home/udonsi-kalu/staging/cxr-portfolio/investigations/game-day/results/game-day-timeline.log

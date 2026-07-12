@@ -25,6 +25,7 @@ Hypothesis-driven lab work on the local CXR stack (synthetic data only).
 | Qdrant retrieval scaling (PERF-003 / #7) | [qdrant-retrieval-scaling/](./qdrant-retrieval-scaling/) |
 | Alerting strategy (OBS-003 / #19) | [alerting-strategy/](./alerting-strategy/) |
 | CPU starvation (CHAOS-004 / #17) | [cpu-starvation/](./cpu-starvation/) |
+| Game day (combined failures / #18) | [game-day/](./game-day/) |
 | Planned backlog | [planned/](./planned/) |
 
 ---

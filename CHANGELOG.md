@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-12 — Game day: combined failures (resolved)
+
+| | |
+|---|---|
+| **Problem** | Need one drill that ties analyzer / SQL / Ollama / CPU failures to Analyze + alert probes. |
+| **Outcome** | **Resolved (lab):** sequential S1–S4 with recover; SQL → Analyze **500**; Ollama/CPU soft **200**; analyzer kill → health fail but Analyze **200** (fallback). **10** screenshots + CSV. |
+| **Artifacts** | [game-day/](investigations/game-day/) · [RESULTS.md](investigations/game-day/RESULTS.md) · [screenshots/](investigations/game-day/screenshots/) · [issue #18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18) |
+
 #### 2026-07-12 — CHAOS-004: CPU starvation (resolved)
 
 | | |
