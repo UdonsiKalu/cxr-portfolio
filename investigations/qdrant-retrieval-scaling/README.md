@@ -15,7 +15,15 @@
 
 ## Short story
 
-**The ramp is measured** (CSV + Jaeger **`cxr-qdrant-pressure`**). Concurrent Qdrant search **does** have impact (latency up, RPS plateau ~280), but stays in the **tens of ms** with **0** failures — **not** “no impact,” and **not** the reason Analyze is ~15–30s.
+**What we asked:** When many searches hit Qdrant at once, does retrieval get slower or break?
+
+**What we found:** A little slower, not broken — **0** failures at **8→64** concurrent; ~**20–40 ms** searches; RPS plateaus ~**280**. There **is** impact (don’t say “no impact”); no error cliff.
+
+**What this is not:** Analyze’s ~**15–30 s** wall clock is mostly **not** Qdrant (`retrieval` still ~**76–87 ms**).
+
+**How we proved it:** CSV pressure script + Jaeger **`cxr-qdrant-pressure`** tier Tags (8/16/32/64).
+
+Full write-up: [RESULTS.md](./RESULTS.md)
 
 ---
 
