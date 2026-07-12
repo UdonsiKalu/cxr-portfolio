@@ -49,8 +49,8 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 | | |
 |---|---|
 | **Problem** | No clear page-vs-ticket rulebook for Analyze / deps after REL and PERF labs. |
-| **Outcome** | **Resolved (design):** page on SQL/analyzer hard fails; ticket on Ollama Auditor + Qdrant soft degrade; don’t page on Analyze wall clock when `retrieval` is fine. Catalog A1–A7 grounded in REL-002/004, DEP-001, PERF-003, LOAD. Distinct from K8 saturation “OBS-003” (shared SQL). |
-| **Artifacts** | [alerting-strategy/](investigations/alerting-strategy/) · [RESULTS.md](investigations/alerting-strategy/RESULTS.md) · [issue #19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19) |
+| **Outcome** | **Resolved:** page-vs-ticket catalog A1–A7 from REL/PERF/DEP; Phase-1 blackbox **`run-alert-probes.sh`** (A2 health + A3 SQL + A1 Analyze, ALERT@3, Prom textfile + draft rules); user loop PASS screenshot. Distinct from K8 saturation “OBS-003” (shared SQL). |
+| **Artifacts** | [alerting-strategy/](investigations/alerting-strategy/) · [RESULTS.md](investigations/alerting-strategy/RESULTS.md) · [RUNBOOK.md](investigations/alerting-strategy/RUNBOOK.md) · [terminal-alert-probes-loop-pass.png](investigations/alerting-strategy/screenshots/terminal-alert-probes-loop-pass.png) · [issue #19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19) |
 
 #### 2026-07-12 — PERF-003: Qdrant retrieval scaling (resolved)
 

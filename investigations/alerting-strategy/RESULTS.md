@@ -113,12 +113,15 @@ Still deferred: Slack/PagerDuty, soft A4/A5 (Ollama/Qdrant), live Prometheus scr
 
 | Artifact | What |
 |----------|------|
-| [results/one-shot-pass.txt](./results/one-shot-pass.txt) | Terminal: A2+A3+A1 all **PASS** |
+| [screenshots/terminal-alert-probes-loop-pass.png](./screenshots/terminal-alert-probes-loop-pass.png) | User `--loop`: repeated **PASS** A2 + A3 + A1 |
+| [results/one-shot-pass.txt](./results/one-shot-pass.txt) | Captured one-shot A2+A3+A1 **PASS** |
 | [results/cxr_obs003_probe.prom](./results/cxr_obs003_probe.prom) | Prometheus textfile gauges = 1 |
 | [results/alerts-sample.log](./results/alerts-sample.log) | Sample `alerts.log` lines |
 | [RUNBOOK.md](./RUNBOOK.md) | How to run / force FAIL / Prom wire |
 
-To reproduce: `./investigations/alerting-strategy/run-alert-probes.sh`
+![Loop probes all PASS](screenshots/terminal-alert-probes-loop-pass.png)
+
+To reproduce: `./investigations/alerting-strategy/run-alert-probes.sh` or `--loop`
 
 ---
 

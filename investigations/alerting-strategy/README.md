@@ -2,19 +2,25 @@
 
 | | |
 |---|---|
-| **Status** | Complete (2026-07-12) — design from lab evidence |
+| **Status** | Complete (2026-07-12) — strategy + local blackbox probes |
 | **ID** | OBS-003 (issue [#19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19)) — **not** the K8 saturation “OBS-003” shared-SQL study |
 | **Question** | What should we alert on for claim analysis, given what REL/PERF/DEP labs proved? |
-| **Type** | Design (grounded in prior lab results) — not a new outage run |
+| **Type** | Design + Phase-1 blackbox (A1/A2/A3) |
 | **Related** | [REL-004 SQL](../database-unavailable/) · [REL-002 Ollama](../ollama-outage/) · [PERF-003 Qdrant scaling](../qdrant-retrieval-scaling/) · [DEP-001 Qdrant outage](../archive/old-investigations/qdrant-outage/) · [SLOs (local)](../../archive/investigations-supplemental/slos-and-slis.md) |
 
-**Plain English:** [RESULTS.md](./RESULTS.md)
+**Plain English:** [RESULTS.md](./RESULTS.md) · **Runbook:** [RUNBOOK.md](./RUNBOOK.md)
 
 ---
 
 ## Short story
 
-From the outages and pressure labs we already ran: **page on hard Analyze failure (SQL / analyzer down)**; **ticket (not page) for soft deps (Ollama Auditor, Qdrant fallback)**; **watch latency/RPS** from load studies — don’t page on every multi-second Analyze when Qdrant is fine.
+From the outages and pressure labs: **page** on hard Analyze failure (SQL / analyzer down); **ticket** for soft deps (Ollama Auditor, Qdrant fallback). Local probes now check health + SQL + Analyze in a loop and raise **ALERT** after 3 bad cycles.
+
+---
+
+## Pictorial evidence
+
+![Loop probes all PASS](screenshots/terminal-alert-probes-loop-pass.png)
 
 ---
 
@@ -23,9 +29,7 @@ From the outages and pressure labs we already ran: **page on hard Analyze failur
 1. Inventory failure modes from completed studies (SQL, Ollama, Qdrant, load).
 2. Classify each: **hard vs soft**, user-visible blast radius, recoverable vs not.
 3. Propose **page / ticket / ignore** + a concrete signal for each.
-4. Call out false positives (cold start, warmup, Analyze wall clock ≠ Qdrant).
-
-No new Locust/iptables run required for this write-up — evidence already exists in those folders.
+4. Implement Phase-1 blackbox: [`run-alert-probes.sh`](./run-alert-probes.sh) (A2 → A3 → A1 → ALERT@3 → Prom textfile).
 
 ---
 
