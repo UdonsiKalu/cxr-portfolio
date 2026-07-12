@@ -15,11 +15,12 @@ Full table: [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-
 | GATE-002 | [KEDA Helm grid](investigations/kubernetes-analyzer-saturation/studies/GATE-002-keda-helm-grid-study.md) |
 | PERF-008 | [Queue-depth autoscaling](investigations/kubernetes-analyzer-saturation/studies/PERF-008-queue-depth-autoscaling.md) |
 | PERF-009 | [Jaeger tail latency](investigations/kubernetes-analyzer-saturation/studies/PERF-009-jaeger-tail-latency.md) |
-| OBS-003 | [Shared SQL / context errors under load](investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) |
+| OBS-003 (K8) | [Shared SQL / context errors under load](investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) |
 | SCALE-003 | [UI bottleneck at peak load](investigations/kubernetes-analyzer-saturation/studies/SCALE-003-ui-bottleneck.md) |
 | REL-002 | [Ollama outage](investigations/ollama-outage/) |
 | REL-004 | [Database unavailable](investigations/database-unavailable/) |
 | PERF-003 (#7) | [Qdrant retrieval scaling](investigations/qdrant-retrieval-scaling/) |
+| OBS-003 (#19) | [Alerting strategy](investigations/alerting-strategy/) — *ID reuses OBS-003; not the K8 shared-SQL study* |
 
 ## Earlier arcs (folder READMEs)
 

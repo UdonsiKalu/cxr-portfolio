@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-12 — OBS-003: Alerting strategy (resolved)
+
+| | |
+|---|---|
+| **Problem** | No clear page-vs-ticket rulebook for Analyze / deps after REL and PERF labs. |
+| **Outcome** | **Resolved (design):** page on SQL/analyzer hard fails; ticket on Ollama Auditor + Qdrant soft degrade; don’t page on Analyze wall clock when `retrieval` is fine. Catalog A1–A7 grounded in REL-002/004, DEP-001, PERF-003, LOAD. Distinct from K8 saturation “OBS-003” (shared SQL). |
+| **Artifacts** | [alerting-strategy/](investigations/alerting-strategy/) · [RESULTS.md](investigations/alerting-strategy/RESULTS.md) · [issue #19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19) |
+
 #### 2026-07-12 — PERF-003: Qdrant retrieval scaling (resolved)
 
 | | |

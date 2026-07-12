@@ -23,6 +23,7 @@ Hypothesis-driven lab work on the local CXR stack (synthetic data only).
 | Ollama outage (REL-002) | [ollama-outage/](./ollama-outage/) |
 | Database unavailable (REL-004) | [database-unavailable/](./database-unavailable/) |
 | Qdrant retrieval scaling (PERF-003 / #7) | [qdrant-retrieval-scaling/](./qdrant-retrieval-scaling/) |
+| Alerting strategy (OBS-003 / #19) | [alerting-strategy/](./alerting-strategy/) |
 | Planned backlog | [planned/](./planned/) |
 
 ---

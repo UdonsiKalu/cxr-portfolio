@@ -1,15 +1,11 @@
 # OBS-003 — Alerting strategy
 
-**Status:** Planned (Phase 2)
+**Status:** **Promoted** — closed study: [../alerting-strategy/](../alerting-strategy/)
 
-| Field | |
-|-------|---|
-| **Question** | What would we alert on for analyze SLOs in a production-like setup? |
-| **Hypothesis** | TBD |
-| **Method** | Design from LOAD/REL results — p95, analyzer health, trace error rate |
-| **Tools** | Prometheus/Grafana drafts in [archive/investigations-supplemental/](../../archive/investigations-supplemental/) |
-| **Metrics** | TBD |
+## Question
 
-## Results
+What would we alert on for analyze SLOs / dependency failures in a production-like setup?
 
-Design-only until metrics pipeline is wired.
+## Record results in
+
+`investigations/alerting-strategy/` (design from REL-002 / REL-004 / PERF-003 / DEP-001 — 2026-07-12).
