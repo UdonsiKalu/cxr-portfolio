@@ -1,15 +1,15 @@
 # REL-004 — Database unavailable
 
-**Status:** Planned (Phase 2)
+**Status:** **Promoted** — closed study: [../database-unavailable/](../database-unavailable/)
 
-| Field | |
-|-------|---|
-| **Question** | How does analyze behave when SQL Server is unreachable? |
-| **Hypothesis** | TBD |
-| **Method** | Document expected behavior; avoid killing prod-adjacent dev DB — simulate or mock if possible |
-| **Tools** | Logs, UI/API responses |
-| **Metrics** | Error rate, user-visible message |
+## Question
 
-## Results
+How does analyze behave when SQL Server is unreachable?
 
-Not yet run.
+## Method
+
+iptables REJECT on `:1433` (mssql stays running); probe Claim Studio Analyze + `/api/terminal/diag`.
+
+## Record results in
+
+`investigations/database-unavailable/results/` (ran 2026-07-12).

@@ -21,6 +21,7 @@ Hypothesis-driven lab work on the local CXR stack (synthetic data only).
 | Bootcamp CI pipeline | [ci-pipeline/](./ci-pipeline/) |
 | Kubernetes saturation (LOAD-003+) | [kubernetes-analyzer-saturation/](./kubernetes-analyzer-saturation/) |
 | Ollama outage (REL-002) | [ollama-outage/](./ollama-outage/) |
+| Database unavailable (REL-004) | [database-unavailable/](./database-unavailable/) |
 | Planned backlog | [planned/](./planned/) |
 
 ---

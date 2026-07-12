@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-12 — REL-004: Database unavailable (resolved)
+
+| | |
+|---|---|
+| **Problem** | Unknown Analyze blast radius if SQL Server `:1433` is unreachable. |
+| **Outcome** | **Resolved (lab):** Analyze returns **HTTP 500** (`HYT00` login timeout); Terminal diag **500** — SQL is a **hard** dependency (contrast REL-002 Ollama soft Analyze). Used iptables REJECT (did not stop `mssql-server`). |
+| **Artifacts** | [database-unavailable/](investigations/database-unavailable/) · [issue #14](https://github.com/UdonsiKalu/cxr-portfolio/issues/14) |
+
 #### 2026-07-12 — REL-002: terminal ON/OFF evidence pair (documented)
 
 | | |

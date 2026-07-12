@@ -18,6 +18,7 @@ Full table: [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-
 | OBS-003 | [Shared SQL / context errors under load](investigations/kubernetes-analyzer-saturation/studies/OBS-003-shared-sql-connection.md) |
 | SCALE-003 | [UI bottleneck at peak load](investigations/kubernetes-analyzer-saturation/studies/SCALE-003-ui-bottleneck.md) |
 | REL-002 | [Ollama outage](investigations/ollama-outage/) |
+| REL-004 | [Database unavailable](investigations/database-unavailable/) |
 
 ## Earlier arcs (folder READMEs)
 
