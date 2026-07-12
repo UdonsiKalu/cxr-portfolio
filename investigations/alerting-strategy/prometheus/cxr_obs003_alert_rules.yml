@@ -1,0 +1,34 @@
+# OBS-003 blackbox probe alerts (A1/A2/A3)
+# Requires metric cxr_obs003_probe_success from run-alert-probes.sh textfile.
+groups:
+  - name: cxr_obs003_alerting
+    rules:
+      - alert: CxrAnalyzerHealthDown
+        expr: cxr_obs003_probe_success{check="analyzer_health"} == 0
+        for: 90s
+        labels:
+          severity: page
+          study: OBS-003
+        annotations:
+          summary: "CXR analyzer /health failing (A2)"
+          description: "Blackbox probe analyzer_health=0 for 90s. Check :8766."
+
+      - alert: CxrSqlUnreachable
+        expr: cxr_obs003_probe_success{check="sql"} == 0
+        for: 60s
+        labels:
+          severity: page
+          study: OBS-003
+        annotations:
+          summary: "SQL :1433 unreachable (A3)"
+          description: "TCP probe to SQL failed. Matches REL-004 hard dependency."
+
+      - alert: CxrAnalyzeFailing
+        expr: cxr_obs003_probe_success{check="analyze"} == 0
+        for: 90s
+        labels:
+          severity: page
+          study: OBS-003
+        annotations:
+          summary: "Claim Analyze HTTP failing (A1)"
+          description: "POST /api/claim-studio/analyze not 2xx. Users cannot analyze claims."

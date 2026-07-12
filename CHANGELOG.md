@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-12 — OBS-003: Alerting strategy (resolved)
+
+| | |
+|---|---|
+| **Problem** | No clear page-vs-ticket rulebook for Analyze / deps after REL and PERF labs. |
+| **Outcome** | **Resolved:** page-vs-ticket catalog A1–A7 from REL/PERF/DEP; Phase-1 blackbox **`run-alert-probes.sh`** (A2 health + A3 SQL + A1 Analyze, ALERT@3, Prom textfile + draft rules); user loop PASS screenshot. Distinct from K8 saturation “OBS-003” (shared SQL). |
+| **Artifacts** | [alerting-strategy/](investigations/alerting-strategy/) · [RESULTS.md](investigations/alerting-strategy/RESULTS.md) · [RUNBOOK.md](investigations/alerting-strategy/RUNBOOK.md) · [terminal-alert-probes-loop-pass.png](investigations/alerting-strategy/screenshots/terminal-alert-probes-loop-pass.png) · [issue #19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19) |
+
 #### 2026-07-12 — PERF-003: Qdrant retrieval scaling (resolved)
 
 | | |

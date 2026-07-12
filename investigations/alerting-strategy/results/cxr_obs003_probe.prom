@@ -1,0 +1,8 @@
+# HELP cxr_obs003_probe_success 1=pass 0=fail for OBS-003 blackbox probes
+# TYPE cxr_obs003_probe_success gauge
+cxr_obs003_probe_success{check="analyzer_health"} 1
+cxr_obs003_probe_success{check="sql"} 1
+cxr_obs003_probe_success{check="analyze"} 1
+# HELP cxr_obs003_probe_cycle_unixtime Unix time of last probe cycle
+# TYPE cxr_obs003_probe_cycle_unixtime gauge
+cxr_obs003_probe_cycle_unixtime 1783877479
