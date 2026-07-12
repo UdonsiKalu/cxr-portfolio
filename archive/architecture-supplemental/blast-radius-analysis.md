@@ -2,13 +2,14 @@
 
 ## Failure domains
 
-| Failure | Blast radius | Mitigation |
-|---------|--------------|------------|
-| Analyzer :8766 down | Analyze API slow or subprocess fallback | `cxr up`; health check :8766 |
-| Jaeger / OTLP down | No new traces; app may still work | `cxr up` observe stack |
-| SQL unreachable | Terminal + analyze rules fail | Fix connection string / VPN |
-| Qdrant down | Retrieval degraded; core analyze may continue | Documented WARN in logs |
-| Next.js :8251 down | UI unavailable | Restart `run-rehearsal-dev.sh` |
+| Failure | Blast radius | Mitigation | Evidence |
+|---------|--------------|------------|----------|
+| Analyzer :8766 down | Analyze API 500 / fetch failed; UI shell up | `cxr up`; health check :8766 | [kill-analyzer-under-traffic](../../archive/old-investigations/kill-analyzer-under-traffic/) |
+| Jaeger / OTLP down | No new traces; app may still work | `cxr up` observe stack | — |
+| SQL `:1433` unreachable | **Analyze + Terminal diag hard-fail (HTTP 500)**; UI pages still load | Fix network / unblock port / SQL health in readiness | **[REL-004](../../investigations/database-unavailable/)** |
+| Qdrant down | Retrieval degraded; Compliant analyze may continue | Documented WARN / soft fallback | [qdrant-outage](../../archive/old-investigations/qdrant-outage/) |
+| Ollama `:11434` down | Auditor/judge fails; Compliant Analyze often still 200 | Health-check Ollama for audit features | [REL-002](../../investigations/ollama-outage/) |
+| Next.js :8251 down | UI unavailable | Restart `run-rehearsal-dev.sh` / `cxr up` | — |
 
 ## What we do not claim
 

@@ -1,0 +1,7 @@
+phase,kind,http,ms,sql,note
+baseline_sql_up,analyze,200,8920,up,Compliant
+baseline_sql_up,diag,200,202,up,diag_ok
+mid_outage_sql_down,analyze,500,23486,down,Failed to analyze claim.
+mid_outage_sql_down,diag,500,51,down,Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)
+recovery_sql_up,analyze,200,8972,up,Compliant
+recovery_sql_up,diag,200,207,up,diag_ok

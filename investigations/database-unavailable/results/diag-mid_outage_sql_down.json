@@ -1,0 +1,1 @@
+{"ok":false,"server":"127.0.0.1,1433","database":"_claims","error":"Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","code":"ESOCKET","name":"ConnectionError","hint":"Verify network access to SQL Server, firewall, SQL auth enabled, and that env vars CXR_SQL_* are correct."}

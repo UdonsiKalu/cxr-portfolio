@@ -1,0 +1,2 @@
+error=Failed to analyze claim.
+odbc=('HYT00', '[HYT00] [Microsoft][ODBC Driver 17 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
