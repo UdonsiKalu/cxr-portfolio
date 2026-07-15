@@ -1,15 +1,15 @@
 # CHAOS-002 — Network latency
 
-**Status:** Planned (Phase 2)
+**Status:** Done → [../network-latency-injection/](../network-latency-injection/)
 
 ## Question
 
-How does injected latency between UI (:8251) and analyzer (:8766) affect Locust p95 and Jaeger traces?
+How does injected latency on the warm analyzer HTTP hop affect Analyze wall time and success?
 
-## Method (draft)
+## Method
 
-Inject latency (`tc`, toxiproxy, or compose network shaping) between UI and analyzer.
+Delay proxy `:8767` → `:8766`; tiers 0 / 100 / 500 / 2000 ms; curl Analyze through proxy.
 
-## Record results in
+## Results
 
-`cxr-ops-lab/evidence/` and promote to active folder when run.
+See [RESULTS.md](../network-latency-injection/RESULTS.md). Soft degradation (always HTTP 200); delay ≈ additive.
