@@ -1,0 +1,11 @@
+phase,probe,http,ms,delay_ms,note
+baseline,1,200,68,0,Compliant
+baseline,2,200,60,0,Compliant
+latency-100,1,200,161,100,Compliant
+latency-100,2,200,165,100,Compliant
+latency-500,1,200,564,500,Compliant
+latency-500,2,200,556,500,Compliant
+latency-2000,1,200,2054,2000,Compliant
+latency-2000,2,200,2056,2000,Compliant
+recovery,1,200,61,0,Compliant
+recovery,2,200,65,0,Compliant

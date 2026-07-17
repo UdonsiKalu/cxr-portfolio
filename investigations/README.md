@@ -26,6 +26,7 @@ Hypothesis-driven lab work on the local CXR stack (synthetic data only).
 | Alerting strategy (OBS-003 / #19) | [alerting-strategy/](./alerting-strategy/) |
 | CPU starvation (CHAOS-004 / #17) | [cpu-starvation/](./cpu-starvation/) |
 | Game day (combined failures / #18) | [game-day/](./game-day/) |
+| Network latency (CHAOS-002 / #15) | [network-latency-injection/](./network-latency-injection/) |
 | Planned backlog | [planned/](./planned/) |
 
 ---

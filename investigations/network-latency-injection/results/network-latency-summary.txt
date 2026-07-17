@@ -1,0 +1,55 @@
+CHAOS-002 Network latency — summary
+generated=2026-07-15T12:14:24-05:00
+probes_per_phase=2
+proxy=http://127.0.0.1:8767
+analyzer_direct=http://127.0.0.1:8766
+phase_mode=all
+
+baseline: n=2 http=200,200 delay_ms=0 ms_min=60 ms_median=64 ms_max=68
+latency-100: n=2 http=200,200 delay_ms=100 ms_min=161 ms_median=163 ms_max=165
+latency-500: n=2 http=200,200 delay_ms=500 ms_min=556 ms_median=560 ms_max=564
+latency-2000: n=2 http=200,200 delay_ms=2000 ms_min=2054 ms_median=2055 ms_max=2056
+recovery: n=2 http=200,200 delay_ms=0 ms_min=61 ms_median=63 ms_max=65
+
+csv:
+phase,probe,http,ms,delay_ms,note
+baseline,1,200,68,0,Compliant
+baseline,2,200,60,0,Compliant
+latency-100,1,200,161,100,Compliant
+latency-100,2,200,165,100,Compliant
+latency-500,1,200,564,500,Compliant
+latency-500,2,200,556,500,Compliant
+latency-2000,1,200,2054,2000,Compliant
+latency-2000,2,200,2056,2000,Compliant
+recovery,1,200,61,0,Compliant
+recovery,2,200,65,0,Compliant
+
+timeline:
+2026-07-15T12:14:17-05:00  proxy already up
+2026-07-15T12:14:17-05:00  preflight OK — probes hit http://127.0.0.1:8767/analyze
+2026-07-15T12:14:17-05:00  proxy_delay_ms=0
+2026-07-15T12:14:17-05:00  phase_begin baseline delay_ms=0
+2026-07-15T12:14:17-05:00  baseline [analyze p1]: http=200 ms=68 delay_ms=0 note=Compliant
+2026-07-15T12:14:17-05:00  baseline [analyze p2]: http=200 ms=60 delay_ms=0 note=Compliant
+2026-07-15T12:14:17-05:00  phase_end baseline
+2026-07-15T12:14:17-05:00  proxy_delay_ms=100
+2026-07-15T12:14:17-05:00  phase_begin latency-100 delay_ms=100
+2026-07-15T12:14:18-05:00  latency-100 [analyze p1]: http=200 ms=161 delay_ms=100 note=Compliant
+2026-07-15T12:14:18-05:00  latency-100 [analyze p2]: http=200 ms=165 delay_ms=100 note=Compliant
+2026-07-15T12:14:18-05:00  phase_end latency-100
+2026-07-15T12:14:18-05:00  proxy_delay_ms=500
+2026-07-15T12:14:18-05:00  phase_begin latency-500 delay_ms=500
+2026-07-15T12:14:18-05:00  latency-500 [analyze p1]: http=200 ms=564 delay_ms=500 note=Compliant
+2026-07-15T12:14:19-05:00  latency-500 [analyze p2]: http=200 ms=556 delay_ms=500 note=Compliant
+2026-07-15T12:14:19-05:00  phase_end latency-500
+2026-07-15T12:14:19-05:00  proxy_delay_ms=2000
+2026-07-15T12:14:19-05:00  phase_begin latency-2000 delay_ms=2000
+2026-07-15T12:14:21-05:00  latency-2000 [analyze p1]: http=200 ms=2054 delay_ms=2000 note=Compliant
+2026-07-15T12:14:23-05:00  latency-2000 [analyze p2]: http=200 ms=2056 delay_ms=2000 note=Compliant
+2026-07-15T12:14:23-05:00  phase_end latency-2000
+2026-07-15T12:14:23-05:00  proxy_delay_ms=0
+2026-07-15T12:14:24-05:00  phase_begin recovery delay_ms=0
+2026-07-15T12:14:24-05:00  recovery [analyze p1]: http=200 ms=61 delay_ms=0 note=Compliant
+2026-07-15T12:14:24-05:00  recovery [analyze p2]: http=200 ms=65 delay_ms=0 note=Compliant
+2026-07-15T12:14:24-05:00  phase_end recovery
+2026-07-15T12:14:24-05:00  proxy_delay_ms=0

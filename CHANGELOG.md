@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-15 — CHAOS-002: Network latency injection (resolved)
+
+| | |
+|---|---|
+| **Problem** | Unknown how added RTT on the warm analyzer HTTP hop affects Analyze success vs speed. |
+| **Outcome** | **Resolved (lab):** delay proxy `:8767`→`:8766`; tiers 0/100/500/2000 ms → always **HTTP 200**; wall clock rises ~**1:1** with inject (~64 ms → ~2055 ms at +2 s). Soft degradation. |
+| **Artifacts** | [network-latency-injection/](investigations/network-latency-injection/) · [RESULTS.md](investigations/network-latency-injection/RESULTS.md) · [latency chart](investigations/network-latency-injection/screenshots/latency-by-tier.png) · [issue #15](https://github.com/UdonsiKalu/cxr-portfolio/issues/15) |
+
 #### 2026-07-12 — Game day: combined failures (resolved)
 
 | | |
