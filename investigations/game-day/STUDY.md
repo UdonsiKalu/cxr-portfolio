@@ -52,7 +52,7 @@ Evidence: CSV timeline, alert-probe text captures, Chrome-rendered PNGs via `ren
 
 ## Artifacts
 
-- [LEARNER.md](./LEARNER.md) — beginner story  
+- [LEARNER.md](./LEARNER.md) — readable overview  
 - [RESULTS.md](./RESULTS.md) — short narrative  
 - [RUNBOOK.md](./RUNBOOK.md) — how to re-run  
 - [screenshots/](./screenshots/) — pictorial evidence  
