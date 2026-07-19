@@ -1,0 +1,10 @@
+CHAOS-003 Packet loss — summary
+generated=normalized-post-run
+probes_per_phase=20
+
+baseline: n=20 ok=20 success_rate=100.0% loss_pct=0 ms_median_ok=64
+loss-1: n=20 ok=20 success_rate=100.0% loss_pct=1 ms_median_ok=61
+loss-5: n=20 ok=19 success_rate=95.0% loss_pct=5 ms_median_ok=60
+loss-10: n=20 ok=19 success_rate=95.0% loss_pct=10 ms_median_ok=61
+loss-20: n=20 ok=17 success_rate=85.0% loss_pct=20 ms_median_ok=63
+recovery: n=20 ok=20 success_rate=100.0% loss_pct=0 ms_median_ok=62

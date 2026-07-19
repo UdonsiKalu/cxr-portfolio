@@ -44,6 +44,14 @@ Performance, reliability, and observability studies. Deep dives live in each stu
 
 ### Portfolio navigation (2026-07)
 
+#### 2026-07-18 — CHAOS-003: Packet loss injection (resolved)
+
+| | |
+|---|---|
+| **Problem** | Unknown whether loss on the warm analyzer hop slows Analyze or fails it. |
+| **Outcome** | **Resolved (lab):** shared delay/loss proxy; n=20 per tier — 0–1% → **100%** OK; 5–10% → **~95%**; 20% → **85%**. OK calls stay ~**60 ms** (fail, don’t stretch). |
+| **Artifacts** | [packet-loss-injection/](investigations/packet-loss-injection/) · [RESULTS.md](investigations/packet-loss-injection/RESULTS.md) · [chart](investigations/packet-loss-injection/screenshots/success-by-loss-tier.png) · [issue #16](https://github.com/UdonsiKalu/cxr-portfolio/issues/16) |
+
 #### 2026-07-15 — CHAOS-002: Network latency injection (resolved)
 
 | | |

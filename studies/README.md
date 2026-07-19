@@ -24,6 +24,7 @@ Full table: [kubernetes-analyzer-saturation/studies/](investigations/kubernetes-
 | CHAOS-004 (#17) | [CPU starvation](investigations/cpu-starvation/) |
 | Game day (#18) | [Combined failures drill](investigations/game-day/) |
 | CHAOS-002 (#15) | [Network latency injection](investigations/network-latency-injection/) |
+| CHAOS-003 (#16) | [Packet loss injection](investigations/packet-loss-injection/) |
 
 ## Earlier arcs (folder READMEs)
 

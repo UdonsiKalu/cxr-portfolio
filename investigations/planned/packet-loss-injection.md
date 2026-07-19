@@ -1,15 +1,15 @@
 # CHAOS-003 — Packet loss
 
-**Status:** Planned (Phase 2) · issue [#16](https://github.com/UdonsiKalu/cxr-portfolio/issues/16)
+**Status:** Done → [../packet-loss-injection/](../packet-loss-injection/)
 
 ## Question
 
-How does packet loss on the warm analyzer HTTP hop affect Analyze success rate and tail latency?
+How does packet loss on the warm analyzer HTTP hop affect Analyze success rate and latency?
 
-## Method (draft)
+## Method
 
-Reuse the CHAOS-002 delay proxy ([network-latency-injection/](../network-latency-injection/)) with a **loss %** toxic instead of (or in addition to) delay. Tiers e.g. 0% / 1% / 5% / 10%; probe `POST /analyze` through `:8767`; CSV + chart like CHAOS-002.
+Reuse CHAOS-002 `delay_proxy.py` with `loss_pct`; tiers 0/1/5/10/20%; 20 probes each.
 
 ## Results
 
-Not yet run.
+See [RESULTS.md](../packet-loss-injection/RESULTS.md). Loss causes drops (hard per-request); OK calls stay ~60 ms.
