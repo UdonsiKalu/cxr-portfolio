@@ -1,19 +1,13 @@
 # LOAD-003 — Horizontal scaling (1 vs N analyzers)
 
-**Status:** Planned (Phase 2)
+**Status:** Done → [../kubernetes-analyzer-saturation/](../kubernetes-analyzer-saturation/) (issue [#8](https://github.com/UdonsiKalu/cxr-portfolio/issues/8) closed)
 
 | Field | |
 |-------|---|
-| **Question** | Does adding analyzer instances improve Locust p95 linearly? |
-| **Hypothesis** | TBD |
-| **Method** | Run 1 vs 3 analyzer processes behind a load balancer |
-| **Tools** | Locust, Jaeger |
-| **Metrics** | p95, error rate, per-instance CPU |
+| **Question** | Does adding analyzer instances improve throughput / p95 under load? |
+| **Where it landed** | Kubernetes HPA + Locust on `:8081` — [LOAD-003 README](../kubernetes-analyzer-saturation/README.md) |
+| **Related** | [studies index](../kubernetes-analyzer-saturation/studies/README.md) · [load-balancing](./load-balancing.md) (still open) |
 
-## Results
+## Note
 
-Not yet run.
-
-## Follow-up
-
-Requires [single-analyzer-capacity](../single-analyzer-capacity/) saturation data and [load-balancing](./load-balancing.md).
+The original “1 vs 3 local processes” sketch was superseded by the K8 saturation arc (replicas + HPA). Keep this stub only as a pointer.
