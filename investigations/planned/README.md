@@ -20,7 +20,7 @@ Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evi
 | Ollama outage | [ollama-outage.md](./ollama-outage.md) → **done:** [../ollama-outage/](../ollama-outage/) | [#13](https://github.com/UdonsiKalu/cxr-portfolio/issues/13) (closing) |
 | Database unavailable | [database-unavailable.md](./database-unavailable.md) → **done:** [../database-unavailable/](../database-unavailable/) | [#14](https://github.com/UdonsiKalu/cxr-portfolio/issues/14) (closing) |
 | Network latency injection | [network-latency-injection.md](./network-latency-injection.md) → **done:** [../network-latency-injection/](../network-latency-injection/) | [#15](https://github.com/UdonsiKalu/cxr-portfolio/issues/15) (closing) |
-| Packet loss injection | [packet-loss-injection.md](./packet-loss-injection.md) | [#16](https://github.com/UdonsiKalu/cxr-portfolio/issues/16) |
+| Packet loss injection | [packet-loss-injection.md](./packet-loss-injection.md) → **done:** [../packet-loss-injection/](../packet-loss-injection/) | [#16](https://github.com/UdonsiKalu/cxr-portfolio/issues/16) (closing) |
 | CPU starvation | [cpu-starvation.md](./cpu-starvation.md) → **done:** [../cpu-starvation/](../cpu-starvation/) | [#17](https://github.com/UdonsiKalu/cxr-portfolio/issues/17) (closing) |
 | Game day | [game-day.md](./game-day.md) → **done:** [../game-day/](../game-day/) | [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18) (closing) |
 | Alerting strategy | [alerting-strategy.md](./alerting-strategy.md) → **done:** [../alerting-strategy/](../alerting-strategy/) | [#19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19) (closing) |

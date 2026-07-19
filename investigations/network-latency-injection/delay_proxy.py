@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""HTTP delay proxy for CHAOS-002 — listen → sleep(delay) → forward to analyzer.
+"""HTTP delay/loss proxy for CHAOS-002/003 — listen → optional drop/delay → forward.
 
 Control (not forwarded):
   GET  /__cxr_proxy/status
   POST /__cxr_proxy/delay   JSON {"ms": 500}
+  POST /__cxr_proxy/loss    JSON {"pct": 5}
 """
 from __future__ import annotations
 
 import argparse
 import json
+import random
 import sys
 import threading
 import time
@@ -18,9 +20,11 @@ from urllib.parse import urlparse
 
 _lock = threading.Lock()
 _delay_ms = 0
+_loss_pct = 0.0
 _upstream_host = "127.0.0.1"
 _upstream_port = 8766
 _hop_count = 0
+_drop_count = 0
 
 
 def set_delay(ms: int) -> int:
@@ -35,6 +39,18 @@ def get_delay() -> int:
         return _delay_ms
 
 
+def set_loss(pct: float) -> float:
+    global _loss_pct
+    with _lock:
+        _loss_pct = max(0.0, min(100.0, float(pct)))
+        return _loss_pct
+
+
+def get_loss() -> float:
+    with _lock:
+        return _loss_pct
+
+
 class Handler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
 
@@ -46,17 +62,19 @@ class Handler(BaseHTTPRequestHandler):
         return self.rfile.read(length) if length else b""
 
     def _handle_control(self) -> bool:
-        global _hop_count
         path = urlparse(self.path).path
         if path == "/__cxr_proxy/status":
-            body = json.dumps(
-                {
-                    "ok": True,
-                    "delay_ms": get_delay(),
-                    "upstream": f"{_upstream_host}:{_upstream_port}",
-                    "hops": _hop_count,
-                }
-            ).encode()
+            with _lock:
+                body = json.dumps(
+                    {
+                        "ok": True,
+                        "delay_ms": _delay_ms,
+                        "loss_pct": _loss_pct,
+                        "upstream": f"{_upstream_host}:{_upstream_port}",
+                        "hops": _hop_count,
+                        "drops": _drop_count,
+                    }
+                ).encode()
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.send_header("Content-Length", str(len(body)))
@@ -83,11 +101,47 @@ class Handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(body)
             return True
+        if path == "/__cxr_proxy/loss" and self.command == "POST":
+            raw = self._read_body()
+            try:
+                data = json.loads(raw.decode() or "{}")
+                pct = set_loss(float(data.get("pct", 0)))
+            except (ValueError, json.JSONDecodeError) as e:
+                err = json.dumps({"ok": False, "error": str(e)}).encode()
+                self.send_response(400)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Content-Length", str(len(err)))
+                self.end_headers()
+                self.wfile.write(err)
+                return True
+            body = json.dumps({"ok": True, "loss_pct": pct}).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return True
         return False
 
     def _proxy(self) -> None:
-        global _hop_count
+        global _hop_count, _drop_count
         if self._handle_control():
+            return
+
+        # Simulate packet loss: drop before upstream (client sees failed curl / 000).
+        loss = get_loss()
+        if loss > 0 and random.random() * 100.0 < loss:
+            with _lock:
+                _drop_count += 1
+            self.close_connection = True
+            try:
+                self.connection.shutdown(2)
+            except OSError:
+                pass
+            try:
+                self.connection.close()
+            except OSError:
+                pass
             return
 
         delay = get_delay()
@@ -117,6 +171,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_header(k, v)
             self.send_header("Content-Length", str(len(data)))
             self.send_header("X-CXR-Proxy-Delay-Ms", str(delay))
+            self.send_header("X-CXR-Proxy-Loss-Pct", str(loss))
             self.end_headers()
             self.wfile.write(data)
         except Exception as e:
@@ -146,21 +201,24 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main() -> int:
-    global _upstream_host, _upstream_port, _delay_ms
-    p = argparse.ArgumentParser(description="CXR CHAOS-002 delay proxy")
+    global _upstream_host, _upstream_port
+    p = argparse.ArgumentParser(description="CXR CHAOS-002/003 delay+loss proxy")
     p.add_argument("--listen", default="127.0.0.1:8767")
     p.add_argument("--upstream", default="127.0.0.1:8766")
     p.add_argument("--delay-ms", type=int, default=0)
+    p.add_argument("--loss-pct", type=float, default=0.0)
     args = p.parse_args()
 
     lh, lp = args.listen.rsplit(":", 1)
     uh, up = args.upstream.rsplit(":", 1)
     _upstream_host, _upstream_port = uh, int(up)
     set_delay(args.delay_ms)
+    set_loss(args.loss_pct)
 
     server = ThreadingHTTPServer((lh, int(lp)), Handler)
     print(
-        f"delay_proxy listen={args.listen} upstream={args.upstream} delay_ms={get_delay()}",
+        f"delay_proxy listen={args.listen} upstream={args.upstream} "
+        f"delay_ms={get_delay()} loss_pct={get_loss()}",
         flush=True,
     )
     try:

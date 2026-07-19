@@ -27,6 +27,7 @@ Hypothesis-driven lab work on the local CXR stack (synthetic data only).
 | CPU starvation (CHAOS-004 / #17) | [cpu-starvation/](./cpu-starvation/) |
 | Game day (combined failures / #18) | [game-day/](./game-day/) |
 | Network latency (CHAOS-002 / #15) | [network-latency-injection/](./network-latency-injection/) |
+| Packet loss (CHAOS-003 / #16) | [packet-loss-injection/](./packet-loss-injection/) |
 | Planned backlog | [planned/](./planned/) |
 
 ---
