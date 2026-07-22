@@ -25,12 +25,15 @@ python3 plot_latency.py
 ## Proxy control
 
 ```bash
-# status
 curl -s http://127.0.0.1:8767/__cxr_proxy/status
 
-# set delay
+# delay (CHAOS-002)
 curl -s -X POST http://127.0.0.1:8767/__cxr_proxy/delay \
   -H 'Content-Type: application/json' -d '{"ms":500}'
+
+# packet loss % (CHAOS-003 — see ../packet-loss-injection/)
+curl -s -X POST http://127.0.0.1:8767/__cxr_proxy/loss \
+  -H 'Content-Type: application/json' -d '{"pct":10}'
 ```
 
 ## Env

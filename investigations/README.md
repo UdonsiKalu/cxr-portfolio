@@ -34,6 +34,7 @@ Hypothesis-driven lab work on the local CXR stack (synthetic data only).
 
 ## Notes
 
+- **Chaos network pair (done):** [latency #15](./network-latency-injection/) (soft slowdown) · [packet loss #16](./packet-loss-injection/) (request drops) — shared `:8767` proxy.
 - Prefer **Markdown on GitHub** for write-ups. Optional Jupyter notebooks under a study folder are fine but not required.
 - Locust p95 (aggregate) ≠ Jaeger single-trace duration — report both when relevant.
 - Changelog: [../CHANGELOG.md](../CHANGELOG.md)
