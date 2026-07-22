@@ -10,20 +10,20 @@ Not yet run. Promote to a task folder with `README.md` + `screenshots/` when evi
 
 | Topic | File | Issue |
 |-------|------|-------|
-| Context builder optimization | [context-builder-optimization.md](./context-builder-optimization.md) → **done:** [PERF-002 study](../kubernetes-analyzer-saturation/studies/PERF-002-context-builder-bottleneck.md) | [#6](https://github.com/UdonsiKalu/cxr-portfolio/issues/6) (closing) |
-| Qdrant retrieval scaling | [qdrant-retrieval-scaling.md](./qdrant-retrieval-scaling.md) → **done:** [../qdrant-retrieval-scaling/](../qdrant-retrieval-scaling/) | [#7](https://github.com/UdonsiKalu/cxr-portfolio/issues/7) (closing) |
+| Context builder optimization | [context-builder-optimization.md](./context-builder-optimization.md) → **done:** [PERF-002 study](../kubernetes-analyzer-saturation/studies/PERF-002-context-builder-bottleneck.md) | [#6](https://github.com/UdonsiKalu/cxr-portfolio/issues/6) (closed) |
+| Qdrant retrieval scaling | [qdrant-retrieval-scaling.md](./qdrant-retrieval-scaling.md) → **done:** [../qdrant-retrieval-scaling/](../qdrant-retrieval-scaling/) | [#7](https://github.com/UdonsiKalu/cxr-portfolio/issues/7) (closed) |
 | Horizontal scaling | [horizontal-scaling.md](./horizontal-scaling.md) → **done:** [../kubernetes-analyzer-saturation/](../kubernetes-analyzer-saturation/) | [#8](https://github.com/UdonsiKalu/cxr-portfolio/issues/8) (closed) |
 | Platform bootstrap | [platform-bootstrap.md](./platform-bootstrap.md) | [#9](https://github.com/UdonsiKalu/cxr-portfolio/issues/9) |
 | Kubernetes migration | [kubernetes-migration.md](./kubernetes-migration.md) | [#10](https://github.com/UdonsiKalu/cxr-portfolio/issues/10) |
 | Load balancing | [load-balancing.md](./load-balancing.md) | [#11](https://github.com/UdonsiKalu/cxr-portfolio/issues/11) |
 | Autoscaling | [autoscaling.md](./autoscaling.md) | [#12](https://github.com/UdonsiKalu/cxr-portfolio/issues/12) |
-| Ollama outage | [ollama-outage.md](./ollama-outage.md) → **done:** [../ollama-outage/](../ollama-outage/) | [#13](https://github.com/UdonsiKalu/cxr-portfolio/issues/13) (closing) |
-| Database unavailable | [database-unavailable.md](./database-unavailable.md) → **done:** [../database-unavailable/](../database-unavailable/) | [#14](https://github.com/UdonsiKalu/cxr-portfolio/issues/14) (closing) |
-| Network latency injection | [network-latency-injection.md](./network-latency-injection.md) → **done:** [../network-latency-injection/](../network-latency-injection/) | [#15](https://github.com/UdonsiKalu/cxr-portfolio/issues/15) (closing) |
-| Packet loss injection | [packet-loss-injection.md](./packet-loss-injection.md) → **done:** [../packet-loss-injection/](../packet-loss-injection/) | [#16](https://github.com/UdonsiKalu/cxr-portfolio/issues/16) (closing) |
-| CPU starvation | [cpu-starvation.md](./cpu-starvation.md) → **done:** [../cpu-starvation/](../cpu-starvation/) | [#17](https://github.com/UdonsiKalu/cxr-portfolio/issues/17) (closing) |
-| Game day | [game-day.md](./game-day.md) → **done:** [../game-day/](../game-day/) | [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18) (closing) |
-| Alerting strategy | [alerting-strategy.md](./alerting-strategy.md) → **done:** [../alerting-strategy/](../alerting-strategy/) | [#19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19) (closing) |
+| Ollama outage | [ollama-outage.md](./ollama-outage.md) → **done:** [../ollama-outage/](../ollama-outage/) | [#13](https://github.com/UdonsiKalu/cxr-portfolio/issues/13) (closed) |
+| Database unavailable | [database-unavailable.md](./database-unavailable.md) → **done:** [../database-unavailable/](../database-unavailable/) | [#14](https://github.com/UdonsiKalu/cxr-portfolio/issues/14) (closed) |
+| Network latency injection | [network-latency-injection.md](./network-latency-injection.md) → **done:** [../network-latency-injection/](../network-latency-injection/) | [#15](https://github.com/UdonsiKalu/cxr-portfolio/issues/15) (closed) |
+| Packet loss injection | [packet-loss-injection.md](./packet-loss-injection.md) → **done:** [../packet-loss-injection/](../packet-loss-injection/) | [#16](https://github.com/UdonsiKalu/cxr-portfolio/issues/16) (closed) |
+| CPU starvation | [cpu-starvation.md](./cpu-starvation.md) → **done:** [../cpu-starvation/](../cpu-starvation/) | [#17](https://github.com/UdonsiKalu/cxr-portfolio/issues/17) (closed) |
+| Game day | [game-day.md](./game-day.md) → **done:** [../game-day/](../game-day/) | [#18](https://github.com/UdonsiKalu/cxr-portfolio/issues/18) (closed) |
+| Alerting strategy | [alerting-strategy.md](./alerting-strategy.md) → **done:** [../alerting-strategy/](../alerting-strategy/) | [#19](https://github.com/UdonsiKalu/cxr-portfolio/issues/19) (closed) |
 | GPU utilization | [gpu-utilization.md](./gpu-utilization.md) | [#20](https://github.com/UdonsiKalu/cxr-portfolio/issues/20) |
 | Cost per claim | [cost-per-claim.md](./cost-per-claim.md) | [#21](https://github.com/UdonsiKalu/cxr-portfolio/issues/21) |
 | Analyzer efficiency | [analyzer-efficiency.md](./analyzer-efficiency.md) | [#22](https://github.com/UdonsiKalu/cxr-portfolio/issues/22) |
